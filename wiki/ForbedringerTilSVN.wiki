@@ -1,4 +1,4 @@
-#summary Siden indeholder forslag til hvordna SVN-depotet anvendes mere hensigsmæssigt
+#summary Siden indeholder forslag til hvordan SVN-depotet anvendes mere hensigsmæssigt
 
 = Forslag til bedre udnyttelse af SVN-depotet =
 
