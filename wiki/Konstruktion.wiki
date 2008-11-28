@@ -6,4 +6,4 @@ Siden indeholder forslag til hvordan vi skal konstruere vores plotter. Vi kan be
 
 Der er foreslået, at vi skal flytte dem med:
   * en spindel, hvilket egentlig er en gevindstang der roteres
-  * en tandrem.
+  * en tandrem
