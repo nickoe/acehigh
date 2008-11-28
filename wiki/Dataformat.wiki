@@ -2,17 +2,43 @@
 
 = Dataformat =
 
-Her skal der stå en beskrivelse af det format, dataene er i.
+Vi har brug for en række instruktioner, som beskriver, hvad vi skal
+gøre med vores hardware. Jeg (Kristian) ser, at vi mindst har brug for
+følgende instruktioner:
+
+  * Flyt x-akse-motor frem
+  * Flyt x-akse-motor tilbage
+  * Flyt y-akse-motor frem
+  * Flyt y-akse-motor tilbage
+  * Sænk skrivehovedet
+  * Løft skrivehovedet
+
+Derudover er det praktisk med følgende instruktioner:
+
+  * Begynd tegning
+  * Slut tegning
+
+Følgende instruktioner kan reducere instruktionsfilens størrelse:
+
+  * Begynd løkke (efter fulgt af X antal bits, som indikerer det
+    antal gange, løkken skal køres)
+  * Afslut løkke
+
 
 = Dataoverførsel =
 
 Vi har følgende muligheder for at få data på chippen: Dataene kan
+
   * hardcores ind i chippen
   * sendes via serielt kabel til chippen
   * lagres på hukommelseskort og læses fra chippen
 
-*Hardcodede data* i chippen er en rigtig dårlig ide. Så skal vi manuelt lave instruktionerne (tegningen) og kompilere dataene ind i et program. Så kan maskinen kun tegne én tegning uden at blive programmeret igen.
+*Hardcodede data* i chippen er en rigtig dårlig ide. Så skal vi
+ manuelt lave instruktionerne (tegningen) og kompilere dataene ind i
+ et program. Så kan maskinen kun tegne én tegning uden at blive
+ programmeret igen.
 
-*Serielt overførte data* kræver meget computerkommunikation. Måske fylder computerdelen for meget i denne proces.
+*Serielt overførte data* kræver meget computerkommunikation. Måske
+ fylder computerdelen for meget i denne proces.
 
 *Data lagret på hukommelseskort* kræver hardware til hukommelseskort.
