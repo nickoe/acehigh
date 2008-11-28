@@ -35,6 +35,8 @@ til overs. Disse instruktioner kan evt. bruges til senere.
 
 Vi skal have et program, der kan generere vores instruktionsfil. Ellers skal vi hardcode en instruktionsfil, og det gider jeg (Kristian) ikke.
 
+Det er her, jeg ser den største udfordring: Hvordan omsætter vi en linie, en cirkel, cirkelbue eller funktionsforskrift i et endeligt interval? Kurven skal omsættes matematisk til enten en lodret streg op, lodret streg ned, vandret streg til højre eller vandret streg til venstre.
+
 
 = Dataoverførsel =
 
