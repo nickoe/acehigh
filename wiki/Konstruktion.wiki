@@ -1,13 +1,9 @@
-#summary One-sentence summary of this page.
+#summary Siden indeholder forslag til hvordan vi skal konstruere vores plotter
 
-= Introduction =
+= Introduktion =
 
-Siden indeholder forslag til hvordan vi skal konstrurer vores plotter
+Siden indeholder forslag til hvordan vi skal konstruere vores plotter. Vi kan beskrive hvordan det er smartest bevæge de to akser der flytter hovedet m.m.
 
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Der er foreslået, at vi skal flytte dem med:
+  * en spindel, hvilket egentlig er en gevindstang der roteres
+  * en tandrem.
