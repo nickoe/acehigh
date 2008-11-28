@@ -11,7 +11,7 @@ Følgende findes i SVN-arkivet:
   * Kildekoder
   * Alt skriftligt arbejde
   * Alt indhold til det skriftlige arbejde (tegninger, diagrammer etc.)
-  * Alt indhold, der redigeres med andet end en browser (fx kredsløbsdiagrammer, kildekoder) også selvom det ikke skal afleveres
+  * Alt indhold, der redigeres med andet end en browser (fx kredsløbsdiagrammer, kildekoder, billeder, tegninger etc.) også selvom det ikke skal afleveres
 
 Følgende findes i wikien:
   * Overvejelser, som ikke skal afleveres
