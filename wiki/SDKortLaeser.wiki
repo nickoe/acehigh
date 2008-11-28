@@ -1,3 +1,9 @@
 #summary En kortlæserdriver til SD-kort og beskrivelse af hvordan den bruges
 
-se [http://www.captain.at/electronic-atmega-sd-card.php dette link]
+Denne side skal beskrive en driver til SD-kort.
+
+http://www.captain.at/electronic-atmega-sd-card.php beskriver hvordan man laver en MMC- og SD-kortlæser til en atmega16.
+
+http://www.maxim-ic.com/appnotes.cfm/an_pk/3969 beskriver, hvordan et SD-kort fungerer. Siden er god til at holde sammen med forrige link.
+
+Til overvejelse: Hvor meget af koden på http://www.captain.at/electronic-atmega-sd-card.php skal genbruges?
