@@ -17,4 +17,4 @@ Vi skal kunne omsætte en linie (to forbundne punkter) til en række instruktion
 
 Hvis vi når langt, skal vi kunne omsætte Bézier-kurver til liniestykker.
 
-Måske kan vi se i kildekoden til Inkscape (eller en anden rendering engine til SVG) hvordan det gøres med pixels - en masse små liniestykker kan forstås som linier fra pixel til pixel.
+Måske kan vi se i kildekoden til Inkscape (eller en anden rendering engine til SVG) hvordan det gøres med pixels - en masse små liniestykker kan forstås som linier fra pixel til pixel. Se evt http://www.linuxrising.org/svg_test/index.html
