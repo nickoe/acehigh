@@ -4,15 +4,15 @@
 
 Her skal der stå en beskrivelse af det format, dataene er i.
 
-= Medie =
+= Dataoverførsel =
 
 Vi har følgende muligheder for at få data på chippen: Dataene kan
   * hardcores ind i chippen
   * sendes via serielt kabel til chippen
   * lagres på hukommelseskort og læses fra chippen
 
-*Hardcodede data* i chippen er en rigtig dårlig ide.
+*Hardcodede data* i chippen er en rigtig dårlig ide. Så skal vi manuelt lave instruktionerne (tegningen) og kompilere dataene ind i et program. Så kan maskinen kun tegne én tegning uden at blive programmeret igen.
 
-*Serielt overførte data* kræver meget computerkommunikation.
+*Serielt overførte data* kræver meget computerkommunikation. Måske fylder computerdelen for meget i denne proces.
 
 *Data lagret på hukommelseskort* kræver hardware til hukommelseskort.
