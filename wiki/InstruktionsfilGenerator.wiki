@@ -16,3 +16,5 @@ Hvis man konverterer tekst til stier i Inkscape 0.46, beskrives stierne som lini
 Vi skal kunne omsætte en linie (to forbundne punkter) til en række instruktioner af formen beskrevet i en anden wiki-side: en række små, lodrette eller vandrette linier.
 
 Hvis vi når langt, skal vi kunne omsætte Bézier-kurver til liniestykker.
+
+Måske kan vi se i kildekoden til Inkscape (eller en anden rendering engine til SVG) hvordan det gøres med pixels - en masse små liniestykker kan forstås som linier fra pixel til pixel.
