@@ -1,0 +1,18 @@
+#summary Beskrivelse af dataformatet til plotteren
+
+= Dataformat =
+
+Her skal der stå en beskrivelse af det format, dataene er i.
+
+= Medie =
+
+Vi har følgende muligheder for at få data på chippen: Dataene kan
+  * hardcores ind i chippen
+  * sendes via serielt kabel til chippen
+  * lagres på hukommelseskort og læses fra chippen
+
+*Hardcodede data* i chippen er en rigtig dårlig ide.
+
+*Serielt overførte data* kræver meget computerkommunikation.
+
+*Data lagret på hukommelseskort* kræver hardware til hukommelseskort.
