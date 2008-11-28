@@ -2,6 +2,8 @@
 
 = Dataformat =
 
+Datafilen indeholder kun *instruktioner på lavt niveau*. For instruktioner på højt niveau: se "Hvordan genereres instruktionsfilen?"
+
 Vi har brug for en række instruktioner, som beskriver, hvad vi skal
 gøre med vores hardware. Jeg (Kristian) ser, at vi mindst har brug for
 følgende instruktioner:
@@ -30,15 +32,15 @@ have plads til alle instruktionerne i en instruktionsenhed. Med 4 bits
 har vi plads til 16 (2^4^) instruktioner, og vi har derfor 5 pladser
 til overs. Disse instruktioner kan evt. bruges til senere.
 
+Vi kan måske anvende nogle standarder der i forvejen findes.
+[http://en.wikipedia.org/wiki/G-code] - noget der bliver anvendt til CNC maskin instruktioner. Dog indeholder de flere instruktioner end vi får brug for på det lave instruktionsniveau.
 
-= Instruktionsfilen =
+
+= Hvordan genereres instruktionsfilen? =
 
 Vi skal have et program, der kan generere vores instruktionsfil. Ellers skal vi hardcode en instruktionsfil, og det gider jeg (Kristian) ikke.
 
 Det er her, jeg ser den største udfordring: Hvordan omsætter vi en linie, en cirkel, cirkelbue eller funktionsforskrift i et endeligt interval? Kurven skal omsættes matematisk til enten en lodret streg op, lodret streg ned, vandret streg til højre eller vandret streg til venstre.
-
-Vi kan måske anvende nogle standarder der i forvejen findes.
-[http://en.wikipedia.org/wiki/G-code] - noget der bliver anvendt til CNC maskin instruktioner
 
 
 = Dataoverførsel =
