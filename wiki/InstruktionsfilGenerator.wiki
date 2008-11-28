@@ -19,4 +19,4 @@ Hvis vi når langt, skal vi kunne omsætte Bézier-kurver til liniestykker.
 
 Måske kan vi se i kildekoden til Inkscape (eller en anden rendering engine til SVG) hvordan det gøres med pixels - en masse små liniestykker kan forstås som linier fra pixel til pixel. Se evt http://www.linuxrising.org/svg_test/index.html.
 
-Kommandolinieindgangen til Inkscape synes at være main.cpp:734. Måske kan det lede til algoritmen til rasterisering af vektorgrafik.
+I kildekoden til Inkscape konverteres en svg-fil til en png-fil i main.cpp:900. Måske kan dette bruges som indgang til hvordan man rasteriserer vektorgrafik.
