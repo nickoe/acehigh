@@ -4,7 +4,25 @@
 
 Siden indeholder forslag til hvordan vi skal konstruere vores plotter. Vi kan beskrive hvordan det er smartest bevæge de to akser der flytter hovedet m.m.
 
+== Bevægelse ==
+
 Der er foreslået, at vi skal flytte dem med:
   * en spindel, hvilket egentlig er en gevindstang der roteres
   * en tandrem
-  * en kombination, hvor en spindel driver en tandrem
+
+== Gearing ==
+
+For at plotteren kan plotte præcist, er vi nødt til at gøre dens aksebevægelser tilpas små. Det vil sige, at vi skal geare hastigheden ned. Vi kan ikke både få en meget præcis plotter og meget hurtig plotter på én gang. Vi skal finde ud af hvor hurtigt vi kan få stepmotoren til at køre, dertil skal vi også tænke på, at det ikke må tage en evighed at plotte noget. Det er trods alt ikke en produktions maskine (Til trods for, at den i princippet kan reproducere sig selv...).
+
+Gearing kan ske på forskellig måde. Man kan bruge forskellige tandhjuls-kombinaitoner eller remskiver. Så vi har følgende muligheder for gearing:
+  * flade tandhjul
+  * spindelprincip på tandhjul
+  * elastikbånd
+  * kæde
+  * gearkasse
+  * eller en kombination af førnævnte
+
+Valget af disse gearings metoder bør afhænge af
+  * hvilke muligheder vi har
+  * hvor besværligt det er
+  * gearingsforholdet
