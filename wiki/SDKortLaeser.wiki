@@ -6,4 +6,6 @@ http://www.captain.at/electronic-atmega-sd-card.php beskriver hvordan man laver 
 
 http://www.maxim-ic.com/appnotes.cfm/an_pk/3969 beskriver, hvordan et SD-kort fungerer. Siden er god til at holde sammen med forrige link.
 
+http://www.cs.ucr.edu/%7Eamitra/sdcard/Additional/sdcard_appnote_foust.pdf beskriver hvordan SD-kort bruges. Med kildekoder til komplet program. Kilden ser god ud.
+
 Til overvejelse: Hvor meget af koden på http://www.captain.at/electronic-atmega-sd-card.php skal genbruges?
