@@ -1,0 +1,3 @@
+#summary En kortlæserdriver til SD-kort og beskrivelse af hvordan den bruges
+
+se [http://www.captain.at/electronic-atmega-sd-card.php dette link]
