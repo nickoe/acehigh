@@ -1,0 +1,21 @@
+#summary Retningslinier for projektarbejde og brug af Google Code
+
+= Retningslinier =
+
+Denne side indeholder retningslinier for, hvordan projektarbejdet er organiseret, og hvordan Google Code bruges som arbejdsplads.
+
+
+== Sådan bruges Google Code ==
+
+Følgende findes i SVN-arkivet:
+  * Kildekoder
+  * Alt skriftligt arbejde
+  * Alt indhold til det skriftlige arbejde (tegninger, diagrammer etc.)
+
+Følgende findes i wikien:
+  * Overvejelser, som ikke skal afleveres
+  * Dimensionering, som ikke skal afleveres
+  * Eksempler (kildekoder, henvisninger, tegninger, videoer) som ikke skal afleveres
+  * Noter
+
+Google Codes downloadområde bruges ikke.
