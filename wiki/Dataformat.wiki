@@ -31,6 +31,11 @@ har vi plads til 16 (2^4^) instruktioner, og vi har derfor 5 pladser
 til overs. Disse instruktioner kan evt. bruges til senere.
 
 
+= Instruktionsfilen =
+
+Vi skal have et program, der kan generere vores instruktionsfil. Ellers skal vi hardcode en instruktionsfil, og det gider jeg (Kristian) ikke.
+
+
 = Dataoverførsel =
 
 Vi har følgende muligheder for at få data på chippen: Dataene kan
