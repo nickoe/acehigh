@@ -1,0 +1,23 @@
+#summary Beskrivelse af hvordan systemet styres.
+
+= Terminologi =
+
+I dette afsnit betyder procedure en processorinstruktion, altså noget kode vi har kompileret og lagt på processoren.
+
+En _instruktion_ dækker derimod over den kode, der indikerer, hvad vi skal gøre med maskinen - skal x-akse-motoren køre mod højre, skal tegnehovedmotoren køre ned etc.
+
+
+= Forskellig slagt styring =
+
+Systemet kan styres som enten
+  * flere tråde, eller
+  * en tråd med interrupts
+
+*Flere tråde* kræver multitrådet programmering og er meget omfattende.
+
+*En tråd med interrupts* gør, at vi hele tiden må vente på, at den forrige procedure er udført. Det er intet problem, hvis procedurerne afvikles hurtigt (ved ikke hvor lang tid det tager at læse nogle bytes fra et MMC-kort, vi kan lave en test).
+
+
+= Forslag til styring =
+
+Jeg (Kristian) foreslår, at vi styrer systemet som én tråd, hvor vi hele tiden skal vente på, at den forrige procedure er udført: fx kører motoren først, når vi har indlæst den næste instruktion fra den filstrøm, der indeholder instruktionerne.
