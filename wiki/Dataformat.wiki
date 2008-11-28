@@ -21,14 +21,13 @@ Derudover er det praktisk med følgende instruktioner:
 
 Følgende instruktioner kan reducere instruktionsfilens størrelse:
 
-  * Begynd løkke (efter fulgt af X antal bits, som indikerer det
-    antal gange, løkken skal køres)
+  * Begynd løkke (efter fulgt af X antal bits, som indikerer det antal gange, løkken skal køres)
   * Afslut løkke
 
 Vi har altså 11 forskellige instruktioner, som der skal være plads til
 i hver instruktionsenhed. Vi er altså nødt til at bruge 4 bits for at
 have plads til alle instruktionerne i en instruktionsenhed. Med 4 bits
-har vi plads til 16 (2^4) instruktioner, og vi har derfor 5 pladser
+har vi plads til 16 (2^4^) instruktioner, og vi har derfor 5 pladser
 til overs. Disse instruktioner kan evt. bruges til senere.
 
 
