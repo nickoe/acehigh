@@ -37,6 +37,9 @@ Vi skal have et program, der kan generere vores instruktionsfil. Ellers skal vi 
 
 Det er her, jeg ser den største udfordring: Hvordan omsætter vi en linie, en cirkel, cirkelbue eller funktionsforskrift i et endeligt interval? Kurven skal omsættes matematisk til enten en lodret streg op, lodret streg ned, vandret streg til højre eller vandret streg til venstre.
 
+Vi kan måske anvende nogle standarder der i forvejen findes.
+[http://en.wikipedia.org/wiki/G-code] - noget der bliver anvendt til CNC maskin instruktioner
+
 
 = Dataoverførsel =
 
