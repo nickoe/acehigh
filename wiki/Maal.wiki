@@ -10,3 +10,6 @@ For hvert mål skal det fremgå
   * udfordringerne ved målet
   * hvem der er hovedansvarlig for målet
   * kilder, henvisninger, dokumentation, hjælp til at nå målet etc.
+
+= To do =
+  * I rev 43 er der tilføjet et diagram over kortlæseren. Der skal bestemmes om vi skal have Serial Port Interface (SPI) direkte koblet til vores chip eller om det er muligt/hensigtsmæssigt bedre at skrive til hukommelses kort fra anden enhed.
