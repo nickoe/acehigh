@@ -5,3 +5,5 @@
 [http://www.captain.at/electronic-atmega-mmc.php] - Hukommelses problemerne er løst
 
 [http://www.captain.at/electronic-atmega-sd-card.php] - Og hvordan man får MMC interfacet til at virke med SD
+
+[http://www.learnsvg.com/] - Et sted for information om at skrive SVG
