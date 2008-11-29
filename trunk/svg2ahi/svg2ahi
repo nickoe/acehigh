@@ -1,6 +1,8 @@
 #!/usr/bin/python
+#-*- coding: utf-8 -*-
 
-# Converter from SVG files to Ace High instruction files
+
+# Converter from SVG files to Ace High Instruction files
 # Copyright © 2008  Kristian Kjærgaard
 #
 # This program is free software: you can redistribute it and/or modify
@@ -50,11 +52,12 @@
 import xml.parsers.expat
 
 
-# Returnerer
-def point2pos(n):
-    return 0;
-
+class Point:
+    def __init__(self, _x, _y):
+        self.x = _x
+        self.y = _y
 
 
 print "Jeg er et Python-program"
-print point2pos(4);
+p = Point(5,3)
+print p.x, p.y
