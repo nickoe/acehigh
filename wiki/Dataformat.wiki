@@ -25,6 +25,7 @@ Følgende instruktioner kan reducere instruktionsfilens størrelse:
 
   * Begynd løkke (efter fulgt af X antal bits, som indikerer det antal gange, løkken skal køres)
   * Afslut løkke
+  * Gå til-instruktion, hvor stien hen til punktet ikke er vigtig.
 
 Vi har altså 11 forskellige instruktioner, som der skal være plads til
 i hver instruktionsenhed. Vi er altså nødt til at bruge 4 bits for at
