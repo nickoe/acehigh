@@ -23,3 +23,8 @@ Systemet kan styres som enten
 Jeg (Kristian) foreslår, at vi styrer systemet som én tråd, hvor vi hele tiden skal vente på, at den forrige procedure er udført: fx kører motoren først, når vi har indlæst den næste instruktion fra den filstrøm, der indeholder instruktionerne.
 
 Det har den fordel, at det er langt lettere at programmere. Vi behøver ikke at bruge operativsystemet som [http://www.freertos.org FreeRTOS] eller trådet programmering. Nogle ting er en fordel at have udført periodisk (fx 10 gange i sekundet), og dette implementeres med interrupts.
+
+
+= Instruktioner til maskinen =
+
+Her skal det beskrives, hvordan instruktionerne til maskinen beskrives.
