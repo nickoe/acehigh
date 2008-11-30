@@ -1,5 +1,11 @@
 #summary Beskrivelse af dataformatet til plotteren
 
+
+= Advarsel =
+
+Denne side er afhængig af [Systemstyring hvordan systemet styres]. Systemstyringen er endnu ikke vedtaget og låst, og derfor er denne side kun et udkast.
+
+
 = Dataformat =
 
 Datafilen indeholder kun *instruktioner på lavt niveau*. For instruktioner på højt niveau: se "Hvordan genereres instruktionsfilen?"
