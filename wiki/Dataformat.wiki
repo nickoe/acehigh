@@ -39,7 +39,9 @@ Vi kan måske anvende nogle standarder der i forvejen findes.
 
 == Højniveauinstruktioner ==
 
-Hvis vi skal have højniveauinstruktioner, er det nok en god ide kun at have linier. Disse kunne så fortolkes af data på chippen.
+Hvis vi skal have højniveauinstruktioner, er det nok en god ide kun at have linier. Disse kunne så fortolkes af software på chippen til lavniveauinstruktioner.
+
+Hvis vi også skal have højniveauinstruktioner, har vi brug for flerer bits pr. instruktion end de 4. Fx 8 (for så er en instruktion lig en byte).
 
 
 = Hvordan genereres instruktionsfilen? =
