@@ -37,6 +37,11 @@ Vi kan måske anvende nogle standarder der i forvejen findes.
 [http://en.wikipedia.org/wiki/G-code] - noget der bliver anvendt til CNC maskin instruktioner. Dog indeholder de flere instruktioner end vi får brug for på det lave instruktionsniveau.
 
 
+== Højniveauinstruktioner ==
+
+Hvis vi skal have højniveauinstruktioner, er det nok en god ide kun at have linier. Disse kunne så fortolkes af data på chippen.
+
+
 = Hvordan genereres instruktionsfilen? =
 
 Vi skal have et program, der kan generere vores instruktionsfil. Ellers skal vi hardcode en instruktionsfil, og det gider jeg (Kristian) ikke.
