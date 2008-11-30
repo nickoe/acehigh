@@ -8,4 +8,4 @@
 
 [http://www.learnsvg.com/] - Et sted for information om at skrive SVG
 
-[http://www.scienceprog.com/high-capacity-multimedia-cards-in-embedded-systems/] - Kort om virkemåden af MMC / SK kort i indlejrede systemer
+[http://www.scienceprog.com/high-capacity-multimedia-cards-in-embedded-systems/] - Kort om virkemåden af MMC / SD kort i indlejrede systemer
