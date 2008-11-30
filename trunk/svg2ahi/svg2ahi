@@ -26,30 +26,7 @@
 # Principper: Vi omsætter alle kurver til en række punkter, som vi
 # tegner lige streger mellem.
 #
-# Programmet afvikles således:
-#
-#   Først importeres en svg-fil. Noter her.
-#
-#   Så omsættes alle kendte figurer til en række punkter. Hvordan
-#   bestemmes opløsningen?
-#
-#   Så lægges alle punktsekvenser ind i en liste.
-#
-#   Disse lister af punktsekvenser lægges ind i en større liste. De
-#   sorteres, så punktsekvenser med sammenliggende endepunkter ligger
-#   efter hinanden.
-#
-#   Der indsættes tomme huller af en anden type: hul-typen. Disse
-#   bruges til at flytte skrivehovedet til en ny position uden at
-#   tegne på vejen derhen.
-#
-#   Alle disse punktsekvenser omsættes til AHI (Ace High
-#   Instructions).
-#
-#   AHI løbes igennem for at tjekke, om der er
-#   gentagelser. Gentagelser bør kapsles ind i en løkke.
-#
-#   Vores AHI eksporteres til en fil. Husk start- og slutbit.
+# For dokumentation: se diagrammerne
 #
 
 import xml.parsers.expat
