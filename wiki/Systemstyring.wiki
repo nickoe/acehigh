@@ -13,6 +13,10 @@ Systemet styres som én tråd med en forsinkelse inden hvert step. Vi har en uaf
 
 Hvis motoren skal køre med jævn hastighed, skal forsinkelsen inden hvert step på motoren være længere end den tid det tager at læse en instruktion fra SD-kortet.
 
+Tegnehovedet kører enten
+  * lodret eller vandret, eller
+  * på skrå
+
 Efter hvert vandret eller lodret step skal der være en tidsenhed forsinkelse til det næste step. Efter hvert skråt step skal der være ca 1,4 tidsenheder forsinkelse. Så bevæger tegneren sig i en tilnærmelsesvis jævn hastighed (hvis opløsningen bliver større, bliver hastigheden også mere jævn).
 
 
