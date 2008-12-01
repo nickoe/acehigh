@@ -18,4 +18,4 @@ Efter hvert vandret eller lodret step skal der være en tidsenhed forsinkelse ti
 
 = Instruktioner til maskinen =
 
-se [Dataformat siden om dataformatet] for instruktioner til maskinen.
+Se [Dataformat siden om dataformatet] for instruktioner til maskinen.
