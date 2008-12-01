@@ -6,7 +6,7 @@
 
 [http://www.captain.at/electronic-atmega-sd-card.php] - Og hvordan man får MMC interfacet til at virke med SD
 
-[http://www.learnsvg.com/] - Et sted for information om at skrive SVG
+[http://www.learnsvg.com] og [http://w3schools.com/svg] - steder for information om at skrive SVG
 
 [http://www.scienceprog.com/high-capacity-multimedia-cards-in-embedded-systems/] - Kort om virkemåden af MMC / SD kort i indlejrede systemer
 
