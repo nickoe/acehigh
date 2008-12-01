@@ -27,6 +27,13 @@ Derudover er det praktisk med følgende instruktioner:
   * Slut tegning
   * Nul-instruktion (tom instruktion)
 
+vi har plads til de fire ekstra funktioner, så derfor har vi dem med, så de kan køre hurtigere:
+
+  * Skråt op til venstre
+  * Skråt op til højre
+  * Skråt ned til venstre
+  * Skråt ned til højre
+
 Følgende instruktioner kan reducere instruktionsfilens størrelse:
 
   * Begynd løkke (efter fulgt af X antal bits, som indikerer det antal gange, løkken skal køres)
@@ -36,8 +43,7 @@ Følgende instruktioner kan reducere instruktionsfilens størrelse:
 Vi har altså 11 forskellige instruktioner, som der skal være plads til
 i hver instruktionsenhed. Vi er altså nødt til at bruge 4 bits for at
 have plads til alle instruktionerne i en instruktionsenhed. Med 4 bits
-har vi plads til 16 (2^4^) instruktioner, og vi har derfor 5 pladser
-til overs. Disse instruktioner kan evt. bruges til senere.
+har vi plads til 16 (2^4^) instruktioner, og derfor er der plads nok til lige nøjagtig de 16 funktioner.
 
 Vi kan måske anvende nogle standarder der i forvejen findes.
 [http://en.wikipedia.org/wiki/G-code] - noget der bliver anvendt til CNC maskin instruktioner. Dog indeholder de flere instruktioner end vi får brug for på det lave instruktionsniveau.
