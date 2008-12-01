@@ -1,11 +1,6 @@
 #summary Beskrivelse af dataformatet til plotteren
 
 
-= Advarsel =
-
-Denne side er afhængig af [Systemstyring hvordan systemet styres]. Systemstyringen er endnu ikke vedtaget og låst, og derfor er denne side kun et udkast.
-
-
 = Dataformat =
 
 Datafilen indeholder kun *instruktioner på lavt niveau*. For instruktioner på højt niveau: se "Hvordan genereres instruktionsfilen?"
@@ -44,6 +39,12 @@ Vi har altså 11 forskellige instruktioner, som der skal være plads til
 i hver instruktionsenhed. Vi er altså nødt til at bruge 4 bits for at
 have plads til alle instruktionerne i en instruktionsenhed. Med 4 bits
 har vi plads til 16 (2^4^) instruktioner, og derfor er der plads nok til lige nøjagtig de 16 funktioner.
+
+== Oversigt over instruktioner ==
+
+|| *Værdi* || *Betydning* ||
+|| 0b*0000* || tekst her ||
+
 
 Vi kan måske anvende nogle standarder der i forvejen findes.
 [http://en.wikipedia.org/wiki/G-code] - noget der bliver anvendt til CNC maskin instruktioner. Dog indeholder de flere instruktioner end vi får brug for på det lave instruktionsniveau.
