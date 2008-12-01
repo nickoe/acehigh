@@ -56,9 +56,9 @@ har vi plads til 16 (2^4^) instruktioner, og derfor er der plads nok til lige n�
 || 0xA (0b1010) || Op til venstre ↖ ||
 || 0xB (0b1011) || Skrivehoved ned ||
 || 0xC (0b1100) || Skrivehoved op ||
-|| 0xD (0b1101) || - ||
-|| 0xE (0b1110) || - ||
-|| 0xF (0b1111) || - ||
+|| 0xD (0b1101) || Evt. løkke start (antallet er skrevet i de efterfølgende 8 bits) ||
+|| 0xE (0b1110) || Evt. løkke stop ||
+|| 0xF (0b1111) || Evt. gå til (første 8 bits efter er antal steps vandret, næste 8 bits efter er antal steps lodret ||
 
 
 Vi kan måske anvende nogle standarder der i forvejen findes.
