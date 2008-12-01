@@ -43,7 +43,22 @@ har vi plads til 16 (2^4^) instruktioner, og derfor er der plads nok til lige n�
 == Oversigt over instruktioner ==
 
 || *Værdi* || *Betydning* ||
-|| 0b*0000* || tekst her ||
+|| 0x0 (0b0000) || Nul ||
+|| 0x1 (0b0001) || Start ||
+|| 0x2 (0b0010) || Stop ||
+|| 0x3 (0b0011) || tekst her ||
+|| 0x4 (0b0100) || tekst her ||
+|| 0x5 (0b0101) || tekst her ||
+|| 0x6 (0b0110) || tekst her ||
+|| 0x7 (0b0111) || tekst her ||
+|| 0x8 (0b1000) || tekst her ||
+|| 0x9 (0b1001) || tekst her ||
+|| 0xA (0b1010) || tekst her ||
+|| 0xB (0b1011) || tekst her ||
+|| 0xC (0b1100) || tekst her ||
+|| 0xD (0b1101) || tekst her ||
+|| 0xE (0b1110) || tekst her ||
+|| 0xF (0b1111) || tekst her ||
 
 
 Vi kan måske anvende nogle standarder der i forvejen findes.
