@@ -7,24 +7,15 @@ I dette afsnit betyder procedure en processorinstruktion, altså noget kode vi h
 En _instruktion_ dækker derimod over den kode, der indikerer, hvad vi skal gøre med maskinen - skal x-akse-motoren køre mod højre, skal tegnehovedmotoren køre ned etc.
 
 
-= Forskellig slags styring =
+= Systemstyring =
 
-Systemet kan styres som enten
-  * flere tråde, eller
-  * en tråd med interrupts
+Systemet styres som én tråd med en forsinkelse inden hvert step. Vi har en uafhængig interrupt, som fx 1000 gange i sekundet gør, at motoren kan køre. Hver gang vi prøver at køre med motoren, må vi vente på næste tidspunkt hvor motoren bliver klar til det.
 
-*Flere tråde* kræver multitrådet programmering og er meget omfattende.
+Hvis motoren skal køre med jævn hastighed, skal forsinkelsen inden hvert step på motoren være længere end den tid det tager at læse en instruktion fra SD-kortet.
 
-*En tråd med interrupts* gør, at vi hele tiden må vente på, at den forrige procedure er udført. Det er intet problem, hvis procedurerne afvikles hurtigt (ved ikke hvor lang tid det tager at læse nogle bytes fra et MMC-kort, vi kan lave en test).
-
-
-= Forslag til styring =
-
-Jeg (Kristian) foreslår, at vi styrer systemet som én tråd, hvor vi hele tiden skal vente på, at den forrige procedure er udført: fx kører motoren først, når vi har indlæst den næste instruktion fra den filstrøm, der indeholder instruktionerne.
-
-Det har den fordel, at det er langt lettere at programmere. Vi behøver ikke at bruge operativsystemet som [http://www.freertos.org FreeRTOS] eller trådet programmering. Nogle ting er en fordel at have udført periodisk (fx 10 gange i sekundet), og dette implementeres med interrupts.
+Efter hvert vandret eller lodret step skal der være en tidsenhed forsinkelse til det næste step. Efter hvert skråt step skal der være ca 1,4 tidsenheder forsinkelse. Så bevæger tegneren sig i en tilnærmelsesvis jævn hastighed (hvis opløsningen bliver større, bliver hastigheden også mere jævn).
 
 
 = Instruktioner til maskinen =
 
-Her skal det beskrives, hvordan instruktionerne til maskinen beskrives.
+se [Dataformat siden om dataformatet] for instruktioner til maskinen.
