@@ -12,4 +12,4 @@
 
 [http://hydraraptor.blogspot.com/2007_04_01_archive.html]
 
-[/proc/acpi/battery/BAT0/info] - En DIY CNC
+[http://www.summet.com/blog/] - En DIY CNC
