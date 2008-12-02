@@ -11,3 +11,5 @@
 [http://www.scienceprog.com/high-capacity-multimedia-cards-in-embedded-systems/] - Kort om virkemåden af MMC / SD kort i indlejrede systemer
 
 [http://hydraraptor.blogspot.com/2007_04_01_archive.html]
+
+[/proc/acpi/battery/BAT0/info] - En DIY CNC
