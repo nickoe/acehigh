@@ -11,4 +11,7 @@
 
 # Todo: Jeg har brug for at indlæse instruktioner fra svg2ais.py. Jeg skal kende instruktionerne
 
+
+import ais
+
 print "Plotter til AceHigh Instruction Streams";

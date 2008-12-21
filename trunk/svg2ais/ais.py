@@ -9,9 +9,5 @@
 #                                                           Kristian Kjærgaard
 # ----------------------------------------------------------------------------
 
-
-import ais
-
-
-print "Converter from SVG to AceHigh Instruction Streams"
-print ais.getIns()
+def getIns():
+  return "Jipperdipper"
