@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KDevPrjSession>
+<KDevPrjSession>
+ <DocsAndViews NumberOfDocuments="1" >
+  <Doc0 NumberOfViews="1" URL="file:///home/kristian/Dokumenter/HTX/El/Projekter/Eksamensprojekt/svn/trunk/svg2ais/svg2ais.py" >
+   <View0 Encoding="" line="11" Type="Source" />
+  </Doc0>
+ </DocsAndViews>
+ <pluginList>
+  <kdevbookmarks>
+   <bookmarks/>
+  </kdevbookmarks>
+  <kdevsubversion>
+   <subversion base="" />
+  </kdevsubversion>
+ </pluginList>
+</KDevPrjSession>
