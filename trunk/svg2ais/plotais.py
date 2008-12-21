@@ -9,4 +9,6 @@
 #                                                           Kristian Kjærgaard
 # ----------------------------------------------------------------------------
 
-print "Converter from SVG to AceHigh Instruction Streams";
+# Todo: Jeg har brug for at indlæse instruktioner fra svg2ais.py. Jeg skal kende instruktionerne
+
+print "Plotter til AceHigh Instruction Streams";
