@@ -16,31 +16,30 @@
 # Todo: jeg mangler en smart måde at bruge værdierne på: jeg skal kunne tilgå både byten og navnet (begge skal bruges uden for filen)
 # værdierne skal også omsættes til bytes så de skrives rigtigt til outputtet
 
-# tjek at det virker som det skal
-def Empty():
-  return 0
-
 ins = {
-  Empty:      0,
-  'Start':      1,
-  'Stop':       2,
-  'Up':         3,
-  'UpRight':    4,
-  'Right':      5,
-  'DownRight':  6,
-  'Down':       7,
-  'DownLeft':   8,
-  'Left':       9,
-  'UpLeft':     10,
-  'LowerHead':  11,
-  'LiftHead':   12
+  'Empty':      '\x00',
+  'Start':      '\x01',
+  'Stop':       '\x02',
+  'Up':         '\x03',
+  'UpRight':    '\x04',
+  'Right':      '\x05',
+  'DownRight':  '\x06',
+  'Down':       '\x07',
+  'DownLeft':   '\x08',
+  'Left':       '\x09',
+  'UpLeft':     '\x0A',
+  'LowerHead':  '\x0B',
+  'LiftHead':   '\x0C'
 }
 
+def getb(s):
+  return ins[s]
 
-def getIns():
-  return "Instruktion her"
 
-def getByte():
-  return "Byte her"
+# Vandret opløsning i dpi
+def getresx():
+  return 1
 
-print Empty()
+# Lodret opløsning i dpi
+def getresy():
+  return 1

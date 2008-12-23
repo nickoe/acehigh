@@ -14,4 +14,9 @@
 
 import ais
 
-print "Plotter til AceHigh Instruction Streams";
+print "Plotter til AceHigh Instruction Streams\n"
+print "Værdi af ais.getb_empty(): ", ais.getb("Empty")
+
+f = open("data.ais", "w")
+f.write(ais.getb_empty())
+f.close()
