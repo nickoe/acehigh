@@ -1,15 +1,22 @@
 #summary En slags sandkasse, hvor viden er lidt spredt
 
-[http://www.millpcbs.com/] - Anvendelsesmuligheder for vores maskine
+==Konstruktions mæssigt==
+[http://www.summet.com/blog/] - En DIY CNC
+[http://code.google.com/p/acehigh/wiki/Konstruktion Internt link til konstruktions sektionen]
+[http://www.instructables.com/id/Easy-to-Build-Desk-Top-3-Axis-CNC-Milling-Machine/] - En lille xyz CNC maskine
 
+==Hardware==
 [http://www.captain.at/electronic-atmega-mmc.php] - Hukommelses problemerne er løst
-
 [http://www.captain.at/electronic-atmega-sd-card.php] - Og hvordan man får MMC interfacet til at virke med SD
-
-[http://www.learnsvg.com] og [http://w3schools.com/svg] - steder for information om at skrive SVG
-
 [http://www.scienceprog.com/high-capacity-multimedia-cards-in-embedded-systems/] - Kort om virkemåden af MMC / SD kort i indlejrede systemer
 
+==Software==
+[http://www.learnsvg.com] og [http://w3schools.com/svg] - steder for information om at skrive SVG
 [http://hydraraptor.blogspot.com/2007_04_01_archive.html]
+[http://www.linuxcnc.org/] - [...] software system for computer control of machine tools such as milling machines, cutting machines, robots, hexapods, etc. EMC2 is Free software released under the terms of the GNU GPL (General Public License).
+[http://pcbgcode.org/file.php/15/25/how-pcb-gcode-works.pdf] - PCB-GCODE, hvordan den virker med Eagle Cadsoft
 
-[http://www.summet.com/blog/] - En DIY CNC
+==Andet==
+[http://www.millpcbs.com/] - Anvendelsesmuligheder for vores maskine
+[http://cncdudez.com/] - Diverse om CNC byggeri, og gode links til noget vdr. G-kode
+[http://www.cnczone.com/forums/forumdisplay.php?f=403] - Forum rum om PCB milling
