@@ -1,0 +1,20 @@
+#summary Beskriver opstillede krav og løsningsmodeller dertil
+
+
+= Mekanik =
+
+Krav til mekanik her. Se andre artikler og sæt ind her.
+
+
+= Hardware =
+
+Vi designer vores eget print til MCU'en fra følgende krav:
+
+ *  Jumper som kontant til, om vi programmerer MCU'en eller om MCU'en læser fra SD-kortet
+ *  Jumper som ved kortsluttet formaterer kortet når maskinen startes (kan erstattes af knap)
+ *  MCU'en skal kunne mærke om der er strøm fra USB-kablet. Hvis der er, skal maskinen når den er færdig med at tegne aktivere kortlæseren
+
+
+= Software =
+
+Krav til software her. Se andre artikler og sæt ind her.
