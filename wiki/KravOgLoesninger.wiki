@@ -21,4 +21,4 @@ Vi designer vores eget print til MCU'en fra følgende krav:
 
 Krav til software her. Se andre artikler og sæt ind her.
 
- *  Hvis der er, skal maskinen når den er færdig med at tegne aktivere kortlæseren
+ *  Hvis der er strøm fra USB-en, skal maskinen - når den er færdig med at tegne det den er i gang med - aktivere kortlæseren
