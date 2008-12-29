@@ -23,6 +23,8 @@
 
 [http://pcbgcode.org/file.php/15/25/how-pcb-gcode-works.pdf] - PCB-GCODE, hvordan den virker med Eagle Cadsoft
 
+[www.sandisk.com/Assets/File/OEM/Manuals/SD_SDIO_specsv1.pdf] - SD-kort datasheet
+
 ==Andet==
 [http://www.millpcbs.com/] - Anvendelsesmuligheder for vores maskine
 
