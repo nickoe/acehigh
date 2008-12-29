@@ -15,6 +15,7 @@
 
 import ais
 import math
+import operator
 
 
 class Point:
@@ -33,27 +34,38 @@ class Point:
     return round(self.Y * ais.getresy())
 
 
+# Klasse repræsenterende et skridt på linien
+class LineStep:
+  # beregner afstanden fra punktet til den linie, klassen repræsenterer
+  # metoden kan bruges ved alle linier (også lodrette)
+  def dist_line(self):
+    d1 = self.l.dist_points(self.l.point2, self.p)
+    d2 = self.l.dist_points(self.l.point1, self.p)
+    dn = self.l.dist_points(self.l.point1, self.l.point2)
+    return math.sin(math.acos((d2**2 + dn**2 - d1**2)/(2*d2*dn)))*d2
+  # beregner afstanden fra punktet til liniens endepunkt
+  def dist_endpoint(self):
+    return self.l.dist_points(self.p, self.l.point2)
+  def __init__(self, _line, _point, _ins):
+    self.p = _point
+    self.l = _line
+    self.i = _ins
+    self.dl = self.dist_line()
+    self.dp = self.dist_endpoint()
+# def __str__(self):
+#   return "dl=" + str(self.dl) + " dp=" + str(self.dp)
+
 class Line:
   def __init__(self, _point1, _point2):
     self.point1 = _point1
     self.point2 = _point2
 
-  # beregner afstanden fra punktet til den linie, klassen repræsenterer
-  # metoden kan bruges ved alle linier (også lodrette)
-  def dst_line(self, p):
-    d1 = self.dst_points(self.point2, p)
-    d2 = self.dst_points(self.point1, p)
-    dn = self.dst_points(self.point1, self.point2)
-    return math.sin(math.acos((d2**2 + dn**2 - d1**2)/(2*d2*dn)))*d2
-
   # beregner afstanden mellem to punkter
-  def dst_points(self, p1, p2):
+  def dist_points(self, p1, p2):
+    if (p1 == p2):
+      return 0
     return math.sqrt((p2.pX()-p1.pX())**2 + (p2.pY()-p1.pY())**2)
-
-  # beregner afstanden fra punktet til liniens endepunkt
-  def dst_endpoint(self, point):
-    return dst_points(point, self.point2)
-
+  
   # returnerer de instruktioner der skal bruges for at beskrive linien
   def getins(self):
     # effektivisering
@@ -63,58 +75,69 @@ class Line:
 
     ins = ""
     
-    # FREMGANGSMÅDE
-    
-    
     # vi initialiserer løkken
-    Q = self.point1
+    P = self.point1
     
-    while Q != self.point2:
-      P = Q
-    
+    while P != self.point2:
+      
       # find det punkt Q, der har kortets afstand fra linien self.point1-self.point2
       # for Q gælder, at det skal være nabo til P og det skal have kortere afstand til self.point2 end P
-    
-      Pn[0] = Point(P.pX() + 1, P.pY()    )
-      Pn[1] = Point(P.pX() + 1, P.pY() + 1)
-      Pn[2] = Point(P.pX()    , P.pY() + 1)
-      Pn[3] = Point(P.pX() - 1, P.pY() + 1)
-      Pn[4] = Point(P.pX() - 1, P.pY()    )
-      Pn[5] = Point(P.pX() - 1, P.pY() - 1)
-      Pn[6] = Point(P.pX()    , P.pY() - 1)
-      Pn[7] = Point(P.pX() + 1, P.pY() - 1)
-    
+
+      # TODO: Lav en klasse/struktur der beskriver skridtet, afstand, instruktion m.m..
+      # sæt dem i liste, sorter dem efter den mindste afstand til linien
+      # vælg den med mindst afstand som er tættere på destinationen end det
+      # nuværente punkt
+      
+      n = []
+      n.append(Point(P.pX() + 1, P.pY()    ))
+      n.append(Point(P.pX() + 1, P.pY() + 1))
+      n.append(Point(P.pX()    , P.pY() + 1))
+      n.append(Point(P.pX() - 1, P.pY() + 1))
+      n.append(Point(P.pX() - 1, P.pY()    ))
+      n.append(Point(P.pX() - 1, P.pY() - 1))
+      n.append(Point(P.pX()    , P.pY() - 1))
+      n.append(Point(P.pX() + 1, P.pY() - 1))
+      
       # instruktioner til det nye punkt
-      Pi[0] = ais.getb("Right")
-      Pi[1] = ais.getb("UpRight")
-      Pi[2] = ais.getb("Up")
-      Pi[3] = ais.getb("UpLeft")
-      Pi[4] = ais.getb("Left")
-      Pi[5] = ais.getb("DownLeft")
-      Pi[6] = ais.getb("Down")
-      Pi[7] = ais.getb("DownRight")
-    
-      i = 0
-      while i < 8:
-        # funktionen finder afstanden fra punktet til linien
-        Dl[i] = dst_line(Pn[i])
-        # funktionen finder afstanden fra punktet til linien endepunkt
-        Dp[i] = dst_endpoint(Pn[i])
-        i += 1
-    
-      # find den instruktion der skal bruges for at gå fra P til Q
-      # fortsæt så længe Q er forskellig fra self.point2
-    
-      break
-    
-    # løkke slut
-    
+      i = []
+      i.append(ais.getb("Right"))
+      i.append(ais.getb("UpRight"))
+      i.append(ais.getb("Up"))
+      i.append(ais.getb("UpLeft"))
+      i.append(ais.getb("Left"))
+      i.append(ais.getb("DownLeft"))
+      i.append(ais.getb("Down"))
+      i.append(ais.getb("DownRight"))
+  
+      points = []
+      j = 0
+      while j < 8:
+        if (self.dist_points(n[j], self.point2) < self.dist_points(P, self.point2)):
+          points.append(LineStep(self, n[j], i[j]))
+        j += 1
+
+      #print "Før sortering"
+      #for ls in points:
+      #  print str(ls)
+      points.sort(key=operator.attrgetter("dl"))
+      ins += points[0].i
+      P = points[0].p
+
+      #print "Efter sortering"
+      #for ls in points:
+      #  print str(ls)
+
+
     return ins
 
 
+class Document:
+
 print "Converter from SVG to AceHigh Instruction Streams"
 
-p1 = Point(1, 2)
-p2 = Point(2, 3)
+p1 = Point(2, 2)
+p2 = Point(5, 6)
 l = Line(p1, p2)
-print l.dst_line(p2)
+f = open("instruktioner.ais", "w")
+f.write(l.getins())
+f.close()
