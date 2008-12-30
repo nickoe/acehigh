@@ -14,13 +14,43 @@
 
 # TODO: Fejl i linie 51: acos(x): x er sandsynligvis uden for defineret interval
 
-
-import ais
 import math
 import operator
 import sys
 import os.path
 import xml.parsers.expat
+
+
+# Array til instruktioner
+_ins = {
+  'Empty':      '\x00',
+  'Start':      '\x01',
+  'Stop':       '\x02',
+  'Up':         '\x03',
+  'UpRight':    '\x04',
+  'Right':      '\x05',
+  'DownRight':  '\x06',
+  'Down':       '\x07',
+  'DownLeft':   '\x08',
+  'Left':       '\x09',
+  'UpLeft':     '\x0A',
+  'LowerHead':  '\x0B',
+  'LiftHead':   '\x0C'
+}
+
+# Getter til bestemt instruktion
+def getb(s):
+  return _ins[s]
+
+
+# Vandret opløsning i dpi
+def getresx():
+  return 1.0
+
+# Lodret opløsning i dpi
+def getresy():
+  return 1.0
+
 
 
 class Point:
@@ -36,9 +66,9 @@ class Point:
   def __str__(self):
     return "Point(" + str(self.X) + "," + str(self.Y) + ")"
   def pX(self):
-    return round(self.X * ais.getresx())
+    return round(self.X * getresx())
   def pY(self):
-    return round(self.Y * ais.getresy())
+    return round(self.Y * getresy())
 
 
 # Klasse repræsenterende et skridt på linien
@@ -119,15 +149,16 @@ class Line:
       n.append(Point(P.pX() + 1, P.pY() - 1))
       
       # instruktioner til det nye punkt
+      # HER STYRES ORIGO!!!
       i = []
-      i.append(ais.getb("Right"))
-      i.append(ais.getb("UpRight"))
-      i.append(ais.getb("Up"))
-      i.append(ais.getb("UpLeft"))
-      i.append(ais.getb("Left"))
-      i.append(ais.getb("DownLeft"))
-      i.append(ais.getb("Down"))
-      i.append(ais.getb("DownRight"))
+      i.append(getb("Right"))
+      i.append(getb("UpRight"))
+      i.append(getb("Up"))
+      i.append(getb("UpLeft"))
+      i.append(getb("Left"))
+      i.append(getb("DownLeft"))
+      i.append(getb("Down"))
+      i.append(getb("DownRight"))
   
       points = []
       j = 0
@@ -165,7 +196,7 @@ class Document:
   def start_element(self, name, attrs):
     # handler til start-elementer
     if name.lower() == "line":
-      print "Håndterer linie"
+      #print "Håndterer linie"
       p1 = Point(float(attrs["x1"]), float(attrs["y1"]))
       p2 = Point(float(attrs["x2"]), float(attrs["y2"]))
       l = Line(p1, p2)
@@ -187,19 +218,23 @@ class Document:
   # konverterer objekterne til instruktioner
   def convert(self):
     # initialisering
+    ins = getb("Start")
     print "Konverterer SVG til AIS"
     previous = Line(Point(0,0), Point(0,0))
     
     for line in self.lines:
       # hvis der er et hul -- hvis vi hopper
       if (previous.point2 != line.point1):
-        self.ins += ais.getb("LiftHead")
+        self.ins += getb("LiftHead")
         l = Line(previous.point2, line.point1)
         self.ins += l.getins()
-        self.ins += ais.getb("LowerHead")
+        self.ins += getb("LowerHead")
       self.ins += line.getins()
+
+    ins += getb("Stop")
   
   def writeins(self, _file):
+    print "Skriver AIS til fil"
     f = open(_file, "w")
     f.write(self.ins)
     f.close()
@@ -207,17 +242,19 @@ class Document:
 
 
 print "Konverteringsprogram fra SVG til AIS"
-print "Copyright © 2008 AceHigh Project"
+print "Copyright © 2008 AceHigh Project\n"
 
 
 if len(sys.argv) > 1:
   if os.path.isfile(sys.argv[1]):
+    print "Påbegynder konvertering af \"" + sys.argv[1] + "\""
     d = Document(sys.argv[1])
     d.parse()
     d.convert()
     d.writeins(sys.argv[1] + ".ais")
+    print "Data skrevet til \"" + sys.argv[1] + ".ais\""
   else:
     print "Filen \"" + sys.argv[1] + "\" eksisterer ikke"
 else:
-  print "Angiv venligt fil"
+  print "Angiv venligst fil"
   
