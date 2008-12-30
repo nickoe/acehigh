@@ -12,10 +12,15 @@
 
 # TODO: Kontroller origo i koordinatsystemet -- det har betydning for hvilke instruktioner der skal sendes på forskellige punkter i scriptet
 
+# TODO: Fejl i linie 51: acos(x): x er sandsynligvis uden for defineret interval
+
 
 import ais
 import math
 import operator
+import sys
+import os.path
+import xml.parsers.expat
 
 
 class Point:
@@ -28,6 +33,8 @@ class Point:
     return self.pX() == other.pX() and self.pY() == other.pY()
   def __ne__(self, other):
     return not self == other
+  def __str__(self):
+    return "Point(" + str(self.X) + "," + str(self.Y) + ")"
   def pX(self):
     return round(self.X * ais.getresx())
   def pY(self):
@@ -38,11 +45,22 @@ class Point:
 class LineStep:
   # beregner afstanden fra punktet til den linie, klassen repræsenterer
   # metoden kan bruges ved alle linier (også lodrette)
+  # FEJL her... hvorfor?
   def dist_line(self):
     d1 = self.l.dist_points(self.l.point2, self.p)
     d2 = self.l.dist_points(self.l.point1, self.p)
     dn = self.l.dist_points(self.l.point1, self.l.point2)
-    return math.sin(math.acos((d2**2 + dn**2 - d1**2)/(2*d2*dn)))*d2
+    #print "beregner linieafstand med d1", str(d1), "d2", str(d2), "dn", str(dn)
+    result = d2**2 + dn**2 - d1**2
+    result /= (2*d2*dn)
+    #print result
+    # lille sidespring som håndterer beregningsafvigelser i algoritmerne
+    if result > 1:
+      result = 1
+    result = math.acos(result)
+    result = math.sin(result)*d2
+    return result
+  
   # beregner afstanden fra punktet til liniens endepunkt
   def dist_endpoint(self):
     return self.l.dist_points(self.p, self.l.point2)
@@ -50,6 +68,7 @@ class LineStep:
     self.p = _point
     self.l = _line
     self.i = _ins
+    #print "beregner afstanden fra linien fra punktet", str(self.p), "liniekoordinater er", str(self.l.point1), "og", str(self.l.point2)
     self.dl = self.dist_line()
     self.dp = self.dist_endpoint()
 # def __str__(self):
@@ -64,6 +83,7 @@ class Line:
   def dist_points(self, p1, p2):
     if (p1 == p2):
       return 0
+    # Pythagoras
     return math.sqrt((p2.pX()-p1.pX())**2 + (p2.pY()-p1.pY())**2)
   
   # returnerer de instruktioner der skal bruges for at beskrive linien
@@ -112,6 +132,7 @@ class Line:
       points = []
       j = 0
       while j < 8:
+        #print "behandler punkt nr", j, "med koordinater", str(n[j])
         if (self.dist_points(n[j], self.point2) < self.dist_points(P, self.point2)):
           points.append(LineStep(self, n[j], i[j]))
         j += 1
@@ -126,18 +147,77 @@ class Line:
       #print "Efter sortering"
       #for ls in points:
       #  print str(ls)
-
-
     return ins
 
 
+# Repræsenterer en SVG-fil
 class Document:
+  def __init__(self, _file):
+    # tjek om filen findes
+    self.file = _file
+    self.ins = ""
+    self.lines = []
+    self.parser = xml.parsers.expat.ParserCreate()
+    self.parser.StartElementHandler = self.start_element
+    self.parser.EndElementHandler = self.end_element
+    print "Opretter dokumentklasse"
 
-print "Converter from SVG to AceHigh Instruction Streams"
+  def start_element(self, name, attrs):
+    # handler til start-elementer
+    if name.lower() == "line":
+      print "Håndterer linie"
+      p1 = Point(float(attrs["x1"]), float(attrs["y1"]))
+      p2 = Point(float(attrs["x2"]), float(attrs["y2"]))
+      l = Line(p1, p2)
+      self.lines.append(l)
+      self.current_element = l
 
-p1 = Point(2, 2)
-p2 = Point(5, 6)
-l = Line(p1, p2)
-f = open("instruktioner.ais", "w")
-f.write(l.getins())
-f.close()
+  def end_element(self, name):
+    # tjek om alle data er behandlet
+    # hvis de ikke er: kast exception
+    self.current_element = None
+  
+  # parser dokumentet
+  def parse(self):
+    print "Indlæser SVG"
+    f = open(self.file, "r")
+    self.parser.ParseFile(f)
+    f.close()
+  
+  # konverterer objekterne til instruktioner
+  def convert(self):
+    # initialisering
+    print "Konverterer SVG til AIS"
+    previous = Line(Point(0,0), Point(0,0))
+    
+    for line in self.lines:
+      # hvis der er et hul -- hvis vi hopper
+      if (previous.point2 != line.point1):
+        self.ins += ais.getb("LiftHead")
+        l = Line(previous.point2, line.point1)
+        self.ins += l.getins()
+        self.ins += ais.getb("LowerHead")
+      self.ins += line.getins()
+  
+  def writeins(self, _file):
+    f = open(_file, "w")
+    f.write(self.ins)
+    f.close()
+
+
+
+print "Konverteringsprogram fra SVG til AIS"
+print "Copyright © 2008 AceHigh Project"
+
+
+if len(sys.argv) > 1:
+  if os.path.isfile(sys.argv[1]):
+    d = Document(sys.argv[1])
+    d.parse()
+    d.convert()
+    d.writeins(sys.argv[1] + ".ais")
+  else:
+    print "Filen \"" + sys.argv[1] + "\" eksisterer ikke"
+else:
+  print "Angiv venligt fil"
+  

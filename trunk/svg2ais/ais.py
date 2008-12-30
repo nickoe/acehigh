@@ -38,8 +38,8 @@ def getb(s):
 
 # Vandret opløsning i dpi
 def getresx():
-  return 1
+  return 1.0
 
 # Lodret opløsning i dpi
 def getresy():
-  return 1
+  return 1.0
