@@ -14,6 +14,8 @@
 
 [http://www.scienceprog.com/high-capacity-multimedia-cards-in-embedded-systems/] - Kort om virkemåden af MMC / SD kort i indlejrede systemer
 
+[http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&t=66846] - Getting SD/MMC card working painlessly with FatFS  
+
 ==Software==
 [http://www.learnsvg.com] og [http://w3schools.com/svg] - steder for information om at skrive SVG
 
