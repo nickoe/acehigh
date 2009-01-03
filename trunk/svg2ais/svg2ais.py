@@ -202,6 +202,10 @@ class Document:
       l = Line(p1, p2)
       self.lines.append(l)
       self.current_element = l
+      return
+
+    # fejl, kast en undtagelse
+    print "FEJL! Ukendt element", name
 
   def end_element(self, name):
     # tjek om alle data er behandlet
