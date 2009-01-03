@@ -4,6 +4,8 @@
 \author{Kristian Kjærgaard}
 \date{\today}
 
+\usepackage{tikz}
+
 \begin{document}
 
 \maketitle
@@ -14,9 +16,19 @@ ting, jeg ikke selv er helt med på, skal fremgå her.
 Ting, der skal dokumenteres:
 
 \begin{itemize}
-\item Afstandsfunktionen \texttt{Line.dst_line}
+\item Afstandsfunktionen i Line dst underscore line
 \item Algoritmen til at optimere afstanden skal pædagogiseres
 \end{itemize}
+
+Sådan gør jeg: Indlæs figuren. Hvert element er en ``Shape''.
+
+\begin{figure}[htbp]
+  \centering
+  \input{./obj-oversigt.tex}
+  \caption{Oversigt over objekter}
+  \label{fig:obj-oversigt}
+\end{figure}
+
 
 \end{document}
 
