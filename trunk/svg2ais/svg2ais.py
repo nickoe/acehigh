@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 
 
+# Todos
+#
+# Problem i linie 220 ca.: Hvordan vender koordinatsystemet?
+
+
 import math
 import operator
 import sys
@@ -89,7 +94,7 @@ class Document:
                 # hvis vi har, er hovedet nede nu, og det skal løftes
                 if len(ins) > 1:
                     ins += self.GetByte("LiftHead")
-                l = Line(last_p, shape.GetStartPoint())
+                l = Line(self, last_p, shape.GetStartPoint())
                 ins += l.GetIns()
                 ins += self.GetByte("LowerHead")
 
@@ -216,7 +221,9 @@ class Line:
         # pladsholder til alle de instruktioner vi hidtil har samlet
         ins = ""
 
-        # pladsholder til instruktionerne for at nå det nye punkt
+        # pladsholder til instruktionerne for at nå det nye punkt. VÆR
+        # OPMÆRKSOM PÅ hvordan koordinatsystemet vender: bruges der
+        # skærmkoordinater eller koordinater fra 1. kvadrant?
         point_ins = []
         point_ins.append(self.document.GetByte("Right"))
         point_ins.append(self.document.GetByte("UpRight"))
