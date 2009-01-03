@@ -10,9 +10,12 @@
 # ----------------------------------------------------------------------------
 
 
-# TODO: Kontroller origo i koordinatsystemet -- det har betydning for hvilke instruktioner der skal sendes på forskellige punkter i scriptet
+# TODO: Kontroller origo i koordinatsystemet -- det har betydning for
+# hvilke instruktioner der skal sendes på forskellige punkter i
+# scriptet
 
-# TODO: Fejl i linie 51: acos(x): x er sandsynligvis uden for defineret interval
+# TODO: Fejl i linie 51: acos(x): x er sandsynligvis uden for
+# defineret interval
 
 import math
 import operator
