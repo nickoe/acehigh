@@ -5,6 +5,12 @@
 # Todos
 #
 # Problem i linie 220 ca.: Hvordan vender koordinatsystemet?
+#
+# For at implementere nye figurer: Gør at Shape-klassen kan håndtere
+# klassen. Giv klassen en GetIns-funktion som returnerer de
+# instruktioner der skal bruges for at tegne den (evt.: konverter
+# figuren til en række lige linier). Sæt figurens element-navn fra
+# SVG-specifikationen ind i Shape.IsSupported
 
 
 import math
@@ -15,7 +21,7 @@ import xml.parsers.expat
 
 
 class Document:
-    def __init__(self, _filename):
+    def __init__(self, filename):
         # lav noget tjek på filnavnet
         self.i = {
             'Empty':      '\x00',
@@ -32,7 +38,7 @@ class Document:
             'LowerHead':  '\x0B',
             'LiftHead':   '\x0C'
             }
-        self.filename = _filename
+        self.filename = filename
         self.shapes = []
 
     # returnerer en instruktion
@@ -56,18 +62,13 @@ class Document:
     # håndterer elementer af forskellig facon
     def start_element(self, name, attrs):
         #håndter elementet her
-        e = []
 
-        if name.lower() == "line":
-            p1 = Point(self, float(attrs["x1"]), float(attrs["y1"]))
-            p2 = Point(self, float(attrs["x2"]), float(attrs["y2"]))
-            l = Line(self, p1, p2)
-            e.append(l)
+        # tjek om elementet er "matisk" -- om det har parametre til
+        # dokumentet
 
-        if len(e) > 0:
-            s = Shape()
-            s.elements = e
-            self.shapes.append(s)
+        if Shape.IsSupported(name.lower()):
+            shape = Shape(self, name, attrs)
+            self.shapes.append(shape)
 
     # behandler dokumentet, udfører handlingerne
     def Process(self):
@@ -89,7 +90,7 @@ class Document:
         for shape in self.shapes:
             # hvis vi starter et andet sted en vi stoppede før, skal
             # vi løfte tegnehovedet, flytte det og sænke det igen
-            if not last_p.sameas(shape.GetStartPoint()):
+            if not last_p.SameAs(shape.GetStartPoint()):
                 # kontroller at vi har tegnet mere end ingenting --
                 # hvis vi har, er hovedet nede nu, og det skal løftes
                 if len(ins) > 1:
@@ -107,26 +108,26 @@ class Document:
 
 class Point:
     # instantierer klassen
-    def __init__(self, _d, x, y):
-        self.d = _d
+    def __init__(self, document, x, y):
+        self.document = document
         self.X = float(x)
         self.Y = float(y)
         
     # sammenligning mellem punkter
-    def sameas(self, other):
+    def SameAs(self, other):
         return self.GetPlotX() == other.GetPlotX() and self.GetPlotY() == other.GetPlotY()
 
     # returnerer punktets x-koordinat på plottet
     def GetPlotX(self):
         # x-koordinaten i mm, uu / uu/mm = mm
-        x = self.X / self.d.GetSvgRes()
+        x = self.X / self.document.GetSvgRes()
         # x-koortinaten i dots, mm * dots/mm = dots
-        return round(x * self.d.GetPlotResX())
+        return round(x * self.document.GetPlotResX())
 
     # returnerer punktets y-koordinat på plottet - se Point.GetPlotX
     def GetPlotY(self):
-        y = self.Y / self.d.GetSvgRes()
-        return round(y * self.d.GetPlotResY())
+        y = self.Y / self.document.GetSvgRes()
+        return round(y * self.document.GetPlotResY())
 
 
 # dummy point, fiktivt punkt hvor vi kun har brug for plotkoordinater
@@ -138,7 +139,7 @@ class DPoint:
         self.Y = round(y)
 
     # sammenligning mellem punkter
-    def sameas(self, other):
+    def SameAs(self, other):
         return self.GetPlotX() == other.GetPlotX() and self.GetPlotY() == other.GetPlotY()
 
     # returnerer punktets x-koordinat
@@ -152,9 +153,25 @@ class DPoint:
 
 # repræsenterer en figur
 class Shape:
-    def __init__(self):
+    def __init__(self, document, name, attrs):
+        self.document = document
         # elementer i figuren
         self.elements = []
+
+        if name.lower() == "line":
+            p1 = Point(document, attrs["x1"], attrs["y1"])
+            p2 = Point(document, attrs["x2"], attrs["y2"])
+            self.elements.append(Line(document, p1, p2))
+
+    # statisk metode, fortæller om figuren er understøttet
+    def IsSupported(name):
+        supported = ["line"]
+
+        for element in supported:
+            if name.lower() == element:
+                return True
+        return False
+    IsSupported = staticmethod(IsSupported)
 
     # returnerer det sidste punkt på figuren
     def GetEndPoint(self):
@@ -177,10 +194,10 @@ class Shape:
 # repræsenterer en linie
 class Line:
     # instantierer klassen
-    def __init__(self, _document, _startpoint, _endpoint):
-        self.document = _document
-        self.startpoint = _startpoint
-        self.endpoint = _endpoint
+    def __init__(self, document, startpoint, endpoint):
+        self.document = document
+        self.startpoint = startpoint
+        self.endpoint = endpoint
 
     # returnerer liniens startpunkt
     def GetStartPoint(self):
@@ -192,7 +209,7 @@ class Line:
 
     # returnerer afstanden mellem to punkter
     def distPoints(self, p1, p2):
-        if (p1.sameas(p2)):
+        if (p1.SameAs(p2)):
             return 0.0
         # Pythagoras
         return math.sqrt((p2.GetPlotX()-p1.GetPlotX())**2 + (p2.GetPlotY()-p1.GetPlotY())**2)
@@ -215,7 +232,7 @@ class Line:
     # returnerer de instruktioner der skal bruges for at tegne linien
     def GetIns(self):
         # effektivisering
-        if self.startpoint.sameas(self.endpoint):
+        if self.startpoint.SameAs(self.endpoint):
             return ""
 
         # pladsholder til alle de instruktioner vi hidtil har samlet
@@ -237,7 +254,7 @@ class Line:
         P = self.startpoint
 
         # fortsæt indtil vi når slutpunktet
-        while not P.sameas(self.endpoint):
+        while not P.SameAs(self.endpoint):
             
             points = []
             points.append(DPoint(P.GetPlotX() + 1, P.GetPlotY()    ))
