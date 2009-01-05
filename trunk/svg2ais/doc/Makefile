@@ -9,15 +9,23 @@ TARGET=manual.tex
 
 all: dvi ps pdf
 
-dvi:
+figs-eps:
+	dia -e obj-oversigt.eps -t eps obj-oversigt.dia
+
+figs-pdf-from-eps:	figs-eps
+	epstopdf obj-oversigt.eps
+
+dvi:	figs-eps
 	latexmk $(TARGET)
 
-ps:
+ps:	figs-eps
 	latexmk -ps $(TARGET)
 
-pdf:
+pdf:	figs-pdf-from-eps
 	latexmk -pdf $(TARGET)
 
 clean:
 	latexmk -C
+	rm -f obj-oversigt.eps
+	rm -f obj-oversigt.pdf
 	rm $(TARGET:.tex=.out)
