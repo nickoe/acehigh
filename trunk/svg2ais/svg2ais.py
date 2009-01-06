@@ -2,6 +2,24 @@
 # -*- coding: utf-8 -*-
 
 
+#   Converter from SVG files to AceHigh instruction streams
+#   Copyright (C) 2009  Kristian Kjærgaard <kkjaergaard@gmail.com>
+#
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of the
+#   License, or (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#   General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see
+#   <http://www.gnu.org/licenses/>.
+
+
 # Todos
 #
 # Problem i linie 220 ca.: Hvordan vender koordinatsystemet?
@@ -20,10 +38,10 @@ import os.path
 import xml.parsers.expat
 
 
-class Document:
-    def __init__(self, filename):
-        # lav noget tjek på filnavnet
-        self.i = {
+# motoren der håndterer plottet -- eksporteres til andre steder
+class Engine:
+    def GetByte(b):
+        i = {
             'Empty':      '\x00',
             'Start':      '\x01',
             'Stop':       '\x02',
@@ -38,6 +56,21 @@ class Document:
             'LowerHead':  '\x0B',
             'LiftHead':   '\x0C'
             }
+        return i[b]
+    GetByte = staticmethod(GetByte)
+
+    def GetPlotResX():
+        return 1
+    GetPlotResX = staticmethod(GetPlotResX)
+    
+    def GetPlotResY():
+        return 1
+    GetPlotResY = staticmethod(GetPlotResY)
+    
+
+class Document:
+    def __init__(self, filename):
+        # lav noget tjek på filnavnet
         self.filename = filename
         self.shapes = []
 
@@ -50,14 +83,6 @@ class Document:
     # program
     def GetSvgRes(self):
         return 3.543307
-
-    # returnerer plotterens x-opløsning i dots/mm
-    def GetPlotResX(self):
-        return 1
-
-    # returnerer plotterens y-opløsning i dots/mm
-    def GetPlotResY(self):
-        return 1
 
     # håndterer elementer af forskellig facon
     def start_element(self, name, attrs):
@@ -84,7 +109,7 @@ class Document:
 
     # returnerer instruktionerne i self.shapes[]
     def GetIns(self):
-        ins = self.GetByte("Start")
+        ins = Engine.GetByte("Start")
         last_p = DPoint(0,0)
         
         for shape in self.shapes:
@@ -94,15 +119,15 @@ class Document:
                 # kontroller at vi har tegnet mere end ingenting --
                 # hvis vi har, er hovedet nede nu, og det skal løftes
                 if len(ins) > 1:
-                    ins += self.GetByte("LiftHead")
+                    ins += Engine.GetByte("LiftHead")
                 l = Line(self, last_p, shape.GetStartPoint())
                 ins += l.GetIns()
-                ins += self.GetByte("LowerHead")
+                ins += Engine.GetByte("LowerHead")
 
             ins += shape.GetIns()
             last_p = shape.GetEndPoint()
         
-        ins += self.GetByte("Stop")
+        ins += Engine.GetByte("Stop")
         return ins
 
 
@@ -122,12 +147,12 @@ class Point:
         # x-koordinaten i mm, uu / uu/mm = mm
         x = self.X / self.document.GetSvgRes()
         # x-koortinaten i dots, mm * dots/mm = dots
-        return round(x * self.document.GetPlotResX())
+        return round(x * Engine.GetPlotResX())
 
     # returnerer punktets y-koordinat på plottet - se Point.GetPlotX
     def GetPlotY(self):
         y = self.Y / self.document.GetSvgRes()
-        return round(y * self.document.GetPlotResY())
+        return round(y * Engine.GetPlotResY())
 
 
 # dummy point, fiktivt punkt hvor vi kun har brug for plotkoordinater
@@ -242,14 +267,14 @@ class Line:
         # OPMÆRKSOM PÅ hvordan koordinatsystemet vender: bruges der
         # skærmkoordinater eller koordinater fra 1. kvadrant?
         point_ins = []
-        point_ins.append(self.document.GetByte("Right"))
-        point_ins.append(self.document.GetByte("UpRight"))
-        point_ins.append(self.document.GetByte("Up"))
-        point_ins.append(self.document.GetByte("UpLeft"))
-        point_ins.append(self.document.GetByte("Left"))
-        point_ins.append(self.document.GetByte("DownLeft"))
-        point_ins.append(self.document.GetByte("Down"))
-        point_ins.append(self.document.GetByte("DownRight"))
+        point_ins.append(Engine.GetByte("Right"))
+        point_ins.append(Engine.GetByte("UpRight"))
+        point_ins.append(Engine.GetByte("Up"))
+        point_ins.append(Engine.GetByte("UpLeft"))
+        point_ins.append(Engine.GetByte("Left"))
+        point_ins.append(Engine.GetByte("DownLeft"))
+        point_ins.append(Engine.GetByte("Down"))
+        point_ins.append(Engine.GetByte("DownRight"))
 
         P = self.startpoint
 
