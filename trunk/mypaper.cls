@@ -1,5 +1,5 @@
 % Dokumentpreamble til afleveringer i gymnasiet
-% Copyright (C) 2008  Kristian Kjærgaard <kkjaergaard@gmail.com>
+% Copyright (C) 2009  Kristian Kjærgaard <kkjaergaard@gmail.com>
 %
 % TODO: lav titlingpage-environment om så den centrerer teksten på
 % siden og ikke på tekstområdet, gør noget ved figure- og
@@ -7,29 +7,36 @@
 % uoverskuelige når der er mange af dem, giv dem evt. en
 % baggrundsfarve, lav siderne smallere/brug mere af siden (evt. til
 % captions, tabeller m.m.)
+%
+% Implementer farveunderstøttelse
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mypaper}[2008/09/24 Afleveringsklasse]
+\ProvidesClass{mypaper}[2008/12/10 Afleveringsklasse]
 
 \RequirePackage{ifthen}
+
 
 % Parametrene assignment, report og essay kan ikke gives
 % samtidig. Parameteren assignment er standard.
 
 \newcommand{\@isreport}{false} % det er en assignment
-\newcommand{\@iscolor}{false} % vi udskriver sort/hvid
 \newcommand{\@isdraft}{true}
 \newcommand{\@isessay}{false}
-\newcommand{\@showkeys}{false}
+\newcommand{\@withmnote}{false}
 
 
 % Ensidet memoir-opsætning
-\DeclareOption{report}{\renewcommand{\@isreport}{true}}
-\DeclareOption{color}{\renewcommand{\@iscolor}{true}}
+\DeclareOption{essay}{
+  \renewcommand{\@isreport}{false}
+  \renewcommand{\@isessay}{true}
+}
+\DeclareOption{report}{
+  \renewcommand{\@isreport}{true}
+  \renewcommand{\@isessay}{false}
+}
 \DeclareOption{final}{\renewcommand{\@isdraft}{false}}
-\DeclareOption{essay}{\renewcommand{\@isessay}{true}}
-\DeclareOption{showkeys}{\renewcommand{\@showkeys}{true}}
+\DeclareOption{mnote}{\renewcommand{\@withmnote}{true}}
 \ProcessOptions\relax
 
 \ifthenelse{\boolean{\@isreport}}{
@@ -53,11 +60,14 @@
 
 \RequirePackage{amsmath,amssymb}
 \RequirePackage[english,danish]{babel}
+  \renewcommand{\danishhyphenmins}{22} % bedre orddeling
 \RequirePackage{bm}
+\RequirePackage{capt-of}
 \RequirePackage[danish=quotes]{csquotes}
   \selectlanguage{danish}
-\RequirePackage{datetime}
+%\RequirePackage{datetime}
 \RequirePackage{enumerate}
+\RequirePackage{fix-cm}
 \RequirePackage{fixltx2e}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{graphicx}
@@ -73,23 +83,74 @@
   \SIdecimalsign{,}
   \SIthousandsep{.}
 \RequirePackage{textcomp}
+\RequirePackage{tikz}
 \RequirePackage{ulem}
 \RequirePackage{url}
 \RequirePackage[english,danish]{varioref}
 \RequirePackage{xcolor}
 
-
-
-
-% Almindelige klasser på betingelser
-
 \ifthenelse{\boolean{\@isdraft}}{
-  \RequirePackage[draft]{fixme}
+  \RequirePackage[draft,danish]{fixme}
 }{}
 
 \ifpdf
   \RequirePackage{pdfpages}
 \fi
+
+% hyperref og fixes
+\RequirePackage[colorlinks,plainpages=false,breaklinks]{hyperref}
+\RequirePackage{memhfixc} % fix med memoir
+\RequirePackage{nameref} % fix med what?
+\ifpdf % fix med latex, dvips eller...?
+\else
+  \RequirePackage{breakurl}
+\fi
+% hyperref + varioref fix
+\def\Hy@varioref@undefined{{??}{??}{}{}{}}
+\@ifpackageloaded{varioref}{%
+\def\vref@pagenum#1#2{%
+  \@ifundefined{r@#2}{%
+    \expandafter\let\csname r@#2\endcsname\Hy@varioref@undefined
+  }{}%
+  \edef#1{\getpagerefnumber{#2}}%
+}%
+}{}
+
+% showkeys og fix med hyperref
+\ifthenelse{\boolean{\@isdraft}}{
+  \RequirePackage[notref,notcite]{showkeys}
+  \let\HyRef@ShowKeysRef\@gobble
+  \def\HyRef@ShowKeysInit{
+    \begingroup\expandafter\expandafter\expandafter\endgroup
+    \expandafter\ifx\csname SK@@label\endcsname\relax
+    \else
+      \ifx\SK@ref\@empty
+      \else
+        \def\HyRef@ShowKeysRef{
+          \SK@\SK@@ref
+        }
+      \fi
+    \fi
+  }
+  \@ifpackageloaded{showkeys}{
+    \HyRef@ShowKeysInit
+  }{
+    \AtBeginDocument{
+      \@ifpackageloaded{showkeys}{
+        \HyRef@ShowKeysInit
+      }{}
+    }
+  }
+}
+
+% farver på links?
+\hypersetup{
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
+
 
 
 % Generel opsætning til assignment-stilen
@@ -118,80 +179,28 @@
 
 \captionnamefont{\small \sffamily \bfseries}
 \captiontitlefont{\small}
-% \hangcaption % skal den aktiveres igen? nej?
-\captionwidth{0.85\textwidth}
-\changecaptionwidth
 
-% Lav en tekstboks nederst/øverst på første side hvor der står hvornår
-% filen er gerereret, hvilken sidestil der er brugt, programversion,
-% forfatter m.m.
+\ifthenelse{\boolean{\@withmnote}}{
+  \setlrmarginsandblock{2,8cm}{4,8cm}{*}
+  \setmarginnotes{0,4cm}{3,4cm}{0,4cm}
+  \checkandfixthelayout
 
+  \newcommand{\mnote}[1]{\marginpar{\small #1}}
 
-% hyperref og fixes
-\RequirePackage[colorlinks,plainpages=false,breaklinks]{hyperref}
-\RequirePackage{memhfixc} % fix med memoir
-\RequirePackage{nameref} % fix med what?
-\ifpdf % fix med latex, dvips eller...?
-\else
-  \RequirePackage{breakurl}
-\fi
-% hyperref + varioref fix
-\def\Hy@varioref@undefined{{??}{??}{}{}{}}
-\@ifpackageloaded{varioref}{%
-\def\vref@pagenum#1#2{%
-  \@ifundefined{r@#2}{%
-    \expandafter\let\csname r@#2\endcsname\Hy@varioref@undefined
-  }{}%
-  \edef#1{\getpagerefnumber{#2}}%
-}%
+  \ifthenelse{\boolean{\@isreport}}{}{
+    % Lav sidehovedet om, så det er lige langt fra kanten i begge
+    % sider af papiret. Lav \maketitle-makroen om, så den er centreret
+    % midt på papiret.
+  }
 }{}
-
-
-% ting der nødvendigvis indlæses /efter/ hyperref
-
-
-% showkeys og fix med hyperref
-\ifthenelse{\boolean{\@showkeys}}{
-  \RequirePackage[notref,notcite,color]{showkeys}
-  \let\HyRef@ShowKeysRef\@gobble
-  \def\HyRef@ShowKeysInit{
-    \begingroup\expandafter\expandafter\expandafter\endgroup
-    \expandafter\ifx\csname SK@@label\endcsname\relax
-    \else
-      \ifx\SK@ref\@empty
-      \else
-        \def\HyRef@ShowKeysRef{
-          \SK@\SK@@ref
-        }
-      \fi
-    \fi
-  }
-  \@ifpackageloaded{showkeys}{
-    \HyRef@ShowKeysInit
-  }{
-    \AtBeginDocument{
-      \@ifpackageloaded{showkeys}{
-        \HyRef@ShowKeysInit
-      }{}
-    }
-  }
-}
-
-% farver på links?
-\ifthenelse{\boolean{\@iscolor}}{}{
-  \hypersetup{
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-  }
-}
 
 
 % Konfiguration af almindelige klasser
 
 \let\times\cdot
 \let\epsilon\varepsilon
+
+\newcommand{\fnote}[1]{\footnote{#1}}
 
 % makroen er kun brugbar hvis man ikke skelner mellem \chapter
 % og \section
@@ -201,10 +210,3 @@
 \newcommand{\facit}[1]{\uuline{#1}}
 \newcommand{\SIfacit}[2]{\uuline{\SI{#1}{#2}}}
 \newcommand{\degree}{\ensuremath{^\circ}}
-
-\newcommand\vect[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
-
-\renewcommand{\danishhyphenmins}{22} % bedre orddeling
-
-
-\checkandfixthelayout
