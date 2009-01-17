@@ -8,4 +8,6 @@ http://www.maxim-ic.com/appnotes.cfm/an_pk/3969 beskriver, hvordan et SD-kort fu
 
 http://www.cs.ucr.edu/%7Eamitra/sdcard/Additional/sdcard_appnote_foust.pdf beskriver hvordan SD-kort bruges. Med kildekoder til komplet program. Kilden ser god ud.
 
+[http://www.microsyl.com/ledsign/ledsign.html] - Endnu et eksempel på brug af MMC kort med Atmel chip
+
 Til overvejelse: Hvor meget af koden på http://www.captain.at/electronic-atmega-sd-card.php skal genbruges?
