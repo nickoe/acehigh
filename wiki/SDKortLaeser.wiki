@@ -10,4 +10,6 @@ http://www.cs.ucr.edu/%7Eamitra/sdcard/Additional/sdcard_appnote_foust.pdf beskr
 
 [http://www.microsyl.com/ledsign/ledsign.html] - Endnu et eksempel på brug af MMC kort med Atmel chip | Vælg "LedSign w/MMC" i menuen
 
+[http://elm-chan.org/docs/mmc/mmc_e.html] - Noget mere om at bruge SD/MMC
+
 Til overvejelse: Hvor meget af koden på http://www.captain.at/electronic-atmega-sd-card.php skal genbruges?
