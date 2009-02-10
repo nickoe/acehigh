@@ -19,4 +19,9 @@ Følgende findes i wikien:
   * Eksempler (kildekoder, henvisninger, tegninger, videoer) som ikke skal afleveres
   * Noter
 
+Mht. dokumentation af projekt:
+  * Vi bør bestæbe os på at skirve noget løbende
+  * Lav en fornufitg struktur, således der bliver et minimum af merges der skal foretages, men også så få filer som nuligt
+  * Brug fixme's i vildskab, og tildel evt navn til denne på formen: \fixme{tildelttil: Opgave}
+
 Google Codes downloadområde bruges ikke.
