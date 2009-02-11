@@ -12,4 +12,8 @@ http://www.cs.ucr.edu/%7Eamitra/sdcard/Additional/sdcard_appnote_foust.pdf beskr
 
 [http://elm-chan.org/docs/mmc/mmc_e.html] - Noget mere om at bruge SD/MMC
 
+[http://www.avrfreaks.net/index.php?module=Freaks%20Academy&func=viewItem&item_id=885&item_type=project&timestamp=2007-03-27%2014:47:37] - En SD kort læser
+
+[http://www.roland-riegel.de/sd-reader/index.html] - Måske en meget god kilde
+
 Til overvejelse: Hvor meget af koden på http://www.captain.at/electronic-atmega-sd-card.php skal genbruges?
