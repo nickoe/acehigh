@@ -17,3 +17,10 @@ http://www.cs.ucr.edu/%7Eamitra/sdcard/Additional/sdcard_appnote_foust.pdf beskr
 [http://www.roland-riegel.de/sd-reader/index.html] - Måske en meget god kilde
 
 Til overvejelse: Hvor meget af koden på http://www.captain.at/electronic-atmega-sd-card.php skal genbruges?
+
+== Forbindelser mellem MCU og SD kort ==
+|| *MCU* || *SD kort* ||
+|| MOSI || DI ||
+|| MISO || DO ||
+|| CLK || CLK ||
+|| SS || CS ||
