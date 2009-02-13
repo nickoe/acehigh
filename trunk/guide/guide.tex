@@ -2,7 +2,18 @@
 %
 % $Id$
 
-\documentclass[oneside]{memoir}
+\documentclass[simple,final]{../mypaper}
+
+\usepackage[scaled]{luximono}
+
+\usepackage{listingsutf8}
+
+\lstset{
+  language=[LaTeX]TeX,
+  extendedchars=true,
+  inputencoding=utf8/latin1,
+  basicstyle=\footnotesize \ttfamily
+}
 
 \title{Retningslinier og vejledninger}
 
@@ -13,7 +24,56 @@
 \tableofcontents*
 
 
+\chapter{Vejledninger til \LaTeX}
 
+Her følger en kort vejledning til hvordan de mest almindelige ting
+gøres i \LaTeX .
+
+\section{Indsæt figur}
+
+Eksemplerne i dette afsnit viser, hvordan man sætter figurer ind i
+\LaTeX . \textbf{Husk at angive billedfil uden filtype (f.eks. .jpeg),
+  og husk at lave en label med mening}
+
+\lstinputlisting[caption={Eksempel på flydende objekt,
+  f.eks. billede. Objektet indsættes nær placeringen i kilden. Filen
+  findes i
+  \texttt{eksempler/figure.tex}.},label={lst:figure}]{./eksempler/figure.tex}
+
+\lstinputlisting[caption={Eksempel på objekt i margin,
+  f.eks. billede. Eksemplet findes i
+  \texttt{eksempler/figure-margin.tex}.},label={lst:figure-margin}]{./eksempler/figure-margin.tex}
+
+
+\section{Lav henvisning}
+
+Eksemplerne viser, hvordan man laver henvisning til labels.
+
+\lstinputlisting[caption={Henvisning til
+  figur-/kodeeksempel-/tabelnummer med sidetal. Eksemplet findes i
+  \texttt{eksempler/vref.tex}},label={lst:vref}]{./eksempler/vref.tex}
+
+Makroen \texttt{\textbackslash vref} kan give problemer. I dette tilfælde
+bør man gøre som beskrevet i kodeeksempel\vref{lst:ref}.
+
+\lstinputlisting[caption={Henvisning til
+  figur-/kodeeksempel-/tabelnummer uden sidetal. Bruges når vref giver
+  problemer. Eksemplet findes i
+  \texttt{eksempler/ref.tex}},label={lst:ref}]{./eksempler/ref.tex}
+
+
+\section{Navngivning af labels}
+
+Navngiv labels efter følgende regler:
+
+\begin{itemize}
+\item Brug små bogstaver
+\item Brug præfikset \texttt{fig:} ved figurer, \texttt{tab:} ved
+  tabeller og \texttt{lst:} til kodeeksempler.
+\item Brug bindesteg (-) til at adskille navne i en label,
+  f.eks. \texttt{\textbackslash label\{fig:data-temp\}}
+\item Tilstræb et kort navn.
+\end{itemize}
 
 
 \end{document}

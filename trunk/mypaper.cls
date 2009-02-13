@@ -1,6 +1,25 @@
-% Dokumentpreamble til afleveringer i gymnasiet
-% Copyright (C) 2009  Kristian Kjærgaard <kkjaergaard@gmail.com>
 %
+% Document preamble for assignments and report
+% Version 1.0
+%
+% Copyright (C) 2009  Kristian Kjærgaard
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful, but
+% WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+% General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see
+% <http://www.gnu.org/licenses/>.
+
+
+
 % TODO: lav titlingpage-environment om så den centrerer teksten på
 % siden og ikke på tekstområdet, gør noget ved figure- og
 % table-environments - de er grimme i fysikafleveringerne\dots de er
@@ -20,34 +39,20 @@
 % Parametrene assignment, report og essay kan ikke gives
 % samtidig. Parameteren assignment er standard.
 
-\newcommand{\@isreport}{false} % det er en assignment
+\newcommand{\@issimple}{false} % det er en assignment
 \newcommand{\@isdraft}{true}
-\newcommand{\@isessay}{false}
-\newcommand{\@withmnote}{false}
 
 
 % Ensidet memoir-opsætning
-\DeclareOption{essay}{
-  \renewcommand{\@isreport}{false}
-  \renewcommand{\@isessay}{true}
-}
-\DeclareOption{report}{
-  \renewcommand{\@isreport}{true}
-  \renewcommand{\@isessay}{false}
-}
+\DeclareOption{simple}{\renewcommand{\@issimple}{true}}
 \DeclareOption{final}{\renewcommand{\@isdraft}{false}}
-\DeclareOption{mnote}{\renewcommand{\@withmnote}{true}}
 \ProcessOptions\relax
 
-\ifthenelse{\boolean{\@isreport}}{
-  \PassOptionsToClass{twoside}{memoir}
+\ifthenelse{\boolean{\@issimple}}{
+  \PassOptionsToClass{oneside}{memoir}
 }{
-  \PassOptionsToClass{oneside,article}{memoir}
+  \PassOptionsToClass{twoside}{memoir}
 }
-
-\ifthenelse{\boolean{\@isessay}}{
-  \PassOptionsToClass{twocolumn}{memoir}
-}{}
 
 
 % Klassen memoir indlæses og konfigureres
@@ -58,7 +63,7 @@
 
 % Andre pakker indlæses og konfigureres
 
-\RequirePackage{amsmath,amssymb}
+\RequirePackage{amsmath,amssymb,amsfonts}
 \RequirePackage[english,danish]{babel}
   \renewcommand{\danishhyphenmins}{22} % bedre orddeling
 \RequirePackage{bm}
@@ -75,7 +80,8 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lipsum}
 \RequirePackage{listings}
-\RequirePackage[utopia]{mathdesign}
+%\RequirePackage[inputencoding=utf8/latin1]{listingsutf8}
+\RequirePackage{mathpazo}
 %\RequirePackage{mathcomp} % bugger med mathdesign
 \RequirePackage[version=3]{mhchem}
 \RequirePackage{placeins}
@@ -92,10 +98,6 @@
 \ifthenelse{\boolean{\@isdraft}}{
   \RequirePackage[draft,danish]{fixme}
 }{}
-
-\ifpdf
-  \RequirePackage{pdfpages}
-\fi
 
 % hyperref og fixes
 \RequirePackage[colorlinks,plainpages=false,breaklinks]{hyperref}
@@ -154,45 +156,57 @@
 
 
 % Generel opsætning til assignment-stilen
-\ifthenelse{\boolean{\@isreport}}{
-  % report
-  \addto\captionsdanish{
-    \renewcommand{\chaptername}{Afsnit}
-  }
-  \pagestyle{Ruled}
-}{
-  % assignment
-  \makepagestyle{front}
-  \aliaspagestyle{title}{front}
-  \aliaspagestyle{plain}{front}
-  %\aliaspagestyle{empty}{front}
-
-  \makepagestyle{pst}
-  \makeoddhead{pst}{\theauthor}{\thetitle}{\thedate}
-  \makeoddfoot{pst}{}{\thepage}{}
-  \makeheadrule{pst}{\textwidth}{\normalrulethickness}
-  \pagestyle{pst}
-  \setcounter{secnumdepth}{1} % todo: tjek om det burde være anderledes
+\ifthenelse{\boolean{\@issimple}}{
+  \makepagestyle{ss}
+  \makeoddhead{ss}{\chaptermark}{}{\thepage}
+  \makeheadrule{ss}{\textwidth}{\normalrulethickness}
+  \pagestyle{ss}
+  %\setcounter{secnumdepth}{1} % todo: tjek om det burde være anderledes
   \RequirePackage{tocloft}
+}{
+  \pagestyle{Ruled}
 }
 
+% report
+\addto\captionsdanish{
+  \renewcommand{\chaptername}{Afsnit}
+}
 
 \captionnamefont{\small \sffamily \bfseries}
 \captiontitlefont{\small}
 
-\ifthenelse{\boolean{\@withmnote}}{
+\ifthenelse{\boolean{\@issimple}}{}{
+  % report
+
   \setlrmarginsandblock{2,8cm}{4,8cm}{*}
   \setmarginnotes{0,4cm}{3,4cm}{0,4cm}
-  \checkandfixthelayout
+
+  % setup for the side caption environment
+  \setsidecaps{0,4cm}{3,0cm}
+  \sidecapmargin{outer}
 
   \newcommand{\mnote}[1]{\marginpar{\small #1}}
+  \newcommand{\snote}[1]{\sidebar{\small #1}}
 
-  \ifthenelse{\boolean{\@isreport}}{}{
-    % Lav sidehovedet om, så det er lige langt fra kanten i begge
-    % sider af papiret. Lav \maketitle-makroen om, så den er centreret
-    % midt på papiret.
-  }
-}{}
+  \checkandfixthelayout
+}
+
+
+\renewcommand{\lstlistingname}{Kodeeksempel}
+
+\definecolor{lstbg}{RGB}{204,247,221}
+\lstset{
+  language=C,
+  numbers=left,
+  numberstyle=\tiny,
+  inputencoding=latin1,
+  backgroundcolor=\color{lstbg},
+  framerule=0pt,
+  frame=single,
+  float=htbp,
+  framesep=5pt,
+  basicstyle=\footnotesize \ttfamily
+}
 
 
 % Konfiguration af almindelige klasser
