@@ -1,8 +1,10 @@
 % Retningslinier og vejledning til projekt
 %
-% $Id$
 
 \documentclass[simple,final]{../mypaper}
+
+\usepackage{svn}
+\SVN $Id$
 
 \usepackage[scaled]{luximono}
 
@@ -16,12 +18,26 @@
 }
 
 \title{Retningslinier og vejledninger}
+\date{SVN-id: \SVNId}
 
 \begin{document}
 
-\maketitle
+%\maketitle
+{
+\Huge \flushright \bfseries \thetitle
+}
+{
+\flushright SVN-id: \SVNId
+}
+
 
 \tableofcontents*
+
+
+\section{Indledning}
+
+Her står der hvad vi bruger guiden til.
+
 
 
 \chapter{Vejledninger til \LaTeX}
@@ -33,7 +49,9 @@ gøres i \LaTeX .
 
 Eksemplerne i dette afsnit viser, hvordan man sætter figurer ind i
 \LaTeX . \textbf{Husk at angive billedfil uden filtype (f.eks. .jpeg),
-  og husk at lave en label med mening}
+  og husk at lave en label med mening.} Se afsnit om navngivning af
+labels. Læg billeder i mappestrukturen som beskrevet i afsnittet
+derom.
 
 \lstinputlisting[caption={Eksempel på flydende objekt,
   f.eks. billede. Objektet indsættes nær placeringen i kilden. Filen
@@ -43,6 +61,17 @@ Eksemplerne i dette afsnit viser, hvordan man sætter figurer ind i
 \lstinputlisting[caption={Eksempel på objekt i margin,
   f.eks. billede. Eksemplet findes i
   \texttt{eksempler/figure-margin.tex}.},label={lst:figure-margin}]{./eksempler/figure-margin.tex}
+
+
+\section{Indsæt kodeeksempel}
+
+Eksemplerne i dette afsnit viser, hvordan man indsætter kodeeksempler
+i \LaTeX . Læg alle kodeeksempler i mappestrukturen som beskrevet i
+afsnittet derom.
+
+\lstinputlisting[caption={Eksempel på løbende kodeeksempel. Eksemplet
+  findes i
+  \texttt{eksempler/kode.tex}.},label={lst:kode}]{./eksempler/kode.tex}
 
 
 \section{Lav henvisning}
@@ -74,6 +103,11 @@ Navngiv labels efter følgende regler:
   f.eks. \texttt{\textbackslash label\{fig:data-temp\}}
 \item Tilstræb et kort navn.
 \end{itemize}
+
+
+\section{Brug af \texttt{\textbackslash fixme}}
+
+Hvordan bruger vi vores fixmes?
 
 
 \end{document}
