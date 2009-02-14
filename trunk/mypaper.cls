@@ -64,7 +64,7 @@
 % Andre pakker indlæses og konfigureres
 
 \RequirePackage{amsmath,amssymb,amsfonts}
-\RequirePackage[english,danish]{babel}
+\RequirePackage[danish]{babel}
   \renewcommand{\danishhyphenmins}{22} % bedre orddeling
 \RequirePackage{bm}
 \RequirePackage{capt-of}
@@ -92,7 +92,7 @@
 \RequirePackage{tikz}
 \RequirePackage{ulem}
 \RequirePackage{url}
-\RequirePackage[english,danish]{varioref}
+\RequirePackage[danish]{varioref}
 \RequirePackage{xcolor}
 
 \ifthenelse{\boolean{\@isdraft}}{
@@ -100,7 +100,7 @@
 }{}
 
 % hyperref og fixes
-\RequirePackage[colorlinks,plainpages=false,breaklinks]{hyperref}
+\RequirePackage[colorlinks,plainpages=false,breaklinks,bookmarks]{hyperref}
 \RequirePackage{memhfixc} % fix med memoir
 \RequirePackage{nameref} % fix med what?
 \ifpdf % fix med latex, dvips eller...?
@@ -143,7 +143,7 @@
       }{}
     }
   }
-}
+}{}
 
 % farver på links?
 \hypersetup{
@@ -167,7 +167,7 @@
   \pagestyle{Ruled}
 }
 
-% report
+
 \addto\captionsdanish{
   \renewcommand{\chaptername}{Afsnit}
 }
@@ -175,7 +175,9 @@
 \captionnamefont{\small \sffamily \bfseries}
 \captiontitlefont{\small}
 
-\ifthenelse{\boolean{\@issimple}}{}{
+\ifthenelse{\boolean{\@issimple}}{
+  % simple
+}{
   % report
 
   \setlrmarginsandblock{2,8cm}{4,8cm}{*}
@@ -188,8 +190,8 @@
   \newcommand{\mnote}[1]{\marginpar{\small #1}}
   \newcommand{\snote}[1]{\sidebar{\small #1}}
 
-  \checkandfixthelayout
 }
+\checkandfixthelayout
 
 
 \renewcommand{\lstlistingname}{Kodeeksempel}
@@ -203,7 +205,6 @@
   backgroundcolor=\color{lstbg},
   framerule=0pt,
   frame=single,
-  float=htbp,
   framesep=5pt,
   basicstyle=\footnotesize \ttfamily
 }

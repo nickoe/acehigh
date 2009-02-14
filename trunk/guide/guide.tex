@@ -14,11 +14,17 @@
   language=[LaTeX]TeX,
   extendedchars=true,
   inputencoding=utf8/latin1,
-  basicstyle=\footnotesize \ttfamily
 }
 
 \title{Retningslinier og vejledninger}
 \date{SVN-id: \SVNId}
+
+\hypersetup{
+  pdftitle={\thetitle},
+  %pdfsubject={},
+  pdfauthor={Christian Klim Hansen, Kristian Kjærgaard og Nick Østergaard},
+  pdfcreator=LaTeX
+}
 
 \begin{document}
 
@@ -101,7 +107,7 @@ Navngiv labels efter følgende regler:
   tabeller og \texttt{lst:} til kodeeksempler.
 \item Brug bindesteg (-) til at adskille navne i en label,
   f.eks. \texttt{\textbackslash label\{fig:data-temp\}}
-\item Tilstræb et kort navn.
+\item Tilstræb et kort navn der giver mening.
 \end{itemize}
 
 
@@ -110,7 +116,7 @@ Navngiv labels efter følgende regler:
 Hvordan bruger vi vores fixmes?
 
 
-\chapter{Vejledning til Subversion (SVN), filhåndtering}
+\chapter{Vejledning til Subversion (SVN) og filhåndtering}
 
 \section{Arbejdsgang for arbejde med materiale på SVN-serveren}
 
@@ -129,7 +135,7 @@ Vær opmærksom på følgende:
 \begin{itemize}
 \item Skriv en meddelelse, når du uploader.
 \item Tilføj alle filer, der er nødvendige for at andre kan arbejde
-  videre. Tilføj filerne når de oprettes for at huske det.
+  videre. Tilføj gerne filerne når de oprettes for at huske det.
 \item Tilføj kun ét format af hver fil (f.eks. kun billede.svg og ikke
   billede.pdf).
 \end{itemize}
