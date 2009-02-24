@@ -2,18 +2,21 @@
 # Makefile til projektet
 # Kræver latexmk og ca. hele texlive-distributionen
 #
-# $Id: GNUmakefile 164 2009-02-10 22:04:28Z oe.nick $
+# $Id$
 #
 
 
 # Navn på masterfil
 TARGET=master.tex
 
+# Mappe til genererede billedfiler, med afsluttende skråstreg
+IMGDIR=img/
+
 # Alle DIA-diagrammer
 FIGS_DIA=
 
 # Alle SVG-filer
-FIGS_SVG=
+FIGS_SVG=../logo/logo.svg
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
 FIGS_EPS=
@@ -51,8 +54,8 @@ clean:
 	latexmk -C
 	rm -f $(TARGET:.tex=.lox)
 	rm -f $(TARGET:.tex=.out)
-	rm -f $(FIGS_EPS_GEN)
-	rm -f $(FIGS_PDF_GEN)
+	rm -f $(addprefix $(IMGDIR), $(notdir $(FIGS_EPS_GEN)))
+	rm -f $(addprefix $(IMGDIR), $(notdir $(FIGS_PDF_GEN)))
 	cd tex && latexmk -C
 
 
@@ -60,24 +63,24 @@ clean:
 
 # fx dia -t eps -e target.eps target.dia
 .dia.eps:
-	dia -t eps -e $@ $<
+	dia -t eps -e $(addprefix $(IMGDIR), $(notdir $@)) $<
 
 # fx jpeg2ps target.jpeg > target.eps
 .jpeg.eps:
-	jpeg2ps $< > $@
+	jpeg2ps $< > $(addprefix $(IMGDIR), $(notdir $@))
 
 # fx inkscape --export-eps=target.eps --export-text-to-path target.svg
 .svg.eps:
-	inkscape --export-eps=$@ --export-text-to-path $<
+	inkscape --export-eps=$(addprefix $(IMGDIR), $(notdir $@)) --export-text-to-path $<
 
 # fx inkscape --export-pdf=target.pdf --export-text-to-path target.svg
 .svg.pdf:
-	inkscape --export-pdf=$@ --export-text-to-path $<
+	inkscape --export-pdf=$(addprefix $(IMGDIR), $(notdir $@)) --export-text-to-path $<
 
 # fx epstopdf target.eps
 .eps.pdf:
-	epstopdf $<
+	epstopdf --outfile=$(addprefix $(IMGDIR), $(notdir $@)) $<
 
 # fx pdftops -eps target.pdf
 .pdf.eps:
-	pdftops -eps $<
+	pdftops -eps $< $(addprefix $(IMGDIR), $(notdir $@))

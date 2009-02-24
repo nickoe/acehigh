@@ -13,51 +13,32 @@
 
 \pagestyle{Ruled}
 
+
 \begin{document}
 
-\maketitle
+\begin{titlingpage}
+  \maketitle
+  \includegraphics[width=\textwidth]{./img/logo}
+\end{titlingpage}
+
+\frontmatter
 
 \tableofcontents
 
-\chapter{Tilfældig afsnitsnavn her}
+\include{./tex/forord}
 
-\lipsum[1]
-{
-  \ttfamily
-  \lipsum[2]
-}
-\lipsum[3]
+\mainmatter
 
-\section{Tilfældig overskrift her}
-
-\lipsum[1-2]
-
-\section{Tilfældig overskrift her}
-
-\lipsum[1-2]
-
-\section{Tilfældig overskrift her}
-
-\lipsum[1-2]
-
-\section{Tilfældig overskrift her}
-
-\lipsum[1-2]
-
-\section{Tilfældig overskrift her}
-
-\lipsum[1-2]
-
-\section{Tilfældig overskrift her}
-
-\lipsum[1-2]
-
-\section{Tilfældig overskrift her}
-
-\lipsum
+\include{./tex/indledning}
+\include{./tex/hardware}
+\include{./tex/software}
+\include{./tex/mekanik}
+\include{./tex/afslutning}
 
 \listoffigures
 
 \listoftables
+
+\listoffixmes
 
 \end{document}
