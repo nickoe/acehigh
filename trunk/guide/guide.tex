@@ -46,6 +46,77 @@ Her står der hvad vi bruger guiden til.
 
 
 
+\chapter{Gruppekontrakt}
+
+Følgende kontrakt indeholder retningslinjer, som skal overholdes for
+at give et optimalt arbejdsproces.
+
+
+\section{Pauser}
+
+Alle gruppemedlemmer har krav på de pauser, som er blevet anvist af
+skolen. Tidspunktet hvor disse bliver afholdt kan være
+varierende. Pauserne kan også bestå i et par minutters stilhed for at
+samle tankerne om projektet, hvilket ligeledes er acceptabelt.
+
+
+\section{Mødetider}
+
+De normale mødetider er kl. 10:30, hvor ALLE medlemmer fra gruppen
+skal befinde sig i klasseværelset (hvis muligt). Evt. sygdom kan godt
+undskyldes.
+
+
+\section{Disciplinære problemer}
+
+Dette punkt hænger meget sammen med kontakt imellem medlemmerne, da vi
+ønsker, at folk laver deres ting til tiden og overholder aftaler, som
+er lavet imellem de forskellige medlemmer (se specielle aftaler). Hvis
+man ikke får lavet det man skal, så giver man en øl i lufthavnen. De
+andre medlemmer skal også informeres, hvis man ikke har lavet sine
+ting.
+
+
+\section{Kontakt imellem medlemmerne}
+
+Vi arbejder på at kontaktet imellem medlemmer er god. Vigtige
+ændringer skal indberettes til alle. Hvis ikke, se specielle
+aftaler. Kontaktinformation fremgår af tabel\vref{tab:kontaktinfo}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Kontaktinformation}
+  \label{tab:kontaktinfo}
+  \begin{tabular}{lll}
+    \hline
+    Navn & Telefonnummer & E-mail-adresse \\
+    \hline
+    Christian Klim Hansen & 26 12 19 04  & \url{christian.klim.hansen@gmail.com} \\
+    Kristian Kjærgaard & 28 96 36 28  & \url{kkjaergaard@gmail.com} \\
+    Nick Østergaard & 20 86 01 20  & \url{oe.nick@gmail.com} \\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+\section{Materialer}
+
+Følgende er materialer som vi skal have med til hver gang:
+
+\begin{itemize}
+\item Kamera (kun 1 stk.)
+\item Papir og blyant
+\end{itemize}
+
+
+\section{Specielle aftaler}
+
+Det behøves ikke at informeres om specielle aftaler imellem to
+gruppemedlemmer som ikke direkte påvirker andre medlemmer i
+gruppe. Det er dog vigtigt, at sygdom og andre forhindringer for
+fremmøde indberettes i god tid til alle medlemmer.
+
+
 \chapter{Vejledninger til \LaTeX}
 
 Her følger en kort vejledning til hvordan de mest almindelige ting
@@ -113,7 +184,21 @@ Navngiv labels efter følgende regler:
 
 \section{Brug af \texttt{\textbackslash fixme}}
 
-Hvordan bruger vi vores fixmes?
+En \texttt{\textbackslash fixme} er en markering af en fejl, som skal
+rettes inden rapporten afleveres. Eksempel\vref{lst:fixme} viser,
+hvordan man indsætter en \texttt{\textbackslash fixme}.
+
+\lstinputlisting[caption={Eksempel på en \texttt{\textbackslash
+    fixme}. Eksemplet findes i
+  \texttt{eksempler/fixme.tex}},label={lst:fixme}]{./eksempler/fixme.tex}
+
+Lav \texttt{\textbackslash fixme}s efter følgende regler:
+
+\begin{itemize}
+\item Skriv navnet til den, noten er henvendt til
+  (f.eks. \texttt{\textbackslash fixme\{Klim: er afsnittet
+    konsistent?\}})
+\end{itemize}
 
 
 \chapter{Vejledning til Subversion (SVN) og filhåndtering}
@@ -143,7 +228,25 @@ Vær opmærksom på følgende:
 
 \section{Filplacering og -navngivning}
 
-Her skal der stå hvor hvad ligger og hvad det skal hedde.
+Navngiv filer efter følgende regler:
+
+\begin{itemize}
+\item Giv filen et navn med mening
+  (f.eks. \texttt{software-sd.tex} for software til
+  SD-kort-læseren)
+\item Brug små bogstaver
+\item Brug bindestreg (-) til at adskille navne. Mellemrum er ikke tilladt
+\item æ, ø og å er tilladt
+\end{itemize}
+
+Placer filerne i mapper efter følgende mønster:
+
+\begin{itemize}
+\item \texttt{software/} indeholder software til MCU'en
+\item \texttt{hardware/} indeholder hardwaredokumentation
+\item \texttt{logo/} indeholder projektets logo, som skal findes på
+  forsiden af rapporten
+\end{itemize}
 
 
 \end{document}
