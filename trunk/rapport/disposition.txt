@@ -10,22 +10,22 @@ Indledning
 
 Brugervejledning
 
+Mekanikafsnit
+	Dele af tekniske tegninger med beskrivelse
+
 Hardwareafsnit
 	Delkredsløb med diagrammer
 
 Softwareafsnit
 	Diagrammer
 
-Mekanikafsnit
-	Dele af tekniske tegninger med beskrivelse
-
 Afslutning
 	Nåede vi målet?
 	Perspektiv?
 
 Bilag
+	Tekniske tegninger
+	Komponentliste (til mekanik)
 	Hardwarediagrammer
 	Komponentliste (til hardware)
 	Kildekode
-	Tekniske tegninger
-	Komponentliste (til mekanik)
