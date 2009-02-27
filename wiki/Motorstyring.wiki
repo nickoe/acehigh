@@ -5,6 +5,6 @@ Motorerne styres i skridt i et plant Euklidisk koordinatsystem. Vi har foreløbi
 
 Processoren kører med frekvensen 16 MHz. Motorerne kan styres ved at lave parameterfremstilling af linien (x(t) og y(t)) og lade motorkontrollen sørge for, at motorerne befinder sig på det givne sted til det givne tidspunkt.
 
-For hvert motorkontroltaktslag beregner motorkontrollen x- og y-motorernes position fra liniens parameterfremstilling og flytter motorerne derhen.
+For hvert motorkontroltaktslag beregner motorkontrollen x- og y-motorernes position fra liniens parameterfremstilling og flytter motorerne derhen. Hastigheden er på forhånd defineret og skal også regnes med.
 
 *NB: Det er vigtigt, at motorernes fart er så lille i forhold til motorkontrolfrekvensen, at der højst køres ét skridt med hver motor pr. motorkontroltaktslag.* Det tilstræbes derfor, at motorhastigheden er relativt lille (minimum sættes af hvorvidt produktionen er rentabel) og at motorkontrolfrekvensen er stor (maksimum sættes ved, at hele regningsoperationen skal være overstået på ét taktslag).
