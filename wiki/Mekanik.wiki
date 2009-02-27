@@ -1,4 +1,4 @@
-#summary Siden indeholder forslag til hvordan vi skal konstruere vores plotter
+#summary Beskrivelse af mekanikken i plotteren
 
 = Introduktion =
 
