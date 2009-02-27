@@ -1,4 +1,4 @@
-#summary En kortlæserdriver til SD-kort og beskrivelse af hvordan den bruges
+#summary Oversigt og beskrivelse af softwaren til plotteren
 
 Denne side skal beskrive en driver til SD-kort.
 
