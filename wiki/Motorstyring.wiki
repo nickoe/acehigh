@@ -1,25 +1,10 @@
 #summary Beskrivelse af hvordan motorerne styres
 
-= Terminologi =
 
-I dette afsnit betyder procedure en processorinstruktion, altså noget kode vi har kompileret og lagt på processoren.
+Motorerne styres i skridt i et plant Euklidisk koordinatsystem. Vi har foreløbig kun brug for at kunne styre tegneren i rette linier.
 
-En _instruktion_ dækker derimod over den kode, der indikerer, hvad vi skal gøre med maskinen - skal x-akse-motoren køre mod højre, skal tegnehovedmotoren køre ned etc.
+Processoren kører med frekvensen 16 MHz. Motorerne kan styres ved at lave parameterfremstilling af linien (x(t) og y(t)) og lade motorkontrollen sørge for, at motorerne befinder sig på det givne sted til det givne tidspunkt.
 
+For hvert motorkontroltaktslag beregner motorkontrollen x- og y-motorernes position fra liniens parameterfremstilling og flytter motorerne derhen.
 
-= Systemstyring =
-
-Systemet styres som én tråd med en forsinkelse inden hvert step. Vi har en uafhængig interrupt, som fx 1000 gange i sekundet gør, at motoren kan køre. Hver gang vi prøver at køre med motoren, må vi vente på næste tidspunkt hvor motoren bliver klar til det.
-
-Hvis motoren skal køre med jævn hastighed, skal forsinkelsen inden hvert step på motoren være længere end den tid det tager at læse en instruktion fra SD-kortet.
-
-Tegnehovedet kører enten
-  * lodret eller vandret, eller
-  * på skrå
-
-Efter hvert vandret eller lodret step skal der være en tidsenhed forsinkelse til det næste step. Efter hvert skråt step skal der være ca 1,4 tidsenheder forsinkelse. Så bevæger tegneren sig i en tilnærmelsesvis jævn hastighed (hvis opløsningen bliver større, bliver hastigheden også mere jævn).
-
-
-= Instruktioner til maskinen =
-
-Se [Dataformat siden om dataformatet] for instruktioner til maskinen.
+*NB: Det er vigtigt, at motorernes fart er så lille i forhold til motorkontrolfrekvensen, at der højst køres ét skridt med hver motor pr. motorkontroltaktslag.* Det tilstræbes derfor, at motorhastigheden er relativt lille (minimum sættes af hvorvidt produktionen er rentabel) og at motorkontrolfrekvensen er stor (maksimum sættes ved, at hele regningsoperationen skal være overstået på ét taktslag).
