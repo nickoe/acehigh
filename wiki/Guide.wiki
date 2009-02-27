@@ -1,5 +1,9 @@
 #summary Retningslinier for projektarbejde og brug af Google Code
 
+= Indhold =
+
+<wiki:toc max_depth="2" />
+
 = Indledning =
 
 Denne side indeholder retningslinier for, hvordan projektarbejdet er organiseret, og hvordan Google Code bruges som arbejdsplads.
