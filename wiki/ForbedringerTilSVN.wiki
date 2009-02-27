@@ -1,6 +1,0 @@
-#summary Siden indeholder forslag til hvordan SVN-depotet anvendes mere hensigsmæssigt
-
-= Forslag til bedre udnyttelse af SVN-depotet =
-
-Nedenstående forslag er til overvejelse:
-  * En mappe til dokumentation (fx /doc i depotet), de forskellige dele i mapper under den.
