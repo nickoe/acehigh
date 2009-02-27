@@ -2,14 +2,18 @@
 
 = Indhold =
 
+
 <wiki:toc max_depth="2" />
 
+
 = Indledning =
+
 
 Denne side indeholder retningslinier for, hvordan projektarbejdet er organiseret, og hvordan Google Code bruges som arbejdsplads.
 
 
 = Gruppekontrakt =
+
 
 Følgende kontrakt indeholder retningslinjer, som skal overholdes for at give et optimalt arbejdsproces.
 
@@ -42,7 +46,86 @@ Det behøves ikke at informeres om specielle aftaler imellem to gruppemedlemmer 
 
 = Vejledning til LaTeX =
 
-Vejledning her
+
+Her følger en kort vejledning til hvordan de mest almindelige ting gøres i LaTeX.
+
+== Indsæt figur ==
+
+Eksemplerne i dette afsnit viser, hvordan man sætter figurer ind i LaTeX. *Husk at angive billedfil uden filtype (f.eks. .jpeg), og husk at lave en label med mening.* Se afsnit om navngivning af labels. Læg billeder i mappestrukturen som beskrevet i afsnittet derom.
+
+Eksempel på flydende objekt, f.eks. billede. Objektet indsættes nær placeringen i kilden.
+{{{
+% se note om mappestruktur og placering af grafik
+% se note om navngivning af labels
+% angiv grafik uden filtype, f.eks. billede og ikke billede.jpeg
+\begin{figure}[htbp]
+  \centering
+  % bredden kan også være hele tekstbredden (width=\textwidth)
+  % eller 85 pct. tekstbredde (width=0.85\textwidth)
+  \includegraphics[width=5cm]{./img/grafik}
+  \caption{Indsæt overskrift her.}
+  \label{fig:label-her}
+\end{figure}
+}}}
+
+Eksempel på objekt i margin, f.eks. billede.
+{{{
+% se note om mappestruktur og placering af grafik
+% se note om navngivning af labels
+% angiv grafik uden filtype, f.eks. billede og ikke billede.jpeg
+\mnote{
+  % her bør bredden ikke ændres
+  \includegraphics[width=\marginparwidth]{./img/grafik}
+  \captionof{figure}{Indsæt overskrift her.}
+  \label{fig:label-her}
+}
+}}}
+
+== Indsætte kodeeksempel ==
+
+Eksempel på løbende kodeeksempel.
+{{{
+% se note om mappestruktur og placering af kodeeksempler
+% se note om navngivning af labels
+% angives med filtype, f.eks. filnavn.c
+\lstinputlisting[caption={Indsæt tekst til koden
+   her.},label={lst:label-her}]{./filnavn-her.c}
+}}}
+
+== Lav henvisning ==
+
+Eksemplerne viser, hvordan man laver henvisning til labels.
+
+Henvisning til figur-/kodeeksempel-/tabelnummer med side tal.
+{{{
+  ...se figur\vref{fig:label-her}.
+}}}
+
+Henvisning til figur-/kodeeksempel-/tabelnummer uden sidetal. Bruges når vref giver problemer.
+{{{
+  ...se figur~\ref{fig:label-her}.
+}}}
+
+== Navngivning af labels ==
+
+Navngiv labels efter følgende regler:
+  * Brug små bogstaver
+  * Brug præfikset fig: ved figurer, tab: ved tabeller og lst: til kodeeksempler.
+  * Brug bindesteg (-) til at adskille navne i en label, f.eks. \label{fig:data-temp}
+  * Tilstræb et kort navn der giver mening.
+
+== Brug af \fixme ==
+
+En \fixme er en markering af en fejl, som skal rettes inden rapporten afleveres.
+
+Eksempel på en \fixme.
+{{{
+  % se afsnit om brug af fixmes
+  ...\fixme{Tekst her}
+}}}
+
+Lav \fixmes efter følgende regler:
+  * Skriv navnet til den, noten er henvendt til (f.eks. \fixme{Klim: er afsnittet konsistent?})
 
 
 = Vejledning til Subversion (SVN) og filhåndtering =
