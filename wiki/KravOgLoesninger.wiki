@@ -1,4 +1,4 @@
-#summary Beskriver opstillede krav og løsningsmodeller dertil
+#summary Oversigt over designet og hvordan det implementeres
 
 
 = Mekanik og procedure =
