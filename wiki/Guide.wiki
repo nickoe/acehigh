@@ -1,11 +1,50 @@
 #summary Retningslinier for projektarbejde og brug af Google Code
 
-= Retningslinier =
+= Indledning =
 
 Denne side indeholder retningslinier for, hvordan projektarbejdet er organiseret, og hvordan Google Code bruges som arbejdsplads.
 
 
-== Sådan bruges Google Code ==
+= Gruppekontrakt =
+
+Følgende kontrakt indeholder retningslinjer, som skal overholdes for at give et optimalt arbejdsproces.
+
+== Pauser ==
+
+Alle gruppemedlemmer har krav på de pauser, som er blevet anvist af skolen. Tidspunktet hvor disse bliver afholdt kan være varierende. Pauserne kan også bestå i et par minutters stilhed for at samle tankerne om projektet, hvilket ligeledes er acceptabelt.
+
+== Mødetider ==
+
+De normale mødetider er kl. 10:30, hvor ALLE medlemmer fra gruppen skal befinde sig i klasseværelset (hvis muligt). Evt. sygdom kan godt undskyldes.
+
+== Disciplinære problemer ==
+
+Dette punkt hænger meget sammen med kontakt imellem medlemmerne, da vi ønsker, at folk laver deres ting til tiden og overholder aftaler, som er lavet imellem de forskellige medlemmer (se specielle aftaler). Hvis man ikke får lavet det man skal, så giver man en øl i lufthavnen. De andre medlemmer skal også informeres, hvis man ikke har lavet sine ting.
+
+== Kontakt imellem medlemmerne ==
+
+Vi arbejder på at kontaktet imellem medlemmer er god. Vigtige ændringer skal indberettes til alle. Hvis ikke, se specielle aftaler.
+
+== Materialer ==
+
+Følgende er materialer som vi skal have med til hver gang:
+  * Kamera (kun 1 stk.)
+  * Papir og blyant
+
+== Specielle aftaler ==
+
+Det behøves ikke at informeres om specielle aftaler imellem to gruppemedlemmer som ikke direkte påvirker andre medlemmer i gruppe. Det er dog vigtigt, at sygdom og andre forhindringer for fremmøde indberettes i god tid til alle medlemmer.
+
+
+= Vejledning til LaTeX =
+
+Vejledning her
+
+
+= Vejledning til Subversion (SVN) og filhåndtering =
+
+
+= Vejledning til Google Code =
 
 Følgende findes i SVN-arkivet:
   * Kildekoder
