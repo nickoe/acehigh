@@ -1,4 +1,4 @@
-#summary Beskrivelse af hvordan systemet styres.
+#summary Beskrivelse af hvordan motorerne styres
 
 = Terminologi =
 
