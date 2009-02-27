@@ -131,7 +131,35 @@ Lav \fixmes efter følgende regler:
 = Vejledning til Subversion (SVN) og filhåndtering =
 
 
+== Arbejdsgang for arbejde med materiale på SVN-serveren ==
+
+Arbejdsgangen for arbejde med materiale på SVN-serveren er:
+  # Opdater lokalt arkiv (svn update).
+  # Udfør arbejde.
+  # Opdater lokalt arkiv igen (svn update) og løs konflikter.
+  # Upload ændringer til offentligt arkiv (svn commit).
+
+Vær opmærksom på følgende:
+  * Skriv en meddelelse, når du uploader.
+  * Tilføj alle filer, der er nødvendige for at andre kan arbejde videre. Tilføj gerne filerne når de oprettes for at huske det.
+  * Tilføj kun ét format af hver fil (f.eks. kun billede.svg og ikke billede.pdf).
+
+== Filplacering og -navngivning ==
+
+Navngiv filer efter følgende regler:
+  * Giv filen et navn med mening (f.eks. software-sd.tex for software til SD-kort-læseren)
+  * Brug små bogstaver
+  * Brug bindestreg (-) til at adskille navne. Mellemrum er ikke tilladt
+  * æ, ø og å er tilladt
+
+Placer filerne i mapper efter følgende mønster:
+  * software/ indeholder software til MCU’en
+  * hardware/ indeholder hardwaredokumentation
+  * logo/ indeholder projektets logo, som skal findes på forsiden af rapporten
+
 = Vejledning til Google Code =
+
+== Hvad lægges hvor? ==
 
 Følgende findes i SVN-arkivet:
   * Kildekoder
