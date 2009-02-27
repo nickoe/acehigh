@@ -10,7 +10,7 @@
 TARGET=master.tex
 
 # Mappe til genererede billedfiler, med afsluttende skråstreg
-IMGDIR=img/
+GENIMGDIR=img/
 
 # Alle DIA-diagrammer
 FIGS_DIA=
@@ -54,8 +54,8 @@ clean:
 	latexmk -C
 	rm -f $(TARGET:.tex=.lox)
 	rm -f $(TARGET:.tex=.out)
-	rm -f $(addprefix $(IMGDIR), $(notdir $(FIGS_EPS_GEN)))
-	rm -f $(addprefix $(IMGDIR), $(notdir $(FIGS_PDF_GEN)))
+	rm -f $(addprefix $(GENIMGDIR), $(notdir $(FIGS_EPS_GEN)))
+	rm -f $(addprefix $(GENIMGDIR), $(notdir $(FIGS_PDF_GEN)))
 	cd tex && latexmk -C
 
 
@@ -63,24 +63,24 @@ clean:
 
 # fx dia -t eps -e target.eps target.dia
 .dia.eps:
-	dia -t eps -e $(addprefix $(IMGDIR), $(notdir $@)) $<
+	dia -t eps -e $(addprefix $(GENIMGDIR), $(notdir $@)) $<
 
 # fx jpeg2ps target.jpeg > target.eps
 .jpeg.eps:
-	jpeg2ps $< > $(addprefix $(IMGDIR), $(notdir $@))
+	jpeg2ps $< > $(addprefix $(GENIMGDIR), $(notdir $@))
 
 # fx inkscape --export-eps=target.eps --export-text-to-path target.svg
 .svg.eps:
-	inkscape --export-eps=$(addprefix $(IMGDIR), $(notdir $@)) --export-text-to-path $<
+	inkscape --export-eps=$(addprefix $(GENIMGDIR), $(notdir $@)) --export-text-to-path $<
 
 # fx inkscape --export-pdf=target.pdf --export-text-to-path target.svg
 .svg.pdf:
-	inkscape --export-pdf=$(addprefix $(IMGDIR), $(notdir $@)) --export-text-to-path $<
+	inkscape --export-pdf=$(addprefix $(GENIMGDIR), $(notdir $@)) --export-text-to-path $<
 
 # fx epstopdf target.eps
 .eps.pdf:
-	epstopdf --outfile=$(addprefix $(IMGDIR), $(notdir $@)) $<
+	epstopdf --outfile=$(addprefix $(GENIMGDIR), $(notdir $@)) $<
 
 # fx pdftops -eps target.pdf
 .pdf.eps:
-	pdftops -eps $< $(addprefix $(IMGDIR), $(notdir $@))
+	pdftops -eps $< $(addprefix $(GENIMGDIR), $(notdir $@))

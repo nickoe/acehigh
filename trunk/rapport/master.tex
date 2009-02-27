@@ -4,6 +4,8 @@
 \author{Christian Klim Hansen \and Kristian Kjærgaard \and Nick Østergaard}
 \date{\today}
 
+\graphicspath{{img/}}
+
 \hypersetup{
   pdftitle={\thetitle},
   pdfsubject=Emne her,
@@ -18,7 +20,7 @@
 
 \begin{titlingpage}
   \maketitle
-  \includegraphics[width=\textwidth]{./img/logo}
+  \includegraphics[width=\textwidth]{logo}
 \end{titlingpage}
 
 \frontmatter
@@ -30,6 +32,7 @@
 \mainmatter
 
 \include{./tex/indledning}
+\include{./tex/brugervejledning}
 \include{./tex/hardware}
 \include{./tex/software}
 \include{./tex/mekanik}
