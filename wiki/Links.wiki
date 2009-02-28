@@ -17,7 +17,6 @@
 [http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&t=66846] - Getting SD/MMC card working painlessly with FatFS  
 
 ==Software==
-[http://www.learnsvg.com] og [http://w3schools.com/svg] - steder for information om at skrive SVG
 
 [http://hydraraptor.blogspot.com/2007_04_01_archive.html]
 
@@ -28,6 +27,8 @@
 [http://www.sandisk.com/Assets/File/OEM/Manuals/SD_SDIO_specsv1.pdf] - SD-kort datasheet
 
 [http://sourceforge.net/projects/efsl] - Library for filesystems intended to be used in embedded projects.
+
+[http://www.atmel.com/dyn/resources/prod_documents/current_supply.pdf Atmel AVR-based Constant Current Supply] er et eksempel på en konstantstrømsgenerator med en ATtiny15.
 
 ==Andet==
 [http://www.millpcbs.com/] - Anvendelsesmuligheder for vores maskine
