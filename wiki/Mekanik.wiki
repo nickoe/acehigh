@@ -26,3 +26,10 @@ Valget af disse gearings metoder bør afhænge af
   * hvilke muligheder vi har
   * hvor besværligt det er
   * gearingsforholdet
+
+= Vores endelige valg =
+Vi har fundet et par bordscannere, disse piller vi motorene og gearing samt tandremmen ud af. Så på den måde har vi en gearet motor der flytter sig med en tilpas lille opløsning til vi kan bruge det til noget. Vi har målt, at den ene flytter sig 0,06 mm/step.
+
+Som følge af ovenstående, har vi valgt at bruge tandrem til at flytte akserne med. Fordelene ved dette er, at vi har materialerne og at det er relativt nemt at montere.
+
+Hvis vi er på hvorledes selve konstruktionen af selve mekanikken er, så vil den bestå af 8mm stænger, hvorpå der skal glide nogle klodser med nogle glidelejer i. På den måde får vi nogle akser der er meget slørfrie og uden megen friktion.
