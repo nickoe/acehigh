@@ -122,7 +122,7 @@ writeflash: hex
 install: writeflash
 
 $(DUMPTRG): $(TRG) 
-	$(OBJDUMP) -S  $(BINPATH)/$< > $(BINPATH)/$@
+	$(OBJDUMP) -S $(BINPATH)/$< > $(BINPATH)/$@
 
 $(TRG): $(OBJDEPS) 
 	$(CC) $(LDFLAGS) $(LIBS) -o $(BINPATH)/$(TRG) $(addprefix $(BINPATH)/,$(notdir $(OBJDEPS)))

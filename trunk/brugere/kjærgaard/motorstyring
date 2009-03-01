@@ -1,0 +1,31 @@
+$Id$
+
+Motorstyring
+------------
+
+Motorernes hastighed er v = s/t, hvor v er hastighed, s er strækning
+og t er tid. Tiden t = t_e + t_d, hvor t_e er ekserkveringstiden for
+positionsberegningen og t_d er den forsinkelse, vi lægger ind for at
+opnå den ønskede hastighed.
+
+PROBLEM: Vi kender ikke ekserkveringstiden. Vi kan analysere os frem
+til WCET (worst-case execution time) og BCET (best-case execution
+time), men t_e er ikke fast. Alternativ søges.
+
+
+Alternativ motorstyring
+-----------------------
+
+Lad positionsberegningen starte med en bestemt frekvens, så t_d bliver
+variabel og bestemmes af MCU'en. Så er v = s/(t_e+t_d) helt fast, og
+vi ser bort fra t_d (den styres af MCU'en).
+
+Dette opnås ved at starte positionsberegningen med en fast
+frekvens. Forskellige hastigheder opnås ved kun at flytte motoren på
+nogle af positionsberegningerne og ikke alle.
+
+Den alternative motorstyring har samme tophastighed - men muligvis
+mindre opløsning at styre hastighed i omkring tophastigheden. Når
+skridtopløsningen bliver større, bliver problemet med
+hastighedsopløsningen omkring topfart mindre (i modsætning til metoden
+ovenfor?)
