@@ -9,7 +9,7 @@ Inden tegning af linien påbegyndes, beregnes det tidspunkt t_x, hvor x-akse-mot
 
 *NB: Det er vigtigt, at motorernes fart er så lille i forhold til motorkontrolfrekvensen, at der højst køres ét skridt med hver motor pr. motorkontroltaktslag.* Det tilstræbes derfor, at motorhastigheden er relativt lille (minimum sættes af hvorvidt produktionen er rentabel) og at motorkontrolfrekvensen er stor (maksimum sættes ved, at hele regningsoperationen skal være overstået på ét taktslag).
 
-WCET (worst-case execution time) kan findes som beskrevet i [http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&p=545586#545586 denne post på avrfreans.net]. Instruktionerne tælles. AVR-processoren kan håndtere ca. 16 MIPS (million instruction per second) ved 16 MHz - se afsnit 6.6 Instruction Execution Time i databladet. Derpå kan man finde det antal CPU-taktslag, der skal bruges på at regne motorstyringen ud.
+WCET (worst-case execution time) kan findes som beskrevet i [http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&p=545586#545586 denne post på avrfreans.net]. AVR-processoren kan håndtere ca. 16 MIPS (million instruction per second) ved 16 MHz - se afsnit 6.6 Instruction Execution Time i databladet. Derpå kan man finde det antal CPU-taktslag, der skal bruges på at regne motorstyringen ud.
 
 *Beregning af tophastighed:* Der gælder, at f=n/t hvor f er frekvens, n er antal skridt og t er tiden; η=s/n, hvor η er et forhold, s er en strækning og n er antal skridt; v=s/t hvor v er hastighed, s er strækning og t er tid. Udtrykket kan kombineres til v=η`*`f. Antal instruktioner mellem taktslag er i=F/f, hvor i er antal instruktioner, F er CPU-takten og f er motorkontroltakten.
 
