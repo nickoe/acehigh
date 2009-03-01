@@ -5,11 +5,11 @@ Motorerne styres i skridt i et plant Euklidisk koordinatsystem. Vi har foreløbi
 
 Processoren kører med frekvensen 16 MHz. Motorerne kan styres ved at lave parameterfremstilling af linien (x(t) og y(t)) og lade motorkontrollen sørge for, at motorerne befinder sig på det givne sted til det givne tidspunkt.
 
-For hvert motorkontroltaktslag beregner motorkontrollen x- og y-motorernes position fra liniens parameterfremstilling og flytter motorerne derhen. Hastigheden er på forhånd defineret og skal også regnes med.
+Inden tegning af linien påbegyndes, beregnes det tidspunkt t_x, hvor x-akse-motoren skal flyttes ét skridt. For hvert motorkontroltaktslag tjekkes, om vi er nået til det tidspunkt; hvis vi er, så flyttes motoren og det næste tidspunkt beregnes.
 
 *NB: Det er vigtigt, at motorernes fart er så lille i forhold til motorkontrolfrekvensen, at der højst køres ét skridt med hver motor pr. motorkontroltaktslag.* Det tilstræbes derfor, at motorhastigheden er relativt lille (minimum sættes af hvorvidt produktionen er rentabel) og at motorkontrolfrekvensen er stor (maksimum sættes ved, at hele regningsoperationen skal være overstået på ét taktslag).
 
-WCET (worst-case execution time) kan findes ved at omsætte den mængde kode, der skal ekserkveres pr. motorkontroltaktslag, til instruktioner. Instruktionerne tælles. AVR-processoren kan håndtere ca. 16 MIPS (million instruction per second) ved 16 MHz - se afsnit 6.6 Instruction Execution Time i databladet. Derpå kan man finde det antal CPU-taktslag, der skal bruges på at regne motorstyringen ud.
+WCET (worst-case execution time) kan findes som beskrevet i [http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&p=545586#545586 denne post på avrfreans.net]. Instruktionerne tælles. AVR-processoren kan håndtere ca. 16 MIPS (million instruction per second) ved 16 MHz - se afsnit 6.6 Instruction Execution Time i databladet. Derpå kan man finde det antal CPU-taktslag, der skal bruges på at regne motorstyringen ud.
 
 *Beregning af tophastighed:* Der gælder, at f=n/t hvor f er frekvens, n er antal skridt og t er tiden; η=s/n, hvor η er et forhold, s er en strækning og n er antal skridt; v=s/t hvor v er hastighed, s er strækning og t er tid. Udtrykket kan kombineres til v=η`*`f. Antal instruktioner mellem taktslag er i=F/f, hvor i er antal instruktioner, F er CPU-takten og f er motorkontroltakten.
 
