@@ -1,11 +1,11 @@
-EESchema Schematic File Version 1
-LIBS:power,device,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,contrib,valves,./SD-card-reader.cache
+EESchema Schematic File Version 2
+LIBS:power,device,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,contrib,valves
 EELAYER 23  0
 EELAYER END
 $Descr A4 11700 8267
 Sheet 1 1
 Title "SD-card-reader"
-Date "29 nov 2008"
+Date "3 mar 2009"
 Rev "1.0"
 Comp "AATG"
 Comment1 "Ace High"
@@ -13,6 +13,26 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+Text Notes 6750 2650 0    60   ~
+DATA OUT
+Text Notes 6750 2550 0    60   ~
+DATA IN
+Text Notes 6750 2450 0    60   ~
+CLK
+Text Notes 6750 2350 0    60   ~
+/CS
+Wire Wire Line
+	6250 2300 5250 2300
+Wire Wire Line
+	5250 2300 5250 2900
+Wire Wire Line
+	6250 2500 4650 2500
+Wire Wire Line
+	4650 2500 4650 2900
+Wire Wire Line
+	6150 3200 6150 3150
+Wire Wire Line
+	6150 3150 6250 3150
 Connection ~ 6100 5450
 Wire Wire Line
 	6100 5600 6100 3850
@@ -28,23 +48,7 @@ Wire Wire Line
 Wire Wire Line
 	800  850  800  750 
 Wire Wire Line
-	5700 2150 5500 2150
-Wire Wire Line
-	5500 2150 5500 2450
-Wire Wire Line
-	5500 2450 5850 2450
-Wire Wire Line
-	5850 2450 5850 4150
-Wire Wire Line
-	5850 4150 6200 4150
-Wire Wire Line
-	6700 2750 4650 2750
-Wire Wire Line
-	6700 2750 6700 2050
-Wire Wire Line
-	6700 2050 6500 2050
-Wire Wire Line
-	4650 2750 4650 2900
+	6200 4150 5850 4150
 Wire Wire Line
 	5650 4700 5650 3750
 Wire Wire Line
@@ -78,26 +82,6 @@ Wire Wire Line
 	6200 3550 5250 3550
 Connection ~ 5250 3550
 Wire Wire Line
-	6500 2150 6600 2150
-Wire Wire Line
-	6600 2150 6600 2650
-Wire Wire Line
-	6600 2650 4950 2650
-Wire Wire Line
-	4950 2650 4950 2900
-Wire Wire Line
-	5700 2050 5250 2050
-Wire Wire Line
-	5250 2050 5250 2900
-Wire Wire Line
-	5700 2250 5600 2250
-Wire Wire Line
-	5600 2250 5600 2350
-Wire Wire Line
-	6850 2150 6850 2250
-Wire Wire Line
-	6850 2250 6500 2250
-Wire Wire Line
 	1100 850  1100 1000
 Wire Wire Line
 	5300 5950 5300 6250
@@ -108,105 +92,131 @@ Wire Wire Line
 Connection ~ 4700 5450
 Wire Wire Line
 	6100 6100 4700 6100
+Wire Wire Line
+	6150 2900 6150 2950
+Wire Wire Line
+	6150 2950 6250 2950
+Wire Wire Line
+	5850 4150 5850 2600
+Wire Wire Line
+	5850 2600 6250 2600
+Wire Wire Line
+	4950 2900 4950 2400
+Wire Wire Line
+	4950 2400 6250 2400
 $Comp
-L LM317 U?
+L CONN_2 P4
+U 1 1 49AD11EB
+P 6600 3050
+F 0 "P4" V 6550 3050 40  0000 C C
+F 1 "PWR" V 6650 3050 40  0000 C C
+	1    6600 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_4 P3
+U 1 1 49AD11DB
+P 6600 2450
+F 0 "P3" V 6550 2450 50  0000 C C
+F 1 "CONN_4" V 6650 2450 50  0000 C C
+	1    6600 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L LM317 U1
 U 1 1 4931B25A
 P 5300 5600
-F 0 "U?" H 5300 5900 60  0000 C C
+F 0 "U1" H 5300 5900 60  0000 C C
 F 1 "LD1086V33" H 5350 5350 60  0000 L C
 	1    5300 5600
 	1    0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG?
+L PWR_FLAG #FLG1
 U 1 1 4931B1F2
 P 800 850
-F 0 "#FLG?" H 800 1120 30  0001 C C
+F 0 "#FLG1" H 800 1120 30  0001 C C
 F 1 "PWR_FLAG" H 800 1080 30  0000 C C
 	1    800  850 
 	-1   0    0    1   
 $EndComp
 $Comp
-L PWR_FLAG #FLG?
+L PWR_FLAG #FLG2
 U 1 1 4931B1EE
 P 1100 850
-F 0 "#FLG?" H 1100 1120 30  0001 C C
+F 0 "#FLG2" H 1100 1120 30  0001 C C
 F 1 "PWR_FLAG" H 1100 1080 30  0000 C C
 	1    1100 850 
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L GND #PWR2
 U 1 1 4931B1E6
 P 1100 1000
-F 0 "#PWR?" H 1100 1000 30  0001 C C
+F 0 "#PWR2" H 1100 1000 30  0001 C C
 F 1 "GND" H 1100 930 30  0001 C C
 	1    1100 1000
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR?
+L VCC #PWR1
 U 1 1 4931B1E3
 P 800 750
-F 0 "#PWR?" H 800 850 30  0001 C C
+F 0 "#PWR1" H 800 850 30  0001 C C
 F 1 "VCC" H 800 850 30  0000 C C
 	1    800  750 
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR?
+L VCC #PWR9
 U 1 1 4931B1A2
-P 6850 2150
-F 0 "#PWR?" H 6850 2250 30  0001 C C
-F 1 "VCC" H 6850 2250 30  0000 C C
-	1    6850 2150
+P 6150 2900
+F 0 "#PWR9" H 6150 3000 30  0001 C C
+F 1 "VCC" H 6150 3000 30  0000 C C
+	1    6150 2900
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L GND #PWR10
 U 1 1 4931B19C
-P 5600 2350
-F 0 "#PWR?" H 5600 2350 30  0001 C C
-F 1 "GND" H 5600 2280 30  0001 C C
-	1    5600 2350
+P 6150 3200
+F 0 "#PWR10" H 6150 3200 30  0001 C C
+F 1 "GND" H 6150 3130 30  0001 C C
+	1    6150 3200
 	1    0    0    -1  
 $EndComp
-NoConn ~ 5700 1950
-NoConn ~ 5700 1850
-NoConn ~ 6500 1850
-NoConn ~ 6500 1950
 $Comp
-L GND #PWR?
+L GND #PWR8
 U 1 1 4931AFBA
 P 5650 4700
-F 0 "#PWR?" H 5650 4700 30  0001 C C
+F 0 "#PWR8" H 5650 4700 30  0001 C C
 F 1 "GND" H 5650 4630 30  0001 C C
 	1    5650 4700
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L GND #PWR6
 U 1 1 4931AFB5
 P 5250 4700
-F 0 "#PWR?" H 5250 4700 30  0001 C C
+F 0 "#PWR6" H 5250 4700 30  0001 C C
 F 1 "GND" H 5250 4630 30  0001 C C
 	1    5250 4700
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L GND #PWR5
 U 1 1 4931AFAF
 P 4950 4700
-F 0 "#PWR?" H 4950 4700 30  0001 C C
+F 0 "#PWR5" H 4950 4700 30  0001 C C
 F 1 "GND" H 4950 4630 30  0001 C C
 	1    4950 4700
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L GND #PWR3
 U 1 1 4931AFAC
 P 4650 4700
-F 0 "#PWR?" H 4650 4700 30  0001 C C
+F 0 "#PWR3" H 4650 4700 30  0001 C C
 F 1 "GND" H 4650 4630 30  0001 C C
 	1    4650 4700
 	1    0    0    -1  
@@ -289,28 +299,19 @@ F 1 "1K8" V 4650 3150 50  0000 C C
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_5X2 P1
-U 1 1 4931A086
-P 6100 2050
-F 0 "P1" H 6100 2350 60  0000 C C
-F 1 "PORT B" V 6100 2050 50  0000 C C
-	1    6100 2050
-	1    0    0    -1  
-$EndComp
-$Comp
-L VCC #PWR1
+L VCC #PWR4
 U 1 1 4931975A
 P 4700 5350
-F 0 "#PWR1" H 4700 5450 30  0001 C C
+F 0 "#PWR4" H 4700 5450 30  0001 C C
 F 1 "VCC" H 4700 5450 30  0000 C C
 	1    4700 5350
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR2
+L GND #PWR7
 U 1 1 4931974B
 P 5300 6250
-F 0 "#PWR2" H 5300 6250 30  0001 C C
+F 0 "#PWR7" H 5300 6250 30  0001 C C
 F 1 "GND" H 5300 6180 30  0001 C C
 	1    5300 6250
 	1    0    0    -1  

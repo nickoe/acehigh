@@ -1,6 +1,6 @@
 EESchema Schematic File Version 2
 LIBS:power,device,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,contrib,valves
-EELAYER 43  0
+EELAYER 24  0
 EELAYER END
 $Descr A4 11700 8267
 Sheet 1 1
@@ -13,4 +13,253 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+Wire Wire Line
+	8300 1850 8300 1750
+Wire Wire Line
+	8250 4300 8250 4200
+Wire Wire Line
+	8250 4200 8350 4200
+Wire Wire Line
+	5950 3050 5950 2950
+Wire Wire Line
+	5950 2950 5850 2950
+Wire Wire Line
+	6150 2750 5850 2750
+Wire Wire Line
+	4650 5700 4650 5600
+Wire Wire Line
+	4650 5600 4750 5600
+Wire Wire Line
+	4650 3900 4650 3800
+Wire Wire Line
+	4650 3800 4750 3800
+Wire Wire Line
+	3450 2850 3550 2850
+Wire Wire Line
+	3550 2850 3550 5250
+Wire Wire Line
+	3550 5250 4000 5250
+Wire Wire Line
+	4000 3450 3750 3450
+Wire Wire Line
+	3750 3450 3750 2650
+Wire Wire Line
+	3750 2650 3450 2650
+Wire Wire Line
+	4750 2550 4500 2550
+Wire Wire Line
+	4750 4350 4500 4350
+Wire Wire Line
+	4500 5250 4750 5250
+Wire Wire Line
+	4500 3450 4750 3450
+Wire Wire Line
+	4000 2550 3450 2550
+Wire Wire Line
+	3450 2750 3650 2750
+Wire Wire Line
+	3650 2750 3650 4350
+Wire Wire Line
+	3650 4350 4000 4350
+Wire Wire Line
+	4750 2900 4650 2900
+Wire Wire Line
+	4650 2900 4650 3000
+Wire Wire Line
+	4650 4800 4650 4700
+Wire Wire Line
+	4650 4700 4750 4700
+Wire Wire Line
+	8300 1750 8400 1750
+Wire Wire Line
+	6450 3050 6450 2950
+$Comp
+L GNDA #PWR?
+U 1 1 49AD29D6
+P 8250 4300
+F 0 "#PWR?" H 8250 4300 40  0001 C C
+F 1 "GNDA" H 8250 4230 40  0000 C C
+	1    8250 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L GNDA #PWR?
+U 1 1 49AD2855
+P 8300 1850
+F 0 "#PWR?" H 8300 1850 40  0001 C C
+F 1 "GNDA" H 8300 1780 40  0000 C C
+	1    8300 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L GNDA #PWR?
+U 1 1 49AD284E
+P 5950 3050
+F 0 "#PWR?" H 5950 3050 40  0001 C C
+F 1 "GNDA" H 5950 2980 40  0000 C C
+	1    5950 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L GNDA #PWR?
+U 1 1 49AD2838
+P 6450 3050
+F 0 "#PWR?" H 6450 3050 40  0001 C C
+F 1 "GNDA" H 6450 2980 40  0000 C C
+	1    6450 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_2 P?
+U 1 1 49AD280D
+P 8750 1650
+F 0 "P?" V 8700 1650 40  0000 C C
+F 1 "CONN_2" V 8800 1650 40  0000 C C
+	1    8750 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L PNP Q?
+U 1 1 49AD2794
+P 6350 2750
+F 0 "Q?" H 6500 2750 60  0000 C C
+F 1 "TIP125" H 6254 2900 60  0000 C C
+	1    6350 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 49AD234F
+P 4650 3000
+F 0 "#PWR?" H 4650 3000 30  0001 C C
+F 1 "GND" H 4650 2930 30  0001 C C
+	1    4650 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 49AD234B
+P 4650 3900
+F 0 "#PWR?" H 4650 3900 30  0001 C C
+F 1 "GND" H 4650 3830 30  0001 C C
+	1    4650 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 49AD2346
+P 4650 4800
+F 0 "#PWR?" H 4650 4800 30  0001 C C
+F 1 "GND" H 4650 4730 30  0001 C C
+	1    4650 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 49AD2338
+P 4650 5700
+F 0 "#PWR?" H 4650 5700 30  0001 C C
+F 1 "GND" H 4650 5630 30  0001 C C
+	1    4650 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 49AD22F0
+P 4250 5250
+F 0 "R?" V 4330 5250 50  0000 C C
+F 1 "330R" V 4250 5250 50  0000 C C
+	1    4250 5250
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 49AD22E1
+P 4250 4350
+F 0 "R?" V 4330 4350 50  0000 C C
+F 1 "330R" V 4250 4350 50  0000 C C
+	1    4250 4350
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 49AD22D9
+P 4250 3450
+F 0 "R?" V 4330 3450 50  0000 C C
+F 1 "330R" V 4250 3450 50  0000 C C
+	1    4250 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 49AD21DA
+P 4250 2550
+F 0 "R?" V 4330 2550 50  0000 C C
+F 1 "330R" V 4250 2550 50  0000 C C
+	1    4250 2550
+	0    1    1    0   
+$EndComp
+$Comp
+L CONN_4 P?
+U 1 1 49AD2169
+P 3100 2700
+F 0 "P?" V 3050 2700 50  0000 C C
+F 1 "MCU IO" V 3150 2700 50  0000 C C
+	1    3100 2700
+	-1   0    0    1   
+$EndComp
+$Comp
+L PHTRANS U?
+U 1 1 49AD1795
+P 5300 5450
+F 0 "U?" H 5250 5800 70  0000 C C
+F 1 "PHTRANS" H 5250 5100 70  0000 C C
+	1    5300 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L PHTRANS U?
+U 1 1 49AD1792
+P 5300 4550
+F 0 "U?" H 5250 4900 70  0000 C C
+F 1 "PHTRANS" H 5250 4200 70  0000 C C
+	1    5300 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L PHTRANS U?
+U 1 1 49AD178E
+P 5300 4550
+F 0 "U?" H 5250 4900 70  0000 C C
+F 1 "PHTRANS" H 5250 4200 70  0000 C C
+	1    5300 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L PHTRANS U?
+U 1 1 49AD1784
+P 5300 3650
+F 0 "U?" H 5250 4000 70  0000 C C
+F 1 "PHTRANS" H 5250 3300 70  0000 C C
+	1    5300 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L PHTRANS U?
+U 1 1 49AD177B
+P 5300 2750
+F 0 "U?" H 5250 3100 70  0000 C C
+F 1 "PHTRANS" H 5250 2400 70  0000 C C
+	1    5300 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_5 P?
+U 1 1 49AD15CC
+P 8750 4000
+F 0 "P?" V 8700 4000 50  0000 C C
+F 1 "MOTOR" V 8800 4000 50  0000 C C
+	1    8750 4000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
