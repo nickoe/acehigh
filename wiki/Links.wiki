@@ -30,6 +30,8 @@
 
 [http://www.atmel.com/dyn/resources/prod_documents/current_supply.pdf Atmel AVR-based Constant Current Supply] er et eksempel på en konstantstrømsgenerator med en ATtiny15.
 
+[http://www.sdcard.org/home SD Association], foreningen bag SD-standarden.
+
 ==Andet==
 [http://www.millpcbs.com/] - Anvendelsesmuligheder for vores maskine
 
