@@ -1,31 +1,40 @@
 $Id$
 
-Forord
-	bl.a. tak til
+	Forord
+		bl.a. tak til
 
-Indledning
-	Projektbeskrivelse (evt. ændret, uden tidsplan)
-	Problemafgrænsning
-	Kravspecifikation
+	Indledning
+		Projektbeskrivelse (evt. ændret, uden tidsplan)
+		Problemafgrænsning
+		Kravspecifikation
 
-Brugervejledning
+	Brugervejledning
 
-Mekanikafsnit
-	Dele af tekniske tegninger med beskrivelse
+Design (Overvejelser)
+    Mekanikafsnit
+	
+	Hardwareafsnit
+	
+	Softwareafsnit
 
-Hardwareafsnit
-	Delkredsløb med diagrammer
+Implementering (Praktisk anvendelse)
 
-Softwareafsnit
-	Diagrammer
+	Mekanikafsnit
+		Dele af tekniske tegninger med beskrivelse
 
-Afslutning
-	Nåede vi målet?
-	Perspektiv?
+	Hardwareafsnit
+		Delkredsløb med diagrammer
 
-Bilag
-	Tekniske tegninger
-	Komponentliste (til mekanik)
-	Hardwarediagrammer
-	Komponentliste (til hardware)
-	Kildekode
+	Softwareafsnit
+		Diagrammer
+
+	Afslutning
+		Nåede vi målet?
+		Perspektiv?
+
+	Bilag
+		Tekniske tegninger
+		Komponentliste (til mekanik)
+		Hardwarediagrammer
+		Komponentliste (til hardware)
+		Kildekode
