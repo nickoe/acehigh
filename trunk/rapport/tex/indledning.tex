@@ -2,18 +2,17 @@
 
 % Note om hvad der skal stå i dette afsnit her.
 
-\lipsum
 
-\lipsum
 
 \section{Kravspecifikation}
 
-Vi har valgt at lave en plotter, som skal opfylde følgende specifikationer:
+Vi vil lave en plotter, som opfylder følgende specifikationer:
 \begin{itemize}
-\item Plotteren skal kunne tegne noget, som vi har tegnet på computer
+\item Plotteren skal tegne en figur, som vi har tegnet på computer
 \begin{itemize}
-\item Skal kunne tegne på et stykke A4-papir
-\item Fungere uden at en computern er tilsluttet, læse data fra SD-kort
+\item Skal tegne på et stykke A4-papir
+\item Fungere uden at en computer er tilsluttet
+\item Læse data fra SD-kort
 \end{itemize}
 \item Bruge en pen til at tegne
 %\begin{itemize}
@@ -26,10 +25,10 @@ Vi har valgt at lave en plotter, som skal opfylde følgende specifikationer:
 \item Kunne lave nødstop og restart med knapper
 %\item Vise status af tegneforløb på LCD-display eller med lysdioder
 \item Kunne gå i nulstillingsposition (et sted hvor maskinen ved den så er) ved tryk på en trykknap
-\item Kunne glide ligesom vist på figur \vref{fig:plotterskitse}
+\item Den mekaniske konstruktion skal ligne figur\vref{fig:plotterskitse}
 \mnote{
   % her bør bre$  $dden ikke ændres
-  \includegraphics[width=\marginparwidth]{./img/plotterskitse}
+  \includegraphics[width=\marginparwidth]{plotterskitse}
   \captionof{figure}{Skitse af konstruktion}
   \label{fig:plotterskitse}
 }
@@ -37,8 +36,12 @@ Vi har valgt at lave en plotter, som skal opfylde følgende specifikationer:
 \begin{itemize}
 \item Tandrem er forbundet med stepmotor
 \end{itemize}
-\item Pennen skulle kunne løftes på tidspunkter, hvor der ikke skal tegnes
-\item Kunne implementere rette linjer og cirkler fra HPGL
+\item Pennen kan løftes og sænkes
+\item Kunne forstå følgende elementer af HPGL:
+\begin{itemize}
+\item Rette linier
+\item Cirkler
+\end{itemize}
 \end{itemize}
 
 
