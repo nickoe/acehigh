@@ -2,9 +2,25 @@
 
 % Note om hvad der skal stå i dette afsnit her.
 
-\lipsum
+\section{HP-GL -- Hewlett-Packard Graphics Language}
+Når man skal vælge, hvilket format man vil bruge, når man laver en plotter, så er der en del ting at tage hensyn til. Der findes mange forskellige standarder, som kan anvendes og en af disse standarder er HPGL, som vi benytter os af.
 
-\lipsum
+
+Når man skal vælge, hvad man vil bruge, så er det vigtigt at se på fordele og ulemper. Vi kunne i princippet godt udvikle vores eget plotterformat, men dette vil både være meget tidskrævende, og samtidigt vil det være svært at få implementeret, da vores format ikke er en standard, og derfor er der ikke noget som direkte virker med det. Derfor er HPGL velegnet i vores projekt, da det er mere virkelighedsnært at benytte en standard, som allerede er konstrueret som et plotterformat, samtidig med at det kan anvendes af forskellige applikationer (andre CAD programmer). Der er heller ikke mange ulemper tilknyttet til brugen af HPGL som plotterformat. Det vil dog tage lang tid at implementere det hele, hvilket vi dog heller ikke gør. Vi kommer f.eks. ikke til at benytte os af pin-skrift og en del andre ting, men disse problemer er relativt lette at komme udenom.
+
+
+Når man betragter HPGL som et plotterformat, så betyder det, at den indeholder mange forskellige kommandoer med hver deres funktion. Det kan tage lang tid at sætte sig ind i alle disse ting, men hvis man har forståelse for, hvilke funktioner vi evt. kommer til at bruge i vores projekt, vil det selvfølgelig lette indlæringsarbejdet en del.
+
+
+Følgende er en tabel over vores overvejelser omkring fordele og ulemper ved brugen af eget dataformat samt fordele og ulemper ved brugen af HPGL:
+
+\fixme{Her indsættes tabel over fordele og ulemper ved eget dataformat. Denne tabel eksistere allerede}
+
+Dette betyder, at der findes ingen software, der kan håndtere formatet. Dette betyder at vi selv skal skrive den software, som er uden for rammer af dette projekt. Derfor leder vi efter en eksisterende standard.
+
+\fixme{Her indsættes tabel over f og u ved HPGL}
+
+Dette betyder, at HPGL er meget velegnet til brug i vores projekt, da formatet er veldokumenteret, afprøvet og anvendt industrielt til specielt plottere, hvilket vores eget selvfølgelig også ville være, og der finde allerede software, som kan håndtere formatet til forskel fra vores eget. Implementeringstiden vil dog være en del længere, da niveauet er sat fra starten, hvilket medfører en del ubenyttede funktioner.
 
 
 
