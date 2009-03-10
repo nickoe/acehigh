@@ -2,80 +2,101 @@
 
 % Note om hvad der skal stå i dette afsnit her.
 
-Følgende rapport er skrevet i forbindelse med vores afsluttende projekt i faget El-teknik.
-Vi har fået udleveret tre mulige temaer, hvor vi har valgt at arbejde med temaet: Robotteknologi,
-som omfatter følgende:
+Følgende rapport er skrevet i forbindelse med vores afsluttende
+projekt i faget El-teknik.  Vi har fået udleveret tre mulige temaer,
+hvor vi har valgt at arbejde med temaet: Robotteknologi, som omfatter
+følgende:
+
 \begin{itemize}
 \item Udvikling af udstyr med funktioner af robotagtig karakter
 \item Dette udstyr skal virke uden menneskelig indgriben.
 \end{itemize}
 
 
-Vi ønsker, at opfylde disse krav ved at lave en plotter, som aflæser data fra et SD-kort.
-Plotteren har til formål at tegne en figur på et stykke A4-papir \fixme{Kjærgaard:referer til kravspecifikation}.
-Vi har haft i alt 100 timer pr. person fordelt ud over 10 uger. Vi har fået stillet 300 kr. pr. person til rådighed
-i dette projekt til fri benyttelse, så længde at det har en tydelig relevans for vores projekt. Samtlige
-indkøb skal godkendes af læreren.
+Vi ønsker, at opfylde disse krav ved at lave en plotter, som aflæser
+data fra et SD-kort. Plotteren har til formål at tegne en figur på et
+stykke A4-papir \fixme{Kjærgaard:referer til kravspecifikation}.  Vi
+har haft i alt 100 timer pr. person fordelt ud over 10 uger. Vi har
+fået stillet 300 kr. pr. person til rådighed i dette projekt til fri
+benyttelse, så længde at det har en tydelig relevans for vores
+projekt. Samtlige indkøb skal godkendes af læreren.
+
 
 \section{Overordnede produktkrav}
-Vores produkt skal indeholde følgende elementer for at overholde produktkravene:
+
+Vores produkt skal indeholde følgende elementer for at overholde
+produktkravene:
+
 \begin{itemize}
-\item Der skal indgå mindst et elektrisk kredsløb med passive og aktive komponenter udover microcontrolleren
+\item Der skal indgå mindst et elektrisk kredsløb med passive og
+  aktive komponenter udover microcontrolleren
 \item Der skal designes print layout vha. CAD
 \item Der skal anvendes mindst en microcontroller
 \item Der skal benyttes avancerede funktioner i microcontrolleren, som f.eks.:
-\begin{itemize}
-\item Interrupt
-\item Timer
-\item Tæller
-\item U(s)ART eller ADC
+  \begin{itemize}
+  \item Interrupt
+  \item Timer
+  \item Tæller
+  \item U(s)ART eller ADC
+  \end{itemize}
 \end{itemize}
-\end{itemize}
+
 
 \section{Kravspecifikation}
 
 Vi vil lave en plotter, som opfylder følgende specifikationer:
+
 \begin{itemize}
 \item Plotteren skal tegne en figur, som vi har tegnet på computer
-\begin{itemize}
-\item Skal tegne på et stykke A4-papir
-\item Fungere uden at en computer er tilsluttet
-\item Læse data fra SD-kort
-\end{itemize}
+  \begin{itemize}
+  \item Skal tegne på et stykke A4-papir
+  \item Fungere uden at en computer er tilsluttet
+  \item Læse data fra SD-kort
+  \end{itemize}
 \item Kunne forstå følgende elementer af HPGL:
-\begin{itemize}
-\item Rette linier
-\item Cirkler
-\end{itemize}
+  \begin{itemize}
+  \item Rette linier
+  \item Cirkler
+  \end{itemize}
 \item Anvende en AVR-processor
 \item Bruge en pen til at tegne
-%\begin{itemize}
-%\item Bemærk at der ikke skal benyttes blyant eller kuglepen
-%\end{itemize}
+  % \begin{itemize}
+  % \item Bemærk at der ikke skal benyttes blyant eller kuglepen
+  % \end{itemize}
 \item Styre hastigheden af pennen meget præcist
-\begin{itemize}
-\item Med software skal vi gøre optimalt nytte af stepmotorenes præcision
-\end{itemize}
+  \begin{itemize}
+  \item Med software skal vi gøre optimalt nytte af stepmotorenes præcision
+  \end{itemize}
 \item Kunne lave nødstop og restart med knapper
-%\item Vise status af tegneforløb på LCD-display eller med lysdioder
-\item Kunne gå i nulstillingsposition (et sted hvor maskinen ved den så er) ved tryk på en trykknap
+  % \item Vise status af tegneforløb på LCD-display eller med lysdioder
+\item Kunne gå i nulstillingsposition (et sted hvor maskinen ved den
+  så er) ved tryk på en trykknap
 \item Den mekaniske konstruktion skal ligne figur\vref{fig:plotterskitse}
-\mnote{
-  % her bør bre$  $dden ikke ændres
-  \includegraphics[width=\marginparwidth]{plotterskitse}
-  \captionof{figure}{Skitse af konstruktion}
-  \label{fig:plotterskitse}
-}
+  \mnote{
+    \includegraphics[width=\marginparwidth]{img/plotterskitse}
+    \captionof{figure}{Skitse af konstruktion}
+    \label{fig:plotterskitse}
+  }
 \item Bruge tandrem til at trække x- og y-akserne
-\begin{itemize}
-\item Tandrem er forbundet med stepmotor
-\end{itemize}
+  \begin{itemize}
+  \item Tandrem er forbundet med stepmotor
+  \end{itemize}
 \item Pennen kan løftes og sænkes
-
 \end{itemize}
+
+
+\section{Terminologi}
+
+% Her skriver vi hvilken betydning forskellige ord har i
+% rapporten. Hvad betyder fx software, MCU, plotter etc.
+
+Med software menes den ekserkvering, der sker på mikroprocessoren i plotteren.
+
 
 \section{Om kodeeksempler i rapporten}
-Alt software i vores projekt er udviklet med den frie GNU AVR C Compiler, som virker på både Windows og Linux.
+
+Alt software i vores projekt er udviklet med den frie GNU AVR C
+Compiler\fixme{korrektur}, som virker på både Windows og Linux.
 
 
 %%% Local Variables: 

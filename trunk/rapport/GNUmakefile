@@ -9,14 +9,13 @@
 # Navn på masterfil
 TARGET=master.tex
 
-# Mappe til genererede billedfiler, med afsluttende skråstreg
-IMGDIR=img/
-
 # Alle DIA-diagrammer
-FIGS_DIA=
+FIGS_DIA=../brugere/kjaergaard/sd-firmware/oversigt.dia
 
 # Alle SVG-filer
-FIGS_SVG=../logo/logo.svg
+FIGS_SVG=../logo/logo.svg			\
+../brugere/kjaergaard/sd-firmware/handling.svg	\
+../brugere/kjaergaard/skaermkoordinater.svg
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
 FIGS_EPS=
@@ -53,8 +52,8 @@ clean:
 	latexmk -C
 	rm -f $(TARGET:.tex=.lox)
 	rm -f $(TARGET:.tex=.out)
-	rm -f $(addprefix $(IMGDIR), $(notdir $(FIGS_EPS_GEN)))
-	rm -f $(addprefix $(IMGDIR), $(notdir $(FIGS_PDF_GEN)))
+	rm -f $(FIGS_EPS_GEN)
+	rm -f $(FIGS_PDF_GEN)
 	cd tex && latexmk -C
 
 
@@ -62,24 +61,24 @@ clean:
 
 # fx dia -t eps -e target.eps target.dia
 .dia.eps:
-	dia -t eps -e $(addprefix $(IMGDIR), $(notdir $@)) $<
+	dia -t eps -e $@ $<
 
 # fx jpeg2ps target.jpeg > target.eps
 .jpeg.eps:
-	jpeg2ps $< > $(addprefix $(IMGDIR), $(notdir $@))
+	jpeg2ps $< > $@
 
 # fx inkscape --export-eps=target.eps --export-text-to-path target.svg
 .svg.eps:
-	inkscape --export-eps=$(addprefix $(IMGDIR), $(notdir $@)) --export-text-to-path $<
+	inkscape --export-eps=$@ --export-text-to-path $<
 
 # fx inkscape --export-pdf=target.pdf --export-text-to-path target.svg
 .svg.pdf:
-	inkscape --export-pdf=$(addprefix $(IMGDIR), $(notdir $@)) --export-text-to-path $<
+	inkscape --export-pdf=$@ --export-text-to-path $<
 
 # fx epstopdf target.eps
 .eps.pdf:
-	epstopdf --outfile=$(addprefix $(IMGDIR), $(notdir $@)) $<
+	epstopdf --outfile=$@ $<
 
 # fx pdftops -eps target.pdf
 .pdf.eps:
-	pdftops -eps $< $(addprefix $(IMGDIR), $(notdir $@))
+	pdftops -eps $< $@
