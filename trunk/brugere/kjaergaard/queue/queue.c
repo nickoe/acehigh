@@ -9,7 +9,7 @@
 #include "queue.h"
 #include <stdlib.h>
 
-#define MinQueueSize (5)
+#define QUEUE_MINSIZE 5
 
 /* kø-definition */
 struct QueueRecord {
@@ -21,56 +21,64 @@ struct QueueRecord {
 };
 
 /* er køen tom? */
-int IsEmpty(Queue Q) {
+int Queue_IsEmpty(Queue Q) {
   return Q->Size == 0;
 }
 
 /* er køen fuld? */
-int IsFull(Queue Q) {
+int Queue_IsFull(Queue Q) {
   return Q->Size == Q->Capacity;
 }
 
 /* opretter en kø, returner med fejlkoder m.m. */
-Queue CreateQueue(int MaxElements) {
+Queue Queue_CreateQueue(int maxElements)
+{
   Queue Q;
 
-  if (MaxElements < MinQueueSize) {
-    Error("CreateQueue Error: Queue size is too small.");
+  if (maxElements < QUEUE_MINSIZE) {
+    /* Fejl: køen er mindre end det mindst tilladte */
   }
 
-  Q = malloc (sizeof(struct QueueRecord));
-  if (Q == NULL) {
-    FatalError("CreateQueue Error: Unable to allocate more memory.");
+  /* alloker hukommelse til køstrukturen */
+  Q = malloc(sizeof(struct QueueRecord));
+  if (Q == NULL)
+  {
+    /* Fejl: kunne ikke allokere hukommelse */
   }
 
-  Q->Array = malloc( sizeof(ElementType) * MaxElements );
+  /* alloker hukommelse til elementer i køen */
+  Q->Array = malloc(sizeof(ElementType) * maxElements);
   if (Q->Array == NULL) {
-    FatalError("CreateQueue Error: Unable to allocate more memory.");
+    /* Fejl: kan ikke allokere hukommelse */
   }
 
-  Q->Capacity = MaxElements;
-  MakeEmpty(Q);
+  Q->Capacity = maxElements;
+  Queue_MakeEmpty(Q);
 
   return Q;
 }
 
-void MakeEmpty(Queue Q) {
 
+/* Tømmer køen for alle elementer */
+void Queue_MakeEmpty(Queue Q)
+{
   Q->Size = 0;
   Q->Front = 1;
   Q->Rear = 0;
-
 }
 
 /* rydder køen op og fjerner den fra hukommelsen */
-void DisposeQueue(Queue Q) {
-  if (Q != NULL) {
+void Queue_DisposeQueue(Queue Q)
+{
+  if (Q != NULL)
+  {
     free(Q->Array);
     free(Q);
   }
 }
 
-static int Succ(int Value, Queue Q) {
+static int Succ(int Value, Queue Q)
+{
   if (++Value == Q->Capacity) {
     Value = 0;
   }
@@ -78,53 +86,65 @@ static int Succ(int Value, Queue Q) {
 }
 
 /* indsætter element X bagerst i køen Q */
-void Enqueue(ElementType X, Queue Q) {
-
-  if (IsFull(Q)) {
-    Error("Enqueue Error: The queue is full.");
-  } else {
+void Queue_Enqueue(ElementType X, Queue Q)
+{
+  if (Queue_IsFull(Q))
+  {
+    /* Fejl: køen er fuld */
+  }
+  else
+  {
     Q->Size++;
     Q->Rear = Succ(Q->Rear, Q);
     Q->Array[Q->Rear] = X;
   }
-
 }
 
 /* returnerer forreste element i køen */
-ElementType Front(Queue Q) {
-
-  if (!IsEmpty(Q)) {
+ElementType Queue_Front(Queue Q)
+{
+  if (!Queue_IsEmpty(Q))
+  {
     return Q->Array[Q->Front];
   }
-  Error("Front Error: The queue is empty.");
+  /* Fejl: køen er tom */
 
   /* Return value to avoid warnings from the compiler */
   return 0;
 
 }
 
-void Dequeue(Queue Q) {
 
-  if (IsEmpty(Q)) {
-    Error("Dequeue Error: The queue is empty.");
-  } else {
+/* fjern element fra køen */
+void Queue_Dequeue(Queue Q)
+{
+  if (Queue_IsEmpty(Q))
+  {
+    /* Fejl: køen er tom */
+  }
+  else
+  {
     Q->Size--;
     Q->Front = Succ(Q->Front, Q);
   }
-
 }
 
-ElementType FrontAndDequeue(Queue Q) {
 
+/* returnerer første element i køen og fjerner det */
+ElementType Queue_FrontAndDequeue(Queue Q)
+{
   ElementType X = 0;
 
-  if (IsEmpty(Q)) {
-    Error("FrontAndDequeue Error: The queue is empty.");
-  } else {
+  if (Queue_IsEmpty(Q))
+  {
+    /* Fejl: køen er tom */
+  }
+  else
+  {
     Q->Size--;
     X = Q->Array[Q->Front];
     Q->Front = Succ(Q->Front, Q);
   }
-  return X;
 
+  return X;
 }

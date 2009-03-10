@@ -9,25 +9,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define Error(Str)        FatalError(Str)
-#define FatalError(Str)   fprintf(stderr, "%s\n", Str), exit(1)
-
 typedef int ElementType;
 
-#ifndef _Queue_h
+#ifndef __QUEUE_H__
+#define __QUEUE_H__
 
-  struct QueueRecord;
-  typedef struct QueueRecord *Queue;
+struct QueueRecord;
+typedef struct QueueRecord *Queue;
 
-  int         IsEmpty(Queue Q);
-  int         IsFull(Queue Q);
-  Queue       CreateQueue(int MaxElements);
-  void        DisposeQueue(Queue Q);
-  void        MakeEmpty(Queue Q);
-  void        Enqueue(ElementType X, Queue Q);
-  ElementType Front(Queue Q);
-  void        Dequeue(Queue Q);
-  ElementType FrontAndDequeue(Queue Q);
+int         Queue_IsEmpty(Queue Q);
+int         Queue_IsFull(Queue Q);
+Queue       Queue_CreateQueue(int maxElements);
+void        Queue_DisposeQueue(Queue Q);
+void        Queue_MakeEmpty(Queue Q);
+void        Queue_Enqueue(ElementType X, Queue Q);
+ElementType Queue_Front(Queue Q);
+void        Queue_Dequeue(Queue Q);
+ElementType Queue_FrontAndDequeue(Queue Q);
 
-#endif  /* _Queue_h */
-
+#endif  /* __QUEUE_H__ */
