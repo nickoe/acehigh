@@ -127,6 +127,23 @@ Eksempel på en \fixme.
 Lav \fixmes efter følgende regler:
   * Skriv navnet til den, noten er henvendt til (f.eks. \fixme{Klim: er afsnittet konsistent?})
 
+== Brug af BibTeX ==
+
+BibTeX er et "værktøj" til at holde styr på litteratur. Man indsætter sin litteratur i en databasefil, hvorved man specificerer en nøgle, for så at kunne citere eller refere til en litteratur. Vi anvender litteratur.bib i roden af trunk/rapport.
+
+Eksempel på litteratur databasefilen
+{{{
+% Jenny's TauUser BAD
+@Unpublished{BAD842:2004,
+     author    = "Williams, J.",
+     title     = "Tau{U}ser",
+     note      = "BAD \#842, Version 1 (\babar\ internal analysis document)",
+     year      = "2004",
+}
+}}}
+
+For at citere noget, anvender vi \cite, fx \cite{BAD842:2004}.
+
 
 = Vejledning til Subversion (SVN) og filhåndtering =
 
