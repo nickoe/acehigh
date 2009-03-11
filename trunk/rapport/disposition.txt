@@ -14,6 +14,7 @@ Design (Overvejelser)
     Mekanikafsnit
 	
 	Hardwareafsnit
+    Beskrivelse af motor drivere
 	
 	Softwareafsnit
 
@@ -28,7 +29,7 @@ Implementering (Praktisk anvendelse)
 	Softwareafsnit
 		Diagrammer
 
-	Afslutning
+	Afslutning / Konklusion
 		Nåede vi målet?
 		Perspektiv?
 
