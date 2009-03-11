@@ -62,8 +62,12 @@ enum{
   STP_Y
 };
 
+
+/* Initialiserer stepmotorerne */
+void stp_init(void);
+
 /* Flytter stepmotoren i en eller flere retninger givet som STP_UP,
-   STP_DOWN, STP_LEFT og STP_RIGHT */
+   STP_DOWN, STP_LEFT og STP_RIGHT, fx stp_move(STP_UP | STP_LEFT) */
 int stp_move(uint8_t dir);
 
 /* Nulstiller stepmotortælleren, så det punkt den står på er det nye

@@ -19,6 +19,9 @@
  */
 
 /*
+ * Mangler: Udbyg med sensoregenskaber, så vi ikke flytter plotteren i
+ * stykker med stepmotorerne
+ *
  * $Id$
  */
 
@@ -50,6 +53,8 @@ void stp_init(void)
   stp_poles[STP_Y][STP_B] = STP_YB;
   stp_poles[STP_Y][STP_C] = STP_YC;
   stp_poles[STP_Y][STP_D] = STP_YD;
+
+  STP_DDR = 0xff; /* output på alle pins */
 }
 
 

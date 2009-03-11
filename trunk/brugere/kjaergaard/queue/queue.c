@@ -20,17 +20,17 @@ struct QueueRecord {
   ElementType *Array;
 };
 
-/* er køen tom? */
+/* er køen tom? - generisk */
 int Queue_IsEmpty(Queue Q) {
   return Q->Size == 0;
 }
 
-/* er køen fuld? */
+/* er køen fuld? - generisk */
 int Queue_IsFull(Queue Q) {
   return Q->Size == Q->Capacity;
 }
 
-/* opretter en kø, returner med fejlkoder m.m. */
+/* opretter en kø, returner med fejlkoder m.m. - delvis generisk, kan måske gøres fuldt generisk */
 Queue Queue_CreateQueue(int maxElements)
 {
   Queue Q;
@@ -59,7 +59,7 @@ Queue Queue_CreateQueue(int maxElements)
 }
 
 
-/* Tømmer køen for alle elementer */
+/* Tømmer køen for alle elementer - generisk */
 void Queue_MakeEmpty(Queue Q)
 {
   Q->Size = 0;
@@ -67,7 +67,7 @@ void Queue_MakeEmpty(Queue Q)
   Q->Rear = 0;
 }
 
-/* rydder køen op og fjerner den fra hukommelsen */
+/* rydder køen op og fjerner den fra hukommelsen - generisk */
 void Queue_DisposeQueue(Queue Q)
 {
   if (Q != NULL)
@@ -77,6 +77,7 @@ void Queue_DisposeQueue(Queue Q)
   }
 }
 
+/* returnerer næste plads til et element i køen */
 static int Succ(int Value, Queue Q)
 {
   if (++Value == Q->Capacity) {
@@ -85,7 +86,7 @@ static int Succ(int Value, Queue Q)
   return Value;
 }
 
-/* indsætter element X bagerst i køen Q */
+/* indsætter element X bagerst i køen Q - delvis generisk */
 void Queue_Enqueue(ElementType X, Queue Q)
 {
   if (Queue_IsFull(Q))
@@ -100,7 +101,7 @@ void Queue_Enqueue(ElementType X, Queue Q)
   }
 }
 
-/* returnerer forreste element i køen */
+/* returnerer forreste element i køen - delvis generisk */
 ElementType Queue_Front(Queue Q)
 {
   if (!Queue_IsEmpty(Q))
@@ -115,7 +116,7 @@ ElementType Queue_Front(Queue Q)
 }
 
 
-/* fjern element fra køen */
+/* fjern element fra køen - generisk */
 void Queue_Dequeue(Queue Q)
 {
   if (Queue_IsEmpty(Q))
@@ -130,7 +131,7 @@ void Queue_Dequeue(Queue Q)
 }
 
 
-/* returnerer første element i køen og fjerner det */
+/* returnerer første element i køen og fjerner det - delvis generisk */
 ElementType Queue_FrontAndDequeue(Queue Q)
 {
   ElementType X = 0;
