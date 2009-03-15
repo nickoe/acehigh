@@ -72,18 +72,63 @@ springes over ved at bruge skærmkoordinater.
   \label{fig:skaermkoord}
 \end{figure}
 
-\section{Timing & Buffer}
+\section{Timing \& Buffer}
 
-I afsnittet om mekanik lå fokus meget på nøjagtigheden af vores produkt. Vi vil her diskutere, hvordan vi vil opnå denne nøjagtighed.
+I afsnittet om mekanik lå fokus meget på nøjagtigheden af vores
+produkt. Vi vil her diskutere, hvordan vi vil opnå denne nøjagtighed.
 
-Vi har diskuteret to løsninger. Den ene forgår ud af en såkaldt tråd, hvor vi udfører og holder pause, udfører og holder pause. Dette giver dog anledning til en forsinkelse. Dette kan ses på figur\fixme{indsæt figur af trådløsning}.
-Da vi ikke kan bestemme forsinkelsen i praksis, så er denne løsning ikke optimalt til vores projekt.
+Vi har diskuteret to løsninger. Den ene forgår ud af en såkaldt tråd,
+hvor vi udfører og holder pause, udfører og holder pause. Dette giver
+dog anledning til en forsinkelse. Dette kan ses på figur\fixme{indsæt
+  figur af trådløsning}.  Da vi ikke kan bestemme forsinkelsen i
+praksis, så er denne løsning ikke optimalt til vores projekt.
 
-Vi kom herefter frem til en løsning, hvor vi benytter os af en buffer, som man kan læse mere om under afsnittet Software under Implementering. Her udføres instruktionerne, som er samlet i bufferen sammen med et tidspunkt, når dette tidspunkt er overskredet. Der skal altså jævnt udføres et tjek, som den såkaldte deadline er overskredet. Imellem disse tjek kan bufferen få data.
+Vi kom herefter frem til en løsning, hvor vi benytter os af en buffer,
+som man kan læse mere om under afsnittet Software under
+Implementering. Her udføres instruktionerne, som er samlet i bufferen
+sammen med et tidspunkt, når dette tidspunkt er overskredet. Der skal
+altså jævnt udføres et tjek, som den såkaldte deadline er
+overskredet. Imellem disse tjek kan bufferen få data.
 
-Der er dog problemer, som vi skal tage højde for, når vi bruger en buffer. F.eks. må hastigheden af outputtet ikke overskride hastigeheden hvormed bufferen får data fra HPGL. Sagt mere simpel, så må bufferen aldrig tømmes helt. Hvis dette sker, så har bufferen ikke nok information eller jobs til motorstyringen, hvilket medfører en overskrides af vores deadline, svarende til det tidspunkt vi skal have udført vores funktion. Afstanden imellem to tjek skal skal således være stor nok, så bufferen har tid til at modtage data. Dataen kommer som sagt fra HPGL, som har behandlet information fra SD-kortet. Dette ses illustreret i figur\fixme{Illustration som viser overførsel af data fra SD-kort osv.}.
+Der er dog problemer, som vi skal tage højde for, når vi bruger en
+buffer. F.eks. må hastigheden af outputtet ikke overskride
+hastigeheden hvormed bufferen får data fra HPGL. Sagt mere simpel, så
+må bufferen aldrig tømmes helt. Hvis dette sker, så har bufferen ikke
+nok information eller jobs til motorstyringen, hvilket medfører en
+overskrides af vores deadline, svarende til det tidspunkt vi skal have
+udført vores funktion. Afstanden imellem to tjek skal skal således
+være stor nok, så bufferen har tid til at modtage data. Dataen kommer
+som sagt fra HPGL, som har behandlet information fra SD-kortet. Dette
+ses illustreret i figur\fixme{Illustration som viser overførsel af
+  data fra SD-kort osv.}.
 
-Vi skal også tage højde for, at bufferen ikke nødvendigvis bliver fyldt før hvert tjek. Dette giver anledning til et interrupt, hvor opfyldningen af bufferen stoppes og tjekket udføres. Efter tjekket genoptages opfyldningen af bufferen. Brugen af en buffer har den fordel, at hastigheden af output er nogenlunde konstant. Diagrammet over brugen af en buffer kan ses i figur\fixme{indsæt figur over bufferforløb}.
+Vi skal også tage højde for, at bufferen ikke nødvendigvis bliver
+fyldt før hvert tjek. Dette giver anledning til et interrupt, hvor
+opfyldningen af bufferen stoppes og tjekket udføres. Efter tjekket
+genoptages opfyldningen af bufferen. Brugen af en buffer har den
+fordel, at hastigheden af output er nogenlunde konstant. Diagrammet
+over brugen af en buffer kan ses i figur\fixme{indsæt figur over
+  bufferforløb}.
+
+
+
+\section{Valg af programmeringssprog}
+
+Softwaren skrives i C og C++.
+
+C bruges i moduler, hvor sproget uden videre er tilstrækkeligt. Dette
+vil typisk være lavniveaumoduler, og her er C fordelagtigt, fordi det
+giver større kontrol.
+
+C++ bruges i moduler, hvor det er fordelagtigt at bruge C++-speficikke
+elementer (f.eks. generisk programmering\fixme{note om
+  dette?}). Moduler, der afhænger af moduler skrevet i C++, vil typisk
+også være skrevet i C++.
+
+Alle C-moduler er kompatible med C++, og alle C++-moduler er så vidt
+muligt kompatible med C. Uønskede sideeffekter af C++ forsøges undgået
+(\fixme{eksempler her!}). C++ bruges ikke objektorienteret.
+
 
 
 %%% Local Variables: 
