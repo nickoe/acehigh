@@ -2,13 +2,70 @@
 #include <stdlib.h>
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 
 #include "queue.h"
 
 typedef struct QueueRecord<int> *Queue;
 
+uint16_t int_counter0 = 0;
+uint8_t int_counter1 = 0;
+Queue Q;
+
+
+void update(void)
+{
+  PORTA = (1 << Q->Size) - 1;
+}
+
+/* kaldes med frekvensen 1 kHz */
+ISR(TIMER0_COMP_vect)
+{
+  if (++int_counter0 < 1000)
+    return;
+
+  int_counter0 = 0;
+
+  if (!Queue_IsEmpty<int>(Q))
+    Queue_Dequeue(Q);
+  update();
+}
+
+/* interrupt på PD2 */
+ISR(INT0_vect)
+{
+  if (!Queue_IsFull(Q))
+    Queue_Enqueue<int>(0, Q);
+  update();
+}
+
+
 int main(void)
 {
+  /* CTC, 250 kHz tæller */
+  TCCR0 = (1<<WGM01) | (1<<CS01) | (1<<CS00);
+  /* tællertop = 249, interruptfrekvens = 1 kHz */
+  OCR0 = 249;
+  /* compare match-interrupt, output compare interrupt enable for
+     timer 0 */
+  TIMSK = 1<<OCIE0;
+
+  /* aktiver interrupt på forkant af signal på PD2 */
+  MCUCR = (1<<ISC01) | (1<<ISC00);
+  GICR = 1<<INT0;
+
+  DDRA = 0xff;
+
+  Q = Queue_Create<int>(8);
+
+  sei();
+
+  while (1);
+
+  return 0;
+
+
+  /*
   DDRA = 0xff;
 
   Queue Q;
@@ -38,6 +95,7 @@ int main(void)
   Queue_Dispose(Q);
 
   return 0;
+  */
 
   /*
   DDRD = 0xff;

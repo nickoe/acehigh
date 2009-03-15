@@ -29,7 +29,7 @@ template<typename E>
 int Queue_IsFull(QueueRecord<E> *Q);
 
 template<typename E>
-QueueRecord<E>* Queue_Create(int size);
+QueueRecord<E>* Queue_Create(int capacity);
 
 template<typename E>
 void Queue_Dispose(QueueRecord<E> *Q);
@@ -66,7 +66,7 @@ int Queue_IsFull(QueueRecord<E> *Q)
 }
 
 template<typename E>
-QueueRecord<E>* Queue_Create(int size) {
+QueueRecord<E>* Queue_Create(int capacity) {
   QueueRecord<E> *Q;
 
   // tjek evt. at vi har en mindste størrelse her
@@ -77,13 +77,13 @@ QueueRecord<E>* Queue_Create(int size) {
     //FatalError("CreateQueue Error: Unable to allocate more memory.");
   }
 
-  Q->Array = (E*)malloc(sizeof(E) * size);
+  Q->Array = (E*)malloc(sizeof(E) * capacity);
   if (Q->Array == NULL)
   {
     //FatalError("CreateQueue Error: Unable to allocate more memory.");
   }
 
-  Q->Capacity = size;
+  Q->Capacity = capacity;
   Queue_Empty<E>(Q);
 
   return Q;
