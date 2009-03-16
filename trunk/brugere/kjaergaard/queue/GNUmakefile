@@ -1,3 +1,5 @@
+# $Id$
+
 # Projektnavn
 PRJNAME=cpp
 

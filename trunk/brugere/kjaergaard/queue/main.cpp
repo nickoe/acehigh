@@ -1,3 +1,13 @@
+/*
+ * Note om køen her 
+ */
+
+/*
+ * $Id$
+ */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <avr/io.h>

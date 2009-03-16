@@ -1,16 +1,34 @@
 /*
  *  FILE   : queue.h
- *  AUTHOR : Jeffrey Hunter
+ *  AUTHOR : Jeffrey Hunter (modified by Kristian Kjærgaard <kkjærgaard@gmail.com>)
  *  WEB    : http://www.iDevelopment.info
  *  NOTES  : Define queue record structure and
  *           all forward declarations.
  */
 
+/*
+ * $Id$
+ */
+
 #include <avr/io.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
 
+
+/*
+ * Fejlkoder
+ */
+enum {
+  QUEUE_SUCCES, /* ingen bemærkninger */
+  QUEUE_EMPTY,  /* køen er tom */
+  QUEUE_FULL,   /* køen er fuld */
+  QUEUE_MALLOC, /* der kan ikke allokeres mere hukommelse */
+};
+
+
+/* 
+ * Køstrukturen, skal konkretiseres
+ */
 template<typename E>
 struct QueueRecord
 {
