@@ -4,10 +4,12 @@
  *  WEB    : http://www.iDevelopment.info
  *  NOTES  : Define queue record structure and
  *           all forward declarations.
+ *
+ * $Id$
  */
 
 /*
- * $Id$
+ * En kø bør defineres som "typedef struct QueueRecord<int> *Queue"
  */
 
 #include <avr/io.h>
@@ -40,73 +42,68 @@ struct QueueRecord
 };
 
 
-template<typename E>
-int Queue_IsEmpty(QueueRecord<E> *Q);
-
-template<typename E>
-int Queue_IsFull(QueueRecord<E> *Q);
-
-template<typename E>
-QueueRecord<E>* Queue_Create(int capacity);
-
-template<typename E>
-void Queue_Dispose(QueueRecord<E> *Q);
-
-template<typename E>
-void Queue_Empty(QueueRecord<E> *Q);
-
-template<typename E>
-void Queue_Enqueue(E X, QueueRecord<E> *Q);
-
-template<typename E>
-E Queue_Front(QueueRecord<E> *Q);
-
-template<typename E>
-void Queue_Dequeue(QueueRecord<E> *Q);
-
-template<typename E>
-E Queue_FrontAndDequeue(QueueRecord<E> *Q);
+/*
+ * Oversigt over funktioner i denne fil
+ */
+template<typename E> int  Queue_IsEmpty(QueueRecord<E> *Q);
+template<typename E> int  Queue_IsFull(QueueRecord<E> *Q);
+template<typename E> int  Queue_Create(QueueRecord<E> *&Q, int capacity);
+template<typename E> void Queue_Dispose(QueueRecord<E> *Q);
+template<typename E> void Queue_Empty(QueueRecord<E> *Q);
+template<typename E> void Queue_Enqueue(QueueRecord<E> *Q, E X);
+template<typename E> int  Queue_Front(QueueRecord<E> *Q, E &X);
+template<typename E> int  Queue_Dequeue(QueueRecord<E> *Q);
+template<typename E> int  Queue_FrontAndDequeue(QueueRecord<E> *Q, E &X);
 
 
 
-
-
+/*
+ * Returnerer sand hvis køen er tom
+ */
 template<typename E>
 int Queue_IsEmpty(QueueRecord<E> *Q)
 {
   return Q->Size == 0;
 }
 
+
+/*
+ * Returnerer sand hvis køen er fuld
+ */
 template<typename E>
 int Queue_IsFull(QueueRecord<E> *Q)
 {
   return Q->Size == Q->Capacity;
 }
 
+
+/*
+ * Opretter køen Q med angivet kapacitet
+ *
+ * NB: Her har vi brug for pass-by-reference, da vi skal påvirke Q (og
+ * ikke den mængde hukommelse, Q peger på) i kalderen
+ */
 template<typename E>
-QueueRecord<E>* Queue_Create(int capacity) {
-  QueueRecord<E> *Q;
-
-  // tjek evt. at vi har en mindste størrelse her
-
+int Queue_Create(QueueRecord<E> *&Q, int capacity)
+{
   Q = (QueueRecord<E>*)malloc(sizeof(struct QueueRecord<E>));
   if (Q == NULL)
-  {
-    //FatalError("CreateQueue Error: Unable to allocate more memory.");
-  }
+    return QUEUE_MALLOC;
 
   Q->Array = (E*)malloc(sizeof(E) * capacity);
   if (Q->Array == NULL)
-  {
-    //FatalError("CreateQueue Error: Unable to allocate more memory.");
-  }
+    return QUEUE_MALLOC;
 
   Q->Capacity = capacity;
   Queue_Empty<E>(Q);
 
-  return Q;
+  return QUEUE_SUCCES;
 }
 
+
+/*
+ * Tømmer køen
+ */
 template<typename E>
 void Queue_Empty(QueueRecord<E> *Q)
 {
@@ -115,6 +112,10 @@ void Queue_Empty(QueueRecord<E> *Q)
   Q->Rear = 0;
 }
 
+
+/*
+ * Fjerner køen fra hukommelsen
+ */
 template<typename E>
 void Queue_Dispose(QueueRecord<E> *Q)
 {
@@ -125,16 +126,25 @@ void Queue_Dispose(QueueRecord<E> *Q)
   }
 }
 
+
+/*
+ * Returnerer det næste element i cirklen
+ */
 template<typename E>
-static int Succ(int Value, QueueRecord<E> *Q) {
-  if (++Value == Q->Capacity) {
+static int Succ(QueueRecord<E> *Q, int Value)
+{
+  if (++Value == Q->Capacity)
     Value = 0;
-  }
+
   return Value;
 }
 
+
+/*
+ * Sætter et element i kø
+ */
 template<typename E>
-void Queue_Enqueue(E X, QueueRecord<E> *Q)
+void Queue_Enqueue(QueueRecord<E> *Q, E X)
 {
   if (Queue_IsFull<E>(Q))
   {
@@ -143,53 +153,57 @@ void Queue_Enqueue(E X, QueueRecord<E> *Q)
   else
   {
     Q->Size++;
-    Q->Rear = Succ<E>(Q->Rear, Q);
+    Q->Rear = Succ<E>(Q, Q->Rear);
     Q->Array[Q->Rear] = X;
   }
 }
 
+
+/*
+ * Returnerer forreste element i køen
+ *
+ * NB: Her har vi brug for referencen
+ */
 template<typename E>
-E Queue_Front(QueueRecord<E> *Q)
-{
-  if (!Queue_IsEmpty<E>(Q))
-  {
-    return Q->Array[Q->Front];
-  }
-  //Error("Front Error: The queue is empty.");
-
-  /* Return value to avoid warnings from the compiler */
-  return 0;
-
-}
-
-template<typename E>
-void Queue_Dequeue(QueueRecord<E> *Q)
+int Queue_Front(QueueRecord<E> *Q, E &X)
 {
   if (Queue_IsEmpty<E>(Q))
-  {
-    //Error("Dequeue Error: The queue is empty.");
-  }
-  else
-  {
-    Q->Size--;
-    Q->Front = Succ<E>(Q->Front, Q);
-  }
+    return QUEUE_EMPTY;
+
+  X = Q->Array[Q->Front];
+  return QUEUE_SUCCES;
 }
 
-template<typename E>
-E Queue_FrontAndDequeue(QueueRecord<E> *Q)
-{
-  E X;
 
+/*
+ * Skubber køen en plads
+ */
+template<typename E>
+int Queue_Dequeue(QueueRecord<E> *Q)
+{
   if (Queue_IsEmpty<E>(Q))
-  {
-    //Error("FrontAndDequeue Error: The queue is empty.");
-  }
-  else
-  {
-    Q->Size--;
-    X = Q->Array[Q->Front];
-    Q->Front = Succ<E>(Q->Front, Q);
-  }
-  return X;
+    return QUEUE_EMPTY;
+
+  Q->Size--;
+  Q->Front = Succ<E>(Q, Q->Front);
+  return QUEUE_SUCCES;
+}
+
+
+/*
+ * Returnerer forreste element i køen og skubber køen en plads
+ *
+ * NB: Her har vi brug for referencen
+ */
+template<typename E>
+int Queue_FrontAndDequeue(QueueRecord<E> *Q, E &X)
+{
+  if (Queue_IsEmpty<E>(Q))
+    return QUEUE_EMPTY;
+
+  Q->Size--;
+  X = Q->Array[Q->Front];
+  Q->Front = Succ<E>(Q, Q->Front);
+
+  return QUEUE_SUCCES;
 }

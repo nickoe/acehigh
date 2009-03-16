@@ -1,11 +1,8 @@
 /*
  * Note om køen her 
- */
-
-/*
+ *
  * $Id$
  */
-
 
 
 #include <stdio.h>
@@ -36,8 +33,9 @@ ISR(TIMER0_COMP_vect)
 
   int_counter0 = 0;
 
-  if (!Queue_IsEmpty<int>(Q))
+  if (!Queue_IsEmpty(Q))
     Queue_Dequeue(Q);
+
   update();
 }
 
@@ -45,7 +43,7 @@ ISR(TIMER0_COMP_vect)
 ISR(INT0_vect)
 {
   if (!Queue_IsFull(Q))
-    Queue_Enqueue<int>(0, Q);
+    Queue_Enqueue(Q, 0);
   update();
 }
 
@@ -66,20 +64,9 @@ int main(void)
 
   DDRA = 0xff;
 
-  Q = Queue_Create<int>(8);
+  Queue_Create<int>(Q, 8);
 
-  sei();
-
-  while (1);
-
-  return 0;
-
-
-  /*
-  DDRA = 0xff;
-
-  Queue Q;
-  Q = Queue_Create<int>(8);
+  //sei();
 
   while (1)
   {
@@ -89,15 +76,16 @@ int main(void)
 
     for (int i = 0; i < 8; i++)
     {
-      Queue_Enqueue<int>(i, Q);
+      Queue_Enqueue(Q, i);
       PORTA = 1<<i;
       _delay_ms(125);
     }
 
     for (int i = 0; i < 8; i++)
     {
-      PORTA = 1 << Queue_Front<int>(Q);
-      Queue_Dequeue(Q);
+      int f;
+      Queue_FrontAndDequeue(Q, f);
+      PORTA = 1 << f;
       _delay_ms(250);
     }
   }
@@ -105,7 +93,6 @@ int main(void)
   Queue_Dispose(Q);
 
   return 0;
-  */
 
   /*
   DDRD = 0xff;
