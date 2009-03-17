@@ -11,7 +11,7 @@ MCU=atmega16
 PRJSRC=main.cpp
 
 # Include-stier
-INC=-I. -I/usr/avr/include -I../inc
+INC=-I. -I/usr/avr/include
 
 # Lib-stier
 LIB=-L/usr/avr/lib

@@ -43,18 +43,21 @@
 
 
 #include <avr/io.h>
-
+#include "datafeeder.h"
+#include "queue.h"
 
 
 
 /* initialiser spi til sd-kort */
 void spi_init(void) {
+  /*
   DDRB &= ~(1 << SPIDI);	// set port B SPI data input to input
   DDRB |= (1 << SPICLK);	// set port B SPI clock to output
   DDRB |= (1 << SPIDO);	// set port B SPI data out to output 
   DDRB |= (1 << SPICS);	// set port B SPI chip select to output
   SPCR = (1 << SPE) | (1 << MSTR) | (1 << SPR1) | (1 << SPR0);
   PORTB &= ~(1 << SPICS);	// set chip select to low (MMC is selected)
+  */
 }
 
 /* send byte via SPI og returner resultat */

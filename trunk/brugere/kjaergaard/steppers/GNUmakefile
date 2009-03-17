@@ -8,10 +8,10 @@ MCU=atmega16
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=main.cpp steppers.c
+PRJSRC=main.cpp ../inc/steppers.c
 
 # Include-stier
-INC=-I. -I/usr/avr/include
+INC=-I. -I/usr/avr/include -I../inc
 
 # Lib-stier
 LIB=-L/usr/avr/lib

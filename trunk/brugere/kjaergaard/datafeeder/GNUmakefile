@@ -1,14 +1,14 @@
 # $Id$
 
 # Projektnavn
-PRJNAME=cpp
+PRJNAME=df
 
 # Navn på MCU, f.eks. atmega16
 MCU=atmega16
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=main.cpp
+PRJSRC=main.cpp ../inc/datafeeder.cpp
 
 # Include-stier
 INC=-I. -I/usr/avr/include -I../inc
