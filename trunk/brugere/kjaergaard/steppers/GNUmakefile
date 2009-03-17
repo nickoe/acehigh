@@ -1,64 +1,72 @@
-# $Id: GNUmakefile 159 2009-03-05 15:26:16Z kkjaergaard $
-#
-# Lad være med at ændre denne fil, med mindre du ved præcis hvad du
-# gør
+# $Id$
 
+# Projektnavn
+PRJNAME=stp
 
-#####     Konfigurerbare variabler
-
-# navn på output
-BIN=stp
-
-# mappe til output
-BINPATH=.
-
-# liste med kildefiler
-SRCS=steppers.c
-
-# biblioteker til linkeren, angivet som flags
-LIBS=-lm
-
-# enheden vi programmerer til
+# Navn på MCU, f.eks. atmega16
 MCU=atmega16
 
-# programmeringsenheden
-PROG=avr910
+# Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
+# assambler
+PRJSRC=main.cpp steppers.c
 
-# enheden vi programmerer til som angivet i AVRDUDE
-PROGMCU=m16
+# Include-stier
+INC=-I. -I/usr/avr/include
 
-# frekvensen på MCU'en
-CPUFREQ=16000000
-
-# enheden MCU'en sikker på
-PROGDEV=/dev/ttyUSB0
-
-INC=-I/usr/avr/include
+# Lib-stier
 LIB=-L/usr/avr/lib
 
+# Biblioteker
+LIBS=-lm
 
-#####     Flags til kompiler, linker m.m.
+# Optimization level, use s (size opt), 1, 2, 3 or 0 (off)
+OPTLEVEL=s
+
+# CPU-frekvens i Hz
+CPUFREQ=16000000
+
+# id to use with programmer default: PROGRAMMER_MCU=$(MCU) In case the
+# programer used, e.g avrdude, doesn't accept the same MCU name as
+# avr-gcc (for example for ATmega8s, avr-gcc expects 'atmega8' and
+# avrdude requires 'm8')
+AVRDUDE_MCU=m16
+
+# programmer id--check the avrdude for complete list of available
+# opts.  These should include stk500, avr910, avrisp, bsd, pony and
+# more.  Set this to one of the valid "-c PROGRAMMER-ID" values
+# described in the avrdude info page.
+AVRDUDE_PROGID=avr910
+
+# port--serial or parallel port to which your hardware programmer is
+# attached
+AVRDUDE_PORT=/dev/ttyUSB0
+
+
+##### Flags ####
 
 # HEXFORMAT -- format for .hex file output
 HEXFORMAT=ihex
 
 # compiler
-CFLAGS=-I. $(INC) -g -DF_CPU=$(CPUFREQ) -mmcu=$(MCU) -Os		\
+CFLAGS=$(INC) -g -mmcu=$(MCU) -O$(OPTLEVEL) -DF_CPU=$(CPUFREQ)		\
 -fpack-struct -fshort-enums -funsigned-bitfields -funsigned-char -Wall	\
--Wstrict-prototypes
+-Wstrict-prototypes -Wa,-ahlms=$(firstword $(filter %.lst,		\
+$(<:.c=.lst)))
 
 # c++ specific flags
-CPPFLAGS=-fno-exceptions
+CPPFLAGS=-fno-exceptions -Wa,-ahlms=$(firstword $(filter %.lst,	\
+$(<:.cpp=.lst)) $(filter %.lst, $(<:.cc=.lst)) $(filter %.lst,	\
+$(<:.C=.lst)))
 
 # assembler
-ASMFLAGS =-I. $(INC) -mmcu=$(MCU) -x assembler-with-cpp
+ASMFLAGS =$(INC) -mmcu=$(MCU) -x assembler-with-cpp		\
+-Wa,-gstabs,-ahlms=$(firstword $(<:.S=.lst) $(<.s=.lst))
 
 
 # linker
-LDFLAGS=-Wl,-Map,$(BINPATH)/$(TRG).map -mmcu=$(MCU) $(LIB) $(LIBS)
+LDFLAGS=-Wl,-Map,$(TRG).map -mmcu=$(MCU) $(LIB) $(LIBS)
 
-
-#####     Programmer
+##### executables ####
 CC=avr-gcc
 OBJCOPY=avr-objcopy
 OBJDUMP=avr-objdump
@@ -66,38 +74,44 @@ SIZE=avr-size
 AVRDUDE=avrdude
 REMOVE=rm -f
 
+##### automatic target names ####
+TRG=$(PRJNAME).out
+DUMPTRG=$(PRJNAME).s
 
-#####     Navne på automatiske mål
+HEXROMTRG=$(PRJNAME).hex 
+HEXTRG=$(HEXROMTRG) $(PRJNAME).ee.hex
+GDBINITFILE=gdbinit-$(PRJNAME)
 
-TRG=$(BIN).out
-DUMPTRG=$(BIN).s
+# Define all object files.
 
-HEXROMTRG=$(BIN).hex 
-HEXTRG=$(HEXROMTRG) $(BIN).ee.hex
-GDBINITFILE=gdbinit-$(BIN)
-
-# definer alle objektfiler
-
-# del filerne op efter type
+# Start by splitting source files by type
 #  C++
-CPPFILES=$(filter %.cpp, $(SRCS))
-CCFILES=$(filter %.cc, $(SRCS))
-BIGCFILES=$(filter %.C, $(SRCS))
+CPPFILES=$(filter %.cpp, $(PRJSRC))
+CCFILES=$(filter %.cc, $(PRJSRC))
+BIGCFILES=$(filter %.C, $(PRJSRC))
 #  C
-CFILES=$(filter %.c, $(SRCS))
+CFILES=$(filter %.c, $(PRJSRC))
 #  Assembly
-ASMFILES=$(filter %.S, $(SRCS))
+ASMFILES=$(filter %.S, $(PRJSRC))
 
 
-# alle objektfiler vi behøver at lave
-OBJDEPS=$(CFILES:.c=.o) $(CPPFILES:.cpp=.o) $(BIGCFILES:.C=.o)	\
-$(CCFILES:.cc=.o) $(ASMFILES:.S=.o)
+# List all object files we need to create
+OBJDEPS=$(CFILES:.c=.o)    \
+	$(CPPFILES:.cpp=.o)\
+	$(BIGCFILES:.C=.o) \
+	$(CCFILES:.cc=.o)  \
+	$(ASMFILES:.S=.o)
 
-# alle genererede asm-filer (.s-filer, lille s)
+# Define all lst files.
+LST=$(filter %.lst, $(OBJDEPS:.o=.lst))
+
+# All the possible generated assembly 
+# files (.s files)
 GENASMFILES=$(filter %.s, $(OBJDEPS:.o=.s)) 
 
 
-.SUFFIXES: .c .cc .cpp .C .o .out .s .S .hex .ee.hex .h .hh .hpp
+.SUFFIXES : .c .cc .cpp .C .o .out .s .S \
+	.hex .ee.hex .h .hh .hpp
 
 
 .PHONY: writeflash clean stats gdbinit stats
@@ -109,43 +123,56 @@ all: $(TRG)
 disasm: $(DUMPTRG) stats
 
 stats: $(TRG)
-	$(OBJDUMP) -h $(BINPATH)/$(TRG)
-	$(SIZE) $(BINPATH)/$(TRG)
+	$(OBJDUMP) -h $(TRG)
+	$(SIZE) $(TRG) 
 
 hex: $(HEXTRG)
 
+
 writeflash: hex
-	$(AVRDUDE) -c $(PROG)   \
-	 -p $(PROGTARGET) -P $(PROGDEV) -e        \
-	 -U flash:w:$(BINPATH)/$(HEXROMTRG)
+	$(AVRDUDE) -c $(AVRDUDE_PROGID)   \
+	 -p $(AVRDUDE_MCU) -P $(AVRDUDE_PORT) -e        \
+	 -U flash:w:$(HEXROMTRG)
 
 install: writeflash
 
 $(DUMPTRG): $(TRG) 
-	$(OBJDUMP) -S $(BINPATH)/$< > $(BINPATH)/$@
+	$(OBJDUMP) -S  $< > $@
+
 
 $(TRG): $(OBJDEPS) 
-	$(CC) $(LDFLAGS) $(LIBS) -o $(BINPATH)/$(TRG) $(addprefix $(BINPATH)/,$(notdir $(OBJDEPS)))
+	$(CC) $(LDFLAGS) -o $(TRG) $(OBJDEPS)
 
-#####     Generer assambler-filer til disasm-målet
+
+#### Generating assembly ####
+# asm from C
 %.s: %.c
-	$(CC) -S $(CFLAGS) $< -o $(BINPATH)/$(notdir $@)
+	$(CC) -S $(CFLAGS) $< -o $@
+
+# asm from (hand coded) asm
 %.s: %.S
-	$(CC) -S $(ASMFLAGS) $< > $(BINPATH)/$(notdir $@)
+	$(CC) -S $(ASMFLAGS) $< > $@
+
+
 # asm from C++
 .cpp.s .cc.s .C.s :
-	$(CC) -S $(CFLAGS) $(CPPFLAGS) $< -o $(BINPATH)/$(notdir $@)
+	$(CC) -S $(CFLAGS) $(CPPFLAGS) $< -o $@
 
-#####     Generer alle objektfiler
-# fra c
+
+
+#### Generating object files ####
+# object from C
 .c.o: 
-	$(CC) $(CFLAGS) -c $< -o $(BINPATH)/$(notdir $@)
-# fra C++ (.cc, .cpp, .C)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+# object from C++ (.cc, .cpp, .C files)
 .cc.o .cpp.o .C.o :
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $(BINPATH)/$(notdir $@)
-# fra asm
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+# object from asm
 .S.o :
-	$(CC) $(ASMFLAGS) -c $< -o $(BINPATH)/$(notdir $@)
+	$(CC) $(ASMFLAGS) -c $< -o $@
 
 
 #### Generating hex files ####
@@ -154,12 +181,12 @@ $(TRG): $(OBJDEPS)
 .out.hex:
 	$(OBJCOPY) -j .text                    \
 		-j .data                       \
-		-O $(HEXFORMAT) $(BINPATH)/$< $(BINPATH)/$@
+		-O $(HEXFORMAT) $< $@
 
 .out.ee.hex:
 	$(OBJCOPY) -j .eeprom                  \
 		--change-section-lma .eeprom=0 \
-		-O $(HEXFORMAT) $(BINPATH)/$< $(BINPATH)/$@
+		-O $(HEXFORMAT) $< $@
 
 
 #####  Generating a gdb initialisation file    #####
@@ -168,7 +195,7 @@ $(TRG): $(OBJDEPS)
 gdbinit: $(GDBINITFILE)
 
 $(GDBINITFILE): $(TRG)
-	@echo "file $(BINPATH)/$(TRG)" > $(GDBINITFILE)
+	@echo "file $(TRG)" > $(GDBINITFILE)
 	
 	@echo "target remote localhost:1212" \
 		                >> $(GDBINITFILE)
@@ -182,8 +209,8 @@ $(GDBINITFILE): $(TRG)
 
 #### Cleanup ####
 clean:
-	$(REMOVE) $(addprefix $(BINPATH)/,$(TRG) $(TRG).map $(DUMPTRG))
-	$(REMOVE) $(addprefix $(BINPATH)/,$(OBJDEPS))
-	$(REMOVE) $(addprefix $(BINPATH)/,$(GENASMFILES))
-	$(REMOVE) $(addprefix $(BINPATH)/,$(HEXTRG))
-	$(REMOVE) $(GDBINITFILE)
+	$(REMOVE) $(TRG) $(TRG).map $(DUMPTRG)
+	$(REMOVE) $(OBJDEPS)
+	$(REMOVE) $(LST) $(GDBINITFILE)
+	$(REMOVE) $(GENASMFILES)
+	$(REMOVE) $(HEXTRG)

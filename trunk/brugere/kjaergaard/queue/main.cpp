@@ -70,14 +70,19 @@ int main(void)
 
   while (1)
   {
-    PORTA = 0xff;
-    _delay_ms(200);
-    PORTA = 0;
+    for (int i = 0; i < 2; i++)
+    {
+      PORTA = 0xff;
+      _delay_ms(100);
+      PORTA = 0;
+      _delay_ms(100);
+    }
 
     for (int i = 0; i < 8; i++)
     {
-      Queue_Enqueue(Q, i);
-      PORTA = 1<<i;
+      int f = rand() % 256;
+      Queue_Enqueue(Q, f);
+      PORTA = f;
       _delay_ms(125);
     }
 
@@ -85,8 +90,10 @@ int main(void)
     {
       int f;
       Queue_FrontAndDequeue(Q, f);
-      PORTA = 1 << f;
-      _delay_ms(250);
+      PORTA = f;
+      _delay_ms(150);
+      PORTA = 0;
+      _delay_ms(100);
     }
   }
 

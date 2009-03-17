@@ -122,10 +122,4 @@ void stp_reset(void)
 {
   pos_abs[STP_X] = 0;
   pos_abs[STP_Y] = 0;
-};
-
-
-int main(void)
-{
-  return 0;
 }
