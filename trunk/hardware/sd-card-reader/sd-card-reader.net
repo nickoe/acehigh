@@ -1,0 +1,103 @@
+# EESchema Netlist Version 1.1 created  17/3/2009-20:40:02
+(
+ ( /49BEA08F C1V5 C1 10uF
+  ( 1 VCC )
+  ( 2 GND )
+ )
+ ( /49BEA089 C1V5 C2 10uF
+  ( 1 N-000001 )
+  ( 2 GND )
+ )
+ ( /4931AF09 SIL-7 P2 MMC_/_SD
+  ( 1 N-000005 )
+  ( 2 N-000006 )
+  ( 3 GND )
+  ( 4 N-000001 )
+  ( 5 N-000007 )
+  ( 6 GND )
+  ( 7 N-000002 )
+ )
+ ( /49BE9F02 PIN_ARRAY_5x2 P3 PORTB
+  ( 1 N-000009 )
+  ( 2 N-000010 )
+  ( 3 N-000003 )
+  ( 4 N-000002 )
+  ( 5 ? )
+  ( 6 ? )
+  ( 7 ? )
+  ( 8 ? )
+  ( 9 GND )
+  ( 10 VCC )
+ )
+ ( /4931A278 R4 R1 1K8
+  ( 1 N-000003 )
+  ( 2 N-000006 )
+ )
+ ( /4931A2C6 R4 R2 3K3
+  ( 1 N-000006 )
+  ( 2 GND )
+ )
+ ( /4931A2BD R4 R3 1K8
+  ( 1 N-000010 )
+  ( 2 N-000007 )
+ )
+ ( /4931A2CC R4 R4 3K3
+  ( 1 N-000007 )
+  ( 2 GND )
+ )
+ ( /4931A2C1 R4 R5 1K8
+  ( 1 N-000009 )
+  ( 2 N-000005 )
+ )
+ ( /4931A2D2 R4 R6 3K3
+  ( 1 N-000005 )
+  ( 2 GND )
+ )
+ ( /49BFFC05 SOT223 U1 LM1117MP-3.3
+  ( GND GND )
+  ( VI VCC )
+  ( VO N-000001 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ CP*
+ SM*
+$endlist
+$component C2
+ CP*
+ SM*
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R4
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R6
+ R?
+ SM0603
+ SM0805
+$endlist
+$endfootprintlist
+}
