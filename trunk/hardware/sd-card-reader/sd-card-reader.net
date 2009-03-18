@@ -1,4 +1,4 @@
-# EESchema Netlist Version 1.1 created  17/3/2009-20:40:02
+# EESchema Netlist Version 1.1 created  18/3/2009-13:37:34
 (
  ( /49BEA08F C1V5 C1 10uF
   ( 1 VCC )
@@ -8,7 +8,7 @@
   ( 1 N-000001 )
   ( 2 GND )
  )
- ( /4931AF09 SIL-7 P2 MMC_/_SD
+ ( /4931AF09 SD-card P2 MMC_/_SD
   ( 1 N-000005 )
   ( 2 N-000006 )
   ( 3 GND )
@@ -33,7 +33,7 @@
   ( 1 N-000003 )
   ( 2 N-000006 )
  )
- ( /4931A2C6 R4 R2 3K3
+ ( /4931A2C6 R1 R2 3K3
   ( 1 N-000006 )
   ( 2 GND )
  )
@@ -41,7 +41,7 @@
   ( 1 N-000010 )
   ( 2 N-000007 )
  )
- ( /4931A2CC R4 R4 3K3
+ ( /4931A2CC R1 R4 3K3
   ( 1 N-000007 )
   ( 2 GND )
  )
@@ -53,10 +53,10 @@
   ( 1 N-000005 )
   ( 2 GND )
  )
- ( /49BFFC05 SOT223 U1 LM1117MP-3.3
-  ( GND GND )
-  ( VI VCC )
-  ( VO N-000001 )
+ ( /49C016D9 SOT223 U1 LM1117MP-3.3
+  ( 1 GND )
+  ( 2 N-000001 )
+  ( 3 VCC )
  )
 )
 *

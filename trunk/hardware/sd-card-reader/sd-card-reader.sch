@@ -1,5 +1,5 @@
 EESchema Schematic File Version 2
-LIBS:power,device,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,contrib,valves,./sd-card-reader.cache
+LIBS:power,device,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,contrib,./lm1117,valves,./sd-card-reader.cache
 EELAYER 23  0
 EELAYER END
 $Descr A4 11700 8267
@@ -13,6 +13,15 @@ Comment2 "Designet til oz5qi's atmega128 print"
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L LM1117 U1
+U 1 1 49C016D9
+P 5400 5500
+F 0 "U1" H 5550 5304 60  0000 C C
+F 1 "LM1117MP-3.3" H 5400 5700 60  0000 C C
+	1    5400 5500
+	1    0    0    -1  
+$EndComp
 Connection ~ 6100 5450
 Wire Wire Line
 	6100 5600 6100 3850
@@ -102,15 +111,6 @@ Wire Wire Line
 Wire Wire Line
 	4800 5350 4800 5600
 Connection ~ 4800 5450
-$Comp
-L LM7805 U1
-U 1 1 49BFFC05
-P 5400 5500
-F 0 "U1" H 5550 5304 60  0000 C C
-F 1 "LM1117MP-3.3" H 5400 5700 60  0000 C C
-	1    5400 5500
-	1    0    0    -1  
-$EndComp
 Text Notes 8150 2750 0    60   ~
 VCC
 Text Notes 7450 2750 0    60   ~
