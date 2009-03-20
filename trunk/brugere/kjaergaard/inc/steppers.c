@@ -1,5 +1,5 @@
 /*
- * Stepper motor controller
+ * Stepper motor controller (body)
  *
  * Copyright (C) 2009  Kristian Kjærgaard
  *
@@ -14,15 +14,17 @@
  * General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see
+ * along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
+ *
+ * $Id$
  */
+
 
 /*
  * Mangler: Udbyg med sensoregenskaber, så vi ikke flytter plotteren i
  * stykker med stepmotorerne
  *
- * $Id$
  */
 
 
@@ -32,18 +34,18 @@
 #include <stdint.h>
 
 
-
-uint32_t pos_abs[2]; /* absolut afstand fra nulpunktet, skal
-			kalibreres */
-uint8_t pos_rel[2];  /* position inden i stepmotoren, holder styr på
-			steps */
-float stp_res[2];    /* opløsning i skridt pr. mm */
-
-uint8_t stp_poles[2][4];
+uint32_t pos_abs[2];     /* absolut afstand fra nulpunktet, skal
+			    kalibreres */
+uint8_t pos_rel[2];      /* position inden i stepmotoren, holder styr
+			    på steps */
+float stp_res[2];        /* opløsning i skridt pr. mm */
+uint8_t stp_poles[2][4]; /* pladsholder til smart spolereference */
+uint8_t on = 1;          /* pladsholder til tændt/slukket */
 
 
 void stp_init(void)
 {
+  /* smart spolereference, se stp_get_pat */
   stp_poles[STP_X][STP_A] = STP_XA;
   stp_poles[STP_X][STP_B] = STP_XB;
   stp_poles[STP_X][STP_C] = STP_XC;
@@ -58,6 +60,7 @@ void stp_init(void)
 }
 
 
+/* returnerer bitmønstret til porten hvis motorerne skal flyttes */
 uint8_t stp_get_pat(uint8_t motor, uint8_t stp)
 {
   uint8_t tmp;
@@ -81,11 +84,14 @@ uint8_t stp_get_pat(uint8_t motor, uint8_t stp)
   default:
     return 0;
   }
-};
+}
+
 
 int stp_move(uint8_t dir)
 {
   uint8_t tmp;
+
+  if 
 
   if (dir | STP_UP)
   {
@@ -117,6 +123,7 @@ int stp_move(uint8_t dir)
 
   return 0;
 }
+
 
 void stp_reset(void)
 {

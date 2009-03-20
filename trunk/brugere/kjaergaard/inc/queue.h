@@ -12,6 +12,11 @@
  * En kø bør defineres som "typedef struct QueueRecord<int> *Queue"
  */
 
+
+#ifndef __QUEUE_H__
+#define __QUEUE_H__
+
+
 #include <avr/io.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -207,3 +212,5 @@ int Queue_FrontAndDequeue(QueueRecord<E> *Q, E &X)
 
   return QUEUE_SUCCES;
 }
+
+#endif /* __QUEUE_H__ */

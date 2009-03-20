@@ -1,5 +1,6 @@
 /*
- * SD card reading/writing firmware
+ * Data feeder implementing SD card reading/writing (body)
+ *
  * Copyright (C) <year>  <name of author>
  *
  * This program is free software: you can redistribute it and/or
@@ -13,7 +14,7 @@
  * General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see
+ * along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  *
  * $Id$
