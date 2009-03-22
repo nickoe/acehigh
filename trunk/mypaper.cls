@@ -63,7 +63,7 @@
 
 % Andre pakker indlæses og konfigureres
 
-\RequirePackage{amsmath,amssymb,amsfonts}
+\RequirePackage{amsmath,amssymb}
 \RequirePackage[danish]{babel}
   \renewcommand{\danishhyphenmins}{22} % bedre orddeling
 \RequirePackage{bm}
@@ -80,8 +80,9 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lipsum}
 \RequirePackage{listings}
+\RequirePackage[scaled]{luximono}
 %\RequirePackage[inputencoding=utf8/latin1]{listingsutf8}
-\RequirePackage{mathpazo}
+\RequirePackage[adobe-utopia]{mathdesign}
 %\RequirePackage{mathcomp} % bugger med mathdesign
 \RequirePackage[version=3]{mhchem}
 \RequirePackage{placeins}
