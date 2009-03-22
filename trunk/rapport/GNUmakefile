@@ -10,11 +10,11 @@
 TARGET=master.tex
 
 # Alle DIA-diagrammer
-FIGS_DIA=../brugere/kjaergaard/sd-firmware/oversigt.dia
+FIGS_DIA=../brugere/kjaergaard/datafeeder/oversigt.dia
 
 # Alle SVG-filer
 FIGS_SVG=../logo/logo.svg			\
-../brugere/kjaergaard/sd-firmware/handling.svg	\
+../brugere/kjaergaard/datafeeder/handling.svg	\
 ../brugere/kjaergaard/skaermkoordinater.svg
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
