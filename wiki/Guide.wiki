@@ -145,6 +145,24 @@ Eksempel på litteratur databasefilen
 For at citere noget, anvender vi \cite, fx \cite{BAD842:2004}.
 
 
+== Guide til at installere LuxiMono på Ubuntu 8.10 ==
+
+Denne guide beskriver, hvordan man installerer fastbreddeskrifttypen
+LuxiMono i Ubuntu 8.10 Intrepid Ibex. Skrifttypen hentes manuelt fra
+CTAN, pakkes ud i brugermappen og registreres.
+
+  * Hent http://ctan.org/get/fonts/LuxiMono.zip (alle nødvendige filer) og pak den ud.
+  * Opret texmf-mappen ${HOME}/texmf
+  * Kopier alle pfb-filer til ${HOME}/texmf/fonts/type1/public/luxi og alle afm-filer til ${HOME}/texmf/fonts/afm/public/luxi
+  * Udpak ul9.zip til ${HOME}/texmf
+  * Gå til ${HOME}/texmf/dvips/config og udfør "updmap --enable Map ul9.map"
+  * Gå til ${HOME}/texmf og udfør "update-updmap"
+  * Gå til ${HOME}/texmf og udfør "mktexlsr ."
+  * Gå til ${HOME}/texmf og udfør "updmap"
+
+Skrifttypen er nu installeret og kan bruges med \usepackage{luximono}
+
+
 = Vejledning til Subversion (SVN) og filhåndtering =
 
 
