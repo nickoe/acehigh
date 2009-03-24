@@ -24,5 +24,35 @@
 #ifndef __MOTOR_CTRL_H__
 #define __MOTOR_CTRL_H__
 
+#include <stdint.h>
+
+/*
+ * Initialiserer motorkontrollen, positionerer hovedet og returnerer
+ * når alt er på plads
+ */
+void MotorCtrl_Init(void);
+
+/*
+ * Flytter tegneren absolut til positionen (x,y), når der er
+ * tid. Returnerer status når jobbet er behandlet og sat i kø.
+ */
+uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y);
+
+/*
+ * Flytter tegneren relativt til positionen (), når der er
+ * tid. Returnerer status når kobbet er behandlet og sat i kø.
+ */
+uint8_t MotorCtrl_GotoRXY(uint16_t x, uint16_t y);
+
+/*
+ * Returnerer nuværende X-position.
+ */
+uint16_t MotorCtrl_GetX(void);
+
+/* 
+ * Returnerer nuværende Y-position.
+ */
+uint16_t MotorCtrl_GetY(void);
+
 
 #endif /* __MOTOR_CTRL_H__ */
