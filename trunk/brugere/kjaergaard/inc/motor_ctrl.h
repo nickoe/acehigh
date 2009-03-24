@@ -21,8 +21,8 @@
  */
 
 
-#ifndef __STEPPERS_H__
-#define __STEPPERS_H__
+#ifndef __MOTOR_CTRL_H__
+#define __MOTOR_CTRL_H__
 
 
 #include <stdint.h>
@@ -45,15 +45,6 @@
 #define STP_YC 0x20
 #define STP_YD 0x80
 
-/* instruktioner til motorkontrollen, kan sammensættes */
-#define STP_MOVE_UP 1
-#define STP_MOVE_DOWN 2
-#define STP_MOVE_LEFT 4
-#define STP_MOVE_RIGHT 8
-/* instruktioner til motorkontrollen, kan ikke sammensættes */
-#define STP_ON 16
-#define STP_OFF 32
-
 /* intern spolereference */
 enum{
   STP_A,
@@ -69,6 +60,16 @@ enum{
 };
 
 
+/* instruktioner til motorkontrollen, kan sammensættes */
+#define MC_MOVE_UP 0x01
+#define MC_MOVE_DOWN 0x02
+#define MC_MOVE_LEFT 0x04
+#define MC_MOVE_RIGHT 0x08
+/* instruktioner til motorkontrollen, kan ikke sammensættes */
+#define MC_ON 16
+#define MC_OFF 32
+
+
 /* initialiserer stepmotorerne */
 void stp_init(void);
 
@@ -81,4 +82,4 @@ int stp_do(uint8_t dir);
 void stp_reset(void);
 
 
-#endif /* __STEPPERS_H__ */
+#endif /* __MOTOR_CTRL_H__ */
