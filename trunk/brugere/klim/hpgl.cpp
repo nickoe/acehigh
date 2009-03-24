@@ -1,3 +1,5 @@
+void hpgl_line(int x1, int y1, int x2, int y2, float v) // Problem: Relativ absolut
+{
 /* Oversigt over hvad der skal med i koden
 Beregn delta n_x og n_y
 
@@ -8,10 +10,7 @@ While_Begin
   Lav to IF og en Else
 While_End
 */
-
 											// Givne størrelser
-int x1,y1,x2,y2;							// x,y koordinater for start/slutpunkt
-float v;									// Hastigheden
 int x=1;									// Start skridt i x
 int y=1;									// Start skridt i y
 
@@ -63,3 +62,5 @@ while(x <= dx && y <= dy)					// Forløber sålænge x er mindre eller lig dx og y 
 	y++;									// Her lægger jeg en til y, så jeg kan beregne en ny time_y
   }
 }
+}
+
