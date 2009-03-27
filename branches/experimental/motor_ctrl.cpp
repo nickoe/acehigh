@@ -17,7 +17,7 @@
  * along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  *
- * $Id: motor_ctrl.cpp 206 2009-03-27 11:13:02Z kkjaergaard $
+ * $Id$
  */
 
 
