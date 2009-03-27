@@ -71,11 +71,11 @@ enum{
 
 
 /* initialiserer stepmotorerne */
-void stp_init(void);
+void Stp_Init(void);
 
 /* flytter stepmotoren i en eller flere retninger givet som STP_UP,
    STP_DOWN, STP_LEFT og STP_RIGHT, fx stp_move(STP_UP | STP_LEFT) */
-int stp_cmd(uint8_t dir);
+uint8_t Stp_Cmd(uint8_t dir);
 
 
 #endif /* __MOTOR_CTRL_H__ */

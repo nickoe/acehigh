@@ -36,8 +36,7 @@ enum {
 /* 
  * Køstrukturen, skal konkretiseres
  */
-template<typename E>
-struct QueueRecord
+template <typename E> struct QueueRecord
 {
   int Capacity;
   int Front;
@@ -50,8 +49,8 @@ struct QueueRecord
 /*
  * Oversigt over funktioner i denne fil
  */
-template<typename E> int  Queue_IsEmpty(QueueRecord<E> *Q);
-template<typename E> int  Queue_IsFull(QueueRecord<E> *Q);
+template<typename E> bool Queue_IsEmpty(QueueRecord<E> *Q);
+template<typename E> bool Queue_IsFull(QueueRecord<E> *Q);
 template<typename E> int  Queue_Create(QueueRecord<E> *&Q, int capacity);
 template<typename E> void Queue_Dispose(QueueRecord<E> *Q);
 template<typename E> void Queue_Empty(QueueRecord<E> *Q);
@@ -66,7 +65,7 @@ template<typename E> int  Queue_FrontAndDequeue(QueueRecord<E> *Q, E &X);
  * Returnerer sand hvis køen er tom
  */
 template<typename E>
-int Queue_IsEmpty(QueueRecord<E> *Q)
+bool Queue_IsEmpty(QueueRecord<E> *Q)
 {
   return Q->Size == 0;
 }
@@ -76,7 +75,7 @@ int Queue_IsEmpty(QueueRecord<E> *Q)
  * Returnerer sand hvis køen er fuld
  */
 template<typename E>
-int Queue_IsFull(QueueRecord<E> *Q)
+bool Queue_IsFull(QueueRecord<E> *Q)
 {
   return Q->Size == Q->Capacity;
 }
