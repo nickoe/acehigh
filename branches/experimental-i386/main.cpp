@@ -2,7 +2,7 @@
  * $Id$
  */
 
-#include <avr/io.h>
+// kun nedenstående include-direktiv
 
 #include "motor_ctrl.h"
 
