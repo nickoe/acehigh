@@ -17,9 +17,10 @@
 #define __QUEUE_H__
 
 
-#include <avr/io.h>
+//#include <avr/io.h>
 #include <stdlib.h>
-#include <inttypes.h>
+#include <stdint.h>
+//#include <inttypes.h>
 
 
 /*
@@ -58,7 +59,6 @@ template<typename E> void Queue_Enqueue(QueueRecord<E> *Q, E X);
 template<typename E> int  Queue_Front(QueueRecord<E> *Q, E &X);
 template<typename E> int  Queue_Dequeue(QueueRecord<E> *Q);
 template<typename E> int  Queue_FrontAndDequeue(QueueRecord<E> *Q, E &X);
-
 
 
 /*
