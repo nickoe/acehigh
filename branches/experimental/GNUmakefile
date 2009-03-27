@@ -1,17 +1,17 @@
 # $Id$
 
 # Projektnavn
-PRJNAME=motor_ctrl
+PRJNAME=exp
 
 # Navn på MCU, f.eks. atmega16
 MCU=atmega16
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=main.cpp ../inc/motor_ctrl.cpp ../inc/steppers.c
+PRJSRC=main.cpp motor_ctrl.cpp steppers.c datafeeder.cpp
 
 # Include-stier
-INC=-I. -I/usr/avr/include -I../inc
+INC=-I. -I/usr/avr/include
 
 # Lib-stier
 LIB=-L/usr/avr/lib
