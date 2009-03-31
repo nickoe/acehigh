@@ -129,6 +129,32 @@ Alle C-moduler er kompatible med C++, og alle C++-moduler er så vidt
 muligt kompatible med C. Uønskede sideeffekter af C++ forsøges undgået
 (\fixme{eksempler her!}). C++ bruges ikke objektorienteret.
 
+\section{Matematikken bag}
+
+Forholdet imellem tiden det tager at tegne linjen og tiden til et punkt på linjen med x-koordinatet er lig forholdet imellem det givne punkts x-koordinat og slutkoordinatet:
+
+$\frac{t}{t_b}=\frac{x}{x_b}\Rightarrow x(t)=x_b\frac{t}{t_b}$
+ 
+Vi beskriver her et punkts x-koordinat, som funktion af tiden t.
+
+Vi bestemmer step/mm, hvor n’s enhed er step og x’s enhed er mm:
+$\eta_x=\frac{n_x}{x}\Rightarrow n_x=x\cdot\eta_x$
+
+Vi samler nu funktionerne, så antallet af steps beskrives som funktion af tiden t:
+
+Længden af linjen er giver ud fra pythagoras læresætning:
+
+Den generelle formel for tiden t er lig:
+
+Vi fastsætter selv en hastighed, og s er længden L af linjen. Vi indsætter formlen for længden i formlen for tiden :
+
+
+Jeg kan nu beskrive antallet af steps, n, som funktion af tiden, hvor hastigheden, v, indgår i udtrykket. $\eta_x$ er endnu ikke givet:
+
+
+Bemærk, at tiden   altid er 0, da vi nulstiller tiden hver gang. Ellers ville tiden det tog at plotte linjen beskrives som:
+ 
+Hvilket ikke er tilfældet.
 
 
 %%% Local Variables: 
