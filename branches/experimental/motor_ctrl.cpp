@@ -30,14 +30,25 @@
 
 #include "motor_ctrl.h"
 
-#include "queue.h"
-#include "steppers.h"
 #include <stdint.h>
+#include <math.h>
 
+#include "queue.h"
 /* c-fil bruges i c++ */
 extern "C" {
-#include "steppers.c"
+#include "steppers.h"
 }
+
+
+
+/* motorkontrolinstruktioner */
+#define MC_CMD_MOVE_UP 0x01
+#define MC_CMD_MOVE_DOWN 0x02
+#define MC_CMD_MOVE_RIGHT 0x04
+#define MC_CMD_MOVE_LEFT 0x08
+#define MC_CMD_LIFT 0x10
+#define MC_CMD_LOWER 0x20
+#define MC_CMD_RESET 0x40
 
 
 /* job-strukturen */
@@ -47,8 +58,11 @@ struct Task
   uint8_t Ins;
 };
 
-/* køen af instruktioner */
-typedef struct RecordQueue<Task> *TaskQueue;
+/* køen af instruktioner - unødvendig */
+//typedef struct RecordQueue<Task> *TaskQueue;
+
+/* den globale kø */
+QueueRecord<Task> *Q;
 
 /* pladholder til positionen */
 uint16_t X = 0, Y = 0;
@@ -61,15 +75,8 @@ uint16_t timer = 0;
 /* initialiser motorerne */
 void MotorCtrl_Init(void)
 {
-  Queue_Create(TaskQueue, 128);
+  Queue_Create<Task>(Q, 128);
   Stp_Init();
-}
-
-/* flytter til koordinater, absolut */
-uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y, float v)
-{
-  /* vi sender forespørgslen videre til den relative del */
-  return MotorCtrl_GotoRXY(x-X, y-Y, v);
 }
 
 /* flytter angivne koordinater, relativt */
@@ -149,8 +156,6 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, float v)
     /* vi må vente til der er plads i køen */
     while (Queue_IsFull<Task>(Q));
 
-    printf("Lægger job{Time=%d,Ins=%d} i køen\n", task.Time, task.Ins);
-
     /* jobbet sættes i k */
     Queue_Enqueue<Task>(Q, task);
 
@@ -158,7 +163,7 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, float v)
   
   Task task;
   task.Time = 0;
-  task.Ins = MC_CMD_RESTART;
+  task.Ins = MC_CMD_RESET;
 
   /* læg instruktion til at genstarte timeren i det sidste job */
   Queue_Enqueue<Task>(Q, task);
@@ -166,16 +171,23 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, float v)
   return 0;
 }
 
+/* flytter til koordinater, absolut */
+uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y, float v)
+{
+  /* vi sender forespørgslen videre til den relative del */
+  return MotorCtrl_GotoRXY(x-X, y-Y, v);
+}
+
 /* returnerer den absolutte x-position */
 uint16_t MotorCtrl_GetX()
 {
-  return x;
+  return X;
 }
 
 /* returnerer den absolutte y-position */
 uint16_t MotorCtrl_GetY()
 {
-  return y;
+  return Y;
 }
 
 /*
@@ -190,7 +202,7 @@ void MotorCtrl_Tick()
   int r = Queue_Front<Task>(Q, t);
   /* tjek resultatet af r */
   if (r != QUEUE_SUCCES)
-    return ;
+    return;
 
   /* udfør alle de jobs hvor deadlinen er nået eller overskredet */
   while (t.Time <= timer)
@@ -200,43 +212,40 @@ void MotorCtrl_Tick()
     if (t.Ins & MC_CMD_MOVE_UP)
     {
       /* flyt op */
-      printf("timer=%d, job-id=%d: Flyt skrivehoved op\n", timer, Q->Front);
+      Stp_Cmd(STP_MOVE_UP);
     }
 
     if (t.Ins & MC_CMD_MOVE_DOWN)
     {
       /* flyt ned */
-      printf("timer=%d, job-id=%d: Flyt skrivehoved ned\n", timer, Q->Front);
+      Stp_Cmd(STP_MOVE_DOWN);
     }
 
     if (t.Ins & MC_CMD_MOVE_LEFT)
     {
       /* flyt til venstre */
-      printf("timer=%d, job-id=%d: Flyt skrivehoved til venstre\n", timer, Q->Front);
+      Stp_Cmd(STP_MOVE_LEFT);
     }
 
     if (t.Ins & MC_CMD_MOVE_RIGHT)
     {
       /* flyt til højre */
-      printf("timer=%d, job-id=%d: Flyt skrivehoved til højre\n", timer, Q->Front);
+      Stp_Cmd(STP_MOVE_RIGHT);
     }
 
     if (t.Ins & MC_CMD_LIFT)
     {
       /* løft skrivehovedet */
-      printf("timer=%d, job-id=%d: Løft skrivehoved\n", timer, Q->Front);
     }
 
     if (t.Ins & MC_CMD_LOWER)
     {
       /* sænk skrivehovedet */
-      printf("timer=%d, job-id=%d: Sænk skrivehoved\n", timer, Q->Front);
     }
 
-    if (t.Ins & MC_CMD_RESTART)
+    if (t.Ins & MC_CMD_RESET)
     {
       /* genstart timeren */
-      printf("timer=%d, job-id=%d: Genstart timer\n", timer, Q->Front);
       timer = 0;
     }
 

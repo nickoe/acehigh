@@ -17,7 +17,7 @@
  * along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  *
- * $Id: datafeeder.cpp 195 2009-03-20 14:15:51Z kkjaergaard $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * General macros and definitions for HPGL plotter
+ * Data feeder implementing SD card reading/writing
  *
  * Copyright (C) 2009  Kristian Kjærgaard
  *
@@ -17,18 +17,14 @@
  * along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  *
- * $Id: plotter.h 195 2009-03-20 14:15:51Z kkjaergaard $
+ * $Id$
  */
 
 
-#ifndef __PLOTTER_H__
-#define __PLOTTER_H__
+#ifndef __DATAFEEDER_H__
+#define __DATAFEEDER_H__
+
+#include <avr/io.h>
 
 
-/*
- * Makro til at lave HPGL-instruktioner om til tal
- */
-#define HPGL_INS(ins) (((uint8_t)ins[0])<<8 | (uint8_t)ins[1])
-
-
-#endif /* __PLOTTER_H__ */
+#endif /* __DATAFEEDER_H__ */

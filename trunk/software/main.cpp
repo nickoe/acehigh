@@ -1,9 +1,10 @@
 /*
  * $Id$
+ *
+ * Noter her som skal dukke op på den anden side
  */
 
-// kun nedenstående include-direktiv
-// ikke andet
+#include <avr/io.h>
 
 #include "motor_ctrl.h"
 

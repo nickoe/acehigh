@@ -36,13 +36,13 @@ void MotorCtrl_Init(void);
  * Flytter tegneren absolut til positionen (x,y), når der er
  * tid. Returnerer status når jobbet er behandlet og sat i kø.
  */
-uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y);
+uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y, double v);
 
 /*
  * Flytter tegneren relativt til positionen (), når der er
  * tid. Returnerer status når kobbet er behandlet og sat i kø.
  */
-uint8_t MotorCtrl_GotoRXY(uint16_t x, uint16_t y);
+uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, double v);
 
 /*
  * Returnerer nuværende X-position.
