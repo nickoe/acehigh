@@ -13,125 +13,153 @@ Comment2 "Designet til oz5qi's atmega128 print"
 Comment3 ""
 Comment4 ""
 $EndDescr
+Text Notes 7600 1900 0    60   ~
+Pin beskrivelse set fra SD-kort
+Wire Notes Line
+	9700 1950 7550 1950
+Wire Notes Line
+	9700 1950 9700 2950
+Wire Notes Line
+	9700 2950 7550 2950
+Wire Notes Line
+	7550 2950 7550 1950
 Wire Wire Line
-	7200 2400 7200 2000
+	7050 2500 7200 2500
 Wire Wire Line
-	7300 2700 7050 2700
+	7200 2500 7200 2950
 Wire Wire Line
-	6200 4450 5950 4450
+	7200 2950 6150 2950
 Wire Wire Line
-	5950 4450 5950 2150
+	6150 2950 6150 4650
 Wire Wire Line
-	5950 2150 7100 2150
-Wire Wire Line
-	7050 2600 7100 2600
-Wire Wire Line
-	7100 2600 7100 2850
-Wire Wire Line
-	4950 2900 4950 2600
-Wire Wire Line
-	4950 2600 6250 2600
-Wire Wire Line
-	6200 3850 5850 3850
-Connection ~ 5850 5450
-Wire Wire Line
-	5850 3850 5850 5600
-Wire Wire Line
-	4550 5450 4750 5450
-Connection ~ 5150 6100
-Wire Wire Line
-	5850 6000 5850 6100
-Wire Wire Line
-	5850 6100 4550 6100
-Wire Wire Line
-	4550 6100 4550 6000
-Wire Wire Line
-	7200 2400 7050 2400
-Wire Wire Line
-	4650 2900 4650 2400
-Wire Wire Line
-	4650 2400 6250 2400
-Wire Wire Line
-	1100 850  1100 1000
-Connection ~ 5250 3550
-Wire Wire Line
-	5250 3550 6200 3550
-Wire Wire Line
-	4650 4700 4650 4550
-Wire Wire Line
-	5250 4700 5250 4550
-Wire Wire Line
-	6200 3750 5650 3750
-Connection ~ 4650 3650
-Wire Wire Line
-	4650 3650 6200 3650
-Wire Wire Line
-	4950 3750 5450 3750
-Connection ~ 4950 3750
-Wire Wire Line
-	5450 3750 5450 3950
-Wire Wire Line
-	6200 4050 5650 4050
-Connection ~ 5650 4050
-Wire Wire Line
-	4950 4550 4950 4700
-Wire Wire Line
-	5650 3750 5650 4700
-Wire Wire Line
-	800  850  800  750 
-Wire Wire Line
-	6250 2700 6150 2700
-Wire Wire Line
-	6150 2700 6150 2750
-Wire Wire Line
-	5250 2900 5250 2300
-Wire Wire Line
-	5250 2300 6250 2300
-Wire Wire Line
-	5250 4050 5250 3400
-Wire Wire Line
-	4950 3400 4950 4050
-Wire Wire Line
-	4650 4050 4650 3400
-Wire Wire Line
-	7050 2300 7100 2300
-Wire Wire Line
-	5850 5450 5550 5450
-Wire Wire Line
-	5150 6250 5150 5750
-Wire Wire Line
-	4550 5350 4550 5600
-Connection ~ 4550 5450
-Wire Wire Line
-	6200 4150 5750 4150
-Wire Wire Line
-	5750 4150 5750 2000
-Wire Wire Line
-	5750 2000 7200 2000
-Wire Wire Line
-	6200 4750 6100 4750
-Wire Wire Line
-	6100 4750 6100 4850
-Wire Wire Line
-	5450 3950 6200 3950
-Wire Wire Line
-	7100 2300 7100 2150
-Wire Wire Line
-	6200 4550 6050 4550
-Wire Wire Line
-	6050 4550 6050 2850
+	6150 4650 6200 4650
 Wire Wire Line
 	6050 2850 7100 2850
 Wire Wire Line
-	6200 4650 6150 4650
+	6050 2850 6050 4550
 Wire Wire Line
-	6150 4650 6150 2950
+	6050 4550 6200 4550
 Wire Wire Line
-	6150 2950 7200 2950
+	7100 2300 7100 2150
 Wire Wire Line
-	7200 2950 7200 2500
+	6200 3950 5450 3950
 Wire Wire Line
-	7200 2500 7050 2500
+	6100 4850 6100 4750
+Wire Wire Line
+	6100 4750 6200 4750
+Wire Wire Line
+	5750 2000 7200 2000
+Wire Wire Line
+	5750 2000 5750 4150
+Wire Wire Line
+	5750 4150 6200 4150
+Connection ~ 4550 5450
+Wire Wire Line
+	4550 5350 4550 5600
+Wire Wire Line
+	5150 6250 5150 5750
+Wire Wire Line
+	5850 5450 5550 5450
+Wire Wire Line
+	7100 2300 7050 2300
+Wire Wire Line
+	4650 4050 4650 3400
+Wire Wire Line
+	4950 3400 4950 4050
+Wire Wire Line
+	5250 4050 5250 3400
+Wire Wire Line
+	6250 2300 5250 2300
+Wire Wire Line
+	5250 2300 5250 2900
+Wire Wire Line
+	6150 2750 6150 2700
+Wire Wire Line
+	6150 2700 6250 2700
+Wire Wire Line
+	800  850  800  750 
+Wire Wire Line
+	5650 4700 5650 3750
+Wire Wire Line
+	4950 4550 4950 4700
+Connection ~ 5650 4050
+Wire Wire Line
+	6200 4050 5650 4050
+Wire Wire Line
+	5450 3950 5450 3750
+Connection ~ 4950 3750
+Wire Wire Line
+	5450 3750 4950 3750
+Wire Wire Line
+	4650 3650 6200 3650
+Connection ~ 4650 3650
+Wire Wire Line
+	5650 3750 6200 3750
+Wire Wire Line
+	5250 4700 5250 4550
+Wire Wire Line
+	4650 4700 4650 4550
+Wire Wire Line
+	5250 3550 6200 3550
+Connection ~ 5250 3550
+Wire Wire Line
+	1100 850  1100 1000
+Wire Wire Line
+	6250 2400 4650 2400
+Wire Wire Line
+	4650 2400 4650 2900
+Wire Wire Line
+	7050 2400 7200 2400
+Wire Wire Line
+	4550 6000 4550 6100
+Wire Wire Line
+	4550 6100 5850 6100
+Wire Wire Line
+	5850 6100 5850 6000
+Connection ~ 5150 6100
+Wire Wire Line
+	4550 5450 4750 5450
+Wire Wire Line
+	5850 5600 5850 3850
+Connection ~ 5850 5450
+Wire Wire Line
+	5850 3850 6200 3850
+Wire Wire Line
+	6250 2600 4950 2600
+Wire Wire Line
+	4950 2600 4950 2900
+Wire Wire Line
+	7100 2850 7100 2600
+Wire Wire Line
+	7100 2600 7050 2600
+Wire Wire Line
+	7100 2150 5950 2150
+Wire Wire Line
+	5950 2150 5950 4450
+Wire Wire Line
+	5950 4450 6200 4450
+Wire Wire Line
+	7300 2700 7050 2700
+Wire Wire Line
+	7200 2400 7200 2000
+Text Notes 7600 2900 0    60   ~
+8    PROCTECT AND DETECT SWITCH
+Text Notes 7600 2800 0    60   ~
+7    CLK
+Text Notes 7600 2700 0    60   ~
+6    PROCTECT SWITCH
+Text Notes 7600 2600 0    60   ~
+5    N/C
+Text Notes 7600 2500 0    60   ~
+4    DATA OUT
+Text Notes 7600 2400 0    60   ~
+3    DATA IN
+Text Notes 7600 2300 0    60   ~
+2    DETECT SWITCH
+Text Notes 7600 2200 0    60   ~
+1    /CS
+Text Notes 7600 2050 0    60   ~
+PIN  FUNKTION
 NoConn ~ 6250 2500
 NoConn ~ 6200 4350
 $Comp
@@ -162,18 +190,6 @@ F 1 "LM1117MP-3.3" H 5150 5700 60  0000 C C
 	1    5150 5500
 	1    0    0    -1  
 $EndComp
-Text Notes 8150 2750 0    60   ~
-VCC
-Text Notes 7450 2750 0    60   ~
-GND
-Text Notes 8150 2650 0    60   ~
-NC
-Text Notes 8150 2550 0    60   ~
-NC
-Text Notes 7450 2650 0    60   ~
-NC
-Text Notes 7450 2550 0    60   ~
-NC
 $Comp
 L CP C1
 U 1 1 49BEA08F
@@ -201,14 +217,6 @@ F 1 "PORTB" V 6650 2500 50  0000 C C
 	1    6650 2500
 	1    0    0    -1  
 $EndComp
-Text Notes 8150 2450 0    60   ~
-DATA OUT
-Text Notes 7450 2450 0    60   ~
-DATA IN
-Text Notes 8150 2350 0    60   ~
-CLK
-Text Notes 7450 2350 0    60   ~
-/CS
 $Comp
 L PWR_FLAG #FLG02
 U 1 1 4931B1F2
