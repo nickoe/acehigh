@@ -2,6 +2,123 @@
 
 % Note om hvad der skal stå i dette afsnit her.
 
+
+\section{Motorstyring}
+
+\mnote{Kristian Kjærgaard skriver}
+
+Dette afsnit diskuterer forskellige metoder til at styre tegnehovedets
+placering.
+
+Hastigheden for tegnehovedet er givet ved
+\begin{align}
+  v = \frac{\Delta x}{\Delta t}
+\end{align}
+hvor $v$ er hastigheden, $x$ er positionsændring og $t$ er
+tidsændring. En præcis styring af hastighed kræver et præcist kendskab
+til både positionsændring og tidsændring.
+
+Den mindst mulige positionsændring er ét skridt med
+stepmotoren\fixme{fælles: andet ord?} og kendskabet til denne er
+tilstrækkeligt.
+
+Følgende to afsnit diskuterer to forskellige metoder til at
+\textit{time} motorerne.
+
+
+\subsection{Motorstyring med indlagt forsinkelse}
+
+En metode at styre timingen er ved at afvikle tidsberegningen på en
+tråd med indlagt forsinkelse. Se
+figur\vref{fig:motorstyring-indlagt-forsinkelse}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.7\textwidth]{../brugere/kjaergaard/motorstyring-indlagt-forsinkelse}
+  \caption{Motorstyring med indlagt forsinkelse.}
+  \label{fig:motorstyring-indlagt-forsinkelse}
+\end{figure}
+
+Ved denne type motorstyring er tiden $t$ mellem
+skridtene\fixme{fælles: andet ord?} være givet ved
+\begin{align}
+  \Delta t &= t_e + t_d \nonumber \Rightarrow \\
+  v &= \frac{\Delta x}{t_e + t_d}
+\end{align}
+hvor $t_d$ er den indlagte forsinkelse og $t_e$ er den tid det tager
+at afvikle tidsberegningen. Da $t_e$ ikke kendes på
+afviklingstidspunktet - og \textit{kan} variere fra afvikling til
+afvikling afhængig af tallenes størrelse - er metoden upræcis ved høje
+hastigheder. I figur\vref{fig:motorstyring-indlagt-forsinkelse-timing}
+ses en situation, hvor størrelsen af $t_e$\fixme{kjærgaard: skriv
+  afsnit færdigt, brug skitser fra egne notater}
+
+\begin{figure}[htbp]
+  \centering
+  \vspace{3cm}
+  \caption{Hastighed som funktion af forsinkelse for motorstyring med
+    indlagt forsinkelse.}
+  \label{fig:motorstyring-indlagt-forsinkelse-timing}
+\end{figure}
+
+
+\subsection{Motorstyring med afbrudt afvikling}
+
+Alternativt kan motorerne times med afbrudt afvikling. Med en fast
+fekvens tjekkes der, om det er tid til at flytte motorerne. Når der
+ikke tjekkes om motorerne skal flyttes, beregnes det næste tidspunkt,
+motorerne skal flyttes. Se
+figur\vref{fig:motorstyring-afbrudt-afvikling}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.8\textwidth]{../brugere/kjaergaard/motorstyring-afbrudt-afvikling}
+  \caption{Motorstyring med afbrudt afvikling.}
+  \label{fig:motorstyring-afbrudt-afvikling}
+\end{figure}
+
+Den algoritme, der beregner hvilke tidspunkter, motorerne skal flyttes
+på, afvikles hele tiden. Når det er tid til at tjekke, om vi har
+overskredet et tidspunkt, afbrydes afviklingen af
+beregningsalgoritmen, og tjekkeralgoritmen afvikles. Når
+tjekkeralgoritmen\fixme{fælles: andet ord!} er afviklet, fortsættes
+afviklingen af beregningen af tidspunkter.
+
+Med denne metode kendes mindst mulige forsinkelse $t$, og vi har hvad
+vi efterspørger. Forskellige hastigheder opnås ved at udelade at
+flytte motorerne på alle tidspunkter (se
+figur\vref{fig:motorstyring-afbrudt-afvikling-hastighed}), og
+præcisere styring af hastigheden opnås ved at afvikle
+tjekkeralgoritmen med større frekvens. \fixme{kjærgaard: anden
+  formulering}
+
+\snote{
+  \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed}
+  \captionof{figure}{Eksempel på høj hastighed, lav hastighed og
+    acceleration ved motorstyring med afbrudt afvikling.}
+  \label{fig:motorstyring-afbrudt-afvikling-hastighed}
+}
+
+Løsningen forudsætter, at
+\begin{itemize}
+\item dataene fra algoritmen, der beregner tidspunkter, kan opbevares
+  i en kø,
+\item der er data i køen, når tjekkeralgoritmen har brug for data at
+  tjekke mod, og
+\item beregningsalgoritmen kan afvikles så hurtigt, at der lægges data
+  i køen hurtigere end tjekkeralgoritmen gennemgår dem.
+\end{itemize}
+
+I værste tilfælde skal behandlingsalgoritmen
+\begin{itemize}
+\item indlæse data fra datakilden,
+\item fortolke dataene og
+\item beregne tidspunktet
+\end{itemize}
+
+Med en taktfrekvens på 16 MHz
+
+
 \section{HP-GL -- Hewlett-Packard Graphics Language}
 
 Når man skal vælge, hvilket format man vil bruge, når man laver en
@@ -186,4 +303,4 @@ Standardenheden, som er givet fra HPGL, er 0,025mm, altså en $\frac{1}{40}mm$
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../master"
-%%% End:\section{Koordinatsystem}
+%%% End:

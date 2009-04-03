@@ -13,9 +13,12 @@ TARGET=master.tex
 FIGS_DIA=../brugere/kjaergaard/datafeeder-oversigt.dia
 
 # Alle SVG-filer
-FIGS_SVG=../logo/logo.svg			\
-../brugere/kjaergaard/datafeeder-handling.svg	\
-../brugere/kjaergaard/skaermkoordinater.svg
+FIGS_SVG=../logo/logo.svg						\
+../brugere/kjaergaard/datafeeder-handling.svg				\
+../brugere/kjaergaard/skaermkoordinater.svg				\
+../brugere/kjaergaard/motorstyring-indlagt-forsinkelse.svg		\
+../brugere/kjaergaard/motorstyring-afbrudt-afvikling.svg		\
+../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
 FIGS_EPS=
