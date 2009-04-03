@@ -18,7 +18,8 @@ FIGS_SVG=../logo/logo.svg						\
 ../brugere/kjaergaard/skaermkoordinater.svg				\
 ../brugere/kjaergaard/motorstyring-indlagt-forsinkelse.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling.svg		\
-../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg
+../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg	\
+img/transducer-skitse.svg
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
 FIGS_EPS=

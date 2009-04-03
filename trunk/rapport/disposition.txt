@@ -11,12 +11,18 @@ $Id$
 	Brugervejledning
 
 Design (Overvejelser)
-    Mekanikafsnit
+        Mekanikafsnit
 	
 	Hardwareafsnit
-    Beskrivelse af motor drivere
+		Beskrivelse af motor drivere
+		Transducere
+		SD-kort adapter
 	
 	Softwareafsnit
+		Motorstyring
+		HPGL
+		Matematik
+		Softwaresprog
 
 Implementering (Praktisk anvendelse)
 

@@ -4,7 +4,7 @@
 % hardware. Strømforsyning, motor drivere, MCU print, transducere m.m.
 
 \section{Stepmotor drivere}
-I dette projekt har vi to forskellige stepmotorere, som vi har fundet
+I dette projekt har vi to forskellige stepmotorer, som vi har fundet
 fra et par bordscannere. Motorene er selvfølgelig forskellige fra
 hinanden. Den ene motor er en bipolar motor mens den anden er en
 variabel reluktans motor. Vi har i det følgende valgt, at lave hvert
@@ -21,19 +21,57 @@ brænder af eller der er fejl på. \fixme{todo, Omformuler dårlige formuleringe
   afsnit på en eller anden måde} \fixme{Nærbillede af stor motor}
 
 \section{Transducer}
-Vi skal være i stand til at nulstille maskinens psition i forhold til
-vores koordinat system. Til dette kunne man gøre det, at man kører
+Vi skal være i stand til at nulstille maskinens position i forhold til
+vores koordinatsystem. Til dette kunne man gøre det, at man kører
 motorerne i retning med nulpunkt, men kører længere end vi kan
-køre. Det sklhavetil formål, at govedet bliver trukket til norigo. Men
+køre. Det skal have til formål, at govedet bliver trukket til norigo. Men
 detdenne metode er ikke anvendelig, så dda man vil belaste mekanikken
 og motorerne for meget. Derfor kan man anvende nogle transduvere. vi
-kan anvende et par gaffel foto sensorer.. Vi kan så se lade maskinen
-se, hvornår der kommer noget ind for sensoren, ogg i kan da stoppe
+kan anvende et par gaffel foto sensorer. Vi kan så se lade maskinen
+se, hvornår der kommer noget ind for sensoren, og vi kan da stoppe
 maskinen på den måde ved vi at maskinen er nulstilllet. Vi kan
 harefter begynde at anvende maskinen. \fixme{nick: Dette skal
-  renskrives, det er skrivet med bind for øjenene.} \fixme{nick: Der
-  skal tegnes en illustration, der illustrerer placeringen af disse
-  transducere}
+  renskrives, det er skrivet med bind for øjenene.}
+
+\mnote{
+  \includegraphics[width=\marginparwidth]{./img/transducer-skitse}
+  \captionof{figure}{Placering af fotogaffler}
+  \label{fig:transducer-skitse}
+}
+
+\fixme{Er det de det hedder}
+
+ \fixme{nick: Illustrationen af transducerene skal laves rigtigt}
+
+\section{SD-kort adapter}
+Vi har vha. kravspecefikationen bestemt, at vi skal kunne styre
+maskinen, vha. data fra et SD-kort.
+
+Et SD-kort kan styres på forskellige måder. 
+
+SPI mode (seperat serial ind eller serial ud), et-bit SD mode (seperat
+kommando og data kanaler og proprætier overførsels format), og
+fire-bit SD mode (bruger ekstra forbindelser samt nogle ombyttede
+pins) for at supportere fire bits bredde på parallel overførsel.
+
+---SPI mode (separate serial in and serial out), one-bit SD mode
+(separate command and data channels and a proprietary transfer
+format), and four-bit SD mode (uses extra pins plus some reassigned
+pins) to support four bit wide parallel transfers.---\fixme{Det
+  engelske skal slettes, og det danske tjekkes igennem for
+  formulereing}
+
+\fixme{Skal vi refere captain.at som kilde, eller bare i
+  litteraturlisten? pinouts.ru}
+
+SD-kortet opererer ved en spænding på $3,3V$, derfor skal vi have en
+seperat spændingsforsyning på $3,3V$ til kortet. A samme grund er vi
+nødt til, at sænke spændingen fra vores MCU fra de 5V, til omkring de
+3,3V, før vi kan kommunikere med det. Vi kan opnå dette med en
+spændingsdeler, ved IO pinsene der går fra MCU'en til SD-kortet. Når
+signalet fra SD-kortet går høj, vil det givetvis være på 3,3V. Dette
+er ikke de 5V som voes MCU opererer ved, men det er ikke noget
+problem, da det stadigvæk svarer til et højt signal for MCU'en.
 
 %%% Local Variables: 
 %%% mode: latex
