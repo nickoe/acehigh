@@ -132,39 +132,55 @@ muligt kompatible med C. Uønskede sideeffekter af C++ forsøges undgået
 \section{Matematikken bag}
 
 Forholdet imellem tiden det tager at tegne linjen og tiden til et
-punkt på linjen med x-koordinatet er lig forholdet imellem det givne
-punkts x-koordinat og slutkoordinatet:
+punkt på linjen med $x$-koordinatet er lig forholdet imellem det givne
+punkts x-koordinat og forskellen imellem start- og slutkoordinat $\Delta x$:
 
+\begin{align}
+\frac{t}{\Delta t} &= \frac{x}{\Delta x} \Rightarrow x(t) = \Delta x \times \frac{t}{\Delta t}
+\end{align}
+
+Den generelle formel for tiden $t$, det tager at tegne linjen, er lig:
+\begin{align}
+v &= \frac{L}{\Delta t} \Rightarrow \Delta t= \frac{L}{v}
+\end{align}
+
+Hvilket betyder, at vi kan kombinere (5.1) og (5.2):
 \begin{align*}
-\frac{t}{t_b} &= \frac{x}{x_b} \qquad \Rightarrow \\
-x(t) &= x_b\frac{t}{t_b}
+\frac{t \times v}{L} &= \frac{x}{\Delta x}
 \end{align*}
 
- 
-Vi beskriver her et punkts x-koordinat, som funktion af tiden t.
+Ved isolering af tiden $t$ får vi at:
+\begin{align}
+t = \frac{x}{\Delta x} \times \frac{L}{v}
+\end{align}
 
-Vi bestemmer step/mm, hvor n’s enhed er step og x’s enhed er mm:
-$\eta_x=\frac{n_x}{x}\Rightarrow n_x=x\cdot\eta_x$
+Længden af linjen $L$ er givet ud fra pythagoras læresætning:
+\begin{align*}
+L &= \sqrt{\Delta x^2+\Delta y^2}
+\end{align*}
 
-Vi samler nu funktionerne, så antallet af steps beskrives som funktion
-af tiden t:
+Forholdet imellem $x$ og $\Delta x$ kan beskrives som forholdet imellem step $n$ og total antal steps $\Delta n$:
+\begin{align}
+\frac{x}{\Delta x} = \frac{n}{\Delta n}
+\end{align}
 
-Længden af linjen er giver ud fra pythagoras læresætning:
+Indsættes dette i (5.3) får vi et udtryk for tiden $t$, som afhænger af step $n$:
+\begin{align}
+t &= \frac{n}{\Delta n} \times \frac{L}{v}
+\end{align}
 
-Den generelle formel for tiden t er lig:
+Step $n$ kan findes ved brug af følgende formel:
+\begin{align}
+n &= x \times \eta_x \qquad n \in{R}
+\end{align}
 
-Vi fastsætter selv en hastighed, og s er længden L af linjen. Vi
-indsætter formlen for længden i formlen for tiden :
+Formlen fremkommer af vores definition på $\eta$, som er:
+\begin{align*}
+\eta_x = \frac{n}{x}
+\end{align*}
 
-
-Jeg kan nu beskrive antallet af steps, n, som funktion af tiden, hvor
-hastigheden, v, indgår i udtrykket. $\eta_x$ er endnu ikke givet:
-
-
-Bemærk, at tiden altid er 0, da vi nulstiller tiden hver gang. Ellers
-ville tiden det tog at plotte linjen beskrives som:
- 
-Hvilket ikke er tilfældet.
+Ud fra formlen fremgår det, at $\eta$ har enheden $\frac{steps}{mm}$.
+Standardenheden, som er givet fra HPGL, er 0,025mm, altså en $\frac{1}{40}mm$
 
 
 %%% Local Variables: 
