@@ -1,6 +1,10 @@
 \documentclass{../mypaper}
 
+% Nye komandoer og pakker - kk du kan bare flytte dem ind i ../mypaper
+% hvis du føler for det
 \newcommand\Cpp{C\raisebox{\height / 2}[\height][\depth]{\tiny ++}}
+\usepackage{pdfpages} % Vi anvender \includepdf til at inkludere
+                      % forsiden
 
 \title{XY-plotter}
 \author{Christian Klim Hansen \and Kristian Kjærgaard \and Nick Østergaard}
@@ -12,7 +16,6 @@
   pdfauthor={Christian Klim Hansen, Kristian Kjærgaard og Nick Østergaard},
   pdfcreator=LaTeX,
 }
-\fixme{Snakke om forsiden}
 
 \pagestyle{Ruled}
 
@@ -20,10 +23,13 @@
 \begin{document}
 
 \begin{titlingpage}
-  \maketitle
-  \includegraphics[width=\textwidth]{../logo/logo}
+  % Den midlertidige forside vi havde før
+  % \maketitle
+  % \includegraphics[width=\textwidth]{../logo/logo}
+  % \newpage
 
-  \newpage
+  % Den nye forside, som er en inkluderet pdf
+  \includepdf{./img/forside}
 
   \strut \vfill
   {

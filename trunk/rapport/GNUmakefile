@@ -19,7 +19,8 @@ FIGS_SVG=../logo/logo.svg						\
 ../brugere/kjaergaard/motorstyring-indlagt-forsinkelse.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg	\
-img/transducer-skitse.svg
+img/transducer-skitse.svg                                               \
+img/forside.svg
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
 FIGS_EPS=
