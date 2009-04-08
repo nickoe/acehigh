@@ -39,25 +39,16 @@
 % Parametrene assignment, report og essay kan ikke gives
 % samtidig. Parameteren assignment er standard.
 
-\newcommand{\@issimple}{false} % det er en assignment
 \newcommand{\@isdraft}{true}
 
 
 % Ensidet memoir-opsætning
-\DeclareOption{simple}{\renewcommand{\@issimple}{true}}
 \DeclareOption{final}{\renewcommand{\@isdraft}{false}}
 \ProcessOptions\relax
 
-\ifthenelse{\boolean{\@issimple}}{
-  \PassOptionsToClass{oneside}{memoir}
-}{
-  \PassOptionsToClass{twoside}{memoir}
-}
-
-
 % Klassen memoir indlæses og konfigureres
 
-\LoadClass[11pt,a4paper]{memoir}
+\LoadClass[11pt,a4paper,twoside]{memoir}
 
 
 
@@ -147,28 +138,16 @@
 }{}
 
 % farver på links?
-\hypersetup{
-  citecolor=black,
-  filecolor=black,
-  linkcolor=black,
-  urlcolor=black
-}
+%\hypersetup{
+%  citecolor=black,
+%  filecolor=black,
+%  linkcolor=black,
+%  urlcolor=black
+%}
 
 
 
-% Generel opsætning til assignment-stilen
-\ifthenelse{\boolean{\@issimple}}{
-  \makepagestyle{ss}
-  \makeoddhead{ss}{\chaptermark}{}{\thepage}
-  \makeheadrule{ss}{\textwidth}{\normalrulethickness}
-  \pagestyle{ss}
-  %\setcounter{secnumdepth}{1} % todo: tjek om det burde være anderledes
-  \RequirePackage{tocloft}
-}{
-  \pagestyle{Ruled}
-}
-
-
+\pagestyle{Ruled}
 \addto\captionsdanish{
   \renewcommand{\chaptername}{Afsnit}
 }
@@ -176,22 +155,16 @@
 \captionnamefont{\small \sffamily \bfseries}
 \captiontitlefont{\small}
 
-\ifthenelse{\boolean{\@issimple}}{
-  % simple
-}{
-  % report
+\setlrmarginsandblock{2,8cm}{4,8cm}{*}
+\setmarginnotes{0,4cm}{3,4cm}{0,4cm}
 
-  \setlrmarginsandblock{2,8cm}{4,8cm}{*}
-  \setmarginnotes{0,4cm}{3,4cm}{0,4cm}
+% setup for the side caption environment
+\setsidecaps{0,4cm}{3,0cm}
+\sidecapmargin{outer}
 
-  % setup for the side caption environment
-  \setsidecaps{0,4cm}{3,0cm}
-  \sidecapmargin{outer}
+\newcommand{\mnote}[1]{\marginpar{\small #1}}
+\newcommand{\snote}[1]{\sidebar{\small #1}}
 
-  \newcommand{\mnote}[1]{\marginpar{\small #1}}
-  \newcommand{\snote}[1]{\sidebar{\small #1}}
-
-}
 \checkandfixthelayout
 
 
@@ -217,12 +190,4 @@
 \let\epsilon\varepsilon
 
 \newcommand{\fnote}[1]{\footnote{#1}}
-
-% makroen er kun brugbar hvis man ikke skelner mellem \chapter
-% og \section
-\newcommand{\nosecnum}{\setcounter{secnumdepth}{-1}}
-
-
-\newcommand{\facit}[1]{\uuline{#1}}
-\newcommand{\SIfacit}[2]{\uuline{\SI{#1}{#2}}}
 \newcommand{\degree}{\ensuremath{^\circ}}

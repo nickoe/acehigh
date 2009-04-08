@@ -1,4 +1,4 @@
-\documentclass{../mypaper}
+\documentclass{mypaper}
 
 % Nye komandoer og pakker - kk du kan bare flytte dem ind i ../mypaper
 % hvis du føler for det
@@ -22,22 +22,17 @@
 
 \begin{document}
 
-\begin{titlingpage}
-  % Den midlertidige forside vi havde før
-  % \maketitle
-  % \includegraphics[width=\textwidth]{../logo/logo}
-  % \newpage
+\includepdf{./img/forside}
 
-  % Den nye forside, som er en inkluderet pdf
-  \includepdf{./img/forside}
+\setcounter{page}{2}
 
-  \strut \vfill
-  {
-    \footnotesize
+\strut \vfill { \footnotesize
     \noindent Kristian Kjærgaard er megasej \fixme{kjærgaard: Der skal
       stå noget andet her} \fixme{nej der skal ej} }
 
-\end{titlingpage}
+\thispagestyle{empty}
+
+\clearpage
 
 \frontmatter
 
