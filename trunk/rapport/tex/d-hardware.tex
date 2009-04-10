@@ -1,7 +1,9 @@
 \chapter{Hardware}
 
 % Afsnittet skal indeholdeinformation om vores
-% hardware. Strømforsyning, motor drivere, MCU print, transducere m.m.
+% hardware. Strømforsyning, motor drivere, MCU print, transducere
+% m.m. Men kun hvad vi kan gøre, for at opfylde vores krav, ikke
+% hvordan vi faktisk konstruerer det.
 
 \section{Stepmotor drivere}
 I dette projekt har vi to forskellige stepmotorer, som vi har fundet
@@ -10,38 +12,37 @@ hinanden. Den ene motor er en bipolar motor mens den anden er en
 variabel reluktans motor. Vi har i det følgende valgt, at lave hvert
 driver print på hvert sit printkort, da vi opnår en vis fleksibilitet,
 da vi på den måde lettere kan lave den ene om, i tilfælde af den anden
-brænder af eller der er fejl på. \fixme{todo, Omformuler dårlige formuleringer}
+brænder af eller der er fejl på. \fixme{todo, Omformuler dårlige
+  formuleringer}
 
 \subsection{Bipolar motor}
-\fixme{Nærbillede af lille motor}
+\fixme{Nærbillede af lille motor i marginen, gerne monteret på plotter}
 
 \subsection{Unipolar motor}
-
-\fixme{Husk at angive \cite{fronter:stepmotor} som kilde til dette
-  afsnit på en eller anden måde} \fixme{Nærbillede af stor motor}
+\fixme{Nærbillede af stor motor i marginen, gerne monteret på plotter}
 
 \section{Transducer}
 Vi skal være i stand til at nulstille maskinens position i forhold til
-vores koordinatsystem. Til dette kunne man gøre det, at man kører
-motorerne i retning med nulpunkt, men kører længere end vi kan
-køre. Det skal have til formål, at govedet bliver trukket til norigo. Men
-detdenne metode er ikke anvendelig, så dda man vil belaste mekanikken
-og motorerne for meget. Derfor kan man anvende nogle transduvere. vi
-kan anvende et par gaffel foto sensorer. Vi kan så se lade maskinen
-se, hvornår der kommer noget ind for sensoren, og vi kan da stoppe
-maskinen på den måde ved vi at maskinen er nulstilllet. Vi kan
-harefter begynde at anvende maskinen. \fixme{nick: Dette skal
+vores koordinatsystem, fordi vi skal vide hvor vi har vores
+udgangspunkt. Til dette kan man gøre det, at man kører motorerne i
+retning mod et nulpunkt, men kører længere end det er muligt at
+køre. Det skal have til formål, at hovedet bliver trukket til
+origo. Men denne metode er ikke anvendelig, da man vil belaste
+mekanikken og motorerne for meget. Vi vil derfor anvende nogle
+transducere som følrere i en nulstillingsposition. Vi kan anvende et
+par fotogafler, hvor vi fører en mekanisk fane ind i. Vi kan så se
+lade maskinen se, hvornår der kommer noget ind for sensoren, og vi kan
+da stoppe maskinen på den måde ved vi at maskinen er nulstilllet. Vi
+kan harefter begynde at anvende maskinen. \fixme{nick: Dette skal
   renskrives, det er skrivet med bind for øjenene.}
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/transducer-skitse}
-  \captionof{figure}{Placering af fotogaffler}
+  \captionof{figure}{Placering af fotogafler}
   \label{fig:transducer-skitse}
 }
 
-\fixme{Er det de det hedder}
-
- \fixme{nick: Illustrationen af transducerene skal laves rigtigt}
+\fixme{nick: Illustrationen af transducerene skal laves rigtigt}
 
 \section{SD-kort adapter}
 Vi har vha. kravspecefikationen bestemt, at vi skal kunne styre
