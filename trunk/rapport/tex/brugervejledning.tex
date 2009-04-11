@@ -5,6 +5,25 @@
 % Placering af papir
 % Specifikationer - tegneområde, placering af et ark papir
 
+For at tegne grafik i HPGL-formatet, gør følgende:
+
+\begin{enumerate}[\quad \bfseries 1.]
+\item Konverter tegningen til HPGL (hvis tegningen ikke er tegnet i et
+  program, der kan eksportere til HPGL, kan \texttt{HPGL
+    Distiller}\footnote{Se \url{http://pldaniels.com/hpgl-distiller}.}
+  muligvis konvertere tegningen til HPGL).
+\item Sørg for, at formatet overholder den implementering af formatet,
+  projektet har brugt. Se afsnit hvad?\fixme{henvisning}
+\item Overfør tegningen til SD-kortet med
+  f.eks. \texttt{dd}\footnote{Se
+    \url{http://en.wikipedia.org/wiki/Dd_(Unix)}.} eller
+  \texttt{HxD}\footnote{Se
+    \url{http://mh-nexus.de/en/hxd}.}. SD-kortet bruger ikke et
+  filsystem, så tegningen skal ligge på \textit{blokken}.
+\item Sæt SD-kortet i plotteren og tænd plotteren.
+\item Klik på \enquote{Tegn}. Hvis der ikke er opstået problemer,
+  begynder maskinen at tegne.
+\end{enumerate}
 
 
 %%% Local Variables: 

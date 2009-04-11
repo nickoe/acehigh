@@ -2,6 +2,34 @@
 
 % Note om hvad der skal stå i dette afsnit her.
 
+
+\section{Oversigt over softwaren}
+
+% Her skriver vi hvordan softwaren er struktureret - se figuren nedenfor.
+
+Softwaren er struktureret som vist i
+figur\vref{fig:software-oversigt}. Dataføderen leverer data til den
+del af softwaren, der behandler HP-GL. Dataen kommer fra et
+SD-kort. HPGL-behandleren sender instruktioner videre til den del af
+motorkontrollen, der afvikles når der er tid. Denne del sætter
+instruktioner i kø til realtidsdelen.
+
+Realtidsdelen af motorkontrollen behandler de instruktioner, den anden
+del af motorkontrollen har sat i kø og styrer stepmotorer m.m. efter
+disse instruktioner. Realtidsdelen af motorkontrollen har ansvar for,
+at hastigheden af tegnehovedet kan styres præcist.
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.75\textwidth]{../brugere/kjaergaard/software-oversigt}
+  \caption{Oversigt over softwaren. De lyseblå dele afvikles når der
+    er tid til det. Når det er tid til at afvikle de mørkeblå områder,
+    afbrydes afviklingen af de lyseblå.}
+  \label{fig:software-oversigt}
+\end{figure}
+
+
 \section{HP-GL -- Hewlett-Packard Graphics Language}
 
 % Hvordan implementerer vi HP-GL? Hvilke afvigelser tillader vi os at
