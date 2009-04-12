@@ -33,7 +33,12 @@ Implementering (Praktisk anvendelse)
 		Delkredsløb med diagrammer
 
 	Softwareafsnit
-		Diagrammer
+		Oversigt over softwaren
+		Dataføder
+		HPGL-behandleren
+		Motorkontrollen
+		Stepmotorstyring
+		Sensorer og løfter/sænker
 
 	Afslutning / Konklusion
 		Nåede vi målet?

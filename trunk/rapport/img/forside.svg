@@ -36,15 +36,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="316.90516"
-     inkscape:cy="357.48193"
+     inkscape:cx="-234.52341"
+     inkscape:cy="462.8426"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="640"
-     inkscape:window-height="680"
-     inkscape:window-x="808"
-     inkscape:window-y="71" />
+     inkscape:window-width="1440"
+     inkscape:window-height="827"
+     inkscape:window-x="0"
+     inkscape:window-y="25" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -80,7 +80,7 @@
            height="51.42857"
            x="20"
            y="143.79076" /></flowRegion><flowPara
-         id="flowPara2469"></flowPara></flowRoot>    <text
+         id="flowPara2469" /></flowRoot>    <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Century Schoolbook L;-inkscape-font-specification:Century Schoolbook L"
        x="22.857143"
@@ -120,5 +120,23 @@
          x="20"
          sodipodi:role="line"
          id="tspan2495">27. april 2009</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:103.63732147000000339px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:0.08949416;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
+       x="-202.24825"
+       y="646.53638"
+       id="text2394"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.600155,-0.7998837,0.7998837,0.600155,0,0)"
+       inkscape:transform-center-x="2488.4822"
+       inkscape:transform-center-y="429.84555"><tspan
+         sodipodi:role="line"
+         id="tspan2396"
+         x="-202.24825"
+         y="646.53638">Kristian Kjærgaard</tspan><tspan
+         sodipodi:role="line"
+         x="-202.24825"
+         y="776.08301"
+         id="tspan2398">er megasej</tspan></text>
   </g>
 </svg>

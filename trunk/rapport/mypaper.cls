@@ -110,32 +110,6 @@
 }%
 }{}
 
-% showkeys og fix med hyperref
-\ifthenelse{\boolean{\@isdraft}}{
-  \RequirePackage[notref,notcite]{showkeys}
-  \let\HyRef@ShowKeysRef\@gobble
-  \def\HyRef@ShowKeysInit{
-    \begingroup\expandafter\expandafter\expandafter\endgroup
-    \expandafter\ifx\csname SK@@label\endcsname\relax
-    \else
-      \ifx\SK@ref\@empty
-      \else
-        \def\HyRef@ShowKeysRef{
-          \SK@\SK@@ref
-        }
-      \fi
-    \fi
-  }
-  \@ifpackageloaded{showkeys}{
-    \HyRef@ShowKeysInit
-  }{
-    \AtBeginDocument{
-      \@ifpackageloaded{showkeys}{
-        \HyRef@ShowKeysInit
-      }{}
-    }
-  }
-}{}
 
 % farver på links?
 %\hypersetup{
