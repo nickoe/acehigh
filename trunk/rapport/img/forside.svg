@@ -41,8 +41,8 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="827"
+     inkscape:window-width="1280"
+     inkscape:window-height="728"
      inkscape:window-x="0"
      inkscape:window-y="25" />
   <metadata
@@ -122,7 +122,7 @@
          id="tspan2495">27. april 2009</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:103.63732147000000339px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:0.08949416;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
+       style="font-size:103.63732147px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:0.08949417;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
        x="-202.24825"
        y="646.53638"
        id="text2394"
@@ -132,10 +132,10 @@
        inkscape:transform-center-y="429.84555"><tspan
          sodipodi:role="line"
          id="tspan2396"
-         x="-202.24825"
-         y="646.53638">Kristian Kjærgaard</tspan><tspan
+         x="-202.24826"
+         y="646.53638">Nick Østergaard</tspan><tspan
          sodipodi:role="line"
-         x="-202.24825"
+         x="-202.24823"
          y="776.08301"
          id="tspan2398">er megasej</tspan></text>
   </g>
