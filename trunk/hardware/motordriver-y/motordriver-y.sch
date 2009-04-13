@@ -14,6 +14,42 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
+L NPN Q?
+U 1 1 49E24D25
+P 7250 4800
+F 0 "Q?" H 7400 4800 50  0000 C C
+F 1 "NPN" H 7152 4950 50  0000 C C
+	1    7250 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L NPN Q?
+U 1 1 49E24D24
+P 7300 4150
+F 0 "Q?" H 7450 4150 50  0000 C C
+F 1 "NPN" H 7202 4300 50  0000 C C
+	1    7300 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L NPN Q?
+U 1 1 49E24D22
+P 7200 3350
+F 0 "Q?" H 7350 3350 50  0000 C C
+F 1 "NPN" H 7102 3500 50  0000 C C
+	1    7200 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L NPN Q?
+U 1 1 49E24D20
+P 7200 2550
+F 0 "Q?" H 7350 2550 50  0000 C C
+F 1 "NPN" H 7102 2700 50  0000 C C
+	1    7200 2550
+	1    0    0    -1  
+$EndComp
+$Comp
 L PNP Q?
 U 1 1 49B6CA36
 P 5750 4450

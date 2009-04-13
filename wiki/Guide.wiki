@@ -144,6 +144,10 @@ Eksempel på litteratur databasefilen
 
 For at citere noget, anvender vi \cite, fx \cite{BAD842:2004}.
 
+For at lette kilderferencer, foreslåes der at vi eventult kunne navngive linket som:
+web:sigende-kort-navn (til alle de kilder vi finder på nettet)
+fronter:sigende-kort-navn (til dokumenter vi har fået fra Fronter elller lærerne)
+
 
 == Guide til at installere LuxiMono på Ubuntu 8.10 ==
 

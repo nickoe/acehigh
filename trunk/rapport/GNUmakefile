@@ -19,7 +19,7 @@ FIGS_SVG=../logo/logo.svg						\
 ../brugere/kjaergaard/motorstyring-indlagt-forsinkelse.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg	\
-img/transducer-skitse.svg img/forside.svg				\
+img/fotogafel-skitse.svg img/forside.svg				\
 ../brugere/kjaergaard/software-oversigt.svg				\
 img/la-behandling.svg
 
