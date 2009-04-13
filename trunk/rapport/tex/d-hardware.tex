@@ -1,6 +1,6 @@
 \chapter[Hardwaredesign]{Hardware}
 
-% Afsnittet skal indeholdeinformation om vores
+% Afsnittet skal indeholde information om vores
 % hardware. Strømforsyning, motor drivere, MCU print, transducere
 % m.m. Men kun hvad vi kan gøre, for at opfylde vores krav, ikke
 % hvordan vi faktisk konstruerer det.
@@ -21,34 +21,32 @@ brænder af eller der er fejl på. \fixme{todo, Omformuler dårlige
 \subsection{Unipolar motor}
 \fixme{Nærbillede af stor motor i marginen, gerne monteret på plotter}
 
-\section{Transducer}
+\section{Sensorer}
 Vi skal være i stand til at nulstille maskinens position i forhold til
 vores koordinatsystem, fordi vi skal vide hvor vi har vores
-udgangspunkt. Til dette kan man gøre det, at man kører motorerne i
-retning mod et nulpunkt, men kører længere end det er muligt at
+udgangspunkt.
+
+For at opnå dette kan man gøre det, at man kører motorerne i retning
+mod et nulpunkt, men kører længere end det faktisk er muligt at
 køre. Det skal have til formål, at hovedet bliver trukket til
 origo. Men denne metode er ikke anvendelig, da man vil belaste
-mekanikken og motorerne for meget. Vi vil derfor anvende nogle
-transducere som følrere i en nulstillingsposition. Vi kan anvende et
-par fotogafler, hvor vi fører en mekanisk fane ind i. Vi kan så se
-lade maskinen se, hvornår der kommer noget ind for sensoren, og vi kan
-da stoppe maskinen på den måde ved vi at maskinen er nulstilllet. Vi
-kan harefter begynde at anvende maskinen. \fixme{nick: Dette skal
-  renskrives, det er skrivet med bind for øjenene.}
+mekanikken og motorerne for meget.
 
-\mnote{
-  \includegraphics[width=\marginparwidth]{./img/transducer-skitse}
-  \captionof{figure}{Placering af fotogafler}
-  \label{fig:transducer-skitse}
-}
-
-\fixme{nick: Illustrationen af transducerene skal laves rigtigt}
+Vi vil derfor anvende nogle sensorer som følrere i en
+nulstillingsposition. Vi kan anvende et par fotogafler, hvor vi fører
+en mekanisk fane ind i. Maskinen kan så dedektere, hvornår der kommer
+noget ind for sensoren, hvilket betyder, at vi ved hvor vi er. Ud fra
+hvilke signaler vi får fra de forskellige sensorer, så kan vi stoppe
+maskinens bevægelse. Til sidst ved vi hvornår vi er i origo, altså at
+maskinen er nulstillet. Vi kan harefter begynde at anvende
+maskinen. Det kræver selvfølgelig,at man placerer sensorerne, således
+at mekanikken aldrig når at komme til sine yderpunkter, hvor den ikke
+kan bevæge sig længere.
 
 \section{SD-kort adapter}
 Vi har vha. kravspecefikationen bestemt, at vi skal kunne styre
-maskinen, vha. data fra et SD-kort.
-
-Et SD-kort kan styres på forskellige måder. 
+maskinen, vha. data fra et SD-kort. Et SD-kort kan styres på
+forskellige måder.
 
 \begin{itemize}
 \item{SPI mode (seperat serial ind eller serial ud)}
@@ -66,8 +64,16 @@ pins) to support four bit wide parallel transfers.---\fixme{Det
   engelske skal slettes, og det danske tjekkes igennem for
   formulereing}
 
+\fixme{kjærgaard, kan du ikke verificere at ovenstående er korrekt, og
+  evt skrive en begrundelse for hvorfor vi vælger SPI mode?}
+
 \fixme{Skal vi refere captain.at som kilde, eller bare i
   litteraturlisten? pinouts.ru}
+
+Som en følge af hvilken måde vi vælger, at kommunikere med SD-kortet,
+skal hardwaren understøtte funktionen. Der er dog ikke stor forskel
+SPI mode, som vi vil understøtte og er den simpleste, og SD mode, som
+blot kræver to forbindelser mere til SD-kortet.
 
 SD-kortet opererer ved en spænding på $3,3V$, derfor skal vi have en
 seperat spændingsforsyning på $3,3V$ til kortet. A samme grund er vi
