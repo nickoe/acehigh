@@ -1,4 +1,4 @@
-\chapter[Softwareimplementering]{Software}
+\chapter[Implementering af software]{Software}
 
 % Note om hvad der skal stå i dette afsnit her.
 
@@ -33,6 +33,30 @@ at hastigheden af tegnehovedet kan styres præcist.
 \section[Dataføder (med SPI og SD-/MMC-kort)]{Dataføder}
 
 % Hvordan virker dataføderen (herunder buffer, spi og sd/mmc)?
+
+Dataføderen leverer data til HPGL-motoren og håndterer de
+underliggende moduler, der indeholder data.
+
+Dataføderens skal
+\begin{itemize} \firmlist
+\item levere data til HPGL-motoren og sørge for at denne ikke løber
+  tør for data\fixme{bliv enig om terminologi}
+\item stille et uniformt API\footnote{Application Programming
+    Interface, programmeringsbrugerflade; betegnelse for struktur og
+    navngivning for funktioner, variable, strukturer, klasser
+    etc. brugt til programudvikling.}\fixme{brug evt. wikis
+    formulering af api} til rådighed uafhængig af underliggende modul,
+  således at det overliggende modul er uafhængig af det modul, der
+  indeholder data - se figur\vref{fig:datafeeder-uniform-api}
+\item håndtere fejl for underliggende moduler
+\end{itemize}
+
+\mnote{
+  \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/datafoeder-uniform-api}
+  \captionof{figure}{Data\-føderen skal stille et uniformt API til
+    rådighed.}
+  \label{fig:datafeeder-uniform-api}
+}
 
 En oversigt over funktionsfordelingen\fixme{andet ordvalg} i
 dataføreren\fixme{andet ordvalg} kan ses i

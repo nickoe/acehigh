@@ -20,8 +20,8 @@ FIGS_SVG=../logo/logo.svg						\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg	\
 img/fotogafel-skitse.svg img/forside.svg				\
-../brugere/kjaergaard/software-oversigt.svg				\
-img/la-behandling.svg
+../brugere/kjaergaard/software-oversigt.svg img/la-behandling.svg	\
+../brugere/kjaergaard/datafoeder-uniform-api.svg
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
 FIGS_EPS=
