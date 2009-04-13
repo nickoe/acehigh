@@ -21,6 +21,10 @@ int main(void)
 {
   DDRD = 0xff;
 
+  /* vi vil da have baggrundsbelysning i vores lcd! */
+  DDRC = 1<<3;
+  PORTC = 1<<3;
+
   lcd_init(LCD_DISP_ON);
 
   char msg[16];
