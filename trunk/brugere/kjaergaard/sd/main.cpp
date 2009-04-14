@@ -29,6 +29,8 @@ int main(void)
 
   char msg[16];
 
+ LOAD:
+  
   while (true)
   {
     /* 3 sekunder til at sætte sd-kortet til mikroprocessoren */
@@ -63,7 +65,7 @@ int main(void)
     }
 
     lcd_clrscr();
-    sprintf(msg, "Byte 0-15:\n");
+    sprintf(msg, "Byte 0-15@SD:\n");
     lcd_puts(msg);
     lcd_puts((char*)bf); /* typecast nødvendig */
 
@@ -71,7 +73,11 @@ int main(void)
   }
 
  LOOP:
-  while (true);
+  while (true)
+  {
+    if (PINA & (1<<0))
+      goto LOAD;
+  }
 
   return 0;
 }

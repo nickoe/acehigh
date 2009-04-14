@@ -4,7 +4,7 @@
 PRJNAME=sd
 
 # Navn på MCU, f.eks. atmega16
-MCU=atmega16
+MCU=atmega128
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
@@ -29,7 +29,7 @@ CPUFREQ=16000000
 # programer used, e.g avrdude, doesn't accept the same MCU name as
 # avr-gcc (for example for ATmega8s, avr-gcc expects 'atmega8' and
 # avrdude requires 'm8')
-AVRDUDE_MCU=m16
+AVRDUDE_MCU=m128
 
 # programmer id--check the avrdude for complete list of available
 # opts.  These should include stk500, avr910, avrisp, bsd, pony and
