@@ -1,4 +1,9 @@
 $Id$
+Disposition skal ajorføres
+Afsnittet om HPGL skal handle om dataformat i stedet for, underafsnit om hvilken del af HPGL vi implementerer
+Matematikanalysen skal sammen med modellen
+
+
 
 	Forord
 		bl.a. tak til
