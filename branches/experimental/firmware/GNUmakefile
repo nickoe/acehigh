@@ -1,23 +1,23 @@
 # $Id$
 
 # Projektnavn
-PRJNAME=exp
+PRJNAME=acehigh
 
 # Navn på MCU, f.eks. atmega16
-MCU=atmega16
+MCU=atmega128
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=main.cpp motor_ctrl.cpp steppers.c
+PRJSRC=main.cpp motor_ctrl.cpp datafeeder.cpp steppers.c lcd.c sd_raw.c
 
 # Include-stier
 INC=-I. -I/usr/avr/include
 
 # Lib-stier
-LIB=-L/usr/avr/lib
+LIB=-L/usr/avr/lib -L/usr/lib/avr/4.3.0
 
 # Biblioteker
-LIBS=-lm
+LIBS=-lm -lgcc
 
 # Optimization level, use s (size opt), 1, 2, 3 or 0 (off)
 OPTLEVEL=s
@@ -29,7 +29,7 @@ CPUFREQ=16000000
 # programer used, e.g avrdude, doesn't accept the same MCU name as
 # avr-gcc (for example for ATmega8s, avr-gcc expects 'atmega8' and
 # avrdude requires 'm8')
-AVRDUDE_MCU=m16
+AVRDUDE_MCU=m128
 
 # programmer id--check the avrdude for complete list of available
 # opts.  These should include stk500, avr910, avrisp, bsd, pony and
@@ -48,10 +48,10 @@ AVRDUDE_PORT=/dev/ttyUSB0
 HEXFORMAT=ihex
 
 # compiler
-CFLAGS=$(INC) -g -mmcu=$(MCU) -O$(OPTLEVEL) -DF_CPU=$(CPUFREQ)		\
--fpack-struct -fshort-enums -funsigned-bitfields -funsigned-char -Wall	\
--Wstrict-prototypes -Wa,-ahlms=$(firstword $(filter %.lst,		\
-$(<:.c=.lst)))
+CFLAGS=$(INC) -g -std=c99 -mmcu=$(MCU) -O$(OPTLEVEL)			\
+-DF_CPU=$(CPUFREQ) -fpack-struct -fshort-enums -funsigned-bitfields	\
+-funsigned-char -Wall -Wstrict-prototypes -Wa,-ahlms=$(firstword	\
+$(filter %.lst, $(<:.c=.lst)))
 
 # c++ specific flags
 CPPFLAGS=-fno-exceptions -Wa,-ahlms=$(firstword $(filter %.lst,	\

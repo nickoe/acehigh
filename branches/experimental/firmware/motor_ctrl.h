@@ -45,14 +45,14 @@ uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y, double v);
 uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, double v);
 
 /*
- * Returnerer nuværende X-position.
+ * Hæver tegneren
  */
-uint16_t MotorCtrl_GetX(void);
+void MotorCtrl_Lift(void);
 
 /* 
- * Returnerer nuværende Y-position.
+ * Sænker tegneren
  */
-uint16_t MotorCtrl_GetY(void);
+void MotorCtrl_Lower(void);
 
 
 #endif /* __MOTOR_CTRL_H__ */

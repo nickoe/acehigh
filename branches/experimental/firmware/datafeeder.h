@@ -27,4 +27,13 @@
 #include <avr/io.h>
 
 
+/* Initialiserer dataføderen */
+void Datafeeder_Init();
+
+/* Returnerer næste byte i strømmen hvis det er muligt */
+uint8_t Datafeeder_GetNextByte();
+
+/* Returnerer sand hvis der ikke er mere data */
+bool Datafeeder_EOS();
+
 #endif /* __DATAFEEDER_H__ */
