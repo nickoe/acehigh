@@ -5,7 +5,7 @@ EELAYER END
 $Descr A4 11700 8267
 Sheet 1 1
 Title "motordriver-y"
-Date "17 apr 2009"
+Date "19 apr 2009"
 Rev "v1.0"
 Comp "AATG"
 Comment1 "Lille stepper motor"
@@ -13,6 +13,46 @@ Comment2 "Bipolar"
 Comment3 ""
 Comment4 ""
 $EndDescr
+NoConn ~ 10700 6150
+NoConn ~ 10700 6250
+NoConn ~ 10700 6350
+NoConn ~ 10700 6450
+$Comp
+L CONN_1 P12
+U 1 1 49EB9594
+P 10850 6450
+F 0 "P12" H 10930 6450 40  0000 L C
+F 1 "CONN_1" H 10850 6505 30  0001 C C
+	1    10850 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_1 P11
+U 1 1 49EB9593
+P 10850 6350
+F 0 "P11" H 10930 6350 40  0000 L C
+F 1 "CONN_1" H 10850 6405 30  0001 C C
+	1    10850 6350
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_1 P10
+U 1 1 49EB9590
+P 10850 6250
+F 0 "P10" H 10930 6250 40  0000 L C
+F 1 "CONN_1" H 10850 6305 30  0001 C C
+	1    10850 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_1 P9
+U 1 1 49EB958C
+P 10850 6150
+F 0 "P9" H 10930 6150 40  0000 L C
+F 1 "CONN_1" H 10850 6205 30  0001 C C
+	1    10850 6150
+	1    0    0    -1  
+$EndComp
 $Comp
 L LM7805 U1
 U 1 1 49E86AB7
