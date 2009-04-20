@@ -1,23 +1,23 @@
-# $Id$
+# $Id: GNUmakefile 217 2009-03-31 06:35:22Z kkjaergaard $
 
 # Projektnavn
-PRJNAME=acehigh
+PRJNAME=sd
 
 # Navn på MCU, f.eks. atmega16
 MCU=atmega128
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=main.c lcd.c sd_raw.c data.c motorctrl.c
+PRJSRC=main.cpp ../lcd.c ../sd_raw.c
 
 # Include-stier
 INC=-I. -I/usr/avr/include
 
-# Lib-stier
-LIB=-L/usr/avr/lib
+# Lib-stier - meget ufiks måde at angive libgcc.a på
+LIB=-L/usr/avr/lib -L/usr/lib/gcc/avr/4.3.0
 
 # Biblioteker
-LIBS=-lm
+LIBS=-lm -lgcc -lprintf_flt
 
 # Optimization level, use s (size opt), 1, 2, 3 or 0 (off)
 OPTLEVEL=s
@@ -48,7 +48,7 @@ AVRDUDE_PORT=/dev/ttyUSB0
 HEXFORMAT=ihex
 
 # compiler
-CFLAGS=$(INC) -g -std=c99 -mmcu=$(MCU) -O$(OPTLEVEL)			\
+CFLAGS=$(INC) -std=c99 -g -mmcu=$(MCU) -O$(OPTLEVEL)			\
 -DF_CPU=$(CPUFREQ) -fpack-struct -fshort-enums -funsigned-bitfields	\
 -funsigned-char -Wall -Wstrict-prototypes -Wa,-ahlms=$(firstword	\
 $(filter %.lst, $(<:.c=.lst)))
@@ -64,7 +64,7 @@ ASMFLAGS =$(INC) -mmcu=$(MCU) -x assembler-with-cpp		\
 
 
 # linker
-LDFLAGS=-Wl,-Map,$(TRG).map,--cref -mmcu=$(MCU) $(LIB) $(LIBS)
+LDFLAGS=-Wl,-Map,$(TRG).map -mmcu=$(MCU) $(LIB) $(LIBS)
 
 ##### executables ####
 CC=avr-gcc

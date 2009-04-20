@@ -21,10 +21,40 @@
  */
 
 
-#ifndef __MOTOR_CTRL_H__
-#define __MOTOR_CTRL_H__
+#ifndef __MOTORCTRL_H__
+#define __MOTORCTRL_H__
 
 #include <stdint.h>
+
+
+struct TaskRecord
+{
+  uint16_t Time;
+  uint8_t Ins;
+};
+typedef struct TaskRecord Task;
+
+struct QueueRecord
+{
+  int Capacity;
+  int Front;
+  int Rear;
+  int Size;
+  Task *Array;
+};
+typedef struct QueueRecord *Queue;
+
+
+uint8_t Queue_IsEmpty(Queue Q);
+uint8_t Queue_IsFull(Queue Q);
+Queue Queue_CreateQueue(uint16_t size);
+void Queue_DisposeQueue(Queue Q);
+void Queue_Empty(Queue Q);
+void Queue_Enqueue(Queue Q, Task T);
+Task Queue_Front(Queue Q);
+void Queue_Dequeue(Queue Q);
+
+
 
 /*
  * Initialiserer motorkontrollen, positionerer hovedet og returnerer
@@ -54,5 +84,19 @@ void MotorCtrl_Lift(void);
  */
 void MotorCtrl_Lower(void);
 
+/*
+ * Pauser tegneren
+ */
+//void MotorCtrl_Pause(void);
 
-#endif /* __MOTOR_CTRL_H__ */
+/*
+ * Fortsætter tegneren
+ */
+//void MotorCtrl_Resume(void);
+
+/*
+ * Indsætter en forsinkelse i ekserkveringen
+ */
+void MotorCtrl_Delay_MS(uint16_t t);
+
+#endif /* __MOTORCTRL_H__ */

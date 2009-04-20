@@ -28,17 +28,13 @@
  */
 
 
-#include "motor_ctrl.h"
+#include "motorctrl.h"
 
+#include <stdlib.h>
+#include <avr/io.h>
+#include <util/delay.h>
 #include <stdint.h>
 #include <math.h>
-
-#include "queue.h"
-/* c-fil bruges i c++ */
-extern "C" {
-#include "steppers.h"
-}
-
 
 
 /* motorkontrolinstruktioner */
@@ -51,18 +47,19 @@ extern "C" {
 #define MC_CMD_RESET 0x40
 
 
-/* job-strukturen */
-struct Task
-{
-  uint16_t Time;
-  uint8_t Ins;
-};
+/* definitioner til motorstyringskredsen */
+#define MCC_DDR        DDRA
+#define MCC_PORT       PORTA
+#define MCC_X_HALFFULL 0
+#define MCC_DECAY      1
+#define MCC_X_CCW      2
+#define MCC_ENABLE     3
+#define MCC_X_CLK      4
+#define MCC_Y_CLK      5
+#define MCC_RESET      6
+#define MCC_Y_CCW      7
 
-/* køen af instruktioner - unødvendig */
-//typedef struct RecordQueue<Task> *TaskQueue;
 
-/* den globale kø */
-QueueRecord<Task> *Q;
 
 /* pladholder til positionen */
 uint16_t X = 0, Y = 0;
@@ -70,17 +67,123 @@ uint16_t X = 0, Y = 0;
 /* timeren */
 uint16_t timer = 0;
 
+Queue Q;
 
+
+
+uint8_t Queue_IsEmpty(Queue Q)
+{
+  return Q->Size == 0;
+}
+
+uint8_t Queue_IsFull(Queue Q)
+{
+  return Q->Size == Q->Capacity;
+}
+
+Queue Queue_Create(uint16_t size) {
+  Queue Q;
+
+  /* her var oprindeligt en min-størrelse-tjek */
+
+  Q = malloc(sizeof(struct QueueRecord));
+  if (Q == NULL)
+  {
+    //FatalError("CreateQueue Error: Unable to allocate more memory.");
+  }
+
+  Q->Array = malloc(sizeof(Task) * size);
+  if (Q->Array == NULL)
+  {
+    //FatalError("CreateQueue Error: Unable to allocate more memory.");
+  }
+
+  Q->Capacity = size;
+  Queue_Empty(Q);
+
+  return Q;
+}
+
+void Queue_Empty(Queue Q)
+{
+  Q->Size = 0;
+  Q->Front = 1;
+  Q->Rear = 0;
+}
+
+void Queue_Dispose(Queue Q)
+{
+  if (Q != NULL)
+  {
+    free(Q->Array);
+    free(Q);
+  }
+}
+
+static uint8_t Queue_Succ(int Value, Queue Q)
+{
+  if (++Value == Q->Capacity)
+  {
+    Value = 0;
+  }
+  return Value;
+}
+
+void Queue_Enqueue(Queue Q, Task T)
+{
+
+  if (Queue_IsFull(Q)) {
+    //Error("Enqueue Error: The queue is full.");
+  } else {
+    Q->Size++;
+    Q->Rear = Queue_Succ(Q->Rear, Q);
+    Q->Array[Q->Rear] = T;
+  }
+}
+
+
+Task Queue_Front(Queue Q)
+{
+  if (!Queue_IsEmpty(Q)) {
+    return Q->Array[Q->Front];
+  }
+  //Error("Front Error: The queue is empty.");
+
+  /* Return value to avoid warnings from the compiler */
+  Task t;
+  return t;
+}
+
+void Queue_Dequeue(Queue Q)
+{
+  if (Queue_IsEmpty(Q)) {
+    //Error("Dequeue Error: The queue is empty.");
+  } else {
+    Q->Size--;
+    Q->Front = Queue_Succ(Q->Front, Q);
+  }
+}
 
 /* initialiser motorerne */
 void MotorCtrl_Init(void)
 {
-  Queue_Create<Task>(Q, 128);
-  Stp_Init();
+  Q = Queue_Create(128);
+
+  /* her skal vi sætte motorkontrolkredsen op */
+  MCC_DDR = 0xff;
+
+  /* genstart - klodset */
+  MCC_PORT = 0;
+  _delay_ms(10);
+  MCC_PORT |= 1 << MCC_RESET;
+  _delay_ms(10);
+
+  /* aktiver */
+  MCC_PORT |= 1 << MCC_ENABLE;
 }
 
 /* flytter angivne koordinater, relativt */
-uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, float v)
+uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, double v)
 {
   /* hvis vi ikke skal flytte */
   if (x == 0 && y == 0)
@@ -154,10 +257,10 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, float v)
     }
 
     /* vi må vente til der er plads i køen */
-    while (Queue_IsFull<Task>(Q));
+    while (Queue_IsFull(Q));
 
     /* jobbet sættes i k */
-    Queue_Enqueue<Task>(Q, task);
+    Queue_Enqueue(Q, task);
 
   } while (cur_x <= x || cur_y <= y);
   
@@ -166,28 +269,42 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, float v)
   task.Ins = MC_CMD_RESET;
 
   /* læg instruktion til at genstarte timeren i det sidste job */
-  Queue_Enqueue<Task>(Q, task);
+  Queue_Enqueue(Q, task);
 
   return 0;
 }
 
 /* flytter til koordinater, absolut */
-uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y, float v)
+uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y, double v)
 {
   /* vi sender forespørgslen videre til den relative del */
   return MotorCtrl_GotoRXY(x-X, y-Y, v);
 }
 
 /* returnerer den absolutte x-position */
-uint16_t MotorCtrl_GetX()
+void MotorCtrl_Lift(void)
 {
-  return X;
+  int r = 2;
+  r += 4;
 }
 
 /* returnerer den absolutte y-position */
-uint16_t MotorCtrl_GetY()
+void MotorCtrl_Lower(void)
 {
-  return Y;
+  int r = 2;
+  r += 4;
+}
+
+/* indlægger en forsinkelse */
+void MotorCtrl_Delay_MS(uint16_t t)
+{
+  Task task;
+  task.Time = t;
+  task.Ins = MC_CMD_RESET;
+  
+  /* vent til der er plads i køen */
+  while (Queue_IsFull(Q));
+  Queue_Enqueue(Q, task);
 }
 
 /*
@@ -197,12 +314,10 @@ uint16_t MotorCtrl_GetY()
  */
 void MotorCtrl_Tick()
 {
-  Task t;
-
-  int r = Queue_Front<Task>(Q, t);
-  /* tjek resultatet af r */
-  if (r != QUEUE_SUCCES)
+  if (Queue_IsEmpty(Q))
     return;
+
+  Task t = Queue_Front(Q);
 
   /* udfør alle de jobs hvor deadlinen er nået eller overskredet */
   while (t.Time <= timer)
@@ -212,25 +327,29 @@ void MotorCtrl_Tick()
     if (t.Ins & MC_CMD_MOVE_UP)
     {
       /* flyt op */
-      Stp_Cmd(STP_MOVE_UP);
+      MCC_PORT |= 1 << MCC_Y_CCW;
+      MCC_PORT |= 1 << MCC_Y_CLK;
     }
 
     if (t.Ins & MC_CMD_MOVE_DOWN)
     {
       /* flyt ned */
-      Stp_Cmd(STP_MOVE_DOWN);
+      MCC_PORT &= ~(1 << MCC_Y_CCW);
+      MCC_PORT |= 1 << MCC_Y_CLK;
     }
 
     if (t.Ins & MC_CMD_MOVE_LEFT)
     {
       /* flyt til venstre */
-      Stp_Cmd(STP_MOVE_LEFT);
+      MCC_PORT |= 1 << MCC_X_CCW;
+      MCC_PORT |= 1 << MCC_X_CLK;
     }
 
     if (t.Ins & MC_CMD_MOVE_RIGHT)
     {
       /* flyt til højre */
-      Stp_Cmd(STP_MOVE_RIGHT);
+      MCC_PORT &= ~(1 << MCC_X_CCW);
+      MCC_PORT |= 1 << MCC_X_CLK;
     }
 
     if (t.Ins & MC_CMD_LIFT)
@@ -245,19 +364,23 @@ void MotorCtrl_Tick()
 
     if (t.Ins & MC_CMD_RESET)
     {
-      /* genstart timeren */
+      /* genstart timeren - skal fortolkes sidst */
       timer = 0;
     }
 
-    Queue_Dequeue<Task>(Q);
+    Queue_Dequeue(Q);
 
-    int r = Queue_Front<Task>(Q, t);
-    /* tjek resultatet af r */
-    if (r != QUEUE_SUCCES)
-      return;
+    if (Queue_IsEmpty(Q))
+      break;
+    Task t = Queue_Front(Q);
   }
+
+  
+  /* mindste høj-tid */
+  _delay_us(2);
+  /* gør clock-signal lavt igen */
+  MCC_PORT &= ~((1<<MCC_X_CLK) | (1<<MCC_Y_CLK));
 
   /* forhøj tik-tæller */
   timer++;
 }
-

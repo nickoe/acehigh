@@ -21,19 +21,27 @@
  */
 
 
-#ifndef __DATAFEEDER_H__
-#define __DATAFEEDER_H__
+#ifndef __DATA_H__
+#define __DATA_H__
 
 #include <avr/io.h>
 
 
+enum
+{
+  DATAFEEDER_SUCCES,
+  DATAFEEDER_EOS,
+  DATAFEEDER_UNKNOWN
+};
+
+
 /* Initialiserer dataføderen */
-void Datafeeder_Init();
+uint8_t Datafeeder_Init();
 
 /* Returnerer næste byte i strømmen hvis det er muligt */
 uint8_t Datafeeder_GetNextByte();
 
 /* Returnerer sand hvis der ikke er mere data */
-bool Datafeeder_EOS();
+uint8_t Datafeeder_EOS();
 
-#endif /* __DATAFEEDER_H__ */
+#endif /* __DATA_H__ */

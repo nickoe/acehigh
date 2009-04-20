@@ -20,25 +20,41 @@
  * $Id$
  */
 
-#include "datafeeder.h"
+#include "data.h"
 
 #include <avr/io.h>
 #include <stdint.h>
-extern "C"{
-#include "sd_raw.h"
-}
 
-void Datafeeder_Init()
+#include "sd_raw.h"
+
+
+/* offset at læse fra */
+uint16_t offset = 0;
+
+
+uint8_t Datafeeder_Init()
 {
-  sd_raw_init();
+  uint8_t r = sd_raw_init();
+  /* tjek resultatet af sd_raw_init(), hvis det er 1 er der succes */
+  if (r == 1)
+    return DATAFEEDER_SUCCES;
+
+  return DATAFEEDER_UNKNOWN;
 }
 
 uint8_t Datafeeder_GetNextByte()
 {
-  return 0;
+  uint8_t b = 0;
+  uint8_t r = sd_raw_read(offset, &b, 1);
+  /* tjek b, hvis b = 1 er der succes */
+
+  offset++;
+
+  return b;
 }
 
-bool Datafeeder_EOS()
+/* er sand hvis der ikke er flere bytes på strømmen */
+uint8_t Datafeeder_EOS()
 {
-  return true;
+  return 0;
 }

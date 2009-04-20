@@ -4,18 +4,17 @@
  * Noter her som skal dukke op på den anden side
  */
 
+
 #include <avr/io.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
 
-#include "motor_ctrl.h"
-#include "datafeeder.h"
+#include "motorctrl.h"
+#include "data.h"
 #include "plotter.h"
-
-extern "C"{
 #include "lcd.h"
-}
+
 
 
 /* maksimal parameterstørrelse */
@@ -27,8 +26,8 @@ extern "C"{
 
 
 /* pladsholder til tegnehovedets koordinatet */
-uint16_t X = 0; 
-uint16_t Y = 0;
+//uint16_t X = 0; 
+//uint16_t Y = 0;
 
 /* pladsholder til nuværende byte i identifikationen */
 uint8_t current_byte = 0;
@@ -69,6 +68,7 @@ uint16_t get_next_ins()
       current_byte = Datafeeder_GetNextByte(); /* husk at rulle frem til
 						byten efter det vi har
 						behandlet */
+
     return HPGL_INS(ins);
   }
 
@@ -81,18 +81,18 @@ uint16_t get_next_ins()
  * Returnerer sand hvis der findes flere parametre end dem der
  * allerede er identificeret
  */
-bool param_exists()
+uint8_t param_exists()
 {
-  while (true)
+  while (1)
   {
     /* hvis vi er på et tal er vi i starten af en parameter */
     if (isdigit(current_byte))
-      return true;
+      return 1;
 
     /* vi må sikre os at vi ikke springer over en instruktion - hvis
        vi har et bogstav, er vi igang med at indlæse en instruktion */
     if (isalpha(current_byte))
-      return false;
+      return 0;
 
     /* tegnet er hverken tal eller bogstav og er ikke en del af en
        parameter (f.eks. punktum), derfor kan vi læse videre */
@@ -102,7 +102,7 @@ bool param_exists()
     /* husk at springe ud af løkken igen ... byg tjek ind i
        dataføderen */
     if (Datafeeder_EOS())
-      return false;
+      return 0;
 
     current_byte = Datafeeder_GetNextByte();
   }
@@ -167,91 +167,85 @@ int main(void)
   MotorCtrl_Init();
   Datafeeder_Init();
 
-  /* Her skal vi indlæse data fra dataføder, forstå den m.m. */
-  
+  lcd_clrscr();
+  lcd_puts("Hej verden\n");
+
   while (!Datafeeder_EOS())
   {
-    switch(get_next_ins())
-    {
-    case HPGL_INS("PU"): /* pen up */
-      MotorCtrl_Lift();
-    break;
+    uint16_t ins = get_next_ins();
+    char textins[2];
+    textins[0] = (char)(ins>>8);
+    textins[1] = (char)ins;
+    lcd_puts(textins);
+  }
+
+  goto LOOP;
+
+  // //Her skal vi indlæse data fra dataføder, forstå den m.m.
+  
+  // while (!Datafeeder_EOS())
+  // {
+  //   switch(get_next_ins())
+  //   {
+  //   case HPGL_INS("PU"): /* pen up */
+  //     MotorCtrl_Lift();
+  //   break;
 
 
-    case HPGL_INS("PD"): /* pen down */
-      MotorCtrl_Lower();
-    break;
+  //   case HPGL_INS("PD"): /* pen down */
+  //     MotorCtrl_Lower();
+  //   break;
 
 
-    case HPGL_INS("CI"):
-    {
-      /* en cirkel */
-      uint16_t r = (uint16_t)get_next_param();
-      uint8_t c = 5;
-      /* kordevinkel, indlæses fra datastrømmen hvis den findes */
+  //   case HPGL_INS("CI"):
+  //   {
+  //     /* en cirkel */
+  //     uint16_t r = (uint16_t)get_next_param();
+  //     uint8_t c = 5; /* kordevinkel, indlæses fra datastrømmen hvis den
+  // 		      findes */
+  //     if (param_exists())
+  // 	c = (uint8_t)get_next_param();
+  //     uint8_t w = c;
       
-      if (param_exists())
-        c = (uint8_t)get_next_param();
+  //     MotorCtrl_Lift();
+  //     MotorCtrl_GotoRXY(r, 0, RAPIDMOVESPEED); /* relativt til
+  // 						startpunkt for cirkel
+  // 						(r,0) */
+  //     MotorCtrl_Lower();
       
-      uint16_t w = c;
+  //     while(w <= 360)
+  //     {
+  // 	uint16_t x = cos(w)*r;                   // x-koordinatet bestemmes
+  // 	uint16_t y = sin(w)*r;                   // y-koordinatet bestemmes
+  // 	MotorCtrl_GotoXY(X+x, Y+y, DRAWINGSPEED);  // x,y-koordinaterne sendes med hastigheden v
+  // 	w += c;                         // Kordevinklen lægges til vinklen w
+  //     }
       
-      MotorCtrl_Lift();
-      MotorCtrl_GotoRXY(r, 0, RAPIDMOVESPEED);      // relativt til startpunkt for cirkel (r,0)
-      MotorCtrl_Lower();
+  //     /* Hvis vinklen v ikke går op i 360
+  // 	 if(v != 360)
+  // 	 {
+  // 	 w -=c ;
+  // 	 x = cos(w)*r;                   // x-koordinatet bestemmes
+  // 	 y = sin(w)*r;                   // y-koordinatet bestemmes
+  // 	 MotorCtrl_GotoXY(X+x+r, Y+y+0, v);
+  // 	 }
+  //     */
       
-      while(w <= 360)
-      {
-        uint16_t x = cos(w)*r;                      // x-koordinatet bestemmes
-        uint16_t y = sin(w)*r;                      // y-koordinatet bestemmes
-        MotorCtrl_GotoXY(X+x, Y+y, DRAWINGSPEED);   // x,y-koordinaterne sendes med hastigheden v
-        w += c;                                     // Kordevinklen lægges til vinklen w
-      }
+  //     MotorCtrl_Lift();                 // Løfter pennen
+  //     MotorCtrl_GotoXY(X, Y, RAPIDMOVESPEED);        // Tilbage til centrum
+  //   }
+  //   break;
       
-      /* Hvis vinklen v ikke går op i 360
-	 if(v != 360)
-	 {
-	 w -=c ;
-	 x = cos(w)*r;                                    // x-koordinatet bestemmes
-	 y = sin(w)*r;                                    // y-koordinatet bestemmes
-	 MotorCtrl_GotoXY(X+x+r, Y+y+0, v);
-	 }
-      */
-      
-      MotorCtrl_Lift();                             // Løfter pennen
-      MotorCtrl_GotoXY(X, Y, RAPIDMOVESPEED);       // Tilbage til centrum
-    }
-    break;
-    
-    case HPGL_INS("PA"):
-    {
-      /* Plot Absolut*/
-      X = (uint16_t)get_next_param();
-      Y = (uint16_t)get_next_param();
-      
-      MotorCtrl_GotoXY(X, Y, DRAWINGSPEED);
-      /* Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes*/
-    }
-    break;
-    
-    case HPGL_INS("PR"):
-    {
-      /* Plot Relativ*/
-      uint16_t x = (uint16_t)get_next_param();
-      uint16_t y = (uint16_t)get_next_param();
-      
-      MotorCtrl_GotoRXY(x, y, DRAWINGSPEED);
-      /* Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes*/
-      
-      X += x;
-      Y += y;
-    }
-    break;
-    
-    default:
-      /* ukendt/ikke-implementeret instruktion */
-      break;
-    }
-  }  
+  //   default:
+  //     /* ukendt/ikke-implementeret instruktion */
+  //     break;
+  //   }
+  // }  
+
+ LOOP:
+  while (1)
+  {
+  }
 
   return 0;
 }
