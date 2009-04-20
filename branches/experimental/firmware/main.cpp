@@ -167,7 +167,7 @@ int main(void)
   MotorCtrl_Init();
   Datafeeder_Init();
 
-  //Her skal vi indlæse data fra dataføder, forstå den m.m.
+  /* Her skal vi indlæse data fra dataføder, forstå den m.m. */
   
   while (!Datafeeder_EOS())
   {
@@ -187,41 +187,66 @@ int main(void)
     {
       /* en cirkel */
       uint16_t r = (uint16_t)get_next_param();
-      uint8_t c = 5; /* kordevinkel, indlæses fra datastrømmen hvis den
-		      findes */
+      uint8_t c = 5;
+      /* kordevinkel, indlæses fra datastrømmen hvis den findes */
+      
       if (param_exists())
-	c = (uint8_t)get_next_param();
-      uint8_t w = c;
+        c = (uint8_t)get_next_param();
+      
+      uint16_t w = c;
       
       MotorCtrl_Lift();
-      MotorCtrl_GotoRXY(r, 0, RAPIDMOVESPEED); /* relativt til
-						startpunkt for cirkel
-						(r,0) */
+      MotorCtrl_GotoRXY(r, 0, RAPIDMOVESPEED);      // relativt til startpunkt for cirkel (r,0)
       MotorCtrl_Lower();
       
       while(w <= 360)
       {
-	uint16_t x = cos(w)*r;                   // x-koordinatet bestemmes
-	uint16_t y = sin(w)*r;                   // y-koordinatet bestemmes
-	MotorCtrl_GotoXY(X+x, Y+y, DRAWINGSPEED);  // x,y-koordinaterne sendes med hastigheden v
-	w += c;                         // Kordevinklen lægges til vinklen w
+        uint16_t x = cos(w)*r;                      // x-koordinatet bestemmes
+        uint16_t y = sin(w)*r;                      // y-koordinatet bestemmes
+        MotorCtrl_GotoXY(X+x, Y+y, DRAWINGSPEED);   // x,y-koordinaterne sendes med hastigheden v
+        w += c;                                     // Kordevinklen lægges til vinklen w
       }
       
       /* Hvis vinklen v ikke går op i 360
 	 if(v != 360)
 	 {
 	 w -=c ;
-	 x = cos(w)*r;                   // x-koordinatet bestemmes
-	 y = sin(w)*r;                   // y-koordinatet bestemmes
+	 x = cos(w)*r;                                    // x-koordinatet bestemmes
+	 y = sin(w)*r;                                    // y-koordinatet bestemmes
 	 MotorCtrl_GotoXY(X+x+r, Y+y+0, v);
 	 }
       */
       
-      MotorCtrl_Lift();                 // Løfter pennen
-      MotorCtrl_GotoXY(X, Y, RAPIDMOVESPEED);        // Tilbage til centrum
+      MotorCtrl_Lift();                             // Løfter pennen
+      MotorCtrl_GotoXY(X, Y, RAPIDMOVESPEED);       // Tilbage til centrum
     }
     break;
+    
+    case HPGL_INS("PA"):
+    {
+      /* Plot Absolut*/
+      X = (uint16_t)get_next_param();
+      Y = (uint16_t)get_next_param();
       
+      MotorCtrl_GotoXY(X, Y, DRAWINGSPEED);
+      /* Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes*/
+    }
+    break;
+    
+    case HPGL_INS("PR"):
+    {
+      /* Plot Relativ*/
+      uint16_t x = (uint16_t)get_next_param();
+      uint16_t y = (uint16_t)get_next_param();
+      
+      MotorCtrl_GotoRXY(x, y, DRAWINGSPEED);
+      /* Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes*/
+      
+      X += x;
+      Y += y;
+    }
+    break;
+    
     default:
       /* ukendt/ikke-implementeret instruktion */
       break;

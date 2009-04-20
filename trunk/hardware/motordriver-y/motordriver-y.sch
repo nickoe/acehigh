@@ -1,5 +1,5 @@
 EESchema Schematic File Version 2
-LIBS:power,./7805,device,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,contrib,valves,./motordriver-y.cache
+LIBS:power,./stepper drivers,./7805,device,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,contrib,valves
 EELAYER 24  0
 EELAYER END
 $Descr A4 11700 8267
@@ -13,6 +13,8 @@ Comment2 "Bipolar"
 Comment3 ""
 Comment4 ""
 $EndDescr
+Text Label 5850 5650 0    60   ~
+Vref.A
 Text Notes 7400 1350 0    60   ~
 Motor y
 Text Notes 7400 4500 0    60   ~
@@ -980,8 +982,6 @@ F 1 "100K" V 3350 5950 50  0000 C C
 	1    3350 5950
 	0    -1   -1   0   
 $EndComp
-Text Label 5750 5650 0    60   ~
-Vref.A
 $Comp
 L C C8
 U 1 1 49E633A2
