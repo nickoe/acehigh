@@ -145,6 +145,20 @@ Det skal også nævnes, at HPGL tegner uanset om pennen er oppe eller nede, hvil
   \label{fig:hpgl-cirkel-afvikling}
 \end{figure}
 
+\subsection{Relativ og absolut}
+
+Indenfor HPGL bruger man relative og absolutte koordinater. Absolut plotning indeholder to parametre, X og Y. X og Y er absolutte værdier, altså kan de ikke være negative, som måles enten i en brugerdefineret enhed eller grafik enheder (0,025mm). Absolut plot bruges, når man vil flytte pennen til en bestemt koordinat set fra origo $(0, 0)$. Ligesom med cirklen, så plottes kun en linie, når pennen er nede.
+
+
+Relativ plotning indeholder ligeledes to parametre, x og y. x og y er relative værdier til den nuværende position, altså kan de godt være negative. Relativ plotning måles ligesom absolut. Relativ plotning bruges, når man vil lave serie af linier i række, da man her tager udgangspunkt i den forrige linies slutpunkt. 
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./img/Relativ_Absolut}
+  \caption{Eksempel på relativ og absolut linie}
+  \label{fig:relativ-absolut}
+\end{figure}
+
 \section[Motorkontrol (med buffer)]{Motorkontrol}
 
 % Hvordan er motorkontrollen implementeret? Beskriv implementeringen
