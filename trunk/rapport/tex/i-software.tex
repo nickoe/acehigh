@@ -99,28 +99,36 @@ kan ses i figur\vref{fig:software-spi-sd-handling}.
   \captionof{figure}{Cirkel}
   \label{fig:cirkel-tegning}
 }
-Vi kender cirklens radius, kordevinklen samt startkoordinater. Det første koordinat kan derfor let findes:
+Vi kender cirklens radius $r$, kordevinklen $c$ samt startkoordinater $(x, y)$. Det første koordinat kan ud fra en hurtig analyse derfor let findes:
 \begin{align*}
 P_0(x, y)=(r, 0)
 \end{align*}
 
-Næste koordinat ligger i en vinkel v, som svarer til kordevinklen c. Ved brug af cosinus og sinus samt radius kan vi bestemme det næste koordinat:
+Dette er tilfældet, da vinklen $w$ er $0\degree$.
+
+Næste koordinat ligger i en vinkel $w$, som svarer til kordevinklen $c$, altså har vi lagt en kordevinkel til de $0\degree$. Ved brug af cosinus og sinus samt radius $r$ kan vi bestemme det næste koordinat:
+\begin{align}
+P_1(x, y)&=(\cos(w)\times r, \sin(w)\times r) \Rightarrow \nonumber \\
+P_1(x, y)&=(\cos(c)\times r, \sin(c)\times r) \label{eq:8.1}
+\end{align}
+ 
+Denne formel kommer ud fra grundlæggende trigonometri:
 \begin{align*}
-P_1(x, y)&=(\cos(v)\times r, \sin(v)\times r)\Rightarrow \\
-P_1(x, y)&=(\cos(c)\times r, \sin(c)\times r)
+\cos(v) &= x/r \Rightarrow x = \cos(v)\times r \\
+\sin(v) &= y/r \Rightarrow y = \sin(v)\times r
 \end{align*}
  
-Denne formel kan omskrives, så den gælder et vilkårligt punkt på cirkelperiferien:
+Formlen \vref{eq:8.1} kan omskrives, så den gælder et vilkårligt punkt på cirkelperiferien:
 \begin{align}
 P_n(x, y)=(\cos(n\times c)\times r, \sin(n\times c)\times r)
 \end{align}
 
-Vi betragter nu en cirkel med en radius på 5cm og en kordevinkel på $3\degree$. Første koordinat er således:
+Vi betragter en cirkel med en radius på 5cm og en kordevinkel på $3\degree$. Første koordinat er således:
 \begin{align*}
-P_0(x, y)=(\cos(0\times 3\degree , \sin(0\times 3\degree)\times 5)=(5, 0)
+P_0(x, y)&=(\cos(0\times 3\degree)\times 5 , \sin(0\times 3\degree)\times 5)=(5, 0) \\
 \end{align*}
 
-Vi ser, at dette passer i overensstemmelse med første udsagn. Vha. ovenstående formel kan vi blot lægge en til n hver gang funktionen er udført. Dette skal den blive ved med indtil vinkel overskrider $360\degree$.
+Vi ser, at dette passer i overensstemmelse med første udsagn. Vha. ovenstående formel kan vi blot lægge en til $n$ hver gang funktionen er udført. Dette skal den blive ved med indtil vinkel overskrider $360\degree$.
 
 
 Der opstår dog et problem, hvis vinklen ikke går op i $360\degree$, såsom vinklen $7\degree$. $51\times 7\degree = 357\degree \Rightarrow rest = 3\degree$. Overskrider vinklen de $360\degree$, har vi to muligheder:
@@ -128,7 +136,7 @@ Der opstår dog et problem, hvis vinklen ikke går op i $360\degree$, såsom vin
 \item Funktionen afsluttes uden at slutte cirklen
 \item Funktionen ændres, så optegningen fortsætter til udgangspunktet $P_0$
 \end{itemize}
-Det skal også nævnes, at HPGL tegner uanset om pennen er oppe eller nede, hvilket betyder, at vi skal bruge en funktion til at hæve og sænke pennen. Pennen starter i cirklens centrum. Vi skal derfor sikre os, at pennen er hævet før den går til første punkt  . Herefter bruger vi den generelle funktion til at bestemme x,y-koordinaterne. Efter hver udført funktion lægges en ekstra kordevinkel til vinklen indtil vinklen v er større eller lig $360\degree$. Herefter hæves pennen og flyttes tilbage til cirklens centrum. Afviklingsdiagrammet viser denne proces (se \vref{fig:hpgl-cirkel-afvikling}).
+Det skal også nævnes, at HPGL tegner uanset om pennen er oppe eller nede, hvilket betyder, at vi skal bruge en funktion til at hæve og sænke pennen. HPGL sender "PU" (Pen Up), når pennen skal være oppe. Tilsvarende sender den en "PD" (Pen Down), når der skal tegnes. Pennen starter i cirklens centrum. Vi skal derfor sikre os, at pennen er hævet før den går til første punkt $P_0$. Herefter bruger vi den generelle funktion til at bestemme x,y-koordinaterne. Efter hver udført funktion lægges en ekstra kordevinkel til vinklen indtil vinklen $w$ er større eller lig $360\degree$. Herefter hæves pennen og flyttes tilbage til cirklens centrum. Afviklingsdiagrammet viser denne proces (se \vref{fig:hpgl-cirkel-afvikling}).
 
 \begin{figure}[htbp]
   \centering
