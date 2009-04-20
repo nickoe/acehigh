@@ -1,293 +1,319 @@
-# EESchema Netlist Version 1.1 created  19/4/2009-21:21:18
+# EESchema Netlist Version 1.1 created  20/4/2009-06:41:57
 (
- ( /49E84B8D C1 C1 100n
-  ( 1 N-000009 )
-  ( 2 GND )
+ ( /49EB9594 $noname  P12 CONN_1 {Lib=CONN_1}
+  (    1 ? )
  )
- ( /49E84B90 C1 C2 100n
-  ( 1 +5V )
-  ( 2 GND )
+ ( /49EB9593 $noname  P11 CONN_1 {Lib=CONN_1}
+  (    1 ? )
  )
- ( /49E84B95 C1V7 C3 10uF
-  ( 1 +5V )
-  ( 2 GND )
+ ( /49EB9590 $noname  P10 CONN_1 {Lib=CONN_1}
+  (    1 ? )
  )
- ( /49E635C1 C1V7 C4 4n7
-  ( 1 GND )
-  ( 2 N-000031 )
+ ( /49EB958C $noname  P9 CONN_1 {Lib=CONN_1}
+  (    1 ? )
  )
- ( /49E85628 C1 C5 10n
-  ( 1 N-000038 )
-  ( 2 N-000012 )
+ ( /49E86AB7 $noname  U1 LM7805 {Lib=LM7805}
+  (    1 +5V )
+  (    2 N-000033 )
+  (    3 GND )
  )
- ( /49E85588 C1 C6 10n
-  ( 1 N-000037 )
-  ( 2 N-000015 )
+ ( /49E85689 $noname  P1 IC_PWR {Lib=CONN_2}
+  (    1 GND )
+  (    2 N-000033 )
  )
- ( /49E633A2 C1 C7 220n
-  ( 1 /Vref.B )
-  ( 2 N-000011 )
+ ( /49E8562E $noname  R2 R {Lib=R}
+  (    1 N-000005 )
+  (    2 N-000031 )
  )
- ( /49E633A2 C1 C8 220n
-  ( 1 /Vref.A )
-  ( 2 N-000014 )
+ ( /49E85628 $noname  C5 10n {Lib=C}
+  (    1 N-000006 )
+  (    2 N-000031 )
  )
- ( /49E63856 C1 C9 1nF
-  ( 1 GND )
-  ( 2 N-000019 )
+ ( /49E85622 $noname  D3 4148 {Lib=DIODE}
+  (    1 /Vref.B )
+  (    2 N-000005 )
  )
- ( /49E6385E C1 C10 1nF
-  ( 1 N-000021 )
-  ( 2 GND )
+ ( /49E8561F $noname  D1 4148 {Lib=DIODE}
+  (    1 N-000005 )
+  (    2 N-000032 )
  )
- ( /49E63856 C1 C11 1nF
-  ( 1 GND )
-  ( 2 N-000029 )
+ ( /49E855AD $noname  D4 4148 {Lib=DIODE}
+  (    1 /Vref.A )
+  (    2 N-000004 )
  )
- ( /49E6385E C1 C12 1nF
-  ( 1 N-000032 )
-  ( 2 GND )
+ ( /49E855AA $noname  D2 4148 {Lib=DIODE}
+  (    1 N-000004 )
+  (    2 N-000030 )
  )
- ( /49E48944 C1 C13 100n
-  ( 1 /Vref.B )
-  ( 2 GND )
+ ( /49E8558F $noname  R3 100R {Lib=R}
+  (    1 N-000029 )
+  (    2 N-000004 )
  )
- ( /49E48944 C1 C14 100n
-  ( 1 /Vref.A )
-  ( 2 GND )
+ ( /49E85588 $noname  C6 10n {Lib=C}
+  (    1 N-000007 )
+  (    2 N-000029 )
  )
- ( /49E631DB C1 C15 100nF
-  ( 1 GNDA )
-  ( 2 +12V )
+ ( /49E84B95 $noname  C3 10uF {Lib=CP}
+  (    1 +5V )
+  (    2 GND )
  )
- ( /49E631DB C1 C16 100nF
-  ( 1 GNDA )
-  ( 2 +12V )
+ ( /49E84B90 $noname  C2 100n {Lib=C}
+  (    1 +5V )
+  (    2 GND )
  )
- ( /49E631E0 C1V8 C17 100uF
-  ( 1 +12V )
-  ( 2 GNDA )
+ ( /49E84B8D $noname  C1 100n {Lib=C}
+  (    1 N-000033 )
+  (    2 GND )
  )
- ( /49E631E0 C1V8 C18 100uF
-  ( 1 +12V )
-  ( 2 GNDA )
+ ( /49E84B1C $noname  R4 0R {Lib=R}
+  (    1 GNDA )
+  (    2 GND )
  )
- ( /49E8561F D4 D1 4148
-  ( 1 N-000010 )
-  ( 2 N-000011 )
+ ( /49E84A50 $noname  P3 M.y {Lib=CONN_2}
+  (    1 /Vref.B )
+  (    2 GND )
  )
- ( /49E855AA D4 D2 4148
-  ( 1 N-000013 )
-  ( 2 N-000014 )
+ ( /49E84A48 $noname  P4 M.x {Lib=CONN_2}
+  (    1 /Vref.A )
+  (    2 GND )
  )
- ( /49E85622 D4 D3 4148
-  ( 1 /Vref.B )
-  ( 2 N-000010 )
+ ( /49E63C5A $noname  P2 MCU {Lib=CONN_5X2}
+  (    1 /HALF/FULL )
+  (    2 /DECAY )
+  (    3 /CW/CWW.x )
+  (    4 /ENABLE )
+  (    5 /CLOCK.x )
+  (    6 /CLOCK.y )
+  (    7 /RESET )
+  (    8 /CW/CWW.y )
+  (    9 GND )
+  (   10 +5V )
  )
- ( /49E855AD D4 D4 4148
-  ( 1 /Vref.A )
-  ( 2 N-000013 )
+ ( /49E63B55 $noname  P7 x.A {Lib=CONN_2}
+  (    1 N-000009 )
+  (    2 N-000018 )
  )
- ( /49E62EB1 24DIP-ELL300 IC1 L6208N
-  ( 1 /CLOCK.y )
-  ( 2 /CW/CWW.y )
-  ( 3 N-000022 )
-  ( 4 N-000019 )
-  ( 5 N-000024 )
-  ( 6 GND )
-  ( 7 GND )
-  ( 8 N-000017 )
-  ( 9 N-000021 )
-  ( 10 N-000018 )
-  ( 11 /Vref.B )
-  ( 12 /HALF/FULL )
-  ( 13 /DECAY )
-  ( 14 N-000031 )
-  ( 15 N-000011 )
-  ( 16 N-000023 )
-  ( 17 /Vref.B )
-  ( 18 GND )
-  ( 19 GND )
-  ( 20 /Vref.B )
-  ( 21 N-000016 )
-  ( 22 N-000038 )
-  ( 23 /RESET )
-  ( 24 /Vref.B )
+ ( /49E63B50 $noname  P8 x.B {Lib=CONN_2}
+  (    1 N-000017 )
+  (    2 N-000010 )
  )
- ( /49E62EB1 24DIP-ELL300 IC2 L6208N
-  ( 1 /CLOCK.x )
-  ( 2 /CW/CWW.x )
-  ( 3 N-000033 )
-  ( 4 N-000029 )
-  ( 5 N-000035 )
-  ( 6 GND )
-  ( 7 GND )
-  ( 8 N-000026 )
-  ( 9 N-000032 )
-  ( 10 N-000028 )
-  ( 11 /Vref.A )
-  ( 12 /HALF/FULL )
-  ( 13 /DECAY )
-  ( 14 N-000031 )
-  ( 15 N-000014 )
-  ( 16 N-000034 )
-  ( 17 /Vref.A )
-  ( 18 GND )
-  ( 19 GND )
-  ( 20 /Vref.A )
-  ( 21 N-000025 )
-  ( 22 N-000037 )
-  ( 23 /RESET )
-  ( 24 /Vref.A )
+ ( /49E63869 $noname  R16 39K {Lib=R}
+  (    1 GND )
+  (    2 N-000013 )
  )
- ( /49E85689 bornier2 P1 IC_PWR
-  ( 1 GND )
-  ( 2 N-000009 )
+ ( /49E6385E $noname  C12 1nF {Lib=C}
+  (    1 N-000013 )
+  (    2 GND )
  )
- ( /49E63C5A PIN_ARRAY_5x2 P2 MCU
-  ( 1 /HALF/FULL )
-  ( 2 /DECAY )
-  ( 3 /CW/CWW.x )
-  ( 4 /ENABLE )
-  ( 5 /CLOCK.x )
-  ( 6 /CLOCK.y )
-  ( 7 /RESET )
-  ( 8 /CW/CWW.y )
-  ( 9 GND )
-  ( 10 +5V )
+ ( /49E6385A $noname  R15 39K {Lib=R}
+  (    1 GND )
+  (    2 N-000011 )
  )
- ( /49E84A50 bornier2 P3 y
-  ( 1 /Vref.B )
-  ( 2 GNDPWR )
+ ( /49E63856 $noname  C11 1nF {Lib=C}
+  (    1 GND )
+  (    2 N-000011 )
  )
- ( /49E84A48 bornier2 P4 x
-  ( 1 /Vref.A )
-  ( 2 GNDPWR )
+ ( /49E635C1 $noname  C4 4n7 {Lib=C}
+  (    1 GND )
+  (    2 N-000028 )
  )
- ( /49E63B55 bornier2 P5 y.A
-  ( 1 N-000024 )
-  ( 2 N-000016 )
+ ( /49E635BD $noname  R1 100K {Lib=R}
+  (    1 /ENABLE )
+  (    2 N-000028 )
  )
- ( /49E63B50 bornier2 P6 y.B
-  ( 1 N-000017 )
-  ( 2 N-000023 )
+ ( /49E633A2 $noname  C8 220n {Lib=C}
+  (    1 /Vref.A )
+  (    2 N-000030 )
  )
- ( /49E63B55 bornier2 P7 x.A
-  ( 1 N-000035 )
-  ( 2 N-000025 )
+ ( /49E631E0 $noname  C18 100uF {Lib=CP}
+  (    1 /Vref.A )
+  (    2 GND )
  )
- ( /49E63B50 bornier2 P8 x.B
-  ( 1 N-000026 )
-  ( 2 N-000034 )
+ ( /49E631DB $noname  C16 100nF {Lib=C}
+  (    1 GND )
+  (    2 /Vref.A )
  )
- ( /49EB958C 1pin P9 CONN_1
-  ( 1 ? )
+ ( /49E62F2B $noname  R9 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000012 )
  )
- ( /49EB9590 1pin P10 CONN_1
-  ( 1 ? )
+ ( /49E62F29 $noname  R10 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000012 )
  )
- ( /49EB9593 1pin P11 CONN_1
-  ( 1 ? )
+ ( /49E62F25 $noname  R11 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000015 )
  )
- ( /49EB9594 1pin P12 CONN_1
-  ( 1 ? )
+ ( /49E62F21 $noname  R12 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000015 )
  )
- ( /49E635BD R4-LARGE_PADS R1 100K
-  ( 1 /ENABLE )
-  ( 2 N-000031 )
+ ( /49E62EB1 stepper_drivers-POWERDIP24  IC2 L6208N {Lib=L6208N}
+  (    1 /CLOCK.x )
+  (    2 /CW/CWW.x )
+  (    3 N-000012 )
+  (    4 N-000011 )
+  (    5 N-000009 )
+  (    6 GND )
+  (    7 GND )
+  (    8 N-000017 )
+  (    9 N-000013 )
+  (   10 N-000015 )
+  (   11 /Vref.A )
+  (   12 /HALF/FULL )
+  (   13 /DECAY )
+  (   14 N-000028 )
+  (   15 N-000030 )
+  (   16 N-000010 )
+  (   17 /Vref.A )
+  (   18 GND )
+  (   19 GND )
+  (   20 /Vref.A )
+  (   21 N-000018 )
+  (   22 N-000007 )
+  (   23 /RESET )
+  (   24 /Vref.A )
  )
- ( /49E8562E R4-LARGE_PADS R2 R
-  ( 1 N-000010 )
-  ( 2 N-000012 )
+ ( /49E48944 $noname  C14 100n {Lib=C}
+  (    1 /Vref.A )
+  (    2 GND )
  )
- ( /49E8558F R1 R3 100R
-  ( 1 N-000015 )
-  ( 2 N-000013 )
+ ( /49E48942 $noname  R18 47K {Lib=R}
+  (    1 +5V )
+  (    2 N-000014 )
  )
- ( /49E84B1C R4-LARGE_PADS R4 0R
-  ( 1 GNDA )
-  ( 2 GND )
+ ( /49E4893C $noname  RV2 10K {Lib=POT}
+  (    1 N-000014 )
+  (    2 /Vref.A )
+  (    3 GND )
  )
- ( /49E62F2B R4-LARGE_PADS R5 1R
-  ( 1 GNDA )
-  ( 2 N-000022 )
+ ( /49E63B55 $noname  P5 y.A {Lib=CONN_2}
+  (    1 N-000019 )
+  (    2 N-000027 )
  )
- ( /49E62F29 R4-LARGE_PADS R6 1R
-  ( 1 GNDA )
-  ( 2 N-000022 )
+ ( /49E63B50 $noname  P6 y.B {Lib=CONN_2}
+  (    1 N-000026 )
+  (    2 N-000020 )
  )
- ( /49E62F25 R4-LARGE_PADS R7 1R
-  ( 1 GNDA )
-  ( 2 N-000018 )
+ ( /49E63869 $noname  R14 39K {Lib=R}
+  (    1 GND )
+  (    2 N-000023 )
  )
- ( /49E62F21 R4-LARGE_PADS R8 1R
-  ( 1 GNDA )
-  ( 2 N-000018 )
+ ( /49E6385E $noname  C10 1nF {Lib=C}
+  (    1 N-000023 )
+  (    2 GND )
  )
- ( /49E62F2B R4-LARGE_PADS R9 1R
-  ( 1 GNDA )
-  ( 2 N-000033 )
+ ( /49E6385A $noname  R13 39K {Lib=R}
+  (    1 GND )
+  (    2 N-000021 )
  )
- ( /49E62F29 R4-LARGE_PADS R10 1R
-  ( 1 GNDA )
-  ( 2 N-000033 )
+ ( /49E63856 $noname  C9 1nF {Lib=C}
+  (    1 GND )
+  (    2 N-000021 )
  )
- ( /49E62F25 R4-LARGE_PADS R11 1R
-  ( 1 GNDA )
-  ( 2 N-000028 )
+ ( /49E633A2 $noname  C7 220n {Lib=C}
+  (    1 /Vref.B )
+  (    2 N-000032 )
  )
- ( /49E62F21 R4-LARGE_PADS R12 1R
-  ( 1 GNDA )
-  ( 2 N-000028 )
+ ( /49E631E0 $noname  C17 100uF {Lib=CP}
+  (    1 /Vref.B )
+  (    2 GND )
  )
- ( /49E6385A R1 R13 39K
-  ( 1 GND )
-  ( 2 N-000019 )
+ ( /49E631DB $noname  C15 100nF {Lib=C}
+  (    1 GND )
+  (    2 /Vref.B )
  )
- ( /49E63869 R1 R14 39K
-  ( 1 GND )
-  ( 2 N-000021 )
+ ( /49E62F2B $noname  R5 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000022 )
  )
- ( /49E6385A R1 R15 39K
-  ( 1 GND )
-  ( 2 N-000029 )
+ ( /49E62F29 $noname  R6 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000022 )
  )
- ( /49E63869 R4-LARGE_PADS R16 39K
-  ( 1 GND )
-  ( 2 N-000032 )
+ ( /49E62F25 $noname  R7 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000025 )
  )
- ( /49E48942 R4-LARGE_PADS R17 47K
-  ( 1 +5V )
-  ( 2 N-000020 )
+ ( /49E62F21 $noname  R8 1R {Lib=R}
+  (    1 GND )
+  (    2 N-000025 )
  )
- ( /49E48942 R4-LARGE_PADS R18 47K
-  ( 1 +5V )
-  ( 2 N-000030 )
+ ( /49E62EB1 stepper_drivers-POWERDIP24  IC1 L6208N {Lib=L6208N}
+  (    1 /CLOCK.y )
+  (    2 /CW/CWW.y )
+  (    3 N-000022 )
+  (    4 N-000021 )
+  (    5 N-000019 )
+  (    6 GND )
+  (    7 GND )
+  (    8 N-000026 )
+  (    9 N-000023 )
+  (   10 N-000025 )
+  (   11 /Vref.B )
+  (   12 /HALF/FULL )
+  (   13 /DECAY )
+  (   14 N-000028 )
+  (   15 N-000032 )
+  (   16 N-000020 )
+  (   17 /Vref.B )
+  (   18 GND )
+  (   19 GND )
+  (   20 /Vref.B )
+  (   21 N-000027 )
+  (   22 N-000006 )
+  (   23 /RESET )
+  (   24 /Vref.B )
  )
- ( /49E4893C R4-LARGE_PADS RV1 10K
-  ( 1 N-000020 )
-  ( 2 /Vref.B )
-  ( 3 GND )
+ ( /49E48944 $noname  C13 100n {Lib=C}
+  (    1 /Vref.B )
+  (    2 GND )
  )
- ( /49E4893C R4-LARGE_PADS RV2 10K
-  ( 1 N-000030 )
-  ( 2 /Vref.A )
-  ( 3 GND )
+ ( /49E48942 $noname  R17 47K {Lib=R}
+  (    1 +5V )
+  (    2 N-000024 )
  )
- ( /49E86AB7 TO220_VERT U1 LM7805
-  ( 1 +5V )
-  ( 2 N-000009 )
-  ( 3 GND )
+ ( /49E4893C $noname  RV1 10K {Lib=POT}
+  (    1 N-000024 )
+  (    2 /Vref.B )
+  (    3 GND )
  )
 )
 *
 { Allowed footprints by component:
-$component C1
+$component R2
+ R?
+ SM0603
+ SM0805
+$endlist
+$component C5
  SM*
  C?
  C1-1
 $endlist
-$component C2
+$component D3
+ D?
+ S*
+$endlist
+$component D1
+ D?
+ S*
+$endlist
+$component D4
+ D?
+ S*
+$endlist
+$component D2
+ D?
+ S*
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+$endlist
+$component C6
  SM*
  C?
  C1-1
@@ -296,134 +322,64 @@ $component C3
  CP*
  SM*
 $endlist
-$component C4
+$component C2
  SM*
  C?
  C1-1
 $endlist
-$component C5
+$component C1
  SM*
  C?
  C1-1
-$endlist
-$component C6
- SM*
- C?
- C1-1
-$endlist
-$component C7
- SM*
- C?
- C1-1
-$endlist
-$component C8
- SM*
- C?
- C1-1
-$endlist
-$component C9
- SM*
- C?
- C1-1
-$endlist
-$component C10
- SM*
- C?
- C1-1
-$endlist
-$component C11
- SM*
- C?
- C1-1
-$endlist
-$component C12
- SM*
- C?
- C1-1
-$endlist
-$component C13
- SM*
- C?
- C1-1
-$endlist
-$component C14
- SM*
- C?
- C1-1
-$endlist
-$component C15
- SM*
- C?
- C1-1
-$endlist
-$component C16
- SM*
- C?
- C1-1
-$endlist
-$component C17
- CP*
- SM*
-$endlist
-$component C18
- CP*
- SM*
-$endlist
-$component D1
- D?
- S*
-$endlist
-$component D2
- D?
- S*
-$endlist
-$component D3
- D?
- S*
-$endlist
-$component D4
- D?
- S*
-$endlist
-$component R1
- R?
- SM0603
- SM0805
-$endlist
-$component R2
- R?
- SM0603
- SM0805
-$endlist
-$component R3
- R?
- SM0603
- SM0805
 $endlist
 $component R4
  R?
  SM0603
  SM0805
 $endlist
-$component R5
+$component R16
  R?
  SM0603
  SM0805
 $endlist
-$component R6
+$component C12
+ SM*
+ C?
+ C1-1
+$endlist
+$component R15
  R?
  SM0603
  SM0805
 $endlist
-$component R7
+$component C11
+ SM*
+ C?
+ C1-1
+$endlist
+$component C4
+ SM*
+ C?
+ C1-1
+$endlist
+$component R1
  R?
  SM0603
  SM0805
 $endlist
-$component R8
- R?
- SM0603
- SM0805
+$component C8
+ SM*
+ C?
+ C1-1
+$endlist
+$component C18
+ CP*
+ SM*
+$endlist
+$component C16
+ SM*
+ C?
+ C1-1
 $endlist
 $component R9
  R?
@@ -445,7 +401,12 @@ $component R12
  SM0603
  SM0805
 $endlist
-$component R13
+$component C14
+ SM*
+ C?
+ C1-1
+$endlist
+$component R18
  R?
  SM0603
  SM0805
@@ -455,25 +416,267 @@ $component R14
  SM0603
  SM0805
 $endlist
-$component R15
+$component C10
+ SM*
+ C?
+ C1-1
+$endlist
+$component R13
  R?
  SM0603
  SM0805
 $endlist
-$component R16
+$component C9
+ SM*
+ C?
+ C1-1
+$endlist
+$component C7
+ SM*
+ C?
+ C1-1
+$endlist
+$component C17
+ CP*
+ SM*
+$endlist
+$component C15
+ SM*
+ C?
+ C1-1
+$endlist
+$component R5
  R?
  SM0603
  SM0805
+$endlist
+$component R6
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R7
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R8
+ R?
+ SM0603
+ SM0805
+$endlist
+$component C13
+ SM*
+ C?
+ C1-1
 $endlist
 $component R17
  R?
  SM0603
  SM0805
 $endlist
-$component R18
- R?
- SM0603
- SM0805
-$endlist
 $endfootprintlist
 }
+{ Pin List by Nets
+/Net 2 "CLOCK.x"
+ P2 5
+ IC2 1
+/Net 3 "HALF/FULL"
+ P2 1
+ IC2 12
+ IC1 12
+Net 4 ""
+ D4 2
+ D2 1
+ R3 2
+Net 5 ""
+ R2 1
+ D3 2
+ D1 1
+Net 6 ""
+ C5 1
+ IC1 22
+Net 7 ""
+ C6 1
+ IC2 22
+Net 8 "+5V"
+ U1 1
+ C3 1
+ C2 1
+ P2 10
+ R18 1
+ R17 1
+Net 9 ""
+ P7 1
+ IC2 5
+Net 10 ""
+ P8 2
+ IC2 16
+Net 11 ""
+ R15 2
+ C11 2
+ IC2 4
+Net 12 ""
+ R9 2
+ R10 2
+ IC2 3
+Net 13 ""
+ R16 2
+ C12 1
+ IC2 9
+Net 14 ""
+ R18 2
+ RV2 1
+Net 15 ""
+ R11 2
+ R12 2
+ IC2 10
+Net 16 "GND"
+ U1 3
+ P1 1
+ C3 2
+ C2 2
+ C1 2
+ R4 2
+ P3 2
+ P4 2
+ P2 9
+ R16 1
+ C12 2
+ R15 1
+ C11 1
+ C4 1
+ C18 2
+ C16 1
+ R9 1
+ R10 1
+ R11 1
+ R12 1
+ IC2 19
+ IC2 18
+ IC2 7
+ IC2 6
+ C14 2
+ RV2 3
+ R14 1
+ C10 2
+ R13 1
+ C9 1
+ C17 2
+ C15 1
+ R5 1
+ R6 1
+ R7 1
+ R8 1
+ IC1 19
+ IC1 18
+ IC1 7
+ IC1 6
+ C13 2
+ RV1 3
+Net 17 ""
+ P8 1
+ IC2 8
+Net 18 ""
+ P7 2
+ IC2 21
+Net 19 ""
+ P5 1
+ IC1 5
+Net 20 ""
+ P6 2
+ IC1 16
+Net 21 ""
+ R13 2
+ C9 2
+ IC1 4
+Net 22 ""
+ R5 2
+ R6 2
+ IC1 3
+Net 23 ""
+ R14 2
+ C10 1
+ IC1 9
+Net 24 ""
+ R17 2
+ RV1 1
+Net 25 ""
+ R7 2
+ R8 2
+ IC1 10
+Net 26 ""
+ P6 1
+ IC1 8
+Net 27 ""
+ P5 2
+ IC1 21
+Net 28 ""
+ C4 2
+ R1 2
+ IC2 14
+ IC1 14
+Net 29 ""
+ R3 1
+ C6 2
+Net 30 ""
+ D2 2
+ C8 2
+ IC2 15
+Net 31 ""
+ R2 2
+ C5 2
+Net 32 ""
+ D1 2
+ C7 2
+ IC1 15
+Net 33 ""
+ U1 2
+ P1 2
+ C1 1
+/Net 34 "CW/CWW.x"
+ P2 3
+ IC2 2
+/Net 35 "RESET"
+ P2 7
+ IC2 23
+ IC1 23
+/Net 41 "CW/CWW.y"
+ P2 8
+ IC1 2
+/Net 42 "CLOCK.y"
+ P2 6
+ IC1 1
+/Net 43 "ENABLE"
+ P2 4
+ R1 1
+/Net 44 "DECAY"
+ P2 2
+ IC2 13
+ IC1 13
+/Net 45 "Vref.B"
+ D3 1
+ P3 1
+ C7 1
+ C17 1
+ C15 2
+ IC1 11
+ IC1 17
+ IC1 24
+ IC1 20
+ C13 1
+ RV1 2
+/Net 46 "Vref.A"
+ D4 1
+ P4 1
+ C8 1
+ C18 1
+ C16 2
+ IC2 11
+ IC2 17
+ IC2 24
+ IC2 20
+ C14 1
+ RV2 2
+}
+#End
