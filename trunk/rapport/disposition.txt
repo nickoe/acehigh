@@ -19,16 +19,16 @@ Design (Overvejelser)
 	
 	Hardwareafsnit
 		Stepmotorer
-    Sensorer
+		Sensorer
 		SD-kort adapter
 
 	Softwareafsnit
 		Motorstyring
-      Motorstyring med indlagt forsinkelse
-        Matematik
-      Motorstyring med afbrudt afvikling
-        Husk nævn buffer
-        Matematik
+		Motorstyring med indlagt forsinkelse
+		Matematik
+		Motorstyring med afbrudt afvikling
+		Husk nævn buffer
+		Matematik
 		Dataformat
 		Programmerinssprog
 
@@ -39,22 +39,22 @@ Implementering (Praktisk anvendelse)
 
 	Hardwareafsnit
 		Delkredsløb med diagrammer
-    Sensorer
-    Stepmotor drivere
-    SD-kort læser
+    		Sensorer
+    		Stepmotor drivere
+    		SD-kort læser
 
 	Softwareafsnit
 		Oversigt over softwaren
 		Dataføder
-    Afviklingsdiagrammer indimellem
+		Afviklingsdiagrammer indimellem
 		HPGL-behandleren
-      Kort intro til HPGL og hvilke instruktioner vi bruger
-      Identifikation af instruktioner og parametre
-      Relativ og absolut
-      Cirkel plotning
+      		Kort intro til HPGL og hvilke instruktioner vi bruger
+      		Identifikation af instruktioner og parametre
+      		Relativ og absolut
+      		Cirkel plotning
 		Motorkontrol
-      Stepmotorstyring
-      Sensorer og løfter/sænker
+      		Stepmotorstyring
+      		Sensorer og løfter/sænker
 
 	Afslutning / Konklusion
 		Nåede vi målet? - Problemformulering?

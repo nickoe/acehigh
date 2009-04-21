@@ -1,25 +1,30 @@
 \chapter[Design af hardware]{Hardware}
 
-% Afsnittet skal indeholde information om vores
-% hardware. Strømforsyning, motor drivere, MCU print, transducere
-% m.m. Men kun hvad vi kan gøre, for at opfylde vores krav, ikke
-% hvordan vi faktisk konstruerer det.
+% Afsnittet skal indeholde information om vores hardware.
+% Strømforsyning, motor drivere, MCU print, transducere m.m. Men kun
+% hvad vi kan gøre, for at opfylde vores krav, ikke hvordan vi faktisk
+% konstruerer det.
+
+Med hensyn til hardwaren er der flere ting der skal tages hensyn
+til. Hvilket er det vi vil forsøge at besvare i dette afsnit.
 
 \section{Stepmotor drivere}
-I dette projekt har vi to forskellige stepmotorer, som vi har fundet
-fra et par bordscannere. Motorene er selvfølgelig forskellige fra
-hinanden. Den ene motor er en bipolar motor mens den anden er en
-variabel reluktans motor. Vi har i det følgende valgt, at lave hvert
-driver print på hvert sit printkort, da vi opnår en vis fleksibilitet,
-da vi på den måde lettere kan lave den ene om, i tilfælde af den anden
-brænder af eller der er fejl på. \fixme{todo, Omformuler dårlige
-  formuleringer}
+Opgaven er at lave en plotter, hvilket kræver, at vi kan flyte en pen
+i to retninger. For at styre disse to akser, er det vigtigt at vi
+nøjagtigt holde styr på, hvor vi er. Til dette er stepmotor styring
+godt, da vi precis ved hvor vi er hver gang vi har taget et skridt. I
+vores tilfælde bruger vi nogle stepmotorer fra et par
+bordscannere. Motorene er selvfølgelig forskellig fra hinanden, da det
+er to vidt forskellige scannere de kommer fra. Da vi har to
+forskellige motorer, som vi ikke kender specifikationerne på, har vi
+valgt, at lave et driver print med adskilte kredsløb til hver
+motor. Vi opnår herved en vis fleksibilitet, da vi på den måde kan
+have forskellig forsyningsspænding til hver motor.
 
-\subsection{Bipolar motor}
-\fixme{Nærbillede af lille motor i marginen, gerne monteret på plotter}
-
-\subsection{Unipolar motor}
-\fixme{Nærbillede af stor motor i marginen, gerne monteret på plotter}
+Det skal dog lige nævnes, at den ene motor er en bipolar motor, mens
+den anden er en unipolar motor. Vi vil dog styre begge motorere som
+bipolare stepmotorere, fordi vi har nogle integrerede stepmotor
+drivere til rådighed, som kun kan styre bipolare motorer.
 
 \section{Sensorer}
 Vi skal være i stand til at nulstille maskinens position i forhold til
@@ -32,20 +37,20 @@ køre. Det skal have til formål, at hovedet bliver trukket til
 origo. Men denne metode er ikke anvendelig, da man vil belaste
 mekanikken og motorerne for meget.
 
-Vi vil derfor anvende nogle sensorer, som følere i en
+Vi vil derfor anvende nogle sensorer som følrere i en
 nulstillingsposition. Vi kan anvende et par fotogafler, hvor vi fører
 en mekanisk fane ind i. Maskinen kan så dedektere, hvornår der kommer
-noget ind for sensoren, hvilket betyder, at vi ved, hvor vi er. Ud fra
+noget ind for sensoren, hvilket betyder, at vi ved hvor vi er. Ud fra
 hvilke signaler vi får fra de forskellige sensorer, så kan vi stoppe
-maskinens bevægelse. Til sidst ved vi, hvornår vi er i origo, altså at
-maskinen er nulstillet. Vi kan herefter begynde at anvende
-maskinen. Det kræver selvfølgelig, at man placerer sensorerne, således
+maskinens bevægelse. Til sidst ved vi hvornår vi er i origo, altså at
+maskinen er nulstillet. Vi kan harefter begynde at anvende
+maskinen. Det kræver selvfølgelig,at man placerer sensorerne, således
 at mekanikken aldrig når at komme til sine yderpunkter, hvor den ikke
 kan bevæge sig længere.
 
 \section{SD-kort adapter}
-Vi har vha. kravspecifikationen bestemt, at vi skal kunne styre
-maskinen vha. data fra et SD-kort. Et SD-kort kan styres på
+Vi har vha. kravspecefikationen bestemt, at vi skal kunne styre
+maskinen, vha. data fra et SD-kort. Et SD-kort kan styres på
 forskellige måder.
 
 \begin{itemize}
@@ -70,18 +75,18 @@ pins) to support four bit wide parallel transfers.---\fixme{Det
 \fixme{Skal vi refere captain.at som kilde, eller bare i
   litteraturlisten? pinouts.ru}
 
-Som en følge af hvilken måde vi vælger at kommunikere med SD-kortet,
-skal hardwaren understøtte funktionen. Der er dog ikke stor forskel på 
-SPI mode, som vi vil understøtte, og SD mode, som
-blot kræver to forbindelser mere til SD-kortet. SPI mode også den simpleste.
+Som en følge af hvilken måde vi vælger, at kommunikere med SD-kortet,
+skal hardwaren understøtte funktionen. Der er dog ikke stor forskel
+SPI mode, som vi vil understøtte og er den simpleste, og SD mode, som
+blot kræver to forbindelser mere til SD-kortet.
 
 SD-kortet opererer ved en spænding på $3,3V$, derfor skal vi have en
-seperat spændingsforsyning på $3,3V$ til kortet. Af samme grund er vi
-nødt til at sænke spændingen fra vores MCU fra de $5V$, til omkring de
-$3,3V$, før vi kan kommunikere med det. Vi kan opnå dette med en
-spændingsdeler ved IO pinsene, der går fra MCU'en til SD-kortet. Når
-signalet fra SD-kortet går høj, vil det givetvis være på $3,3V$. Dette
-er ikke de $5V$, som vores MCU opererer ved, men det er ikke noget
+seperat spændingsforsyning på $3,3V$ til kortet. A samme grund er vi
+nødt til, at sænke spændingen fra vores MCU fra de 5V, til omkring de
+3,3V, før vi kan kommunikere med det. Vi kan opnå dette med en
+spændingsdeler, ved IO pinsene der går fra MCU'en til SD-kortet. Når
+signalet fra SD-kortet går høj, vil det givetvis være på 3,3V. Dette
+er ikke de 5V som vores MCU opererer ved, men det er ikke noget
 problem, da det stadigvæk svarer til et højt signal for MCU'en.
 
 %%% Local Variables: 
