@@ -14,7 +14,7 @@ PRJSRC=main.c lcd.c sd_raw.c data.c motorctrl.c
 INC=-I. -I/usr/avr/include
 
 # Lib-stier
-LIB=-L/usr/avr/lib
+#LIB=-L/usr/avr/lib
 
 # Biblioteker
 LIBS=-lm
@@ -64,7 +64,7 @@ ASMFLAGS =$(INC) -mmcu=$(MCU) -x assembler-with-cpp		\
 
 
 # linker
-LDFLAGS=-Wl,-Map,$(TRG).map,--cref -mmcu=$(MCU) $(LIB) $(LIBS)
+LDFLAGS=-Wl,-Map,$(TRG).map,--cref -mmcu=$(MCU)
 
 ##### executables ####
 CC=avr-gcc
@@ -141,7 +141,7 @@ $(DUMPTRG): $(TRG)
 
 
 $(TRG): $(OBJDEPS) 
-	$(CC) $(LDFLAGS) -o $(TRG) $(OBJDEPS)
+	$(CC) $(LDFLAGS) -o $(TRG) $(OBJDEPS) $(LIBS)
 
 
 #### Generating assembly ####

@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #include <stdint.h>
 #include <math.h>
 
@@ -50,7 +51,7 @@
 /* definitioner til motorstyringskredsen */
 #define MCC_DDR        DDRA
 #define MCC_PORT       PORTA
-#define MCC_X_HALFFULL 0
+#define MCC_HALFFULL   0
 #define MCC_DECAY      1
 #define MCC_X_CCW      2
 #define MCC_ENABLE     3
@@ -66,8 +67,6 @@ uint16_t X = 0, Y = 0;
 
 /* timeren */
 uint16_t timer = 0;
-
-Queue Q;
 
 
 
@@ -167,7 +166,7 @@ void Queue_Dequeue(Queue Q)
 /* initialiser motorerne */
 void MotorCtrl_Init(void)
 {
-  Q = Queue_Create(128);
+  queue = Queue_Create(128);
 
   /* her skal vi sætte motorkontrolkredsen op */
   MCC_DDR = 0xff;
@@ -180,6 +179,17 @@ void MotorCtrl_Init(void)
 
   /* aktiver */
   MCC_PORT |= 1 << MCC_ENABLE;
+
+  
+  /* timeren sættes op */
+  /* timer-clock er f_osc/128 = 125 kHz, Clear Timer on Compare */
+  TCCR0 = (1<<WGM01) | (1<<CS02) | (1<<CS00);
+  /* tæl op til 249, så bliver frekvensen af timeren 500 Hz */
+  OCR0 = 249;
+  /* aktiver interrupt */
+  TIMSK = 1<<OCIE0;
+
+  sei();
 }
 
 /* flytter angivne koordinater, relativt */
@@ -257,10 +267,10 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, double v)
     }
 
     /* vi må vente til der er plads i køen */
-    while (Queue_IsFull(Q));
+    while (Queue_IsFull(queue));
 
     /* jobbet sættes i k */
-    Queue_Enqueue(Q, task);
+    Queue_Enqueue(queue, task);
 
   } while (cur_x <= x || cur_y <= y);
   
@@ -269,7 +279,7 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, double v)
   task.Ins = MC_CMD_RESET;
 
   /* læg instruktion til at genstarte timeren i det sidste job */
-  Queue_Enqueue(Q, task);
+  Queue_Enqueue(queue, task);
 
   return 0;
 }
@@ -303,8 +313,14 @@ void MotorCtrl_Delay_MS(uint16_t t)
   task.Ins = MC_CMD_RESET;
   
   /* vent til der er plads i køen */
-  while (Queue_IsFull(Q));
-  Queue_Enqueue(Q, task);
+  while (Queue_IsFull(queue));
+  Queue_Enqueue(queue, task);
+}
+
+ISR(TIMER0_COMP_vect)
+{
+  PORTE++;
+  MotorCtrl_Tick();
 }
 
 /*
@@ -312,75 +328,70 @@ void MotorCtrl_Delay_MS(uint16_t t)
  *
  * Kaldes 1000 gange i sekundet
  */
-void MotorCtrl_Tick()
+void MotorCtrl_Tick(void)
 {
-  if (Queue_IsEmpty(Q))
-    return;
+  uint8_t reset = 0;
 
-  Task t = Queue_Front(Q);
+  while (1) {
+    if (Queue_IsEmpty(queue))
+      break;
 
-  /* udfør alle de jobs hvor deadlinen er nået eller overskredet */
-  while (t.Time <= timer)
-  {
-    /* her fortolkes instruktionerne */
+    Task t = Queue_Front(queue);
 
-    if (t.Ins & MC_CMD_MOVE_UP)
-    {
+    /* er denne deadline nået? fald ud når deadline ikke er nået */
+    if (t.Time > timer)
+      break;
+
+    /* her behandles jobbet */
+
+    if (t.Ins & MC_CMD_MOVE_UP) {
       /* flyt op */
       MCC_PORT |= 1 << MCC_Y_CCW;
       MCC_PORT |= 1 << MCC_Y_CLK;
     }
 
-    if (t.Ins & MC_CMD_MOVE_DOWN)
-    {
+    if (t.Ins & MC_CMD_MOVE_DOWN) {
       /* flyt ned */
       MCC_PORT &= ~(1 << MCC_Y_CCW);
       MCC_PORT |= 1 << MCC_Y_CLK;
     }
 
-    if (t.Ins & MC_CMD_MOVE_LEFT)
-    {
+    if (t.Ins & MC_CMD_MOVE_LEFT) {
       /* flyt til venstre */
       MCC_PORT |= 1 << MCC_X_CCW;
       MCC_PORT |= 1 << MCC_X_CLK;
     }
 
-    if (t.Ins & MC_CMD_MOVE_RIGHT)
-    {
+    if (t.Ins & MC_CMD_MOVE_RIGHT) {
       /* flyt til højre */
       MCC_PORT &= ~(1 << MCC_X_CCW);
       MCC_PORT |= 1 << MCC_X_CLK;
     }
 
-    if (t.Ins & MC_CMD_LIFT)
-    {
+    if (t.Ins & MC_CMD_LIFT) {
       /* løft skrivehovedet */
     }
 
-    if (t.Ins & MC_CMD_LOWER)
-    {
+    if (t.Ins & MC_CMD_LOWER) {
       /* sænk skrivehovedet */
     }
 
-    if (t.Ins & MC_CMD_RESET)
-    {
+    if (t.Ins & MC_CMD_RESET) {
       /* genstart timeren - skal fortolkes sidst */
-      timer = 0;
+      reset = 1;
     }
 
-    Queue_Dequeue(Q);
-
-    if (Queue_IsEmpty(Q))
-      break;
-    Task t = Queue_Front(Q);
+    Queue_Dequeue(queue);
   }
 
-  
   /* mindste høj-tid */
   _delay_us(2);
   /* gør clock-signal lavt igen */
   MCC_PORT &= ~((1<<MCC_X_CLK) | (1<<MCC_Y_CLK));
 
   /* forhøj tik-tæller */
-  timer++;
+  if (reset)
+    timer = 0;
+  else
+    timer++;
 }

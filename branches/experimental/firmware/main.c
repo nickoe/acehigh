@@ -170,79 +170,15 @@ int main(void)
   lcd_clrscr();
   lcd_puts("Hej verden\n");
 
-  while (!Datafeeder_EOS())
-  {
-    uint16_t ins = get_next_ins();
-    char textins[2];
-    textins[0] = (char)(ins>>8);
-    textins[1] = (char)ins;
-    lcd_puts(textins);
+  DDRE = 0xff;
+
+  for (int i = 0; i < 1000; i++) {
+    Task t;
+    t.Time = i;
+    t.Ins = 0x01 | 0x04;
+    while(Queue_IsFull(queue));
+    Queue_Enqueue(queue, t);
   }
-
-  goto LOOP;
-
-  // //Her skal vi indlæse data fra dataføder, forstå den m.m.
-  
-  // while (!Datafeeder_EOS())
-  // {
-  //   switch(get_next_ins())
-  //   {
-  //   case HPGL_INS("PU"): /* pen up */
-  //     MotorCtrl_Lift();
-  //   break;
-
-
-  //   case HPGL_INS("PD"): /* pen down */
-  //     MotorCtrl_Lower();
-  //   break;
-
-
-  //   case HPGL_INS("CI"):
-  //   {
-  //     /* en cirkel */
-  //     uint16_t r = (uint16_t)get_next_param();
-  //     uint8_t c = 5; /* kordevinkel, indlæses fra datastrømmen hvis den
-  // 		      findes */
-  //     if (param_exists())
-  // 	c = (uint8_t)get_next_param();
-  //     uint8_t w = c;
-      
-  //     MotorCtrl_Lift();
-  //     MotorCtrl_GotoRXY(r, 0, RAPIDMOVESPEED); /* relativt til
-  // 						startpunkt for cirkel
-  // 						(r,0) */
-  //     MotorCtrl_Lower();
-      
-  //     while(w <= 360)
-  //     {
-  // 	uint16_t x = cos(w)*r;                   // x-koordinatet bestemmes
-  // 	uint16_t y = sin(w)*r;                   // y-koordinatet bestemmes
-  // 	MotorCtrl_GotoXY(X+x, Y+y, DRAWINGSPEED);  // x,y-koordinaterne sendes med hastigheden v
-  // 	w += c;                         // Kordevinklen lægges til vinklen w
-  //     }
-      
-  //     /* Hvis vinklen w ikke går op i 360
-  // 	 if(w != 360)
-  // 	 {
-  // 	 MotorCtrl_GotoRXY(r, 0, DRAWINGSPEED);
-  //
-  //   w -=c ;
-  // 	 x = cos(w)*r;                   // x-koordinatet bestemmes
-  // 	 y = sin(w)*r;                   // y-koordinatet bestemmes
-  // 	 
-  // 	 }
-  //     */
-      
-  //     MotorCtrl_Lift();                 // Løfter pennen
-  //     MotorCtrl_GotoXY(X, Y, RAPIDMOVESPEED);        // Tilbage til centrum
-  //   }
-  //   break;
-      
-  //   default:
-  //     /* ukendt/ikke-implementeret instruktion */
-  //     break;
-  //   }
-  // }  
 
  LOOP:
   while (1)

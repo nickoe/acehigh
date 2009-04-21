@@ -44,6 +44,7 @@ struct QueueRecord
 };
 typedef struct QueueRecord *Queue;
 
+Queue queue;
 
 uint8_t Queue_IsEmpty(Queue Q);
 uint8_t Queue_IsFull(Queue Q);
@@ -98,5 +99,7 @@ void MotorCtrl_Lower(void);
  * Indsætter en forsinkelse i ekserkveringen
  */
 void MotorCtrl_Delay_MS(uint16_t t);
+
+void MotorCtrl_Tick(void);
 
 #endif /* __MOTORCTRL_H__ */
