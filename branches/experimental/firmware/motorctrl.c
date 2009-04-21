@@ -37,6 +37,8 @@
 #include <stdint.h>
 #include <math.h>
 
+#include "lcd.h"
+
 
 /* motorkontrolinstruktioner */
 #define MC_CMD_MOVE_UP 0x01
@@ -64,10 +66,6 @@
 
 /* pladholder til positionen */
 uint16_t X = 0, Y = 0;
-
-/* timeren */
-uint16_t timer = 0;
-
 
 
 uint8_t Queue_IsEmpty(Queue Q)
@@ -312,20 +310,27 @@ void MotorCtrl_Lower(void)
 /* indlægger en forsinkelse af c clock cycles */
 void MotorCtrl_Delay(uint16_t c)
 {
-  gylletgnyf.Time = 0;
-  gylletgnyf.Ins = 0x40; /* genstart timeren, indlæg pause */
-  while(Queue_IsFull(queue));
-  Queue_Enqueue(queue, gylletgnyf);
+  PORTE = 1<<1;
+  Task t;
+  t.Time = 0;
+  t.Ins = 0x40; /* genstart timeren, indlæg pause */
 
-  gylletgnyf.Time = c;
-  while(Queue_IsFull(queue));
-  Queue_Enqueue(queue, gylletgnyf);
-}
+  PORTE = 1<<2;
 
-ISR(TIMER0_COMP_vect)
-{
-  PORTE++;
-  MotorCtrl_Tick();
+  /* her hænger programmet ... */
+  /* TODO: tjek værdierne af queue->Size og queue->Capacity og tjek hvornår
+     de sidst er ændret */
+  
+  while(queue->Size == queue->Capacity);
+
+  PORTE = 1<<6;
+
+  Queue_Enqueue(queue, t);
+
+
+  t.Time = c;
+  while(Queue_IsFull(queue));
+  Queue_Enqueue(queue, t);
 }
 
 /*
@@ -333,9 +338,25 @@ ISR(TIMER0_COMP_vect)
  *
  * Kaldes 1000 gange i sekundet
  */
-void MotorCtrl_Tick(void)
+uint16_t counter = 0;
+
+ISR(TIMER0_COMP_vect)
 {
+  if (++counter == 500) {
+    counter = 0;
+    PORTE ^= 1<<7;
+  }
+
   uint8_t reset = 0;
+
+  /*
+  if (PORTE & (1<<2)) {
+    lcd_clrscr();
+    lcd_puts("Sidste tik");
+    cli();
+    while (1);
+  }
+  */
 
   while (1) {
     if (Queue_IsEmpty(queue))
@@ -395,8 +416,10 @@ void MotorCtrl_Tick(void)
   MCC_PORT &= ~((1<<MCC_X_CLK) | (1<<MCC_Y_CLK));
 
   /* forhøj tik-tæller */
-  if (reset)
+  if (reset) {
     timer = 0;
-  else
-    timer++;
+    return;
+  }
+
+  timer++;
 }
