@@ -32,20 +32,20 @@ køre. Det skal have til formål, at hovedet bliver trukket til
 origo. Men denne metode er ikke anvendelig, da man vil belaste
 mekanikken og motorerne for meget.
 
-Vi vil derfor anvende nogle sensorer som følrere i en
+Vi vil derfor anvende nogle sensorer, som følere i en
 nulstillingsposition. Vi kan anvende et par fotogafler, hvor vi fører
 en mekanisk fane ind i. Maskinen kan så dedektere, hvornår der kommer
-noget ind for sensoren, hvilket betyder, at vi ved hvor vi er. Ud fra
+noget ind for sensoren, hvilket betyder, at vi ved, hvor vi er. Ud fra
 hvilke signaler vi får fra de forskellige sensorer, så kan vi stoppe
-maskinens bevægelse. Til sidst ved vi hvornår vi er i origo, altså at
-maskinen er nulstillet. Vi kan harefter begynde at anvende
-maskinen. Det kræver selvfølgelig,at man placerer sensorerne, således
+maskinens bevægelse. Til sidst ved vi, hvornår vi er i origo, altså at
+maskinen er nulstillet. Vi kan herefter begynde at anvende
+maskinen. Det kræver selvfølgelig, at man placerer sensorerne, således
 at mekanikken aldrig når at komme til sine yderpunkter, hvor den ikke
 kan bevæge sig længere.
 
 \section{SD-kort adapter}
-Vi har vha. kravspecefikationen bestemt, at vi skal kunne styre
-maskinen, vha. data fra et SD-kort. Et SD-kort kan styres på
+Vi har vha. kravspecifikationen bestemt, at vi skal kunne styre
+maskinen vha. data fra et SD-kort. Et SD-kort kan styres på
 forskellige måder.
 
 \begin{itemize}
@@ -70,18 +70,18 @@ pins) to support four bit wide parallel transfers.---\fixme{Det
 \fixme{Skal vi refere captain.at som kilde, eller bare i
   litteraturlisten? pinouts.ru}
 
-Som en følge af hvilken måde vi vælger, at kommunikere med SD-kortet,
-skal hardwaren understøtte funktionen. Der er dog ikke stor forskel
-SPI mode, som vi vil understøtte og er den simpleste, og SD mode, som
-blot kræver to forbindelser mere til SD-kortet.
+Som en følge af hvilken måde vi vælger at kommunikere med SD-kortet,
+skal hardwaren understøtte funktionen. Der er dog ikke stor forskel på 
+SPI mode, som vi vil understøtte, og SD mode, som
+blot kræver to forbindelser mere til SD-kortet. SPI mode også den simpleste.
 
 SD-kortet opererer ved en spænding på $3,3V$, derfor skal vi have en
-seperat spændingsforsyning på $3,3V$ til kortet. A samme grund er vi
-nødt til, at sænke spændingen fra vores MCU fra de 5V, til omkring de
-3,3V, før vi kan kommunikere med det. Vi kan opnå dette med en
-spændingsdeler, ved IO pinsene der går fra MCU'en til SD-kortet. Når
-signalet fra SD-kortet går høj, vil det givetvis være på 3,3V. Dette
-er ikke de 5V som voes MCU opererer ved, men det er ikke noget
+seperat spændingsforsyning på $3,3V$ til kortet. Af samme grund er vi
+nødt til at sænke spændingen fra vores MCU fra de $5V$, til omkring de
+$3,3V$, før vi kan kommunikere med det. Vi kan opnå dette med en
+spændingsdeler ved IO pinsene, der går fra MCU'en til SD-kortet. Når
+signalet fra SD-kortet går høj, vil det givetvis være på $3,3V$. Dette
+er ikke de $5V$, som vores MCU opererer ved, men det er ikke noget
 problem, da det stadigvæk svarer til et højt signal for MCU'en.
 
 %%% Local Variables: 
