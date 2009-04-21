@@ -165,24 +165,51 @@ int main(void)
 {
   lcd_init(LCD_DISP_ON);
   MotorCtrl_Init();
-  Datafeeder_Init();
+  //Datafeeder_Init();
 
   lcd_clrscr();
   lcd_puts("Hej verden\n");
 
   DDRE = 0xff;
 
-  for (int i = 0; i < 1000; i++) {
-    Task t;
-    t.Time = i;
-    t.Ins = 0x01 | 0x04;
-    while(Queue_IsFull(queue));
-    Queue_Enqueue(queue, t);
-  }
+  Task t;
 
  LOOP:
-  while (1)
-  {
+  while (1) {
+    t.Ins = 0x01 | 0x04; 
+    for (int i = 0; i < 500; i++) {
+      t.Time = i;
+      while(Queue_IsFull(queue));
+      Queue_Enqueue(queue, t);
+    }
+
+    t.Time = 0;
+    t.Ins = 0x40; /* genstart timeren, indlæg pause */
+    while(Queue_IsFull(queue));
+    Queue_Enqueue(queue, t);
+
+    t.Time = 500;
+    while(Queue_IsFull(queue));
+    Queue_Enqueue(queue, t);
+
+    t.Ins = 0x02 | 0x08;
+    for (int i = 0; i < 500; i++) {
+      t.Time = i;
+      while(Queue_IsFull(queue));
+      Queue_Enqueue(queue, t);
+    }
+
+    t.Time = 0;
+    t.Ins = 0x40; /* genstart timeren, indlæg pause */
+    while(Queue_IsFull(queue));
+    Queue_Enqueue(queue, t);
+
+    t.Time = 500;
+    while(Queue_IsFull(queue));
+    Queue_Enqueue(queue, t);
+
+    /* virker tilsyneladende ikke mere */
+    //MotorCtrl_Delay(500);
   }
 
   return 0;

@@ -130,6 +130,10 @@ static uint8_t Queue_Succ(int Value, Queue Q)
 
 void Queue_Enqueue(Queue Q, Task T)
 {
+  /* virker af en eller anden grund ikke - virker i main.c
+  while(Queue_IsFull(Q)) {
+  }
+  */
 
   if (Queue_IsFull(Q)) {
     //Error("Enqueue Error: The queue is full.");
@@ -166,7 +170,7 @@ void Queue_Dequeue(Queue Q)
 /* initialiser motorerne */
 void MotorCtrl_Init(void)
 {
-  queue = Queue_Create(128);
+  queue = Queue_Create(50);
 
   /* her skal vi sætte motorkontrolkredsen op */
   MCC_DDR = 0xff;
@@ -305,16 +309,17 @@ void MotorCtrl_Lower(void)
   r += 4;
 }
 
-/* indlægger en forsinkelse */
-void MotorCtrl_Delay_MS(uint16_t t)
+/* indlægger en forsinkelse af c clock cycles */
+void MotorCtrl_Delay(uint16_t c)
 {
-  Task task;
-  task.Time = t;
-  task.Ins = MC_CMD_RESET;
-  
-  /* vent til der er plads i køen */
-  while (Queue_IsFull(queue));
-  Queue_Enqueue(queue, task);
+  gylletgnyf.Time = 0;
+  gylletgnyf.Ins = 0x40; /* genstart timeren, indlæg pause */
+  while(Queue_IsFull(queue));
+  Queue_Enqueue(queue, gylletgnyf);
+
+  gylletgnyf.Time = c;
+  while(Queue_IsFull(queue));
+  Queue_Enqueue(queue, gylletgnyf);
 }
 
 ISR(TIMER0_COMP_vect)

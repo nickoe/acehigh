@@ -98,7 +98,9 @@ void MotorCtrl_Lower(void);
 /*
  * Indsætter en forsinkelse i ekserkveringen
  */
-void MotorCtrl_Delay_MS(uint16_t t);
+void MotorCtrl_Delay(uint16_t c);
+
+Task gylletgnyf;
 
 void MotorCtrl_Tick(void);
 

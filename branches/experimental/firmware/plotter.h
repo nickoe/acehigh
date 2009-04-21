@@ -25,6 +25,9 @@
 #define __PLOTTER_H__
 
 
+/* stakstørrelse */
+//#define __stack 3256
+
 /*
  * Makro til at lave HPGL-instruktioner om til tal
  */

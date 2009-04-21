@@ -48,6 +48,7 @@ AVRDUDE_PORT=/dev/ttyUSB0
 HEXFORMAT=ihex
 
 # compiler
+# stakken skal begynde på 3256
 CFLAGS=$(INC) -g -std=c99 -mmcu=$(MCU) -O$(OPTLEVEL)			\
 -DF_CPU=$(CPUFREQ) -fpack-struct -fshort-enums -funsigned-bitfields	\
 -funsigned-char -Wall -Wstrict-prototypes -Wa,-ahlms=$(firstword	\
