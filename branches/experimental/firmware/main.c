@@ -221,13 +221,15 @@ int main(void)
   // 	w += c;                         // Kordevinklen lægges til vinklen w
   //     }
       
-  //     /* Hvis vinklen v ikke går op i 360
-  // 	 if(v != 360)
+  //     /* Hvis vinklen w ikke går op i 360
+  // 	 if(w != 360)
   // 	 {
-  // 	 w -=c ;
+  // 	 MotorCtrl_GotoRXY(r, 0, DRAWINGSPEED);
+  //
+  //   w -=c ;
   // 	 x = cos(w)*r;                   // x-koordinatet bestemmes
   // 	 y = sin(w)*r;                   // y-koordinatet bestemmes
-  // 	 MotorCtrl_GotoXY(X+x+r, Y+y+0, v);
+  // 	 
   // 	 }
   //     */
       
