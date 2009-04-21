@@ -10,7 +10,9 @@
 TARGET=master.tex
 
 # Alle DIA-diagrammer
-FIGS_DIA=../brugere/kjaergaard/datafeeder-oversigt.dia
+FIGS_DIA=../brugere/kjaergaard/datafeeder-oversigt.dia	\
+../brugere/kjaergaard/hpglparser-ins.dia		\
+../brugere/kjaergaard/hpglparser-param.dia
 
 # Alle SVG-filer
 FIGS_SVG=../logo/logo.svg						\
@@ -19,12 +21,14 @@ FIGS_SVG=../logo/logo.svg						\
 ../brugere/kjaergaard/motorstyring-indlagt-forsinkelse.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg	\
-img/fotogafel-skitse.svg img/forside.svg				\
+./img/fotogafel-skitse.svg img/forside.svg				\
 ../brugere/kjaergaard/software-oversigt.svg img/la-behandling.svg	\
 ../brugere/kjaergaard/datafoeder-uniform-api.svg			\
-img/afviklingsdiagram-cirkel.svg \
-img/relativ-absolut.svg \
-img/cirkel.svg
+../brugere/kjaergaard/datafoeder.svg					\
+../brugere/kjaergaard/datafoeder-uniform-api.svg			\
+./img/afviklingsdiagram-cirkel.svg ./img/relativ-absolut.svg		\
+./img/cirkel.svg
+
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
 FIGS_EPS=

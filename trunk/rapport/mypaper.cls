@@ -80,6 +80,7 @@
 \RequirePackage{sistyle}
   \SIdecimalsign{,}
   \SIthousandsep{.}
+\RequirePackage{subfig}
 \RequirePackage{textcomp}
 \RequirePackage{tikz}
 \RequirePackage{ulem}

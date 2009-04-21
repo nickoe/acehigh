@@ -91,9 +91,62 @@ kan ses i figur\vref{fig:software-spi-sd-handling}.
 % Her skriver vi hvordan vi identificerer instruktioner og parametre i
 % datastrømmen
 
+HPGL-behandleren identificerer instruktioner og parametre på
+datastrømmen med en \textit{parser}. Databehandleren består af en
+markør og pladsholdere til instruktioner og parametre.
+
+Parseren er \textit{byte}-orienteret og kan kun se én byte ad gangen,
+se figur\vref{fig:hpgl-parser-iden}. Afhængig af denne bytes værdi
+gemmer parseren byten i en pladsholder og indlæser den næste byte for
+at sætte kæden sammen til instruktioner eller parametre til
+instruktioner.
+
+\mnote{
+  \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/datafoeder}
+  \captionof{figure}{Markøren på datastrømmen i HPGL-behandlerens
+    identifikation af instruktioner på datastrømmen.}
+  \label{fig:hpgl-parser-iden}
+}
+
+Hvis byten ikke har en værdi, parseren forstår, flyttes markøren
+videre til næste byte, således at den byte, markøren peger på, ikke er
+fortolket.
+
+Hvis byten er et bogstav, peger markøren på første byte i en
+instruktion. Den næste byte indlæses og de to byte sættes sammen til
+en instruktion.
+
+Hvis byten er et tal eller punktum (.), peger markøren på første byte
+i en talparameter. Der indlæses og gemmes bytes indtil den indlæste
+byte ikke er et tal eller punktum. Når den indlæste byte ikke er et
+tal eller punktum, konverteres de indlæste bytes til et tal.
+
+Se afviklingsdiagrammet for parseren i
+figur\vref{fig:hpgl-parser-afvikling}. Parseren understøtter ikke
+andre parametre end talparametre.
+
+\begin{figure}[htbp]
+  \centering
+  \subfloat[Afviklingsdiagram for parserens instruktionsidentifikation.]{
+    \includegraphics[width=.30\textwidth]{../brugere/kjaergaard/hpglparser-ins}
+  }
+  \qquad
+  \subfloat[Afviklingsdiagram for parserens parameteridentifikation.]{
+    \includegraphics[width=.60\textwidth]{../brugere/kjaergaard/hpglparser-param}
+  }
+  \caption{Afviklingsdiagrammer for HPGL-parseren.}
+  \label{fig:hpgl-parser-afvikling}
+\end{figure}
+
+
 \subsection{Relativ og absolut}
 
-Indenfor HPGL bruger man relative og absolutte koordinater. Absolut plotning indeholder to parametre, X og Y. X og Y er absolutte værdier, altså kan de ikke være negative, som måles enten i en brugerdefineret enhed eller grafik enheder (0,025mm). Absolut plot bruges, når man vil flytte pennen til en bestemt koordinat set fra origo $(0, 0)$. Ligesom med cirklen, så plottes kun en linie, når pennen er nede.
+Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
+plotning indeholder to parametre, X og Y. X og Y er absolutte værdier,
+altså kan de ikke være negative, som måles enten i en brugerdefineret
+enhed eller grafik enheder (0,025mm). Absolut plot bruges, når man vil
+flytte pennen til en bestemt koordinat set fra origo $(0, 0)$. Ligesom
+med cirklen, så plottes kun en linie, når pennen er nede.
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/relativ-absolut}
@@ -101,7 +154,13 @@ Indenfor HPGL bruger man relative og absolutte koordinater. Absolut plotning ind
   \label{fig:relativ-absolut}
 }
 
-Relativ plotning indeholder ligeledes to parametre, x og y. x og y er relative værdier til den nuværende position, altså kan de godt være negative. Relativ plotning måles ligesom absolut. Relativ plotning bruges, når man vil lave serie af linier i række, da man her tager udgangspunkt i den forrige linies slutpunkt. Figur\vref{fig:relativ-absolut} viser et eksempel på relative og absolutte linier.
+Relativ plotning indeholder ligeledes to parametre, x og y. x og y er
+relative værdier til den nuværende position, altså kan de godt være
+negative. Relativ plotning måles ligesom absolut. Relativ plotning
+bruges, når man vil lave serie af linier i række, da man her tager
+udgangspunkt i den forrige linies
+slutpunkt. Figur\vref{fig:relativ-absolut} viser et eksempel på
+relative og absolutte linier.
 
 
 \subsection{Absolut streg}
@@ -109,7 +168,7 @@ Relativ plotning indeholder ligeledes to parametre, x og y. x og y er relative v
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=.75\textwidth]{./img/la-behandling}
-  \caption{Afviklingsdiagram over afvikling af LA instruktionen.}
+  \caption{Afviklingsdiagram over afvikling af LA-instruktionen.}
   \label{fig:la-behandling}
 \end{figure}
 \fixme{Skriv noget!}
@@ -117,7 +176,9 @@ Relativ plotning indeholder ligeledes to parametre, x og y. x og y er relative v
 
 \subsection{Matematik -- Cirkel}
 
-Vi kender cirklens radius $r$, kordevinklen $c$ samt startkoordinater $(x, y)$. Det første koordinat kan ud fra en hurtig analyse derfor let findes:
+Vi kender cirklens radius $r$, kordevinklen $c$ samt startkoordinater
+$(x, y)$. Det første koordinat kan ud fra en hurtig analyse derfor let
+findes:
 \begin{align*}
 P_0(x, y)=(r, 0)
 \end{align*}
