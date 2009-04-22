@@ -84,22 +84,21 @@ kan ses i figur\vref{fig:software-spi-sd-handling}.
 \section{HPGL-behandleren}
 
 % Hvordan virker den del, der fortolker og behandler HPGL?
-HPGL har adskillige forskellige instruktioner,  og vi benytter os ikke af samtlige i dette projekt.
-Med udgangspunkt i vores kravspecifikation har vi valgt følgende instruktioner:
+HPGL er et dataformat, som indeholder adskillige forskellige instruktioner med forskellige parametre (se afsnit \titleref{sc:idn-ins-param})
+. Vi benytter os ikke af samtlige instruktioner, men blot et lille udvalg med udgangspunkt i vores kravspecifikation.
+I projektet anvender vi følgende instruktioner:
 
 \begin{itemize} \firmlist
-\item 
-\item stille et uniformt API\footnote{Application Programming
-    Interface, programmeringsbrugerflade; betegnelse for struktur og
-    navngivning for funktioner, variable, strukturer, klasser
-    etc. brugt til programudvikling.}\fixme{brug evt. wikis
-    formulering af api} til rådighed uafhængig af underliggende modul,
-  således at det overliggende modul er uafhængig af det modul, der
-  indeholder data - se figur\vref{fig:datafeeder-uniform-api}
-\item håndtere fejl for underliggende moduler
+\item \texttt{PU/PD - Pen Up/Pen Down. Bruges til at hæve og sænke pennen.}
+\item \texttt{PA/PR - Plot Absolut/Plot Relativ. Se afsnit \titleref{sc:relativ-absolut}}
+\item \texttt{CI - Plot Circle. Se afsnit \titleref{sc:matematik-cirkel}}
 \end{itemize}
 
+HPGL bruger oprindeligt bogstaver, tal og symboler (komma, punktum osv.) til at identificere instruktioner,
+men som det fremgår af næste afsnit, så anvender vi kun bogstaver i vores identifikation.
+
 \subsection{Identifikation af instruktioner og parametre}
+\label{sc:idn-ins-param}
 
 % Her skriver vi hvordan vi identificerer instruktioner og parametre i
 % datastrømmen
@@ -153,6 +152,7 @@ andre parametre end talparametre.
 
 
 \subsection{Relativ og absolut}
+\label{sc:relativ-absolut}
 
 Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
 plotning indeholder to parametre, X og Y. X og Y er absolutte værdier,
@@ -175,19 +175,8 @@ udgangspunkt i den forrige linies
 slutpunkt. Figur\vref{fig:relativ-absolut} viser et eksempel på
 relative og absolutte linier.
 
-
-\subsection{Absolut streg}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=.75\textwidth]{./img/la-behandling}
-  \caption{Afviklingsdiagram over afvikling af LA-instruktionen.}
-  \label{fig:la-behandling}
-\end{figure}
-\fixme{Skriv noget!}
-
-
 \subsection{Matematik -- Cirkel}
+\label{sc:matematik-cirkel}
 
 Vi kender cirklens radius $r$, kordevinklen $c$ samt startkoordinater
 $(x, y)$. Det første koordinat kan ud fra en hurtig analyse derfor let
