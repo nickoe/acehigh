@@ -27,7 +27,8 @@ FIGS_SVG=../logo/logo.svg						\
 ../brugere/kjaergaard/datafoeder.svg					\
 ../brugere/kjaergaard/datafoeder-uniform-api.svg			\
 ./img/afviklingsdiagram-cirkel.svg ./img/relativ-absolut.svg		\
-./img/cirkel.svg
+./img/cirkel.svg							\
+./img/fotogaffel.svg
 
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
