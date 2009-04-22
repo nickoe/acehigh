@@ -59,7 +59,7 @@ long double k_y;
 void Motor_Move(int32_t x, int32_t y, double v)
 {
   if (x == 0 && y == 0)
-    return 0;
+    return;
 
   /* udfør alle de beregninger vi kan mens vi venter */
 
@@ -96,7 +96,7 @@ void Motor_Move(int32_t x, int32_t y, double v)
   /* start timeren */
   activate_timer();
 
-  return 0;
+  return;
 }
 
 /*

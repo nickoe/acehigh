@@ -24,6 +24,10 @@ int main(void)
 
   DDRE = 0xff;
 
+  if (HPGL_INS("PA") > 0) {
+    PORTE = 0xff;
+  }
+
   while (1);
 
   return 0;

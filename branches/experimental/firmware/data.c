@@ -23,6 +23,7 @@
 #include "data.h"
 
 #include <avr/io.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <ctype.h>
 
