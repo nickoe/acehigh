@@ -180,7 +180,6 @@ Figur\vref{fig:la-behandling} viser hvordan behandlingen foregår.
 \end{figure}
 
 \section{HPGL -- Hewlett-Packard Graphics Language}
-
 Når man skal vælge, hvilket format man vil bruge, når man laver en
 plotter, så er der en del ting at tage hensyn til. Der findes mange
 forskellige standarder, som kan anvendes og en af disse standarder er
@@ -219,12 +218,40 @@ brugen af HPGL:
 \fixme{Her indsættes tabel over fordele og ulemper ved eget
   dataformat. Denne tabel eksistere allerede}
 
+\begin{tabular}{p{5cm} p{5cm}}
+\toprule
+Eget format \\\midrule
+{\begin{itemize}
+\item Vi kan gøre det så simpelt som muligt, både til at læse og til at forstå
+\end{itemize}}
+&
+{\begin{itemize}
+\item Det vil nok afføde børnesygdomme
+\item Der findes ikke software, som kan håndtere vores dataformat
+\end{itemize}}\\\bottomrule
+\end{tabular}
+
 Dette betyder, at der findes ingen software, der kan håndtere
 formatet. Dette betyder at vi selv skal skrive den software, som er
 uden for rammer af dette projekt. Derfor leder vi efter en
 eksisterende standard.
 
 \fixme{Her indsættes tabel over f og u ved HPGL}
+\begin{tabular}{p{5cm} p{5cm}}
+\toprule
+Eget format \\\midrule
+{\begin{itemize}
+\item Afprøvet og bruges industrielt til plottere
+\item Veldokumenteret
+\item Der findes software, som kan håndtere HPGL
+\end{itemize}}
+&
+{\begin{itemize}
+\item Niveauet er sat højt, hvilket betyder, at der er mange funktioner som vi ikke får brug for
+\item Implementeringstiden er længere
+\end{itemize}}\\\bottomrule
+\end{tabular}
+
 
 Dette betyder, at HPGL er meget velegnet til brug i vores projekt, da
 formatet er veldokumenteret, afprøvet og anvendt industrielt til
