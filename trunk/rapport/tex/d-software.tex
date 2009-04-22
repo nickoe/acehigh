@@ -14,13 +14,12 @@ Hastigheden for tegnehovedet er givet ved
 \begin{align}
   v = \frac{\Delta x}{\Delta t}
 \end{align}
-hvor $v$ er hastigheden, $x$ er positionsændring og $t$ er
+hvor $v$ er hastigheden, $\Delta x$ er positionsændring og $\Delta t$ er
 tidsændring. En præcis styring af hastighed kræver et præcist kendskab
 til både positionsændring og tidsændring.
 
-Den mindst mulige positionsændring er ét skridt med
-stepmotoren\fixme{fælles: andet ord?} og kendskabet til denne er
-tilstrækkeligt.
+Den mindst mulige positionsændring er ét skridt med stepmotoren og
+kendskabet til denne er tilstrækkeligt.
 
 Følgende to afsnit diskuterer to forskellige metoder til at
 \textit{time} motorerne.
@@ -38,20 +37,27 @@ figur\vref{fig:motorstyring-indlagt-forsinkelse}.
   \caption{Motorstyring med indlagt forsinkelse.}
   \label{fig:motorstyring-indlagt-forsinkelse}
 \end{figure}
+\fixme{anden skitse}
 
-Ved denne type motorstyring er tiden $t$ mellem
+Ved denne type motorstyring er tiden $\Delta t$ mellem
 skridtene\fixme{fælles: andet ord?} givet ved
+(sætning~\ref{eq:afbrudt-afvikling-tid})
 \begin{align}
-  \Delta t &= t_e + t_d \nonumber \Rightarrow \\
+  \Delta t &= t_e + t_d \Rightarrow \label{eq:afbrudt-afvikling-tid} \\
   v &= \frac{\Delta x}{t_e + t_d}
 \end{align}
 hvor $t_d$ er den indlagte forsinkelse og $t_e$ er den tid det tager
-at afvikle tidsberegningen. Da $t_e$ ikke kendes på
-afviklingstidspunktet - og \textit{kan} variere fra afvikling til
-afvikling afhængig af tallenes størrelse - er metoden upræcis ved høje
-hastigheder. I figur\vref{fig:motorstyring-indlagt-forsinkelse-timing}
-ses en situation, hvor størrelsen af $t_e$\fixme{kjærgaard: skriv
-  afsnit færdigt, brug skitser fra egne notater}
+at afvikle tidsberegningen (se
+figur\vref{fig:motorstyring-indlagt-forsinkelse}).
+
+Ekserkveringstiden $t_e$ kan variere og kendes ikke på
+afviklingstidspunktet. Metoden upræcis ved høje
+hastigheder. Figur\vref{fig:motorstyring-indlagt-forsinkelse-timing}
+viser, hvordan $t_e$ får større indflydelse på $\Delta t$ ved høje
+hastigheder.
+
+% lav skitse der viser t_e over delta t som funktion af v
+\fixme{ny skitse - se kommentar}
 
 \begin{figure}[htbp]
   \centering
@@ -76,6 +82,7 @@ figur\vref{fig:motorstyring-afbrudt-afvikling}.
   \caption{Motorstyring med afbrudt afvikling.}
   \label{fig:motorstyring-afbrudt-afvikling}
 \end{figure}
+\fixme{anden skitse}
 
 Den algoritme, der beregner hvilke tidspunkter, motorerne skal flyttes
 på, afvikles hele tiden. Når det er tid til at tjekke, om vi har
@@ -84,9 +91,10 @@ beregningsalgoritmen, og tjekkeralgoritmen afvikles. Når
 tjekkeralgoritmen\fixme{fælles: andet ord!} er afviklet, fortsættes
 afviklingen af beregningen af tidspunkter.
 
-Med denne metode kendes mindst mulige forsinkelse $t$, og vi har, hvad
-vi efterspørger. Forskellige hastigheder opnås ved at udelade at
-flytte motorerne på alle tidspunkter (se
+Med denne metode kendes mindst mulige forsinkelse $t$ ($t$ er den
+reciprokke frekvens vi kalder tjekkeralgoritmen\fixme{korrektur} med),
+og vi har, hvad vi efterspørger. Forskellige hastigheder opnås ved at
+undlade at flytte motorerne på alle tidspunkter (se
 figur\vref{fig:motorstyring-afbrudt-afvikling-hastighed}), og
 præcisere styring af hastigheden opnås ved at afvikle
 tjekkeralgoritmen med større frekvens. \fixme{kjærgaard: anden
@@ -100,17 +108,18 @@ tjekkeralgoritmen med større frekvens. \fixme{kjærgaard: anden
 }
 
 Løsningen forudsætter, at
-\begin{itemize}
+\begin{itemize} \firmlist
 \item dataene fra algoritmen, der beregner tidspunkter, kan opbevares
-  i en kø,
+  i en kø (først-ind-først-ud struktur, bruges ofte som
+  \textit{buffer}),
 \item der er data i køen, når tjekkeralgoritmen har brug for data at
-  tjekke mod, og
+  tjekke mod, så denne aldrig løber tør for data, og
 \item beregningsalgoritmen kan afvikles så hurtigt, at der lægges data
   i køen hurtigere end tjekkeralgoritmen gennemgår dem.
 \end{itemize}
 
 I værste tilfælde skal behandlingsalgoritmen
-\begin{itemize}
+\begin{itemize} \firmlist
 \item indlæse data fra datakilden,
 \item fortolke dataene og
 \item beregne tidspunktet
@@ -178,8 +187,12 @@ Figur\vref{fig:la-behandling} viser hvordan behandlingen foregår.
   \caption{Afviklingsdiagram over afvikling af LA-instruktionen.}
   \label{fig:la-behandling}
 \end{figure}
+\fixme{er det ikke implementering?}
+
 
 \section{HPGL -- Hewlett-Packard Graphics Language}
+\label{sec:hpgl}
+
 Når man skal vælge, hvilket format man vil bruge, når man laver en
 plotter, så er der en del ting at tage hensyn til. Der findes mange
 forskellige standarder, som kan anvendes og en af disse standarder er
@@ -218,39 +231,62 @@ brugen af HPGL:
 \fixme{Her indsættes tabel over fordele og ulemper ved eget
   dataformat. Denne tabel eksistere allerede}
 
-\begin{tabular}{p{5cm} p{5cm}}
-\toprule
-Eget format \\\midrule
-{\begin{itemize}
-\item Vi kan gøre det så simpelt som muligt, både til at læse og til at forstå
-\end{itemize}}
-&
-{\begin{itemize}
-\item Det vil nok afføde børnesygdomme
-\item Der findes ikke software, som kan håndtere vores dataformat
-\end{itemize}}\\\bottomrule
-\end{tabular}
+\fixme{DER SKAL VÆRE CAPTION PÅ ALLE TABELLER!!!}
+
+\begin{table}[htbp]
+  \centering
+  \caption{En overskrift her som vi skal henvise til.}
+  \begin{tabular}{p{5cm} p{5cm}}
+    \toprule
+    % vil gerne have \centering på de to overskrifter men kan ikke
+    % finde ud af det
+    \bfseries Fordele & \bfseries Ulemper \\
+    \midrule
+    { \begin{itemize} \firmlist
+      \item Vi kan gøre det så simpelt som muligt, både til at læse og
+        til at forstå
+      \end{itemize} }
+    &
+    { \begin{itemize} \firmlist
+      \item Det vil nok afføde børnesygdomme
+      \item Der findes ikke software, som kan håndtere vores
+        dataformat
+      \end{itemize} } \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 Dette betyder, at der findes ingen software, der kan håndtere
 formatet. Dette betyder at vi selv skal skrive den software, som er
 uden for rammer af dette projekt. Derfor leder vi efter en
 eksisterende standard.
 
-\fixme{Her indsættes tabel over f og u ved HPGL}
-\begin{tabular}{p{5cm} p{5cm}}
-\toprule
-Eget format \\\midrule
-{\begin{itemize}
-\item Afprøvet og bruges industrielt til plottere
-\item Veldokumenteret
-\item Der findes software, som kan håndtere HPGL
-\end{itemize}}
-&
-{\begin{itemize}
-\item Niveauet er sat højt, hvilket betyder, at der er mange funktioner som vi ikke får brug for
-\item Implementeringstiden er længere
-\end{itemize}}\\\bottomrule
-\end{tabular}
+%\fixme{Her indsættes tabel over f og u ved HPGL}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Fordele og ulemper ved at bruge HPGL.}
+  \label{tab:hpgl-fordele-ulemper}
+
+  \begin{tabular}{p{5cm} p{5cm}}
+    \toprule
+    Fordele & Ulemper \\
+    \midrule
+    { \begin{itemize} \firmlist
+      \item Afprøvet og bruges industrielt til plottere
+      \item Veldokumenteret
+      \item Der findes software, som kan håndtere HPGL
+      \end{itemize} }
+    &
+    { \begin{itemize} \firmlist
+      \item Niveauet er sat højt, hvilket betyder, at der er mange
+        funktioner som vi ikke får brug for
+      \item Implementeringstiden er længere
+      \end{itemize} }
+    \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 
 Dette betyder, at HPGL er meget velegnet til brug i vores projekt, da
@@ -267,21 +303,22 @@ funktioner.
 % Skriv om koordinatsystemet
 
 Vi arbejder med skærmkoordinater (se
-figur\vref{fig:skaermkoord}). HPGL (se
-softwaredesignafsnit\fixme{kjærgaard:lav henvisning}) er formateret i
-skærmkoordinater (og ikke Euklidiske koordinater?\fixme{tjek navn}),
-og internt i softwaren (se igen
-softwareafsnit\fixme{kjærgaard:henvisning}) kan en konvertering
-springes over ved at bruge skærmkoordinater.
+figur\vref{fig:skaermkoord}). HPGL (se afsnit\vref{sec:hpgl}) er
+formateret i skærmkoordinater (Cartesiansk koordinatsystem med én
+kvadrant, $x$-akse voksende mod højre og $y$-akse
+voksende ned), og internt i softwaren kan en konvertering springes
+over ved at bruge skærmkoordinater.
 
-\snote{
+\mnote{
   \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/skaermkoordinater}
   \captionof{figure}{Skærm\-koor\-dinater. Der arbejdes med
-    skærmkoordinater i plotteren.}
+    skærm\-koordinater i plotteren.}
   \label{fig:skaermkoord}
 }
 
-\section{Valg af programmeringssprog}
+\section[Valg af programmeringssprog]{Valg af
+  programmeringssprog\footnote{Se rettelser til dette afsnit i afsnit\vref{sec:bilag-programmeringssprog}}}
+\fixme{henvisning}
 
 Softwaren skrives i C og \Cpp.
 

@@ -95,7 +95,7 @@
 % hyperref og fixes
 \RequirePackage[colorlinks,plainpages=false,breaklinks,bookmarks]{hyperref}
 \RequirePackage{memhfixc} % fix med memoir
-\RequirePackage{nameref} % fix med what?
+%\RequirePackage{nameref} % fix med what?
 \ifpdf % fix med latex, dvips eller...?
 \else
   \RequirePackage{breakurl}
@@ -121,14 +121,18 @@
 %}
 
 
+% memoir kan ikke selv håndtere dette (måske med captionof)
+\RequirePackage{caption}
+\captionsetup{font=small,labelfont={bf,sf}}
+
+%\captionnamefont{\small \sffamily \bfseries}
+%\captiontitlefont{\small}
 
 \pagestyle{Ruled}
 \addto\captionsdanish{
   \renewcommand{\chaptername}{Afsnit}
 }
 
-\captionnamefont{\small \sffamily \bfseries}
-\captiontitlefont{\small}
 
 \setlrmarginsandblock{2,8cm}{4,8cm}{*}
 \setmarginnotes{0,4cm}{3,4cm}{0,4cm}
@@ -141,22 +145,6 @@
 \newcommand{\snote}[1]{\sidebar{\small #1}}
 
 \checkandfixthelayout
-
-
-\renewcommand{\lstlistingname}{Kodeeksempel}
-
-\definecolor{lstbg}{RGB}{204,247,221}
-\lstset{
-  language=C,
-  numbers=left,
-  numberstyle=\tiny,
-  inputencoding=latin1,
-  backgroundcolor=\color{lstbg},
-  framerule=0pt,
-  frame=single,
-  framesep=5pt,
-  basicstyle=\footnotesize \ttfamily
-}
 
 
 % Konfiguration af almindelige klasser

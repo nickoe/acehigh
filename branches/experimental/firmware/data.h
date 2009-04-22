@@ -35,7 +35,7 @@
 uint8_t Data_Init(void);
 
 /* Returnerer næste byte i strømmen hvis det er muligt */
-uint8_t Datar_Read(void);
+uint8_t Data_Read(void);
 
 /* Returnerer sand hvis der ikke er mere data i strømmen */
 uint8_t Data_EOS(void);

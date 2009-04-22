@@ -84,18 +84,23 @@ kan ses i figur\vref{fig:software-spi-sd-handling}.
 \section{HPGL-behandleren}
 
 % Hvordan virker den del, der fortolker og behandler HPGL?
-HPGL er et dataformat, som indeholder adskillige forskellige instruktioner med forskellige parametre (se afsnit \titleref{sc:idn-ins-param})
-. Vi benytter os ikke af samtlige instruktioner, men blot et lille udvalg med udgangspunkt i vores kravspecifikation.
-I projektet anvender vi følgende instruktioner:
+HPGL er et dataformat, som indeholder adskillige forskellige
+instruktioner med forskellige parametre (se
+afsnit\vref{sc:idn-ins-param}) . Vi benytter os ikke af samtlige
+instruktioner, men blot et lille udvalg med udgangspunkt i vores
+kravspecifikation.  I projektet anvender vi følgende instruktioner:
 
 \begin{itemize} \firmlist
-\item \texttt{PU/PD - Pen Up/Pen Down. Bruges til at hæve og sænke pennen.}
-\item \texttt{PA/PR - Plot Absolut/Plot Relativ. Se afsnit \titleref{sc:relativ-absolut}}
-\item \texttt{CI - Plot Circle. Se afsnit \titleref{sc:matematik-cirkel}}
+\item[\texttt{PU}/\texttt{PD}] Pen Up/Pen Down - bruges til at hæve og
+  sænke pennen.
+\item[\texttt{PA}/\texttt{PR}] Plot Absolut/Plot Relative - se
+  afsnit\vref{sc:relativ-absolut}.
+\item[\texttt{CI}] Plot Circle - se afsnit\vref{sc:matematik-cirkel}.
 \end{itemize}
 
-HPGL bruger oprindeligt bogstaver, tal og symboler (komma, punktum osv.) til at identificere instruktioner,
-men som det fremgår af næste afsnit, så anvender vi kun bogstaver i vores identifikation.
+HPGL bruger oprindeligt bogstaver, tal og symboler (komma, punktum
+osv.) til at identificere instruktioner, men som det fremgår af næste
+afsnit, så anvender vi kun bogstaver i vores identifikation.
 
 \subsection{Identifikation af instruktioner og parametre}
 \label{sc:idn-ins-param}
@@ -113,7 +118,8 @@ gemmer parseren byten i en pladsholder og indlæser den næste byte for
 at sætte kæden sammen til instruktioner eller parametre til
 instruktioner.
 
-\mnote{
+% floaten ligger muligvis for lavt
+\snote{
   \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/datafoeder}
   \captionof{figure}{Markøren på datastrømmen i HPGL-behandlerens
     identifikation af instruktioner på datastrømmen.}
@@ -151,7 +157,7 @@ andre parametre end talparametre.
 \end{figure}
 
 
-\subsection{Relativ og absolut}
+\subsection{Relative og absolutte koordinater}
 \label{sc:relativ-absolut}
 
 Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
@@ -173,7 +179,7 @@ negative. Relativ plotning måles ligesom absolut. Relativ plotning
 bruges, når man vil lave serie af linier i række, da man her tager
 udgangspunkt i den forrige linies
 slutpunkt. Figur\vref{fig:relativ-absolut} viser et eksempel på
-relative og absolutte linier.
+relative og absolutte linier.  \fixme{ehh... kortere afsnit?}
 
 \subsection{Matematik -- Cirkel}
 \label{sc:matematik-cirkel}
@@ -193,7 +199,9 @@ P_0(x, y)=(r, 0)
 
 Dette er tilfældet, da vinklen $w$ er $0\degree$.
 
-Næste koordinat ligger i en vinkel $w$, som svarer til kordevinklen $c$, altså har vi lagt en kordevinkel til de $0\degree$. Ved brug af cosinus og sinus samt radius $r$ kan vi bestemme det næste koordinat:
+Næste koordinat ligger i en vinkel $w$, som svarer til kordevinklen
+$c$, altså har vi lagt en kordevinkel til de $0\degree$. Ved brug af
+cosinus og sinus samt radius $r$ kan vi bestemme det næste koordinat:
 \begin{align}
 P_1(x, y)&=(\cos(w)\times r, \sin(w)\times r) \Rightarrow \nonumber \\
 P_1(x, y)&=(\cos(c)\times r, \sin(c)\times r) \label{eq:8.1}
@@ -205,25 +213,43 @@ Denne formel kommer ud fra grundlæggende trigonometri:
 \sin(v) &= \frac{y}{r} \Rightarrow y = \sin(v)\times r
 \end{align*}
  
-Formlen \vref{eq:8.1} kan omskrives, så den gælder et vilkårligt punkt på cirkelperiferien:
+Formlen \vref{eq:8.1} kan omskrives, så den gælder et vilkårligt punkt
+på cirkelperiferien:\fixme{denne henvisning er usikker}
 \begin{align}
 P_n(x, y)=(\cos(n\times c)\times r, \sin(n\times c)\times r)
 \end{align}
 
-Vi betragter en cirkel med en radius på 5cm og en kordevinkel på $3\degree$. Første koordinat er således:
+Vi betragter en cirkel med en radius på 5cm og en kordevinkel på
+$3\degree$. Første koordinat er således:
 \begin{align*}
 P_0(x, y)&=(\cos(0\times 3\degree)\times 5 , \sin(0\times 3\degree)\times 5)=(5, 0) \\
 \end{align*}
 
-Vi ser, at dette passer i overensstemmelse med første udsagn. Vha. ovenstående formel kan vi blot lægge en til $n$ hver gang funktionen er udført. Dette skal den blive ved med indtil vinkel overskrider $360\degree$.
+Vi ser, at dette passer i overensstemmelse med første
+udsagn. Vha. ovenstående formel kan vi blot lægge en til $n$ hver gang
+funktionen er udført. Dette skal den blive ved med indtil vinkel
+overskrider $360\degree$.
 
 
-Der opstår dog et problem, hvis vinklen ikke går op i $360\degree$, såsom vinklen $7\degree$. $51\times 7\degree = 357\degree \Rightarrow rest = 3\degree$. Overskrider vinklen de $360\degree$, har vi to muligheder:
+Der opstår dog et problem, hvis vinklen ikke går op i $360\degree$,
+såsom vinklen $7\degree$. $51\times 7\degree = 357\degree \Rightarrow
+rest = 3\degree$. Overskrider vinklen de $360\degree$, har vi to
+muligheder:
 \begin{itemize} \firmlist
 \item Funktionen afsluttes uden at slutte cirklen
 \item Funktionen ændres, så optegningen fortsætter til udgangspunktet $P_0$
 \end{itemize}
-Det skal også nævnes, at HPGL tegner uanset om pennen er oppe eller nede, hvilket betyder, at vi skal bruge en funktion til at hæve og sænke pennen. HPGL sender "PU" (Pen Up), når pennen skal være oppe. Tilsvarende sender den en "PD" (Pen Down), når der skal tegnes. Pennen starter i cirklens centrum. Vi skal derfor sikre os, at pennen er hævet før den går til første punkt $P_0$. Herefter bruger vi den generelle funktion til at bestemme x,y-koordinaterne. Efter hver udført funktion lægges en ekstra kordevinkel til vinklen indtil vinklen $w$ er større eller lig $360\degree$. Herefter hæves pennen og flyttes tilbage til cirklens centrum. Afviklingsdiagrammet viser denne proces (se figur\vref{fig:hpgl-cirkel-afvikling}).
+Det skal også nævnes, at HPGL tegner uanset om pennen er oppe eller
+nede, hvilket betyder, at vi skal bruge en funktion til at hæve og
+sænke pennen. HPGL sender "PU" (Pen Up), når pennen skal være
+oppe. Tilsvarende sender den en "PD" (Pen Down), når der skal
+tegnes. Pennen starter i cirklens centrum. Vi skal derfor sikre os, at
+pennen er hævet før den går til første punkt $P_0$. Herefter bruger vi
+den generelle funktion til at bestemme x,y-koordinaterne. Efter hver
+udført funktion lægges en ekstra kordevinkel til vinklen indtil
+vinklen $w$ er større eller lig $360\degree$. Herefter hæves pennen og
+flyttes tilbage til cirklens centrum. Afviklingsdiagrammet viser denne
+proces (se figur\vref{fig:hpgl-cirkel-afvikling}).
 
 \begin{figure}[htbp]
   \centering
@@ -246,12 +272,6 @@ Det skal også nævnes, at HPGL tegner uanset om pennen er oppe eller nede, hvil
 
 
 \section{Sensorer og løfter/sænker}
-
-
-\section{HPGL -- Hewlett-Packard Graphics Language}
-
-% Hvordan implementerer vi HPGL? Hvilke afvigelser tillader vi os at
-% tage fra den dokumentation, vi har fundet?
 
 
 %%% Local Variables: 
