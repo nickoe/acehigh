@@ -24,24 +24,34 @@
 #ifndef __DATA_H__
 #define __DATA_H__
 
-#include <avr/io.h>
+
+#include <stdint.h>
 
 
-enum
-{
-  DATAFEEDER_SUCCES,
-  DATAFEEDER_EOS,
-  DATAFEEDER_UNKNOWN
-};
+#define PARAM_SIZE 12
 
 
-/* Initialiserer dataføderen */
-uint8_t Datafeeder_Init();
+/* Initialiserer dataføderen, skal kaldes inden den kan bruges */
+uint8_t Data_Init(void);
 
 /* Returnerer næste byte i strømmen hvis det er muligt */
-uint8_t Datafeeder_GetNextByte();
+uint8_t Datar_Read(void);
 
-/* Returnerer sand hvis der ikke er mere data */
-uint8_t Datafeeder_EOS();
+/* Returnerer sand hvis der ikke er mere data i strømmen */
+uint8_t Data_EOS(void);
+
+/* Returnerer næste instruktion; springer over data inden
+   instruktionen */
+uint16_t Data_ReadIns(void);
+
+/* Returnerer førstkommende parameter som double. Parameteren starter
+   ved datamarkøren og data springes ikke over. */
+double Data_ReadParamF(void);
+
+/* Returnerer SAND hvis der findes flere parametre før næste
+   instruktion */
+uint8_t Data_ParamExists(void);
+
+
 
 #endif /* __DATA_H__ */

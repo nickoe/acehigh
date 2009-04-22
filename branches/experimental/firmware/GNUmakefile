@@ -8,7 +8,7 @@ MCU=atmega128
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=queue.c motorctrl.c lcd.c main.c
+PRJSRC=main.c motor.c lcd.c data.c sd_raw.c
 
 # Include-stier
 INC=-I.
