@@ -6,9 +6,12 @@
 \section{Stepmotor driver}
 Vi skal som nævnt i afsnittet \titleref{ch:d-hardware} konstruere en
 stepmotor driver, med et par integrerede stepmotor drivere. Mere
-specefikt anvender vi et par L6208N'ere, hvilket er en DMOS driver til
-bipolare stepmotorer. Vi bruger denne driver, da den er simpel at
-styre, samt der er mulighed for at lave strømbegrænsning.
+specefikt anvender vi et par L6208N'ere, hvilket er en DMOS drivere
+til bipolare stepmotorer. Vi bruger denne driver, da den er simpel at
+styre, samt der er mulighed for at lave strømbegrænsning. Hvilket vil
+gøre, at vi kan skrive forsyningsspændingen til motorerne op og
+begrænse strømmen, således motorerne er mere kvik, hvilket betyder at
+vi kan køre hurtigere.
 
 
 
@@ -40,7 +43,17 @@ styre, samt der er mulighed for at lave strømbegrænsning.
   \label{fig:fotogaffel-skitse}
 }
 
+\section{SD-kort adapter}
+Som en følge at at vi har bestemt i vores kravspecifikation, at vi skal kunne lægge data på et
+SD-kort, og få poltteren til at tegne det vi har bestemt i dataene, så
+skal vi selvfølgelig også have lavet en SD-kort adapter.
 
+Vi har ved at kigge på litteratur \cite{web:captain-mmc} og
+\cite{web:sd-pinout}, konstrueret en SD-kort adapter vi kan bruge til
+vores ATmega128 print.
+
+\fixme{Billede af SD-kort adapter}
+\fixme{Printlayout og pinout}
 
 %%% Local Variables: 
 %%% mode: latex
