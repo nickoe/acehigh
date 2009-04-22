@@ -8,10 +8,10 @@ MCU=atmega128
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=main.c motorctrl.c lcd.c
+PRJSRC=queue.c motorctrl.c lcd.c main.c
 
 # Include-stier
-INC=-I. -I/usr/avr/include
+INC=-I.
 
 # Lib-stier
 #LIB=-L/usr/avr/lib
@@ -51,7 +51,7 @@ HEXFORMAT=ihex
 # stakken skal begynde på 3256
 CFLAGS=$(INC) -g -std=c99 -mmcu=$(MCU) -O$(OPTLEVEL)			\
 -DF_CPU=$(CPUFREQ) -fpack-struct -fshort-enums -funsigned-bitfields	\
--funsigned-char -fno-inline -Wall -Wstrict-prototypes			\
+-funsigned-char -Wall -Wstrict-prototypes			\
 -Wa,-ahlms=$(firstword $(filter %.lst, $(<:.c=.lst)))
 
 # c++ specific flags
@@ -65,7 +65,7 @@ ASMFLAGS =$(INC) -mmcu=$(MCU) -x assembler-with-cpp		\
 
 
 # linker
-LDFLAGS=-Wl,-Map,$(TRG).map,--cref -mmcu=$(MCU)
+LDFLAGS=-Wl,-Map,$(TRG).map -mmcu=$(MCU)
 
 ##### executables ####
 CC=avr-gcc

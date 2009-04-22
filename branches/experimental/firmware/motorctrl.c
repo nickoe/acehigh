@@ -8,15 +8,6 @@
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- *
  * $Id$
  */
 
@@ -31,6 +22,7 @@
 #include "motorctrl.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -38,16 +30,17 @@
 #include <math.h>
 
 #include "lcd.h"
+#include "queue.h"
 
 
-/* motorkontrolinstruktioner */
-#define MC_CMD_MOVE_UP 0x01
-#define MC_CMD_MOVE_DOWN 0x02
-#define MC_CMD_MOVE_RIGHT 0x04
-#define MC_CMD_MOVE_LEFT 0x08
-#define MC_CMD_LIFT 0x10
-#define MC_CMD_LOWER 0x20
-#define MC_CMD_RESET 0x40
+/* instruktioner til jobbene */
+#define MC_CMD_MOVE_UP 0
+#define MC_CMD_MOVE_DOWN 1
+#define MC_CMD_MOVE_LEFT 2
+#define MC_CMD_MOVE_RIGHT 3
+#define MC_CMD_LIFT 4
+#define MC_CMD_LOWER 5
+#define MC_CMD_RESET 6
 
 
 /* definitioner til motorstyringskredsen */
@@ -67,108 +60,16 @@
 /* pladholder til positionen */
 uint16_t X = 0, Y = 0;
 
+/* timeren */
+uint16_t tick_counter = 0;
 
-uint8_t Queue_IsEmpty(Queue Q)
-{
-  return Q->Size == 0;
-}
+uint16_t counter = 0;
 
-uint8_t Queue_IsFull(Queue Q)
-{
-  return Q->Size == Q->Capacity;
-}
-
-Queue Queue_Create(uint16_t size) {
-  Queue Q;
-
-  /* her var oprindeligt en min-størrelse-tjek */
-
-  Q = malloc(sizeof(struct QueueRecord));
-  if (Q == NULL)
-  {
-    //FatalError("CreateQueue Error: Unable to allocate more memory.");
-  }
-
-  Q->Array = malloc(sizeof(Task) * size);
-  if (Q->Array == NULL)
-  {
-    //FatalError("CreateQueue Error: Unable to allocate more memory.");
-  }
-
-  Q->Capacity = size;
-  Queue_Empty(Q);
-
-  return Q;
-}
-
-void Queue_Empty(Queue Q)
-{
-  Q->Size = 0;
-  Q->Front = 1;
-  Q->Rear = 0;
-}
-
-void Queue_Dispose(Queue Q)
-{
-  if (Q != NULL)
-  {
-    free(Q->Array);
-    free(Q);
-  }
-}
-
-static uint8_t Queue_Succ(int Value, Queue Q)
-{
-  if (++Value == Q->Capacity)
-  {
-    Value = 0;
-  }
-  return Value;
-}
-
-void Queue_Enqueue(Queue Q, Task T)
-{
-  /* virker af en eller anden grund ikke - virker i main.c
-  while(Queue_IsFull(Q)) {
-  }
-  */
-
-  if (Queue_IsFull(Q)) {
-    //Error("Enqueue Error: The queue is full.");
-  } else {
-    Q->Size++;
-    Q->Rear = Queue_Succ(Q->Rear, Q);
-    Q->Array[Q->Rear] = T;
-  }
-}
-
-
-Task Queue_Front(Queue Q)
-{
-  if (!Queue_IsEmpty(Q)) {
-    return Q->Array[Q->Front];
-  }
-  //Error("Front Error: The queue is empty.");
-
-  /* Return value to avoid warnings from the compiler */
-  Task t;
-  return t;
-}
-
-void Queue_Dequeue(Queue Q)
-{
-  if (Queue_IsEmpty(Q)) {
-    //Error("Dequeue Error: The queue is empty.");
-  } else {
-    Q->Size--;
-    Q->Front = Queue_Succ(Q->Front, Q);
-  }
-}
 
 /* initialiser motorerne */
 void MotorCtrl_Init(void)
 {
-  queue = Queue_Create(50);
+  init_queue(&queue);
 
   /* her skal vi sætte motorkontrolkredsen op */
   MCC_DDR = 0xff;
@@ -269,10 +170,10 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, double v)
     }
 
     /* vi må vente til der er plads i køen */
-    while (Queue_IsFull(queue));
+    while (isfull(&queue));
 
     /* jobbet sættes i k */
-    Queue_Enqueue(queue, task);
+    enqueue(&queue, task);
 
   } while (cur_x <= x || cur_y <= y);
   
@@ -281,7 +182,7 @@ uint8_t MotorCtrl_GotoRXY(int16_t x, int16_t y, double v)
   task.Ins = MC_CMD_RESET;
 
   /* læg instruktion til at genstarte timeren i det sidste job */
-  Queue_Enqueue(queue, task);
+  enqueue(&queue, task);
 
   return 0;
 }
@@ -293,44 +194,23 @@ uint8_t MotorCtrl_GotoXY(uint16_t x, uint16_t y, double v)
   return MotorCtrl_GotoRXY(x-X, y-Y, v);
 }
 
-/* returnerer den absolutte x-position */
-void MotorCtrl_Lift(void)
-{
-  int r = 2;
-  r += 4;
-}
-
-/* returnerer den absolutte y-position */
-void MotorCtrl_Lower(void)
-{
-  int r = 2;
-  r += 4;
-}
-
-/* indlægger en forsinkelse af c clock cycles */
 void MotorCtrl_Delay(uint16_t c)
 {
-  PORTE = 1<<1;
+  /* vent på at der er plads til at sætte begge jobs i kø */
+  PORTE = 1<<4;
+
+  while (isfull(&queue));
+
+  PORTE = 1<<5;
+
   Task t;
   t.Time = 0;
-  t.Ins = 0x40; /* genstart timeren, indlæg pause */
+  t.Ins = MC_CMD_RESET; /* genstart timeren, indlæg pause */
 
-  PORTE = 1<<2;
-
-  /* her hænger programmet ... */
-  /* TODO: tjek værdierne af queue->Size og queue->Capacity og tjek hvornår
-     de sidst er ændret */
-  
-  while(queue->Size == queue->Capacity);
-
-  PORTE = 1<<6;
-
-  Queue_Enqueue(queue, t);
-
+  enqueue(&queue, t);
 
   t.Time = c;
-  while(Queue_IsFull(queue));
-  Queue_Enqueue(queue, t);
+  enqueue(&queue, t);
 }
 
 /*
@@ -338,11 +218,11 @@ void MotorCtrl_Delay(uint16_t c)
  *
  * Kaldes 1000 gange i sekundet
  */
-uint16_t counter = 0;
-
 ISR(TIMER0_COMP_vect)
 {
-  if (++counter == 500) {
+  /* udskriv evt status på kø her */
+
+  if (++counter == 249) {
     counter = 0;
     PORTE ^= 1<<7;
   }
@@ -359,14 +239,16 @@ ISR(TIMER0_COMP_vect)
   */
 
   while (1) {
-    if (Queue_IsEmpty(queue))
+    if (isempty(&queue)) {
       break;
+    }
 
-    Task t = Queue_Front(queue);
+    Task t = front(&queue);
 
     /* er denne deadline nået? fald ud når deadline ikke er nået */
-    if (t.Time > timer)
+    if (t.Time > tick_counter) {
       break;
+    }
 
     /* her behandles jobbet */
 
@@ -407,7 +289,7 @@ ISR(TIMER0_COMP_vect)
       reset = 1;
     }
 
-    Queue_Dequeue(queue);
+    dequeue(&queue);
   }
 
   /* mindste høj-tid */
@@ -417,9 +299,9 @@ ISR(TIMER0_COMP_vect)
 
   /* forhøj tik-tæller */
   if (reset) {
-    timer = 0;
+    tick_counter = 0;
     return;
   }
 
-  timer++;
+  tick_counter++;
 }
