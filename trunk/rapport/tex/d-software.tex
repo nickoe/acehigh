@@ -40,7 +40,7 @@ figur\vref{fig:motorstyring-indlagt-forsinkelse}.
 \end{figure}
 
 Ved denne type motorstyring er tiden $t$ mellem
-skridtene\fixme{fælles: andet ord?} være givet ved
+skridtene\fixme{fælles: andet ord?} givet ved
 \begin{align}
   \Delta t &= t_e + t_d \nonumber \Rightarrow \\
   v &= \frac{\Delta x}{t_e + t_d}
@@ -84,7 +84,7 @@ beregningsalgoritmen, og tjekkeralgoritmen afvikles. Når
 tjekkeralgoritmen\fixme{fælles: andet ord!} er afviklet, fortsættes
 afviklingen af beregningen af tidspunkter.
 
-Med denne metode kendes mindst mulige forsinkelse $t$, og vi har hvad
+Med denne metode kendes mindst mulige forsinkelse $t$, og vi har, hvad
 vi efterspørger. Forskellige hastigheder opnås ved at udelade at
 flytte motorerne på alle tidspunkter (se
 figur\vref{fig:motorstyring-afbrudt-afvikling-hastighed}), og
@@ -118,6 +118,58 @@ I værste tilfælde skal behandlingsalgoritmen
 
 Med en taktfrekvens på 16 MHz
 
+\subsection{Matematik -- motorkontrol}
+
+Forholdet imellem tiden det tager at tegne linjen og tiden til et
+punkt på linjen med $x$-koordinatet er lig forholdet imellem det givne
+punkts x-koordinat og forskellen imellem start- og slutkoordinat $\Delta x$:
+
+\begin{align}
+\frac{t}{\Delta t} &= \frac{x}{\Delta x} \Rightarrow x(t) = \Delta x \times \frac{t}{\Delta t}
+\end{align}
+
+Den generelle formel for tiden $t$, det tager at tegne linjen, er lig:
+\begin{align}
+v &= \frac{L}{\Delta t} \Rightarrow \Delta t= \frac{L}{v}
+\end{align}
+
+Hvilket betyder, at vi kan kombinere (5.1) og (5.2):
+\begin{align*}
+\frac{t \times v}{L} &= \frac{x}{\Delta x}
+\end{align*}
+
+Ved isolering af tiden $t$ får vi at:
+\begin{align}
+t = \frac{x}{\Delta x} \times \frac{L}{v}
+\end{align}
+
+Længden af linjen $L$ er givet ud fra pythagoras læresætning:
+\begin{align*}
+L &= \sqrt{\Delta x^2+\Delta y^2}
+\end{align*}
+
+Forholdet imellem $x$ og $\Delta x$ kan beskrives som forholdet imellem step $n$ og total antal steps $\Delta n$:
+\begin{align}
+\frac{x}{\Delta x} = \frac{n}{\Delta n}
+\end{align}
+
+Indsættes dette i (5.3) får vi et udtryk for tiden $t$, som afhænger af step $n$:
+\begin{align}
+t &= \frac{n}{\Delta n} \times \frac{L}{v}
+\end{align}
+
+Step $n$ kan findes ved brug af følgende formel:
+\begin{align}
+n &= x \times \eta_x \qquad n \in{R}
+\end{align}
+
+Formlen fremkommer af vores definition på $\eta$, som er:
+\begin{align*}
+\eta_x = \frac{n}{x}
+\end{align*}
+
+Ud fra formlen fremgår det, at $\eta$ har enheden $\frac{steps}{mm}$.
+Standardenheden, som er givet fra HPGL, er 0,025mm, altså en $\frac{1}{40}mm$
 
 \section{HPGL -- Hewlett-Packard Graphics Language}
 
@@ -205,58 +257,7 @@ Alle C-moduler er kompatible med \Cpp, og alle \Cpp-moduler er så vidt
 muligt kompatible med C. Uønskede sideeffekter af \Cpp\ forsøges
 undgået (\fixme{eksempler her!}). \Cpp\ bruges ikke objektorienteret.
 
-\section{Matematik -- motorkontrol}
 
-Forholdet imellem tiden det tager at tegne linjen og tiden til et
-punkt på linjen med $x$-koordinatet er lig forholdet imellem det givne
-punkts x-koordinat og forskellen imellem start- og slutkoordinat $\Delta x$:
-
-\begin{align}
-\frac{t}{\Delta t} &= \frac{x}{\Delta x} \Rightarrow x(t) = \Delta x \times \frac{t}{\Delta t}
-\end{align}
-
-Den generelle formel for tiden $t$, det tager at tegne linjen, er lig:
-\begin{align}
-v &= \frac{L}{\Delta t} \Rightarrow \Delta t= \frac{L}{v}
-\end{align}
-
-Hvilket betyder, at vi kan kombinere (5.1) og (5.2):
-\begin{align*}
-\frac{t \times v}{L} &= \frac{x}{\Delta x}
-\end{align*}
-
-Ved isolering af tiden $t$ får vi at:
-\begin{align}
-t = \frac{x}{\Delta x} \times \frac{L}{v}
-\end{align}
-
-Længden af linjen $L$ er givet ud fra pythagoras læresætning:
-\begin{align*}
-L &= \sqrt{\Delta x^2+\Delta y^2}
-\end{align*}
-
-Forholdet imellem $x$ og $\Delta x$ kan beskrives som forholdet imellem step $n$ og total antal steps $\Delta n$:
-\begin{align}
-\frac{x}{\Delta x} = \frac{n}{\Delta n}
-\end{align}
-
-Indsættes dette i (5.3) får vi et udtryk for tiden $t$, som afhænger af step $n$:
-\begin{align}
-t &= \frac{n}{\Delta n} \times \frac{L}{v}
-\end{align}
-
-Step $n$ kan findes ved brug af følgende formel:
-\begin{align}
-n &= x \times \eta_x \qquad n \in{R}
-\end{align}
-
-Formlen fremkommer af vores definition på $\eta$, som er:
-\begin{align*}
-\eta_x = \frac{n}{x}
-\end{align*}
-
-Ud fra formlen fremgår det, at $\eta$ har enheden $\frac{steps}{mm}$.
-Standardenheden, som er givet fra HPGL, er 0,025mm, altså en $\frac{1}{40}mm$
 
 %%% Local Variables: 
 %%% mode: latex

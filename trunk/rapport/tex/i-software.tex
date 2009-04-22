@@ -84,7 +84,20 @@ kan ses i figur\vref{fig:software-spi-sd-handling}.
 \section{HPGL-behandleren}
 
 % Hvordan virker den del, der fortolker og behandler HPGL?
+HPGL har adskillige forskellige instruktioner,  og vi benytter os ikke af samtlige i dette projekt.
+Med udgangspunkt i vores kravspecifikation har vi valgt følgende instruktioner:
 
+\begin{itemize} \firmlist
+\item 
+\item stille et uniformt API\footnote{Application Programming
+    Interface, programmeringsbrugerflade; betegnelse for struktur og
+    navngivning for funktioner, variable, strukturer, klasser
+    etc. brugt til programudvikling.}\fixme{brug evt. wikis
+    formulering af api} til rådighed uafhængig af underliggende modul,
+  således at det overliggende modul er uafhængig af det modul, der
+  indeholder data - se figur\vref{fig:datafeeder-uniform-api}
+\item håndtere fejl for underliggende moduler
+\end{itemize}
 
 \subsection{Identifikation af instruktioner og parametre}
 
@@ -199,8 +212,8 @@ P_1(x, y)&=(\cos(c)\times r, \sin(c)\times r) \label{eq:8.1}
  
 Denne formel kommer ud fra grundlæggende trigonometri:
 \begin{align*}
-\cos(v) &= x/r \Rightarrow x = \cos(v)\times r \\
-\sin(v) &= y/r \Rightarrow y = \sin(v)\times r
+\cos(v) &= \frac{x}{r} \Rightarrow x = \cos(v)\times r \\
+\sin(v) &= \frac{y}{r} \Rightarrow y = \sin(v)\times r
 \end{align*}
  
 Formlen \vref{eq:8.1} kan omskrives, så den gælder et vilkårligt punkt på cirkelperiferien:
