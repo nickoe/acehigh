@@ -1,0 +1,27 @@
+EESchema (20080825c)  >> Creation date: 23/4/2009-07:55:57
+
+#Cmp ( order = Value )
+| 10n          C1        
+| 10n          C2        
+| 10n          C3        
+| 180K         R1        
+| 180K         R2        
+| 180K         R3        
+| 330R         R5        
+| 330R         R6        
+| 330R         R7        
+| 40106        U1        
+| 47R          R4        
+| IR x         P4        
+| IR y         P3        
+| LED          D1        
+| LED          D2        
+| LED          D3        
+| MCU          P2        
+| NO           SW1       
+| NO           SW2       
+| NO           SW3       
+| PEN          P1        
+#End Cmp
+
+#End List

@@ -1,0 +1,180 @@
+# EESchema Netlist Version 1.1 created  23/4/2009-08:35:03
+(
+ ( /49EE3EBE C2 C1 10n
+  ( 1 N-000012 )
+  ( 2 GND )
+ )
+ ( /49EE3EC2 C2 C2 10n
+  ( 1 N-000022 )
+  ( 2 GND )
+ )
+ ( /49EE3EC7 C2 C3 10n
+  ( 1 N-000011 )
+  ( 2 GND )
+ )
+ ( /49EE3BB6 LEDV D1 LED
+  ( 1 N-000020 )
+  ( 2 GND )
+ )
+ ( /49EE3BB9 LEDV D2 LED
+  ( 1 N-000015 )
+  ( 2 GND )
+ )
+ ( /49F01D51 LEDV D3 LED
+  ( 1 N-000023 )
+  ( 2 GND )
+ )
+ ( /49F01E55 bornier2 P1 PEN
+  ( 1 GND )
+  ( 2 N-000005 )
+ )
+ ( /49EE3833 PIN_ARRAY_5x2 P2 MCU
+  ( 1 N-000018 )
+  ( 2 N-000008 )
+  ( 3 N-000019 )
+  ( 4 N-000014 )
+  ( 5 N-000010 )
+  ( 6 N-000013 )
+  ( 7 N-000006 )
+  ( 8 N-000021 )
+  ( 9 GND )
+  ( 10 VSS )
+ )
+ ( /49EE383C bornier2 P3 IR_y
+  ( 1 N-000016 )
+  ( 2 GND )
+ )
+ ( /49EE3842 bornier2 P4 IR_x
+  ( 1 N-000017 )
+  ( 2 GND )
+ )
+ ( /49F02622 bornier2 P5 PINPWR
+  ( 1 GND )
+  ( 2 N-000024 )
+ )
+ ( /49F0280E 1pin P6 CONN_1
+  ( 1 ? )
+ )
+ ( /49F0280C 1pin P7 CONN_1
+  ( 1 ? )
+ )
+ ( /49F0280A 1pin P8 CONN_1
+  ( 1 ? )
+ )
+ ( /49F02809 1pin P9 CONN_1
+  ( 1 ? )
+ )
+ ( /49F0256C TO220_VERT Q1 TIP120
+  ( 1 N-000005 )
+  ( 2 N-000007 )
+  ( 3 N-000024 )
+ )
+ ( /49EE3F12 R4 R1 180K
+  ( 1 N-000012 )
+  ( 2 VSS )
+ )
+ ( /49EE3FE7 R4 R2 180K
+  ( 1 N-000022 )
+  ( 2 VSS )
+ )
+ ( /49EE400F R4 R3 180K
+  ( 1 N-000011 )
+  ( 2 VSS )
+ )
+ ( /49F01E49 CP20 R4 47R
+  ( 1 N-000006 )
+  ( 2 N-000007 )
+ )
+ ( /49EE3C5D R4 R5 330R
+  ( 1 N-000020 )
+  ( 2 N-000013 )
+ )
+ ( /49EE3C61 R4 R6 330R
+  ( 1 N-000015 )
+  ( 2 N-000021 )
+ )
+ ( /49F01D5F R4 R7 330R
+  ( 1 N-000023 )
+  ( 2 VSS )
+ )
+ ( /49EE3AFB SIL-2 SW1 NO
+  ( 1 N-000012 )
+  ( 2 GND )
+ )
+ ( /49EE3B3F SIL-2 SW2 NO
+  ( 1 N-000022 )
+  ( 2 GND )
+ )
+ ( /49EE3B41 SIL-2 SW3 NO
+  ( 1 N-000011 )
+  ( 2 GND )
+ )
+ ( /49EE38CE 14DIP-ELL300 U1 40106
+  ( 1 N-000012 )
+  ( 2 N-000018 )
+  ( 3 N-000022 )
+  ( 4 N-000019 )
+  ( 5 N-000011 )
+  ( 6 N-000010 )
+  ( 7 VSS )
+  ( 8 N-000008 )
+  ( 9 N-000016 )
+  ( 10 N-000014 )
+  ( 11 N-000017 )
+  ( 14 GND )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ SM*
+ C?
+ C1-1
+$endlist
+$component C2
+ SM*
+ C?
+ C1-1
+$endlist
+$component C3
+ SM*
+ C?
+ C1-1
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R4
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R6
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R7
+ R?
+ SM0603
+ SM0805
+$endlist
+$endfootprintlist
+}
