@@ -95,16 +95,14 @@ int main(void)
     {
       // Plot Absolut
       // PA [X, Y [,...]] [;]
-      while(param_exits())                          // Tjekker om der er flere koordinatsæt, hvis ikke break; ellers 
-      {
-        x = (uint16_t)get_next_param();             // Henter x-koordinat
-        y = (uint16_t)get_next_param();             // Henter y-koordinat
-        MotorCtrl_GotoRXY(X-x, Y-y, MAXSPEED);      // Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes
-        
-        /* Sørger for at vi ved hvor vi er */
-        X += x;
-        Y += y;
-      }
+     
+      x = (uint16_t)get_next_param();             // Henter x-koordinat
+      y = (uint16_t)get_next_param();             // Henter y-koordinat
+      MotorCtrl_GotoRXY(X-x, Y-y, MAXSPEED);      // Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes
+      
+      /* Sørger for at vi ved hvor vi er */
+      X += x;
+      Y += y;
     }
     break;
     
