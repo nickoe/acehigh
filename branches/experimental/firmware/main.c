@@ -83,22 +83,18 @@ while (!Datafeeder_EOS())
     
     case HPGL_INS("PA"):
     {
-      // Plot Absolut
+      // Plot Absolute
       // PA [X, Y [,...]] [;]
      
-      x = (uint16_t)Data_ReadParamF();             // Henter x-koordinat
-      y = (uint16_t)Data_ReadParamF();             // Henter y-koordinat
-      Motor_Move(X-x, Y-y, MAXSPEED);        // Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes
-      
-      /* Sørger for at vi ved hvor vi er */
-      X += x;
-      Y += y;
+      X = (uint16_t)Data_ReadParamF();             // Henter x-koordinat
+      Y = (uint16_t)Data_ReadParamF();             // Henter y-koordinat
+      Motor_MoveTo(X, Y, MAXSPEED);                // Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes
     }
     break;
     
     case HPGL_INS("PR"):
     {
-      /* Plot Relativ */
+      /* Plot Relative */
       uint16_t x = (uint16_t)Data_ReadParamF();
       uint16_t y = (uint16_t)Data_ReadParamF();
       
