@@ -15,8 +15,7 @@ FIGS_DIA=../brugere/kjaergaard/datafeeder-oversigt.dia	\
 ../brugere/kjaergaard/hpglparser-param.dia
 
 # Alle SVG-filer
-FIGS_SVG=../logo/logo.svg						\
-./img/forside.svg							\
+FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ../brugere/kjaergaard/datafeeder-handling.svg				\
 ../brugere/kjaergaard/skaermkoordinater.svg				\
 ../brugere/kjaergaard/motorstyring-indlagt-forsinkelse.svg		\
@@ -28,11 +27,9 @@ FIGS_SVG=../logo/logo.svg						\
 ../brugere/kjaergaard/datafoeder.svg					\
 ../brugere/kjaergaard/datafoeder-uniform-api.svg			\
 ./img/afviklingsdiagram-cirkel.svg ./img/relativ-absolut.svg		\
-./img/cirkel.svg							\
-./img/fotogaffel.svg							\
-./img/sd-kort-adapter-diagram.svg					\
-./img/sd-kort-adapter-kobber.svg					\
-./img/l6208n-driver-diagram.svg
+./img/cirkel.svg ./img/fotogaffel.svg					\
+./img/sd-kort-adapter-diagram.svg ./img/sd-kort-adapter-kobber.svg	\
+./img/l6208n-driver-diagram.svg ./img/Tux-simple.svg
 
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)

@@ -5,6 +5,38 @@
 % kravspecifikation? Kom produktet til at virke? Hvis ikke hvad så? Og
 % ellers som vi plejer med en konklusion...
 
+% Vis billede af tux og logo
+
+\section{Delvis men dækkende implementering af HPGL}
+
+Instruktionerne \texttt{PU}, \texttt{PD}, \texttt{PA}, \texttt{PR} og
+\texttt{CI} er implementeret, og det er kun en lille del af hele
+HPGL-formatet. Dog viser det sig tilsyneladende, at
+\texttt{pstoedit}\footnote{Se brugervejledningen
+  side~\pageref{ch:brugervejledning}.} kun bruger instruktionerne
+\texttt{PU}, \texttt{PD} og \texttt{PA}, så implementeringen er
+dækkende til tegninger genereret af \texttt{pstoedit}.
+
+
+\section{Kvalitet af plottet}
+
+I figur\vref{fig:plot-tux} ses Tux -- Linux-maskotten -- som
+vektorgrafik og som plot i plotteren. Vektorbilledet er brugt til at
+generere HPGL-billedet brugt til plottet.
+
+
+\begin{figure}[htbp]
+  \centering
+  \subfloat[Billede af Tux, fra \cite{bbt:tux-billede}.]{
+    \includegraphics[width=0.40\textwidth]{./img/Tux-simple}
+  }
+  \qquad
+  \subfloat[Plot af billede.]{
+    \includegraphics[width=0.40\textwidth]{./img/tux-plot}
+  }
+  \caption{Demonstration af kvaliteten af et plot.}
+  \label{fig:plot-tux}
+\end{figure}
 
 
 %%% Local Variables: 
