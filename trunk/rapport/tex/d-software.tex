@@ -98,84 +98,75 @@ kan foretages inden en \textit{deadline} nåes.
 
 Løsningen forudsætter, at
 \begin{itemize} \firmlist
+\item der periodisk tjekkes, om vi har overskredet et tidspunkt,
 \item dataene fra algoritmen, der beregner tidspunkter, kan opbevares
   i en kø (først-ind-først-ud struktur, bruges ofte som
   \textit{buffer}),
-\item der er data i køen, når tjekkeralgoritmen har brug for data at
-  tjekke mod, så denne aldrig løber tør for data, og
-\item beregningsalgoritmen kan afvikles så hurtigt, at der lægges data
-  i køen hurtigere end tjekkeralgoritmen gennemgår dem.
-\end{itemize}
-
-I værste tilfælde skal behandlingsalgoritmen
-\begin{itemize} \firmlist
-\item indlæse data fra datakilden,
-\item fortolke dataene og
-\item beregne tidspunktet
+\item der er data i køen, når det tjekkes, om vi har overskredet et
+  tidspunkt, og
+\item tidsberegningen kan afvikles så hurtigt, at der lægges data i
+  køen hurtigere end der periodisk tjekkes for data.
 \end{itemize}
 
 
 \subsection{Algoritme til tidsberegning}
 
+\mnote{Christian Klim Hansen}
+
 Forholdet imellem tiden det tager at tegne linjen og tiden til et
-punkt på linjen med $x$-koordinatet er lig forholdet imellem det givne
-punkts x-koordinat og forskellen imellem start- og slutkoordinat $\Delta x$:
-
+punkt $x$ linjen lig forholdet imellem det givne punkts $x$-koordinat
+og forskellen imellem start- og slutkoordinat $\Delta x$:
 \begin{align}
-\frac{t}{\Delta t} &= \frac{x}{\Delta x} \Rightarrow x(t) = \Delta x \times \frac{t}{\Delta t}
+  \frac{t}{\Delta t} &= \frac{x}{\Delta x} \qquad \Rightarrow \nonumber \\
+  x &= \Delta x \times \frac{t}{\Delta t} \label{eq:x-af-dxtdt}
 \end{align}
 
-Den generelle formel for tiden $t$, det tager at tegne linjen, er lig:
+Her forudsættes det, at hele linien tegnes med konstant hastighed. Se
+figur\vref{fig:matematik-skitse} for geometrisk fremstilling.
+
+\mnote{
+  \includegraphics[width=\marginparwidth]{./img/matematik-skitse}
+  \captionof{figure}{Tekst her}
+  \label{fig:matematik-skitse}
+}
+\fixme{passende tekst til figur}
+
+Den tid $\Delta t$, det tager at tegne linien, er givet ved
 \begin{align}
-v &= \frac{L}{\Delta t} \Rightarrow \Delta t= \frac{L}{v}
+\Delta t = \frac Lv \label{eq:v-af-lv}
 \end{align}
 
-Hvilket betyder, at vi kan kombinere (5.1) og (5.2):
-\begin{align*}
-\frac{t \times v}{L} &= \frac{x}{\Delta x}
-\end{align*}
-
-Ved isolering af tiden $t$ får vi at:
+Vi kombinerer \eqref{eq:x-af-dxtdt} og \eqref{eq:v-af-lv} og isolerer
+$t$:
 \begin{align}
-t = \frac{x}{\Delta x} \times \frac{L}{v}
+t \times \frac{\Delta x}x &= \frac Lv \Leftrightarrow \\
+t &= \frac{\Delta x}x \times \frac Lv \label{eq:t-af-dxxlv}
 \end{align}
 
-Længden af linjen $L$ er givet ud fra pythagoras læresætning:
-\begin{align*}
-L &= \sqrt{\Delta x^2+\Delta y^2}
-\end{align*}
-
-Forholdet imellem $x$ og $\Delta x$ kan beskrives som forholdet imellem step $n$ og total antal steps $\Delta n$:
+Længden af linjen $L$ er givet ved
 \begin{align}
-\frac{x}{\Delta x} = \frac{n}{\Delta n}
+L &= \sqrt{\left(\Delta x\right)^2 + \left(\Delta y\right)^2}
 \end{align}
 
-Indsættes dette i (5.3) får vi et udtryk for tiden $t$, som afhænger af step $n$:
+Forholdet imellem position $x$ og positionsændring $\Delta x$ er lig
+forholdet mellem step $n_x$ og stepændring $\Delta n_x$:
 \begin{align}
-t &= \frac{n}{\Delta n} \times \frac{L}{v}
+\frac{x}{\Delta x} = \frac{n_x}{\Delta n_x} \label{eq:xdx-af-nxdnx}
 \end{align}
 
-Step $n$ kan findes ved brug af følgende formel:
+Sætning \eqref{eq:t-af-dxxlv} og \eqref{eq:xdx-af-nxdnx} kombineres
+til udtrykket
 \begin{align}
-n &= x \times \eta_x \qquad n \in{R}
+t &= \frac{n_x}{\Delta n_x} \times \frac{L}{v}
 \end{align}
 
-Formlen fremkommer af vores definition på $\eta$, som er:
-\begin{align*}
-\eta_x = \frac{n}{x}
-\end{align*}
+Opløsningen for $x$-retningen er givet ved
+\begin{align}
+  n_x = x \times \eta_x
+\end{align}
 
-Ud fra formlen fremgår det, at $\eta$ har enheden $\frac{steps}{mm}$.
-Standardenheden, som er givet fra HPGL, er 0,025mm, altså en $\frac{1}{40}mm$
-
-Figur\vref{fig:la-behandling} viser hvordan behandlingen foregår.
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=.75\textwidth]{./img/la-behandling}
-  \caption{Afviklingsdiagram over afvikling af LA-instruktionen.}
-  \label{fig:la-behandling}
-\end{figure}
-\fixme{er det ikke implementering?}
+Alle symboler med indeks $x$ gælder kun for $x$-aksen. Der arbejdes
+med tilsvarende symboler med indeks $y$ for $y$-aksen.
 
 
 \section{HPGL -- Hewlett-Packard Graphics Language}

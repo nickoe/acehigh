@@ -27,10 +27,10 @@ FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ../brugere/kjaergaard/datafoeder.svg					\
 ../brugere/kjaergaard/datafoeder-uniform-api.svg			\
 ./img/afviklingsdiagram-cirkel.svg ./img/relativ-absolut.svg		\
-./img/cirkel.svg							\
-./img/fotogaffel.svg							\
+./img/cirkel.svg ./img/fotogaffel.svg					\
 ./img/sd-kort-adapter-diagram.svg ./img/sd-kort-adapter-kobber.svg	\
 ./img/l6208n-driver-diagram.svg ./img/Tux-simple.svg			\
+./img/matematik-skitse.svg
 ./img/tegnehoved-skitse.svg							
 
 
