@@ -25,13 +25,12 @@
 #define __PLOTTER_H__
 
 
-/* stakstørrelse */
-//#define __stack 3256
-
-/*
- * Makro til at lave HPGL-instruktioner om til tal
- */
 #define HPGL_INS(ins) (((uint8_t)ins[0])<<8 | (uint8_t)ins[1])
 
+#define HPGL_CI 0x4349
+#define HPGL_PA 0x5041
+#define HPGL_PD 0x5044
+#define HPGL_PR 0x5052
+#define HPGL_PU 0x5055
 
 #endif /* __PLOTTER_H__ */

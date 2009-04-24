@@ -29,6 +29,7 @@
 
 
 #define PARAM_SIZE 12
+#define MAX_SEARCH 12
 
 
 /* Initialiserer dataføderen, skal kaldes inden den kan bruges */
@@ -46,7 +47,7 @@ uint16_t Data_ReadIns(void);
 
 /* Returnerer førstkommende parameter som double. Parameteren starter
    ved datamarkøren og data springes ikke over. */
-double Data_ReadParamF(void);
+int Data_ReadParamI(void);
 
 /* Returnerer SAND hvis der findes flere parametre før næste
    instruktion */

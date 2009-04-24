@@ -1,7 +1,7 @@
 /*
  * Motor controller
  *
- * Copyright (C) 2009  Kristian Kjærgaard
+ * Copyright (C) 2009  Ace High Project
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -11,6 +11,7 @@
  * $Id$
  */
 
+#include "motor.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -21,32 +22,26 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-
-/* definitioner til motorstyringskredsen */
-#define MCC_DDR        DDRA
-#define MCC_PORT       PORTA
-#define MCC_HALFFULL   0
-#define MCC_DECAY      1
-#define MCC_Y_CCW      2
-#define MCC_ENABLE     3
-#define MCC_Y_CLK      4
-#define MCC_X_CLK      5
-#define MCC_RESET      6
-#define MCC_X_CCW      7
+#include "lcd.h"
 
 
-#define RES_X 0.14
-#define RES_Y 1.0
+#define RES_Y 1.19047619
+#define RES_X 0.297619048
 
 
 #define activate_timer() (TIMSK |= 1<<OCIE0)
 #define deactivate_timer() (TIMSK &= ~(1<<OCIE0))
+#define timer_running() (TIMSK & (1<<OCIE0))
 
 
-/* pladholder til positionen */
+/* pladholder til aktuel positionen */
 uint32_t current_x = 0, current_y = 0;
 
-/* timeren og tid vi er færdig på */
+/* pladsholder til den position vi er på vej til i øjeblikket*/
+uint32_t target_x, target_y;
+
+/* timeren og tid vi er færdig på; må tilsyneladende ikke hedde noget
+   der findes et andet sted i programmet */
 uint32_t tick_counter = 0;
 uint32_t ticks = 0;
 
@@ -73,18 +68,22 @@ void Motor_Move(int32_t x, int32_t y, double v)
   long double tmp_k_y = abs(y) * RES_Y / tmp_ticks;
 
   /* vent så længe timeren kører */
-  while (TIMSK & (1<<OCIE0));
+  while (timer_running());
+
+  /* nu bevæger vi os mod denne koordinat */
+  target_x += x;
+  target_y += y;
 
   /* få retningen på plads */
   if (x < 0)
-    MCC_PORT &= ~(1<<MCC_X_CCW);
-  else
     MCC_PORT |= 1<<MCC_X_CCW;
+  else
+    MCC_PORT &= ~(1<<MCC_X_CCW);
 
   if (y < 0)
-    MCC_PORT &= ~(1<<MCC_Y_CCW);
-  else
     MCC_PORT |= 1<<MCC_Y_CCW;
+  else
+    MCC_PORT &= ~(1<<MCC_Y_CCW);
 
   /* læg alle variable over i dem timeren bruger */
   current_x = 0;
@@ -123,7 +122,7 @@ void tick(void)
   }
 
   /* mindste høj-tid for l6208n */
-  _delay_us(2);
+  _delay_us(5);
   MCC_PORT &= ~((1<<MCC_X_CLK) | (1<<MCC_Y_CLK));
   
   if (tick_counter == ticks) {
@@ -136,6 +135,12 @@ void tick(void)
 ISR(TIMER0_COMP_vect)
 {
   tick();
+}
+
+
+void Motor_MoveTo(uint32_t x, uint32_t y, double v)
+{
+  Motor_Move(x-target_x, y-target_y, v);
 }
 
 
@@ -154,14 +159,39 @@ void Motor_Init(void)
   MCC_PORT |= 1 << MCC_ENABLE;
 
 
+  /* til løfter/sænker */
+  DDRF |= 1<<6;
+
+
   /* timeren sættes op */
   /* timer-clock er f_osc/128 = 125 kHz, Clear Timer on Compare */
+  /* maksimal tegnehastighed */
   TCCR0 = (1<<WGM01) | (1<<CS02) | (1<<CS00);
   /* tæl op til 249, så bliver frekvensen af timeren 500 Hz */
   OCR0 = 249;
  
+  /* her: positioner tegnehovedet i (0,0) */
+  target_x = 0;
+  target_y = 0;
+
   /* aktiver interrupt */
   sei();
+}
 
-  DDRE = 0xff;
+void Motor_Lift(void)
+{
+  /* vent til vi er færdige med at flytte tegneren */
+  while (timer_running());
+
+  /* løft tegnehoved */
+  PORTF &= ~(1<<6);
+}
+
+void Motor_Lower(void)
+{
+  /* vent til vi er færdige med at flytte tegneren */
+  while (timer_running());
+
+  /* sænk tegnehoved */
+  PORTF |= 1<<6;
 }

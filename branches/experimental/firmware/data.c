@@ -106,8 +106,7 @@ uint16_t Data_ReadIns()
 
 uint8_t Data_ParamExists()
 {
-  while (1)
-  {
+  for (int i = 0; i < MAX_SEARCH; i++) {
     /* hvis vi er på et tal er vi i starten af en parameter */
     if (isdigit(current_byte))
       return 1;
@@ -129,30 +128,35 @@ uint8_t Data_ParamExists()
 
     current_byte = Data_Read();
   }
+
+  return 0;
 }
 
-double Data_ReadParamF()
+int Data_ReadParamI()
 {
   uint8_t param[PARAM_SIZE]; /* plads til parameter */
 
   uint8_t n = 0;
 
+  /* flyt markøren frem til næste parameter */
+  while (!isdigit(current_byte)) {
+    if (isalpha(current_byte)) {
+      /* vi er kørt frem til den næste instruktion */
+      return 0;
+    }
+
+    current_byte = Data_Read();
+  }
+
   /* denne løkke kører så længe der indlæses bytes som er gyldige som
      parametertegn */
   while (n < PARAM_SIZE)
   {
-    /* tjek om byten er en gyldig værdi - hvis ikke, så hvad? gyldige
-       bytes er tal eller punktum */
-    if (isdigit(current_byte) || current_byte == 0x2e)
-    {
+    if (isdigit(current_byte)) {
       param[n] = current_byte;
-    }
-
-    /* mellemrum og komma afslutter parameteren, semikolon afslutter
-       instruktionen, andre tegn i vejen afslutter også */
-    else
-    {
-      /* parameteren er slut */
+    } else {
+      /* her er i nået til en instruktion eller en
+	 parameterseparator */
       break;
     }
 
@@ -160,10 +164,7 @@ double Data_ReadParamF()
 
     /* findes der mere data i strømmen */ 
     if (Data_EOS())
-    {
-      current_byte = 0;
       break;
-    }
 
     /* indlæs næsten bytes fra dataføderen */
     current_byte = Data_Read();
@@ -177,6 +178,6 @@ double Data_ReadParamF()
     n++;
   }
 
-  return atof((char*)param);
+  return atoi((char*)param);
 }
 
