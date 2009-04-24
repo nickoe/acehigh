@@ -18,7 +18,7 @@ FIGS_DIA=../brugere/kjaergaard/datafeeder-oversigt.dia	\
 FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ../brugere/kjaergaard/datafeeder-handling.svg				\
 ../brugere/kjaergaard/skaermkoordinater.svg				\
-../brugere/kjaergaard/motorstyring-indlagt-forsinkelse.svg		\
+./img/motorstyring-indlagt-forsinkelse.svg				\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling.svg		\
 ../brugere/kjaergaard/motorstyring-afbrudt-afvikling-hastighed.svg	\
 ./img/fotogafel-skitse.svg img/forside.svg				\
