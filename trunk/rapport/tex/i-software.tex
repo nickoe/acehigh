@@ -97,6 +97,7 @@ kravspecifikation.  I projektet anvender vi følgende instruktioner:
   afsnit\vref{sc:relativ-absolut}.
 \item[\texttt{CI}] Plot Circle - se afsnit\vref{sc:matematik-cirkel}.
 \end{itemize}
+\fixme{Klim: Laves om til fem punkter}
 
 HPGL bruger oprindeligt bogstaver, tal og symboler (komma, punktum
 osv.) til at identificere instruktioner, men som det fremgår af næste
@@ -233,7 +234,7 @@ overskrider $360\degree$.
 
 Der opstår dog et problem, hvis vinklen ikke går op i $360\degree$,
 såsom vinklen $7\degree$. $51\times 7\degree = 357\degree \Rightarrow
-rest = 3\degree$. Overskrider vinklen de $360\degree$, har vi to
+\textup{rest} = 3\degree$. Overskrider vinklen de $360\degree$, har vi to
 muligheder:
 \begin{itemize} \firmlist
 \item Funktionen afsluttes uden at slutte cirklen
@@ -250,6 +251,7 @@ udført funktion lægges en ekstra kordevinkel til vinklen indtil
 vinklen $w$ er større eller lig $360\degree$. Herefter hæves pennen og
 flyttes tilbage til cirklens centrum. Afviklingsdiagrammet viser denne
 proces (se figur\vref{fig:hpgl-cirkel-afvikling}).
+\fixme{Klim: Henvis evt tidligere til figur}
 
 \begin{figure}[htbp]
   \centering
