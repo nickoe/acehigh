@@ -41,7 +41,7 @@ Dataføderens skal
 \begin{itemize} \firmlist
 \item levere data til HPGL-motoren og sørge for at denne ikke løber
   tør for data\fixme{bliv enig om terminologi}
-\item stille et uniformt API\footnote{Application Programming
+\item stille et ensartet API\footnote{Application Programming
     Interface, programmeringsbrugerflade; betegnelse for struktur og
     navngivning for funktioner, variable, strukturer, klasser
     etc. brugt til programudvikling.}\fixme{brug evt. wikis
@@ -53,7 +53,7 @@ Dataføderens skal
 
 \mnote{
   \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/datafoeder-uniform-api}
-  \captionof{figure}{Data\-føderen skal stille et uniformt API til
+  \captionof{figure}{Data\-føderen skal stille et ensartet API til
     rådighed.}
   \label{fig:datafeeder-uniform-api}
 }
@@ -69,8 +69,8 @@ figur\vref{fig:software-spi-sd-oversigt}.
   \label{fig:software-spi-sd-oversigt}
 \end{figure}
 
-Kommunikationen med SD-kortet foregår gennem SPI'en.\fixme{afsnit skal
-  skrives færdig}. En eksempel på en forespørgsel med tilhørende svar
+Kommunikationen med SD-kortet foregår gennem SPI'en\fixme{afsnit skal
+  skrives færdig}. Et eksempel på en forespørgsel med tilhørende svar
 kan ses i figur\vref{fig:software-spi-sd-handling}.
 
 \begin{figure}[htbp]
@@ -157,7 +157,7 @@ andre parametre end talparametre.
 \end{figure}
 
 
-\subsection{Relative og absolutte koordinater}
+\subsection{Relative og absolutte koordinater samt grafikenheder}
 \label{sc:relativ-absolut}
 
 Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
@@ -181,7 +181,7 @@ udgangspunkt i den forrige linies
 slutpunkt. Figur\vref{fig:relativ-absolut} viser et eksempel på
 relative og absolutte linier.  \fixme{ehh... kortere afsnit?}
 
-\subsection{Matematik -- Cirkel}
+\subsection{Behandling af cirkel}
 \label{sc:matematik-cirkel}
 
 Vi kender cirklens radius $r$, kordevinklen $c$ samt startkoordinater
