@@ -1,5 +1,6 @@
 \chapter[Design af hardware]{Hardware}
 \label{ch:d-hardware}
+\mnote{Nick Østergaard}
 
 % Afsnittet skal indeholde information om vores hardware.
 % Strømforsyning, motor drivere, MCU print, transducere m.m. Men kun
@@ -55,12 +56,12 @@ maskinen, vha. data fra et SD-kort. Et SD-kort kan styres på
 forskellige måder:
 
 \begin{itemize}
-\item{\texttt{SPI mode (seperat serial ind eller serial ud)}}
-\item{\texttt{Et-bit SD mode (seperat kommando og data kanaler samt et
-    proprietært overførsels format)}}
-\item{\texttt{Fire-bit SD mode (bruger ekstra forbindelser samt nogle
+\item{SPI mode (seperat serial ind eller serial ud)}
+\item{Et-bit SD mode (seperat kommando og data kanaler samt et
+    proprietært overførsels format)}
+\item{Fire-bit SD mode (bruger ekstra forbindelser samt nogle
     ombyttede pins for at supportere fire bits bredde på parallel
-    overførsel)}}
+    overførsel)}
 \end{itemize}
 
 ---SPI mode (separate serial in and serial out), one-bit SD mode
@@ -81,14 +82,23 @@ skal hardwaren understøtte funktionen. Der er dog ikke stor forskel
 SPI mode, som vi vil understøtte og er den simpleste, og SD mode, som
 blot kræver to forbindelser mere til SD-kortet.
 
-SD-kortet opererer ved en spænding på $3,3V$, derfor skal vi have en
-seperat spændingsforsyning på $3,3V$ til kortet. A samme grund er vi
+SD-kortet opererer ved en spænding på 3,3V, derfor skal vi have en
+seperat spændingsforsyning på 3,3V til kortet. A samme grund er vi
 nødt til, at sænke spændingen fra vores MCU fra de 5V, til omkring de
 3,3V, før vi kan kommunikere med det. Vi kan opnå dette med en
 spændingsdeler, ved IO pinsene der går fra MCU'en til SD-kortet. Når
 signalet fra SD-kortet går høj, vil det givetvis være på 3,3V. Dette
 er ikke de 5V som vores MCU opererer ved, men det er ikke noget
 problem, da det stadigvæk svarer til et højt signal for MCU'en.
+
+
+\section{Tegnehoved}
+\label{sc:d-tegnehoved}
+Tegnehovedet er vores penholder,som sørger for at vi kan høve og sænke
+pennen, afhængig af og vi skal tegne eller bare flytte pennen. Den kan
+flyttes i to retninger (ad x- og y-aksen).
+
+
 
 %%% Local Variables: 
 %%% mode: latex

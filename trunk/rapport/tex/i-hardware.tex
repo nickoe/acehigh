@@ -1,4 +1,5 @@
 \chapter[Implementering af hardware]{Hardware}
+\mnote{Nick Østergaard}
 
 % Vi skriver her om hvordan vi faktisk realiserer det vi har sankket
 % om i Hardwaredesignet
@@ -14,17 +15,23 @@ skrue forsyningsspændingen til motorerne op og begrænse strømmen,
 således motorerne er mere kvik, hvilket betyder at vi kan køre
 hurtigere.
 
-\fixme{Billede af stepmotordirver}
+
+\mnote{
+  \includegraphics[width=\marginparwidth]{./img/stepmotordriver}
+  \captionof{figure}{Stepmotor driver}
+  \label{fig:stepdriver}
+}
+\fixme{Nick: Beskær billede}
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/x-motor}
-  \captionof{figure}{Billede af x-motoren}
+  \captionof{figure}{X-aksens motor monteret}
   \label{fig:x-motorimg}
 }
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/y-motor}
-  \captionof{figure}{Billede af y-motoren}
+  \captionof{figure}{Y-aksens motor monteret}
   \label{fig:y-motorimg}
 }
 
@@ -55,6 +62,8 @@ vores ATmega128 print.
 
 \fixme{Billede af SD-kort adapter}
 \fixme{Printlayout og pinout}
+
+\fixme{Beskriv kort, hvordan vi aktiverer vores sænker}
 
 %%% Local Variables: 
 %%% mode: latex
