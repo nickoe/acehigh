@@ -3,7 +3,8 @@
 % Note om hvad der skal stå i dette afsnit her.
 
 
-\section{Motorstyring}
+\section[Motorstyring]{Motorstyring\footnote{Se rettelser til dette
+    afsnit i afsnit\vref{ssc:rettelse-design}.}}
 
 \mnote{Kristian Kjærgaard}
 
@@ -67,6 +68,8 @@ hastigheder.
   \label{fig:motorstyring-indlagt-forsinkelse-timing}
 \end{figure}
 
+Softwaren designet \textit{ikke} på denne måde.
+
 
 \subsection{Motorstyring med afbrudt afvikling}
 
@@ -105,6 +108,8 @@ Løsningen forudsætter, at
 \item tidsberegningen kan afvikles så hurtigt, at der lægges data i
   køen hurtigere end der periodisk tjekkes for data.
 \end{itemize}
+
+Softwaren designet med afbrudt afvikling.
 
 
 \subsection{Algoritme til tidsberegning}
