@@ -10,9 +10,9 @@
 TARGET=master.tex
 
 # Alle DIA-diagrammer
-FIGS_DIA=../brugere/kjaergaard/datafeeder-oversigt.dia	\
-../brugere/kjaergaard/hpglparser-ins.dia		\
-../brugere/kjaergaard/hpglparser-param.dia
+FIGS_DIA=../brugere/kjaergaard/hpglparser-ins.dia		\
+../brugere/kjaergaard/hpglparser-param.dia			\
+./img/egentlig-softwimpl-a.dia ./img/egentlig-softwimpl-b.dia
 
 # Alle SVG-filer
 FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
@@ -30,7 +30,8 @@ FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ./img/cirkel.svg ./img/fotogaffel.svg					\
 ./img/sd-kort-adapter-diagram.svg ./img/sd-kort-adapter-kobber.svg	\
 ./img/l6208n-driver-diagram.svg ./img/Tux-simple.svg			\
-./img/matematik-skitse.svg ./img/tegnehoved-skitse.svg
+./img/matematik-skitse.svg ./img/tegnehoved-skitse.svg			\
+./img/i-motor-design.svg
 
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)

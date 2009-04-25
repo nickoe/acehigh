@@ -59,27 +59,21 @@ Dataføderens skal
   \label{fig:datafeeder-uniform-api}
 }
 
-En oversigt over funktionsfordelingen\fixme{andet ordvalg} i
-dataføreren\fixme{andet ordvalg} kan ses i
-figur\vref{fig:software-spi-sd-oversigt}.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\textwidth]{../brugere/kjaergaard/datafeeder-oversigt}
-  \caption{Diagram over funktionsfordeling i dataføderen}
-  \label{fig:software-spi-sd-oversigt}
-\end{figure}
-
-Kommunikationen med SD-kortet foregår gennem SPI'en\fixme{afsnit skal
-  skrives færdig}. Et eksempel på en forespørgsel med tilhørende svar
-kan ses i figur\vref{fig:software-spi-sd-handling}.
+Kommunikationen med SD-kortet foregår gennem SPI'en\footnote{Serial
+  Peripheral Interface, en seriel indgang til MCU'en}, hvor der sendes
+én byte og modtages én byte synkront. På laget over SPI-laget sættes
+bytes sammen til en bestemt type forspørgsel til SD-kortet, og bytes
+samles til SD-kortets svar. Et eksempel på en forespørgsel med
+tilhørende svar kan ses i figur\vref{fig:software-spi-sd-handling}.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{../brugere/kjaergaard/datafeeder-handling}
-  \caption{Handlingdiagram ved kommunikation med SD-kortet}
+  \caption{Forespørgsel til SD-kortet. Der forespørges på et
+    hukommelsesområde, og SD-kortet svarer med det hukommelsesområde.}
   \label{fig:software-spi-sd-handling}
 \end{figure}
+\fixme{tegn ny illustration}
 
 
 \section{HPGL-behandleren}
@@ -150,11 +144,11 @@ andre parametre end talparametre.
 \begin{figure}[htbp]
   \centering
   \subfloat[Afviklingsdiagram for parserens instruktionsidentifikation.]{
-    \includegraphics[width=.30\textwidth]{../brugere/kjaergaard/hpglparser-ins}
+    \includegraphics[width=.26\textwidth]{../brugere/kjaergaard/hpglparser-ins}
   }
   \qquad
   \subfloat[Afviklingsdiagram for parserens parameteridentifikation.]{
-    \includegraphics[width=.60\textwidth]{../brugere/kjaergaard/hpglparser-param}
+    \includegraphics[width=.64\textwidth]{../brugere/kjaergaard/hpglparser-param}
   }
   \caption{Afviklingsdiagrammer for HPGL-parseren}
   \label{fig:hpgl-parser-afvikling}
@@ -193,7 +187,7 @@ Vi kender cirklens radius $r$, kordevinklen $c$ samt startkoordinater
 $(x, y)$. Det første koordinat kan ud fra en hurtig analyse derfor let
 findes:
 \begin{align*}
-P_0(x, y)=(r, 0)
+  P_0(x, y) = (r, 0)
 \end{align*}
 
 \mnote{
@@ -208,14 +202,14 @@ Næste koordinat ligger i en vinkel $w$, som svarer til kordevinklen
 $c$, altså har vi lagt en kordevinkel til de $0\degree$. Ved brug af
 cosinus og sinus samt radius $r$ kan vi bestemme det næste koordinat:
 \begin{align}
-P_1(x, y)&=(\cos(w)\times r, \sin(w)\times r) \Rightarrow \nonumber \\
-P_1(x, y)&=(\cos(c)\times r, \sin(c)\times r) \label{eq:8.1}
+  P_1(x, y) &= \left( \cos(w) \times r, \sin(w) \times r \right) \Rightarrow \nonumber \\
+  P_1(x, y) &= \left( \cos(c) \times r, \sin(c) \times r \right) \label{eq:8.1}
 \end{align}
  
 Denne formel kommer ud fra grundlæggende trigonometri:
 \begin{align*}
-\cos(v) &= \frac{x}{r} \Rightarrow x = \cos(v)\times r \\
-\sin(v) &= \frac{y}{r} \Rightarrow y = \sin(v)\times r
+  \cos(v) &= \frac{x}{r} \Rightarrow x = \cos(v)\times r \\
+  \sin(v) &= \frac{y}{r} \Rightarrow y = \sin(v)\times r
 \end{align*}
  
 Formlen \vref{eq:8.1} kan omskrives, så den gælder et vilkårligt punkt
@@ -244,18 +238,17 @@ muligheder:
 \item Funktionen afsluttes uden at slutte cirklen
 \item Funktionen ændres, så optegningen fortsætter til udgangspunktet $P_0$
 \end{itemize}
-Det skal også nævnes, at HPGL tegner uanset om pennen er oppe eller
-nede, hvilket betyder, at vi skal bruge en funktion til at hæve og
-sænke pennen. HPGL sender "PU" (Pen Up), når pennen skal være
-oppe. Tilsvarende sender den en "PD" (Pen Down), når der skal
-tegnes. Pennen starter i cirklens centrum. Vi skal derfor sikre os, at
-pennen er hævet før den går til første punkt $P_0$. Herefter bruger vi
-den generelle funktion til at bestemme x,y-koordinaterne. Efter hver
-udført funktion lægges en ekstra kordevinkel til vinklen indtil
-vinklen $w$ er større eller lig $360\degree$. Herefter hæves pennen og
-flyttes tilbage til cirklens centrum. Afviklingsdiagrammet viser denne
-proces (se figur\vref{fig:hpgl-cirkel-afvikling}).
-\fixme{Klim: Henvis evt tidligere til figur}
+HPGL tegner uanset om pennen er oppe eller nede, hvilket betyder, at
+vi skal bruge en funktion til at hæve og sænke pennen. HPGL sender
+"PU" (Pen Up), når pennen skal være oppe. Tilsvarende sender den en
+"PD" (Pen Down), når der skal tegnes. Pennen starter i cirklens
+centrum. Vi skal derfor sikre os, at pennen er hævet før den går til
+første punkt $P_0$. Herefter bruger vi den generelle funktion til at
+bestemme $(x, y)$-koordinaterne. Efter hver udført funktion lægges en
+ekstra kordevinkel til vinklen indtil vinklen $w$ er større eller lig
+360 \degree. Herefter hæves pennen og flyttes tilbage til cirklens
+centrum. Afviklingsdiagrammet i figur\vref{fig:hpgl-cirkel-afvikling}
+viser denne proces. \fixme{Klim: Henvis evt tidligere til figur}
 
 \begin{figure}[htbp]
   \centering
@@ -265,12 +258,36 @@ proces (se figur\vref{fig:hpgl-cirkel-afvikling}).
 \end{figure}
 
 
-\section[Motorkontrol (med buffer)]{Motorkontrol}
+\section[Motorkontrol (med kø)]{Motorkontrol}
 
 % Hvordan er motorkontrollen implementeret? Beskriv implementeringen
 % kort.
 
+\mnote{Kristian Kjærgaard}
 
+Motorkontrollen har til opgave at flytte motorerne, så tegnehovedets
+placering kan styres. Motorkontrollen sørger også for at time
+motorerne, så der køres mellem to punkter i en lige linie med en given
+hastighed.
+
+Figur\vref{fig:i-motor-design} viser, hvordan motorkontrollen lægger
+de tidspunkter, motorerne skal flyttes på, i en kø. Figuren viser
+også, hvordan motorkontrollen periodisk tjekker, om et tidspunkt er
+overskredet. Når et tidspunkt er overskredet, flyttes motorerne.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{./img/i-motor-design}
+  \caption{Diagram over funktioner i motorkontrollen}
+  \label{fig:i-motor-design}
+\end{figure}
+
+
+I figur\vref{fig:la-behandling} ses et afviklingsdiagram for at
+omsætte en linie til tidspunkter og lægge tidspunkterne i
+kø. Tidspunkterne skal lægges i køen kronologisk med det tidligste
+tidspunkt først, derfor er denne funktion kringlet.\fixme{sprødt
+  udtryk}
 
 \begin{figure}[htbp]
   \centering
@@ -280,13 +297,18 @@ proces (se figur\vref{fig:hpgl-cirkel-afvikling}).
 \end{figure}
 
 
-\section{Stepmotorstyring}
+\section{Stepmotorstyring og løfter/sænker}
 
 % Hvordan styres stepmotorerne? Superkort. Hvordan ser softwaren der
 % styrer dem ud?
 
+Stepmotorerne styres med kredsen L6208N, som indeholder en H-bro,
+optokoblere og transistorer og kan holde til 52 volt. Et signal styrer
+stepmotorens retning, mens en impuls får L6208N til at flytte motoren
+et step.
 
-\section{Sensorer og løfter/sænker}
+Tegnehovedet sænkes ved at sende signal til den transistor, der åbner
+for strømmen til magneten i tegnehovedet.
 
 
 %%% Local Variables: 
