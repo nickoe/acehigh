@@ -175,35 +175,12 @@ med tilsvarende symboler med indeks $y$ for $y$-aksen.
 Når man skal vælge, hvilket format man vil bruge, når man laver en
 plotter, så er der en del ting at tage hensyn til. Der findes mange
 forskellige standarder, som kan anvendes og en af disse standarder er
-HPGL, som vi benytter os af.
-
-Når man skal vælge, hvad man vil bruge, så er det vigtigt at se på
-fordele og ulemper. Vi kunne i princippet godt udvikle vores eget
-plotterformat, men dette vil både være meget tidskrævende, og
-samtidigt vil det være svært at få implementeret, da vores format ikke
-er en standard, og derfor er der ikke noget som direkte virker med
-det. Derfor er HPGL velegnet i vores projekt, da det er mere
-virkelighedsnært at benytte en standard, som allerede er konstrueret
-som et plotterformat, samtidig med at det kan anvendes af forskellige
-applikationer (andre CAD programmer). Der er heller ikke mange ulemper
-tilknyttet til brugen af HPGL som plotterformat. Det vil dog tage lang
-tid at implementere det hele, hvilket vi dog heller ikke gør. Vi
-kommer f.eks. ikke til at benytte os af pin-skrift og en del andre
-ting, men disse problemer er relativt lette at komme udenom.
-
-Når man betragter HPGL som et plotterformat, så betyder det, at den
-indeholder mange forskellige kommandoer med hver deres funktion. Det
-kan tage lang tid at sætte sig ind i alle disse ting, men hvis man har
-forståelse for, hvilke funktioner vi evt. kommer til at bruge i vores
-projekt, vil det selvfølgelig lette indlæringsarbejdet en del.
-
-Følgende er en tabel over vores overvejelser omkring fordele og
-ulemper ved brugen af eget dataformat samt fordele og ulemper ved
-brugen af HPGL:
+HPGL, som vi benytter os af. Når man skal vælge, hvad man vil bruge, så er det vigtigt at se på
+fordele og ulemper.
 
 \begin{table}[htbp]
   \centering
-  \caption{En overskrift her som vi skal henvise til.}
+  \caption{Fordele og ulemper ved eget dataformat}
   \begin{tabular}{p{5cm} p{5cm}}
     \toprule
     % vil gerne have \centering på de to overskrifter men kan ikke
@@ -223,17 +200,42 @@ brugen af HPGL:
     \bottomrule
   \end{tabular}
 \end{table}
-\fixme{Fix layout på tabel}
+\fixme{Fix layout på tabel (punktform?)}
 
-Dette betyder, at der findes ingen software, der kan håndtere
-formatet. Dette betyder at vi selv skal skrive den software, som er
-uden for rammer af dette projekt. Derfor leder vi efter en
-eksisterende standard.
+Vi kunne i princippet godt udvikle vores eget
+plotterformat, men dette vil både være meget tidskrævende, og
+samtidigt vil det være svært at få implementeret, da vores format ikke
+er en standard, og derfor er der ikke noget som direkte virker med
+det. Derfor er HPGL velegnet i vores projekt, da det er mere
+virkelighedsnært at benytte en standard, som allerede er konstrueret
+som et plotterformat, samtidig med at det kan anvendes af forskellige
+applikationer (andre CAD programmer). Der er heller ikke mange ulemper
+tilknyttet til brugen af HPGL som plotterformat. Det vil dog tage lang
+tid at implementere det hele, hvilket vi dog heller ikke gør. Vi
+kommer f.eks. ikke til at benytte os af pin-skrift og en del andre
+ting, men disse problemer er relativt lette at komme udenom. Figur
+\vref{tab:hpgl-fordele-ulemper} viser vores overvejelser om brugen
+af HPGL som dataformat.
+
+%Når man betragter HPGL som et plotterformat, så betyder det, at den
+%indeholder mange forskellige kommandoer med hver deres funktion. Det
+%kan tage lang tid at sætte sig ind i alle disse ting, men hvis man har
+%forståelse for, hvilke funktioner vi evt. kommer til at bruge i vores
+%projekt, vil det selvfølgelig lette indlæringsarbejdet en del.
+
+%Følgende er en tabel over vores overvejelser omkring fordele og
+%ulemper ved brugen af eget dataformat samt fordele og ulemper ved
+%brugen af HPGL:
+
+%Dette betyder, at der findes ingen software, der kan håndtere
+%formatet. Dette betyder at vi selv skal skrive den software, som er
+%uden for rammer af dette projekt. Derfor leder vi efter en
+%eksisterende standard.
 
 
 \begin{table}[htbp]
   \centering
-  \caption{Fordele og ulemper ved at bruge HPGL.}
+  \caption{Fordele og ulemper ved HPGL.}
   \label{tab:hpgl-fordele-ulemper}
 
   \begin{tabular}{p{5cm} p{5cm}}
@@ -242,7 +244,7 @@ eksisterende standard.
     \midrule
     { \begin{itemize} \firmlist
       \item Afprøvet og bruges industrielt til plottere
-      \item Veldokumenteret
+  	  \item Veldokumenteret
       \item Der findes software, som kan håndtere HPGL
       \end{itemize} }
     &
@@ -255,7 +257,6 @@ eksisterende standard.
     \bottomrule
   \end{tabular}
 \end{table}
-
 
 Dette betyder, at HPGL er meget velegnet til brug i vores projekt, da
 formatet er veldokumenteret, afprøvet og anvendt industrielt til
