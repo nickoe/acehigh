@@ -149,8 +149,11 @@ void Motor_Init(void)
   /* her skal vi sætte motorkontrolkredsen op */
   MCC_DDR = 0xff;
 
-  /* genstart - klodset */
+  /* indstil kredsen */
   MCC_PORT = 0;
+  MCC_PORT |= 1<<MCC_DECAY; /* bent bruger slow decay */
+
+  /* genstart - klodset */
   _delay_ms(10);
   MCC_PORT |= 1 << MCC_RESET;
   _delay_ms(10);
