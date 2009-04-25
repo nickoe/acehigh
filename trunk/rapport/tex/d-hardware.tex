@@ -7,52 +7,54 @@
 % hvad vi kan gøre, for at opfylde vores krav, ikke hvordan vi faktisk
 % konstruerer det.
 
-Med hensyn til hardwaren er der flere ting der skal tages hensyn
-til. Hvilket er det vi vil forsøge at besvare i dette afsnit.
+Med hensyn til hardwaren er der flere ting, der skal tages hensyn
+til, hvilket er det, vi vil gøre i dette afsnit.
 
 \section{Stepmotor driver}
-Opgaven er at lave en plotter, hvilket kræver, at vi kan flyte en pen
-i to retninger. For at styre disse to akser, er det vigtigt at vi
+Opgaven er at lave en plotter, hvilket kræver, at vi kan flytte en pen
+i to retninger svarende til x- og y-akser i et plan.
+For at styre disse to akser er det vigtigt, at vi
 nøjagtigt holde styr på, hvor vi er. Til dette er stepmotor styring
-godt, da vi præcis ved hvor vi er hver gang vi har taget et skridt. I
+godt, da vi præcis ved, hvor vi er, hver gang vi har taget et skridt. I
 vores tilfælde bruger vi nogle stepmotorer fra et par
-bordscannere. Motorene er selvfølgelig forskellig fra hinanden, da det
-er to vidt forskellige scannere de kommer fra. Da vi har to
+bordscannere. Motorerne er selvfølgelig\fixme{Nick: Er det virkelig en selvfølge?}
+forskellig fra hinanden, da det er to vidt forskellige scannere, de kommer fra. Da vi har to
 forskellige motorer, som vi ikke kender specifikationerne på, har vi
 valgt, at lave et driver print med adskilte kredsløb til hver
-motor. Vi opnår herved en vis fleksibilitet, da vi på den måde kan
+motor\fixme{Nick: i stedet for hvad?}. Vi opnår herved en vis fleksibilitet, da vi på den måde kan
 have forskellig forsyningsspænding til hver motor.
 
 Det skal dog lige nævnes, at den ene motor er en bipolar motor, mens
-den anden er en unipolar motor. Vi vil dog styre begge motorere som
-bipolare stepmotorere, fordi vi har nogle integrerede stepmotor
+den anden er en unipolar motor. Vi vil dog styre begge motorer som
+bipolare stepmotorer, fordi vi har nogle integrerede stepmotor
 drivere til rådighed, som kun kan styre bipolare motorer.
 
 \section{Sensorer}
 Vi skal være i stand til at nulstille maskinens position i forhold til
-vores koordinatsystem, fordi vi skal vide hvor vi har vores
+vores koordinatsystem, fordi vi skal vide, hvor vi har vores
 udgangspunkt.
 
 For at opnå dette kan man gøre det, at man kører motorerne i retning
 mod et nulpunkt, men kører længere end det faktisk er muligt at
 køre. Det skal have til formål, at hovedet bliver trukket til
-origo. Men denne metode er ikke anvendelig, da man vil belaste
-mekanikken og motorerne for meget.
+origo. Denne metode er dog ikke praktisk anvendelig, da man vil belaste
+mekanikken og motorerne for meget og på den måde risikere at ødelægge
+konstruktionen.
 
-Vi vil derfor anvende nogle sensorer som følrere i en
-nulstillingsposition. Vi kan anvende et par fotogafler, hvor vi fører
+Vi vil derfor anvende nogle sensorer til at fastlægge en nulstillingsposition.
+Vi kan anvende et par fotogafler, hvor vi fører
 en mekanisk fane ind i. Maskinen kan så dedektere, hvornår der kommer
-noget ind for sensoren, hvilket betyder, at vi ved hvor vi er. Ud fra
+noget ind for sensoren, hvilket betyder, at vi ved, hvor vi er. Ud fra
 hvilke signaler vi får fra de forskellige sensorer, så kan vi stoppe
-maskinens bevægelse. Til sidst ved vi hvornår vi er i origo, altså at
-maskinen er nulstillet. Vi kan harefter begynde at anvende
-maskinen. Det kræver selvfølgelig,at man placerer sensorerne, således
+maskinens bevægelse. Til sidst ved vi, at vi er i nulstillingspositionen (origo)
+, altså at maskinen er nulstillet. Vi kan herefter begynde at anvende
+maskinen. Det kræver selvfølgelig, at man placerer sensorerne, således
 at mekanikken aldrig når at komme til sine yderpunkter, hvor den ikke
 kan bevæge sig længere.
 
 \section{SD-kort adapter}
 Vi har vha. kravspecefikationen bestemt, at vi skal kunne styre
-maskinen, vha. data fra et SD-kort. Et SD-kort kan styres på
+maskinen vha. data fra et SD-kort. Et SD-kort kan styres på
 forskellige måder:
 
 \begin{itemize}
@@ -77,25 +79,26 @@ pins) to support four bit wide parallel transfers.---\fixme{Det
 \fixme{Skal vi refere captain.at som kilde, eller bare i
   litteraturlisten? pinouts.ru}
 
-Som en følge af hvilken måde vi vælger, at kommunikere med SD-kortet,
-skal hardwaren understøtte funktionen. Der er dog ikke stor forskel
-SPI mode, som vi vil understøtte og er den simpleste, og SD mode, som
-blot kræver to forbindelser mere til SD-kortet.
+Som en følge af hvilken måde vi vælger at kommunikere med SD-kortet,
+skal hardwaren understøtte funktionen. Der er dog ikke stor forskel imellem
+SPI mode, som vi vil understøtte, og SD mode, som blot kræver to
+forbindelser mere til SD-kortet. SPI er dog den simpleste
+af de to.
 
 SD-kortet opererer ved en spænding på 3,3V, derfor skal vi have en
-seperat spændingsforsyning på 3,3V til kortet. A samme grund er vi
-nødt til, at sænke spændingen fra vores MCU fra de 5V, til omkring de
+seperat spændingsforsyning på 3,3V til kortet. Af samme grund er vi
+nødt til at sænke spændingen fra vores MCU fra de 5V til omkring de
 3,3V, før vi kan kommunikere med det. Vi kan opnå dette med en
-spændingsdeler, ved IO pinsene der går fra MCU'en til SD-kortet. Når
+spændingsdeler ved IO pinsene, der går fra MCU'en til SD-kortet. Når
 signalet fra SD-kortet går høj, vil det givetvis være på 3,3V. Dette
-er ikke de 5V som vores MCU opererer ved, men det er ikke noget
+er ikke de 5V, som vores MCU opererer ved, men det er ikke noget
 problem, da det stadigvæk svarer til et højt signal for MCU'en.
 
 
 \section{Tegnehoved}
 \label{sc:d-tegnehoved}
-Tegnehovedet er vores penholder,som sørger for at vi kan høve og sænke
-pennen, afhængig af og vi skal tegne eller bare flytte pennen. Den kan
+Tegnehovedet er vores penholder,som sørger for, at vi kan hæve og sænke
+pennen afhængig af, om vi skal tegne eller bare flytte pennen. Den kan
 flyttes i to retninger (ad x- og y-aksen).
 
 

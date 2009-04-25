@@ -47,9 +47,8 @@ der indlægges som forsinkelse:
   \Delta t &= t_e + t_d \Rightarrow \label{eq:afbrudt-afvikling-tid} \\
   v &= \frac{\Delta x}{t_e + t_d}
 \end{align}
-hvor $t_d$ er den indlagte forsinkelse og $t_e$ er den tid det tager
-at afvikle tidsberegningen (se
-figur\vref{fig:motorstyring-indlagt-forsinkelse}).
+hvor $t_d$ er den indlagte forsinkelse, og $t_e$ er den tid det tager
+at afvikle tidsberegningen (se figur\vref{fig:motorstyring-indlagt-forsinkelse}).
 
 Ekserkveringstiden $t_e$ kan variere og kendes ikke på
 afviklingstidspunktet. Derfor er metoden upræcis -- specielt ved høje
@@ -74,7 +73,7 @@ hastigheder.
 Alternativt kan motorerne times med afbrudt afvikling. Tiden går mens
 det beregnes til hvilket tidspunkter, motorerne skal køres frem til
 næste step. Når vi når til et sådant tidspunkt, afbrydes afviklingen
-af tidsberegningen mens motorerne flyttes. Når motorerne er flyttet,
+af tidsberegningen, mens motorerne flyttes. Når motorerne er flyttet,
 genoptages afviklingen af tidsberegningen, se
 figur\vref{fig:motorstyring-afbrudt-afvikling}.
 
@@ -85,12 +84,11 @@ figur\vref{fig:motorstyring-afbrudt-afvikling}.
   \label{fig:motorstyring-afbrudt-afvikling}
 \end{figure}
 
-
 Den algoritme, der beregner næste tidspunkt, motorerne skal flyttes
 på, afvikles hele tiden. Når det er tid til at tjekke, om vi har
 overskredet et tidspunkt, afbrydes afviklingen af tidsberegningen,
 mens motorerne flyttes. Bagefter fortsættes afviklingen af
-tidsberegningen.
+tidsberegningen. \fixme{Kjærgaard: Er det ikke det der står ovenover?}
 
 Denne løsning udmærker sig ved at graden af præcis styring af
 hastigheden ikke afhænger af hastigheden selv, så længe afviklingen
@@ -114,24 +112,24 @@ Løsningen forudsætter, at
 \mnote{Christian Klim Hansen}
 
 Forholdet imellem tiden det tager at tegne linjen og tiden til et
-punkt $x$ linjen lig forholdet imellem det givne punkts $x$-koordinat
+punkt $x$ på linjen er lig forholdet imellem det givne punkts $x$-koordinat
 og forskellen imellem start- og slutkoordinat $\Delta x$:
 \begin{align}
   \frac{t}{\Delta t} &= \frac{x}{\Delta x} \qquad \Rightarrow \nonumber \\
   x &= \Delta x \times \frac{t}{\Delta t} \label{eq:x-af-dxtdt}
 \end{align}
 
-Her forudsættes det, at hele linien tegnes med konstant hastighed. Se
+Her forudsættes det, at hele linjen tegnes med konstant hastighed. Se
 figur\vref{fig:matematik-skitse} for geometrisk fremstilling.
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/matematik-skitse}
-  \captionof{figure}{Tekst her}
+  \captionof{figure}{Sammenhæng imellem tid og sted}
   \label{fig:matematik-skitse}
 }
 \fixme{passende tekst til figur}
 
-Den tid $\Delta t$, det tager at tegne linien, er givet ved
+Den tid $\Delta t$ det tager at tegne linjen, er givet ved:
 \begin{align}
 \Delta t = \frac Lv \label{eq:v-af-lv}
 \end{align}
@@ -139,28 +137,28 @@ Den tid $\Delta t$, det tager at tegne linien, er givet ved
 Vi kombinerer \eqref{eq:x-af-dxtdt} og \eqref{eq:v-af-lv} og isolerer
 $t$:
 \begin{align}
-t \times \frac{\Delta x}x &= \frac Lv \Leftrightarrow \\
-t &= \frac{\Delta x}x \times \frac Lv \label{eq:t-af-dxxlv}
+t \times \frac{x}\Delta x &= \frac Lv \Leftrightarrow \\
+t &= \frac{x}\Delta x \times \frac Lv \label{eq:t-af-dxxlv}
 \end{align}
 
-Længden af linjen $L$ er givet ved
+Længden af linjen $L$ er givet ved ud fra pythagoras læresætning:
 \begin{align}
 L &= \sqrt{\left(\Delta x\right)^2 + \left(\Delta y\right)^2}
 \end{align}
 
-Forholdet imellem position $x$ og positionsændring $\Delta x$ er lig
+Forholdet imellem positionen $x$ og positionsændring $\Delta x$ er lig
 forholdet mellem step $n_x$ og stepændring $\Delta n_x$:
 \begin{align}
 \frac{x}{\Delta x} = \frac{n_x}{\Delta n_x} \label{eq:xdx-af-nxdnx}
 \end{align}
 
 Sætning \eqref{eq:t-af-dxxlv} og \eqref{eq:xdx-af-nxdnx} kombineres
-til udtrykket
+til udtrykket:
 \begin{align}
 t &= \frac{n_x}{\Delta n_x} \times \frac{L}{v} \label{eq:t-af-nxdnxlv}
 \end{align}
 
-Opløsningen for $x$-retningen er givet ved
+Opløsningen for $x$-retningen er givet ved:
 \begin{align}
   n_x = x \times \eta_x
 \end{align}
@@ -171,12 +169,14 @@ med tilsvarende symboler med indeks $y$ for $y$-aksen.
 
 \section{HPGL -- Hewlett-Packard Graphics Language}
 \label{sec:hpgl}
+\fixme{Kjærgaard: Skal det hedde dataformat i stedet?}
 
-Når man skal vælge, hvilket format man vil bruge, når man laver en
-plotter, så er der en del ting at tage hensyn til. Der findes mange
-forskellige standarder, som kan anvendes og en af disse standarder er
-HPGL, som vi benytter os af. Når man skal vælge, hvad man vil bruge, så er det vigtigt at se på
-fordele og ulemper.
+Når man skal vælge, hvilket dataformat man vil bruge, når man laver en
+plotter, så er det vigtigt at se på fordele og ulemper se tabel
+\vref{tbl: fordele og ulemper ved eget dataformat} og
+\vref{tbl: fordele og ulemper ved hpgl}. Der findes mange
+forskellige standarder, som kan anvendes, og en af disse standarder er
+HPGL, som vi benytter os af.
 
 \begin{table}[htbp]
   \centering
@@ -199,14 +199,15 @@ fordele og ulemper.
       \end{itemize} } \\
     \bottomrule
   \end{tabular}
+\label{tbl: fordele og ulemper ved eget dataformat}
 \end{table}
 \fixme{Fix layout på tabel (punktform?)}
 
 Vi kunne i princippet godt udvikle vores eget
-plotterformat, men dette vil både være meget tidskrævende, og
+dataformat, men dette vil både være meget tidskrævende, og
 samtidigt vil det være svært at få implementeret, da vores format ikke
-er en standard, og derfor er der ikke noget som direkte virker med
-det. Derfor er HPGL velegnet i vores projekt, da det er mere
+ville være en standard, og derfor ville der ikke være noget som direkte virkede med
+det. Derimod er HPGL velegnet i vores projekt, da det er mere
 virkelighedsnært at benytte en standard, som allerede er konstrueret
 som et plotterformat, samtidig med at det kan anvendes af forskellige
 applikationer (andre CAD programmer). Der er heller ikke mange ulemper
@@ -256,12 +257,14 @@ af HPGL som dataformat.
     \\
     \bottomrule
   \end{tabular}
+\label{tbl: fordele og ulemper ved hpgl}
 \end{table}
+
 
 Dette betyder, at HPGL er meget velegnet til brug i vores projekt, da
 formatet er veldokumenteret, afprøvet og anvendt industrielt til
-specielt plottere, hvilket vores eget selvfølgelig også ville være, og
-der finde allerede software, som kan håndtere formatet til forskel fra
+specielt plottere, hvilket vores eget selvfølgelig også ville være. Samtidig
+finde allerede software, som kan håndtere formatet til forskel fra
 vores eget. Implementeringstiden vil dog være en del længere, da
 niveauet er sat fra starten, hvilket medfører en del ubenyttede
 funktioner.
