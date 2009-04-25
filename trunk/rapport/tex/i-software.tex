@@ -4,6 +4,7 @@
 
 
 \section{Oversigt over softwaren}
+\mnote{Kristian Kjærgaard}
 
 % Her skriver vi hvordan softwaren er struktureret - se figuren nedenfor.
 
@@ -83,6 +84,8 @@ kan ses i figur\vref{fig:software-spi-sd-handling}.
 
 \section{HPGL-behandleren}
 
+\mnote{Christian Klim Hansen}
+
 % Hvordan virker den del, der fortolker og behandler HPGL?
 HPGL er et dataformat, som indeholder adskillige forskellige
 instruktioner med forskellige parametre (se
@@ -91,13 +94,12 @@ instruktioner, men blot et lille udvalg med udgangspunkt i vores
 kravspecifikation.  I projektet anvender vi følgende instruktioner:
 
 \begin{itemize} \firmlist
-\item[\texttt{PU}/\texttt{PD}] Pen Up/Pen Down - bruges til at hæve og
-  sænke pennen.
-\item[\texttt{PA}/\texttt{PR}] Plot Absolut/Plot Relative - se
-  afsnit\vref{sc:relativ-absolut}.
-\item[\texttt{CI}] Plot Circle - se afsnit\vref{sc:matematik-cirkel}.
+\item \texttt{PU} Pen Up - bruges til at hæve
+\item \texttt{PD} Pen Down - bruges til at sænke pennen
+\item \texttt{PA} Plot Absolut - se afsnit\vref{sc:relativ-absolut}
+\item \texttt{PR} Plot Relative
+\item \texttt{CI}  Plot Circle - se afsnit\vref{sc:matematik-cirkel}.
 \end{itemize}
-\fixme{Klim: Laves om til fem punkter}
 
 HPGL bruger oprindeligt bogstaver, tal og symboler (komma, punktum
 osv.) til at identificere instruktioner, men som det fremgår af næste
@@ -105,6 +107,7 @@ afsnit, så anvender vi kun bogstaver i vores identifikation.
 
 \subsection{Identifikation af instruktioner og parametre}
 \label{sc:idn-ins-param}
+\mnote{Kristian Kjærgaard}
 
 % Her skriver vi hvordan vi identificerer instruktioner og parametre i
 % datastrømmen
@@ -160,6 +163,7 @@ andre parametre end talparametre.
 
 \subsection{Relative og absolutte koordinater samt grafikenheder}
 \label{sc:relativ-absolut}
+\mnote{Christian Klim Hansen}
 
 Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
 plotning indeholder to parametre, X og Y. X og Y er absolutte værdier,
