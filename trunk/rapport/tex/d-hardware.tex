@@ -12,17 +12,21 @@ til, hvilket er det, vi vil gøre i dette afsnit.
 
 \section{Stepmotor driver}
 Opgaven er at lave en plotter, hvilket kræver, at vi kan flytte en pen
-i to retninger svarende til x- og y-akser i et plan.
-For at styre disse to akser er det vigtigt, at vi
-nøjagtigt holde styr på, hvor vi er. Til dette er stepmotor styring
-godt, da vi præcis ved, hvor vi er, hver gang vi har taget et skridt. I
-vores tilfælde bruger vi nogle stepmotorer fra et par
-bordscannere. Motorerne er selvfølgelig\fixme{Nick: Er det virkelig en selvfølge?}
-forskellig fra hinanden, da det er to vidt forskellige scannere, de kommer fra. Da vi har to
-forskellige motorer, som vi ikke kender specifikationerne på, har vi
-valgt, at lave et driver print med adskilte kredsløb til hver
-motor\fixme{Nick: i stedet for hvad?}. Vi opnår herved en vis fleksibilitet, da vi på den måde kan
-have forskellig forsyningsspænding til hver motor.
+i to retninger svarende til x- og y-akser i et plan. For at styre
+disse to akser er det vigtigt, at vi nøjagtigt kan holde styr på, hvor vi
+er. Til dette er stepmotor styring godt, da vi præcis ved, hvor vi er,
+hver gang vi har taget et skridt.
+
+I vores tilfælde bruger vi nogle stepmotorer fra et par
+bordscannere. Motorerne er forskellig fra hinanden, da det er to vidt
+forskellige scannere, de kommer fra. Da vi har to forskellige motorer,
+som vi ikke kender specifikationerne på, har vi valgt, at lave et
+driver print med adskilte kredsløb til hver motor. Vi opnår herved en
+vis fleksibilitet, da vi på den måde kan have forskellig
+forsyningsspænding til hver motor. Hvis vi havde lavet den med
+sammenbyggede kredsløb, ville vi ikke kunne have forskellige
+forsyningsspænding til hver motor, hvilket begge motorer måske ikke
+vil køre optimalt ved.
 
 Det skal dog lige nævnes, at den ene motor er en bipolar motor, mens
 den anden er en unipolar motor. Vi vil dog styre begge motorer som
@@ -53,11 +57,10 @@ at mekanikken aldrig når at komme til sine yderpunkter, hvor den ikke
 kan bevæge sig længere.
 
 \section{SD-kort adapter}
-Vi har vha. kravspecefikationen bestemt, at vi skal kunne styre
-maskinen vha. data fra et SD-kort. Et SD-kort kan styres på
-forskellige måder:
+Vi har i kravspecefikationen bestemt, at vi skal kunne styre maskinen
+vha. data fra et SD-kort. Et SD-kort kan styres på forskellige måder:
 
-\begin{itemize}
+\begin{itemize} \firmlist
 \item{SPI mode (seperat serial ind eller serial ud)}
 \item{Et-bit SD mode (seperat kommando og data kanaler samt et
     proprietært overførsels format)}
@@ -66,18 +69,9 @@ forskellige måder:
     overførsel)}
 \end{itemize}
 
----SPI mode (separate serial in and serial out), one-bit SD mode
-(separate command and data channels and a proprietary transfer
-format), and four-bit SD mode (uses extra pins plus some reassigned
-pins) to support four bit wide parallel transfers.---\fixme{Det
-  engelske skal slettes, og det danske tjekkes igennem for
-  formulereing}
-
-\fixme{kjærgaard, kan du ikke verificere at ovenstående er korrekt, og
-  evt skrive en begrundelse for hvorfor vi vælger SPI mode?}
-
-\fixme{Skal vi refere captain.at som kilde, eller bare i
-  litteraturlisten? pinouts.ru}
+Vi har valgt at kommunikere med SD-kortet via SPI-mode, da
+\cite{web:captain-mmc} bruger dette og det er det simpleste jævnfør
+ovennævnte som er fra \cite{web:sd-pinout}.
 
 Som en følge af hvilken måde vi vælger at kommunikere med SD-kortet,
 skal hardwaren understøtte funktionen. Der er dog ikke stor forskel imellem
@@ -101,7 +95,25 @@ Tegnehovedet er vores penholder,som sørger for, at vi kan hæve og sænke
 pennen afhængig af, om vi skal tegne eller bare flytte pennen. Den kan
 flyttes i to retninger (ad x- og y-aksen).
 
+\section{Valg af mikroprocessor}
+\label{sc:d-mikroprocessor}
+Vi har i alle projekt forløb i faget EL-teknik anvendt Atmel's AVR
+processorer. Under udvikling af vores software til dette projekt, er
+vi blevet bekymret for den lille hukommelse, som er i de processorer
+vi normalt har brugt i faget, er for lille, samt at der er for få IO
+porte til rådighed.  Vi har derfor fået lov til at lave et andet
+mikroprocessor print med en ATmega128. Denne har givet os rigelig med
+hukommelse, og den har også flere IO porte end de 4 vi havde på de
+gamel ATmega16 print, hvilket vi også har brug for i vores projekt. Vi
+skal nemelig bruge 5 IO porte til følgende ting:
 
+\begin{enumerate} \firmlist
+\item{Kontrol af stepmotorer}
+\item{Evt. LCD-display}
+\item{Statuslamper, knapper og til tegnehovedet}
+\item{SD-kort adapteren}
+\item{Sensorer}
+\end{enumerate}
 
 %%% Local Variables: 
 %%% mode: latex

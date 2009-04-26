@@ -4,16 +4,22 @@
 % Vi skriver her om hvordan vi faktisk realiserer det vi har sankket
 % om i Hardwaredesignet
 
+\section{Mikroprocessor}
+Vi har som beskrevet i afsnit~\vref{sc:d-mikroprocessor}, at vi
+anvender en ATmega128 som vores hjerne i vores maskine. Det kræver
+selvfølgelig vi laver et print, hvor vi kan tilslutte alle maskinens
+enheder til, således vi kan kontrollere dem. I stedet for at lave
+vores eget har vi brugt~\cite{fronter:atmega128}.
+
 \section{Stepmotor driver}
 \label{sc:stepmotor-driver}
-\fixme{Omformuleres!}Vi skal konstruere en
-stepmotor driver med et par integrerede stepmotor drivere. Mere
-specefikt anvender vi et par L6208N'ere, som kan styre en bipolar
-stepmotor. Vi bruger denne driver, da den er simpel at styre, samt der
-er mulighed for at lave strømbegrænsning. Hvilket vil gøre, at vi kan
-skrue forsyningsspændingen til motorerne op og begrænse strømmen,
-således motorerne er mere kvik, hvilket betyder at vi kan køre
-hurtigere.
+Vi skal konstruere en stepmotor driver med et par integrerede
+stepmotor drivere. Mere specefikt anvender vi et par L6208N'ere, som
+kan styre en bipolar stepmotor. Vi bruger denne driver, da den er
+simpel at styre, samt der er mulighed for at lave
+strømbegrænsning. Hvilket vil gøre, at vi kan skrue
+forsyningsspændingen til motorerne op og begrænse strømmen, således
+motorerne er mere kvik, hvilket betyder at vi kan køre hurtigere.
 
 
 \mnote{
@@ -65,17 +71,11 @@ vores ATmega128 print.
   \centering
   \includegraphics[width=7cm]{./img/sd-adapter}
   \caption{Den endelige SD-kort læser}
-  \label{fig:tegnehoved-skitse}
+  \label{fig:sd-adapter}
 \end{figure}
 \fixme{Beskær billedet passende}
-\fixme{Nick: ret label til dette billede}
 
-\mnote{
-  \includegraphics[width=\marginparwidth]{./img/sdcard_9p}
-  \captionof{figure}{SD-kortets benforbindelser}
-  \label{fig:sdpinout}
-}
-\fixme{Printlayout og pinout}
+
 
 \fixme{Beskriv kort, hvordan vi aktiverer vores sænker}
 
