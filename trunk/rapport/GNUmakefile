@@ -32,7 +32,8 @@ FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ./img/sd-kort-adapter-diagram.svg ./img/sd-kort-adapter-kobber.svg	\
 ./img/l6208n-driver-diagram.svg ./img/Tux-simple.svg			\
 ./img/matematik-skitse.svg ./img/tegnehoved-skitse.svg			\
-./img/tid-hastighed-forhold-indlagt-forsinkelse.svg
+./img/tid-hastighed-forhold-indlagt-forsinkelse.svg			\
+./img/kalibreringsstreg.svg
 
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
