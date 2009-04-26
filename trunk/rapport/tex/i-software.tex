@@ -38,18 +38,18 @@ at hastigheden af tegnehovedet kan styres præcist.
 Dataføderen leverer data til HPGL-motoren og håndterer de
 underliggende moduler, der indeholder data.
 
-Dataføderens skal
+Dataføderen skal;
 \begin{itemize} \firmlist
-\item levere data til HPGL-motoren og sørge for at denne ikke løber
-  tør for data\fixme{bliv enig om terminologi}
+\item levere data til HPGL-behandleren og sørge for at denne ikke løber
+  tør for data.
 \item stille et ensartet API\footnote{Application Programming
     Interface, programmeringsbrugerflade; betegnelse for struktur og
     navngivning for funktioner, variable, strukturer, klasser
-    etc. brugt til programudvikling.}\fixme{brug evt. wikis
-    formulering af api} til rådighed uafhængig af underliggende modul,
-  således at det overliggende modul er uafhængig af det modul, der
-  indeholder data - se figur\vref{fig:datafeeder-uniform-api}
-\item håndtere fejl for underliggende moduler
+    etc. brugt til programudvikling.} til rådighed uafhængig af
+  underliggende modul, således at det overliggende modul er uafhængig
+  af det modul, der indeholder data - se
+  figur\vref{fig:datafeeder-uniform-api}.
+\item håndtere fejl for underliggende moduler.
 \end{itemize}
 
 \mnote{
@@ -95,17 +95,16 @@ kravspecifikation. I projektet anvender vi følgende instruktioner:
 \begin{itemize} \firmlist
 \item \texttt{PU} Pen Up - bruges til at hæve
 \item \texttt{PD} Pen Down - bruges til at sænke pennen
-\item \texttt{PA} Plot Absolut - se afsnit\vref{sc:relativ-absolut}
+\item \texttt{PA} Plot Absolut - se afsnit~\vref{sc:relativ-absolut}
 \item \texttt{PR} Plot Relative
-\item \texttt{CI}  Plot Circle - se afsnit\vref{sc:matematik-cirkel}.
+\item \texttt{CI} Plot Circle - se afsnit~\vref{sc:matematik-cirkel}.
 \end{itemize}
 
-HPGL bruger oprindeligt bogstaver, tal og symboler (komma, punktum
-osv.) til at identificere instruktioner, men som det fremgår af afsnit
-~\vref{sc:idn-ins-param}, så anvender vi kun bogstaver i vores
-identifikation.\fixme{tegn ny illustration}
-\fixme{inkonsistent med andet afsnit}
-
+HPGL bruger \textit{kun} bogstaver til instruktionerne (to bogstaver
+so \texttt{PA}), og \textit{kun} tal og punktum til parametre, men som
+det fremgår af afsnit~\vref{sc:idn-ins-param}, så anvender vi kun
+bogstaver i \textit{vores} identifikation.  \fixme{inkonsistent med
+  andet afsnit}
 
 \subsection{Identifikation af instruktioner og parametre}
 \label{sc:idn-ins-param}
@@ -125,7 +124,7 @@ at sætte kæden sammen til instruktioner eller parametre til
 instruktioner.
 
 % floaten ligger muligvis for lavt
-\snote{
+\mnote{
   \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/datafoeder}
   \captionof{figure}{Markøren på datastrømmen i HPGL-behandlerens
     identifikation af instruktioner på datastrømmen}
@@ -168,9 +167,9 @@ andre parametre end talparametre.
 \mnote{Christian Klim Hansen}
 
 Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
-plotning indeholder to parametre, X og Y. X og Y er absolutte værdier,
+plotning indeholder to parametre, $X$ og $Y$. $X$ og $Y$ er absolutte værdier,
 altså kan de ikke være negative, som måles enten i en brugerdefineret
-enhed eller grafik enheder (0,025mm). Absolut plot bruges, når man vil
+enhed eller grafik enheder (0,025 mm). Absolut plot bruges, når man vil
 flytte pennen til en bestemt koordinat set fra origo $(0, 0)$. Der
 plottes kun en linie, når pennen er nede.
 
@@ -180,7 +179,7 @@ plottes kun en linie, når pennen er nede.
   \label{fig:relativ-absolut}
 }
 
-Relativ plotning indeholder ligeledes to parametre, x og y. x og y er
+Relativ plotning indeholder ligeledes to parametre, $x$ og $y$. $x$ og $y$ er
 relative værdier til den nuværende position, altså kan de godt være
 negative. Relativ plotning måles ligesom absolut. Relativ plotning
 bruges, når man vil lave serie af linier i række, da man her tager
