@@ -9,24 +9,23 @@
 
 For at tegne grafik i HPGL-formatet, gør følgende:
 
-\begin{enumerate}[\quad \bfseries 1.]
-\item Konverter tegningen til HPGL (hvis tegningen ikke er tegnet i et
-  program, der kan eksportere til HPGL, kan \texttt{HPGL
-    Distiller}\footnote{Se \url{http://pldaniels.com/hpgl-distiller}.}
-  muligvis konvertere tegningen til HPGL).\fixme{Så vidt Nick læser
-    linket, er det pstoedit du skal bruge for at lave HPGL filen, hvor
-    HPGL-distillern kun gør den simplere}
-\item Sørg for, at formatet overholder den implementering af formatet,
-  projektet har brugt. Se afsnit hvad?\fixme{henvisning}
+\begin{enumerate}[\quad \bfseries 1.] \firmlist
+\item Konverter tegningen til HPGL (hvis programmet ikke kan
+  konvertere til HPGL men til PostScript, kan
+  \texttt{pstoedit}\footnote{Se \url{http://www.pstoedit.net}.})
+\item Brug \texttt{HPGL Distiller}\footnote{Se
+    \url{http://pldaniels.com/hpgl-distiller}.} på HPGL-tegniningen.
 \item Overfør tegningen til SD-kortet med
   f.eks. \texttt{dd}\footnote{Se
     \url{http://en.wikipedia.org/wiki/Dd_(Unix)}.} eller
   \texttt{HxD}\footnote{Se
-    \url{http://mh-nexus.de/en/hxd}.}. SD-kortet bruger ikke et
-  filsystem, så tegningen skal ligge på \textit{blokken}.
-\item Sæt SD-kortet i plotteren og tænd plotteren.
-\item Klik på \enquote{Tegn}. Hvis der ikke er opstået problemer,
-  begynder maskinen at tegne.
+    \url{http://mh-nexus.de/en/hxd}.}. SD-kortet bruger \textit{ikke}
+  et filsystem, så første byte i tegningen er første byte på
+  hukokmmelsesblokken.
+\item Sæt SD-kortet i plotteren og flyt langsomt tegnehovedet ned i
+  hjørnet.
+\item Tænd for strømmen til stepmotorerne, tegnehovedet og sidst
+  MCU'en. Maskinen begynder at tegne.
 \end{enumerate}
 
 \fixme{Sammen: Hvad med at angive en kort beskrivelse af dd og hxd i
