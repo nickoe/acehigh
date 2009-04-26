@@ -107,7 +107,14 @@ instruktioner, hvoraf de fleste har talparametre, enkelte har
 bestå af to store bogstaver (A-Z), og en talparameter består af tal og
 punktum. Komma eller mellemrum adskiller parametrene, og semikolon
 adskiller sidste parameter i en instruktion fra næste instruktion
-(denne separator er ikke obligatorisk).
+(denne separator er ikke obligatorisk). Se figur\vref{fig:hpgl-syntaks}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.4\textwidth]{./img/hpgl-syntaks}
+  \caption{HPGL-syntaks}
+  \label{fig:hpgl-syntaks}
+\end{figure}
 
 
 \subsection{Identifikation af instruktioner og parametre}
@@ -127,7 +134,7 @@ at sætte kæden sammen til instruktioner eller parametre til
 instruktioner.
 
 % floaten ligger muligvis for lavt
-\mnote{
+\snote{
   \includegraphics[width=\marginparwidth]{../brugere/kjaergaard/datafoeder}
   \captionof{figure}{Markøren på datastrømmen i HPGL-behandlerens
     identifikation af instruktioner på datastrømmen}
@@ -177,7 +184,7 @@ brugerdefineret enhed eller grafik enheder (0,025 mm). Absolut plot
 bruges, når man vil flytte pennen til en bestemt koordinat set fra
 origo $(0, 0)$. Der plottes kun en linie, når pennen er nede.
 
-\mnote{
+\snote{
   \includegraphics[width=\marginparwidth]{./img/relativ-absolut}
   \captionof{figure}{Eksempel på relativ og absolut linie}
   \label{fig:relativ-absolut}
