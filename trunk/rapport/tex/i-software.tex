@@ -100,15 +100,18 @@ kravspecifikation. I projektet anvender vi følgende instruktioner:
 \item \texttt{CI} Plot Circle - se afsnit~\vref{sc:matematik-cirkel}.
 \end{itemize}
 
-HPGL bruger \textit{kun} bogstaver til instruktionerne (to bogstaver
-so \texttt{PA}), og \textit{kun} tal og punktum til parametre, men som
-det fremgår af afsnit~\vref{sc:idn-ins-param}, så anvender vi kun
-bogstaver i \textit{vores} identifikation.  \fixme{inkonsistent med
-  andet afsnit}
+
+HPGL-formatet kan læses med en teksteditor. Formatet består af
+instruktioner, hvoraf de fleste har talparametre, enkelte har
+ét-bytes-parametre, og nogle ingen parametre har. En instruktion kan
+bestå af to store bogstaver (A-Z), og en talparameter består af tal og
+punktum. Komma eller mellemrum adskiller parametrene, og semikolon
+adskiller sidste parameter i en instruktion fra næste instruktion
+(denne separator er ikke obligatorisk).
+
 
 \subsection{Identifikation af instruktioner og parametre}
 \label{sc:idn-ins-param}
-\mnote{Kristian Kjærgaard}
 
 % Her skriver vi hvordan vi identificerer instruktioner og parametre i
 % datastrømmen
@@ -139,10 +142,11 @@ Hvis byten er et bogstav, peger markøren på første byte i en
 instruktion. Den næste byte indlæses og de to byte sættes sammen til
 en instruktion.
 
-Hvis byten er et tal eller symbol (punktum, komma osv.), peger markøren på første byte
-i en talparameter. Der indlæses og gemmes bytes indtil den indlæste
-byte ikke er et tal eller punktum. Når den indlæste byte ikke er et
-tal eller punktum, konverteres de indlæste bytes til et tal.
+Hvis byten er et tal eller symbol (punktum, komma osv.), peger
+markøren på første byte i en talparameter. Der indlæses og gemmes
+bytes indtil den indlæste byte ikke er et tal eller punktum. Når den
+indlæste byte ikke er et tal eller punktum, konverteres de indlæste
+bytes til et tal.
 
 Se afviklingsdiagrammet for parseren i
 figur\vref{fig:hpgl-parser-afvikling}. Parseren understøtter ikke
@@ -167,11 +171,11 @@ andre parametre end talparametre.
 \mnote{Christian Klim Hansen}
 
 Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
-plotning indeholder to parametre, $X$ og $Y$. $X$ og $Y$ er absolutte værdier,
-altså kan de ikke være negative, som måles enten i en brugerdefineret
-enhed eller grafik enheder (0,025 mm). Absolut plot bruges, når man vil
-flytte pennen til en bestemt koordinat set fra origo $(0, 0)$. Der
-plottes kun en linie, når pennen er nede.
+plotning indeholder to parametre, $X$ og $Y$. $X$ og $Y$ er absolutte
+værdier, altså kan de ikke være negative, som måles enten i en
+brugerdefineret enhed eller grafik enheder (0,025 mm). Absolut plot
+bruges, når man vil flytte pennen til en bestemt koordinat set fra
+origo $(0, 0)$. Der plottes kun en linie, når pennen er nede.
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/relativ-absolut}
@@ -179,20 +183,20 @@ plottes kun en linie, når pennen er nede.
   \label{fig:relativ-absolut}
 }
 
-Relativ plotning indeholder ligeledes to parametre, $x$ og $y$. $x$ og $y$ er
-relative værdier til den nuværende position, altså kan de godt være
-negative. Relativ plotning måles ligesom absolut. Relativ plotning
-bruges, når man vil lave serie af linier i række, da man her tager
-udgangspunkt i den forrige linies
+Relativ plotning indeholder ligeledes to parametre, $x$ og $y$. $x$ og
+$y$ er relative værdier til den nuværende position, altså kan de godt
+være negative. Relativ plotning måles ligesom absolut. Relativ
+plotning bruges, når man vil lave serie af linier i række, da man her
+tager udgangspunkt i den forrige linies
 slutpunkt. Figur\vref{fig:relativ-absolut} viser et eksempel på
 relative og absolutte linier.
 
 \subsection{Behandling af cirkel}
 \label{sc:matematik-cirkel}
 
-Ud fra parametrene kender vi cirklens radius $r$, kordevinklen $c$ samt startkoordinater
-$(x, y)$. Det første koordinat kan ud fra en hurtig analyse derfor let
-findes:
+Ud fra parametrene kender vi cirklens radius $r$, kordevinklen $c$
+samt startkoordinater $(x, y)$. Det første koordinat kan ud fra en
+hurtig analyse derfor let findes:
 \begin{align*}
   P_0(x, y) = (r, 0)
 \end{align*}
@@ -210,7 +214,8 @@ $c$, altså har vi lagt en kordevinkel til de $0\degree$. Ved brug af
 cosinus og sinus samt radius $r$ kan vi bestemme det næste koordinat:
 \begin{align}
   P_1(x, y) &= \left( \cos(w) \times r, \sin(w) \times r \right) \Rightarrow \nonumber \\
-  P_1(x, y) &= \left( \cos(c) \times r, \sin(c) \times r \right) \label{eq:8.1}
+  P_1(x, y) &= \left( \cos(c) \times r, \sin(c) \times r
+  \right) \label{eq:8.1}
 \end{align}
  
 Denne formel kommer ud fra grundlæggende trigonometri:
@@ -239,8 +244,8 @@ overskrider $360\degree$. HPGL's standardkordevinkel er $5\degree$.
 
 Der opstår dog et problem, hvis vinklen ikke går op i $360\degree$,
 såsom vinklen $7\degree$. $51\times 7\degree = 357\degree \Rightarrow
-\textup{rest} = 3\degree$. Overskrider vinklen de $360\degree$, har vi to
-muligheder:
+\textup{rest} = 3\degree$. Overskrider vinklen de $360\degree$, har vi
+to muligheder:
 \begin{itemize} \firmlist
 \item Funktionen afsluttes uden at slutte cirklen
 \item Funktionen ændres, så optegningen fortsætter til udgangspunktet $P_0$
