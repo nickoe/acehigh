@@ -7,13 +7,13 @@
 \section{Mikroprocessor}
 \label{sc:i-mcu}
 Vi har som beskrevet i afsnit~\vref{sc:d-mikroprocessor}, at vi
-anvender en \texttt{atmega128} som hjernen i maskinen. Det kræver, at
+anvender en \texttt{ATmega128} som hjernen i maskinen. Det kræver, at
 der laves et print, hvor vi kan tilslutte alle maskinens enheder. I
 stedet for at lave vores eget har vi brugt~\cite{fronter:atmega128}.
 
 Der er ved brug af dette MCU print én ting, som man skal være
 opmærksom på. De er ikke nogen strømforsyning i printet, hvlket vil
-sige, at den skal have en 5V forsyning fra en af de periferi endheder
+sige, at den skal have en 5 V forsyning fra en af de periferi endheder
 den tilsluttets. Dette løser vi med vores stepmotor dirver print.
 
 \section{Stepmotordriver}
@@ -60,7 +60,7 @@ De relevante inputs til driver kredssen er skal anvende på følgende måde:
   og lav for full step
 \item \texttt{CW/CWW} Logisk høj sætter den til at køre med uret mens
   logisk lav sætter den til at dreje mod uret
-\item \texttt{CLOCK} Logisk høj i minimum $1\mu s$ for at tage ét skridt
+\item \texttt{CLOCK} Logisk høj i minimum $1 \mu s$ for at tage ét skridt
 \item \texttt{RESET} Skal sættes logisk høj under kørsel af motor, da
   logisk lav vil resette fase stillingen
 \item \texttt{ENABLE} Skal sættes logisk høj for at åbne for strømmen
@@ -74,7 +74,7 @@ tilbageslagsstrømmen kan løbe, når motoren skifter skridt.
 
 De to potentiometre \texttt{RV1} og \texttt{RV2} danner en
 spændingsdeler med hver sin seriemodstand, som bruges til den interne
-strømbegrænser. Her bruger vi en 5V sændingsregulator til at få en
+strømbegrænser. Her bruger vi en 5 V sændingsregulator til at få en
 stabil spænding til denne spændingsreference. Og som nævnt i
 afsnit~\vref{sc:i-mcu} har vi brug for en ekstern spændingsforsyning
 gennem en IO port. Det er her vi har forsyningsspændingen til vores
@@ -150,9 +150,9 @@ Den består af en SD-kort sokkel, hvor vi har taget højde for
 forbindelserne mellem SD-kortet og MCU'en, jævnfør argumenterne fra
 designafsnittet~\vref{sc:sda}.
 
-Vi har en 3,3V spændingsregulator, og tre spændingsdelere der er
+Vi har en 3,3 V spændingsregulator, og tre spændingsdelere der er
 tilsluttet signalerne \textit{fra} vores MCU. Da SD-kortet som nævnt
-ikke kan holde til de 5V vores MCU opperer ved.
+ikke kan holde til de 5 V vores MCU opperer ved.
 
 \section{Tegnehoved}
 Tegnehovedet har den fuktion, at den skal kunne løfte og sænke
@@ -160,11 +160,11 @@ pennen. Detter gør vi ved, at aktivere og deaktivere en
 elektromagnet. Konstruktionen er beskrevet under
 mekanikafsnitet~\vref{sc:i-tegnehovedet}.
 
-Elektromagneten trækker meget strøm direkte forbundet (omkring 2A ved
-20V). Vi har derfor valgt, at sætte en effektmodstand i serie med, for
+Elektromagneten trækker meget strøm direkte forbundet (omkring 2 A ved
+20 V). Vi har derfor valgt, at sætte en effektmodstand i serie med, for
 at begrænse strømmen. Det er modstanden \texttt{R4} afbilledet i
-figur~\vref{fig:tegnehoved-diagram}, på $47\Omega$. Valget på
-$47\Omega$ er valgt vha. test. Vi har set hvilke effektmodstande vi
+figur~\vref{fig:tegnehoved-diagram}, på 47 $\Omega$. Valget på
+47 $\Omega$ er valgt vha. test. Vi har set hvilke effektmodstande vi
 havde til rådighed, og så vurderet at den valgte var
 passende. Selvfølgelig ved at tjekke om magneten er stræk nok.
 

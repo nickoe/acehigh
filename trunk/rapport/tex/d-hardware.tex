@@ -13,7 +13,7 @@ til, hvilket er det, vi vil gøre i dette afsnit.
 \section{Stepmotordriver}
 
 Opgaven er at lave en plotter, hvilket kræver, at vi kan flytte en pen
-i to retninger svarende til x- og y-akser i et plan. For at styre
+i to retninger svarende til $x$- og $y$-akser i et plan. For at styre
 disse to akser er det vigtigt, at vi nøjagtigt kan holde styr på, hvor vi
 er. Til dette er stepmotor styring godt, da vi præcis ved, hvor vi er,
 hver gang vi har taget et skridt.
@@ -86,13 +86,13 @@ SPI mode, som vi vil understøtte, og SD mode, som blot kræver to
 forbindelser mere til SD-kortet. SPI er dog den simpleste
 af de to.
 
-SD-kortet opererer ved en spænding på 3,3V, derfor skal vi have en
-seperat spændingsforsyning på 3,3V til kortet. Af samme grund er vi
+SD-kortet opererer ved en spænding på 3,3 V, derfor skal vi have en
+seperat spændingsforsyning på 3,3 V til kortet. Af samme grund er vi
 nødt til at sænke spændingen fra vores MCU fra de 5V til omkring de
-3,3V, før vi kan kommunikere med det. Vi kan opnå dette med en
+3,3 V, før vi kan kommunikere med det. Vi kan opnå dette med en
 spændingsdeler ved IO pinsene, der går fra MCU'en til SD-kortet. Når
-signalet fra SD-kortet går høj, vil det givetvis være på 3,3V. Dette
-er ikke de 5V, som vores MCU opererer ved, men det er ikke noget
+signalet fra SD-kortet går høj, vil det givetvis være på 3,3 V. Dette
+er ikke de 5 V, som vores MCU opererer ved, men det er ikke noget
 problem, da det stadigvæk svarer til et højt signal for MCU'en.
 
 
@@ -100,7 +100,7 @@ problem, da det stadigvæk svarer til et højt signal for MCU'en.
 \label{sc:d-tegnehoved}
 Tegnehovedet er vores penholder, som sørger for, at vi kan hæve og sænke
 pennen afhængig af, om vi skal tegne eller bare flytte pennen. Den kan
-flyttes i to retninger (ad x- og y-aksen).
+flyttes i to retninger (ad $x$- og $y$-aksen).
 
 \section{Valg af MCU}
 \label{sc:d-mikroprocessor}
