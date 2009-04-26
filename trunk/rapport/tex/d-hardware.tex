@@ -10,9 +10,33 @@
 Med hensyn til hardwaren er der flere ting, der skal tages hensyn
 til, hvilket er det, vi vil gøre i dette afsnit.
 
+<<<<<<< .mine
+\section{Valg af mikroprocessor}
+\label{sc:d-mikroprocessor}
+Vi har i alle projekt forløb i faget EL-teknik anvendt Atmel's AVR
+processorer. Under udvikling af vores software til dette projekt, er
+vi blevet bekymret for den lille hukommelse, som er i de processorer
+vi normalt har brugt i faget, er for lille, samt at der er for få IO
+porte til rådighed.  Vi har derfor fået lov til at lave et andet
+mikroprocessor print med en ATmega128. Denne har givet os rigelig med
+hukommelse, og den har også flere IO porte end de 4 vi havde på de
+gamel ATmega16 print, hvilket vi også har brug for i vores projekt. Vi
+skal nemelig bruge 5 IO porte til følgende ting:
+
+\begin{enumerate} \firmlist
+\item{Kontrol af stepmotorer}
+\item{Evt. LCD-display}
+\item{Statuslamper, knapper og til tegnehovedet}
+\item{SD-kort adapteren}
+\item{Sensorer}
+\end{enumerate}
+
+\section{Stepmotor driver}
+=======
 
 \section{Stepmotordriver}
 
+>>>>>>> .r321
 Opgaven er at lave en plotter, hvilket kræver, at vi kan flytte en pen
 i to retninger svarende til x- og y-akser i et plan. For at styre
 disse to akser er det vigtigt, at vi nøjagtigt kan holde styr på, hvor vi
@@ -37,7 +61,11 @@ drivere til rådighed, som kun kan styre bipolare motorer.
 
 
 \section{Sensorer}
+<<<<<<< .mine
+\label{sc:sensorer}
+=======
 
+>>>>>>> .r321
 Vi skal være i stand til at nulstille maskinens position i forhold til
 vores koordinatsystem, fordi vi skal vide, hvor vi har vores
 udgangspunkt.
@@ -49,20 +77,24 @@ origo. Denne metode er dog ikke praktisk anvendelig, da man vil belaste
 mekanikken og motorerne for meget og på den måde risikere at ødelægge
 konstruktionen.
 
-Vi vil derfor anvende nogle sensorer til at fastlægge en nulstillingsposition.
-Vi kan anvende et par fotogafler, hvor vi fører
+Vi vil derfor anvende nogle sensorer til at fastlægge en
+nulstillingsposition. Vi kan anvende et par fotogafler, hvor vi fører
 en mekanisk fane ind i. Maskinen kan så dedektere, hvornår der kommer
 noget ind for sensoren, hvilket betyder, at vi ved, hvor vi er. Ud fra
 hvilke signaler vi får fra de forskellige sensorer, så kan vi stoppe
-maskinens bevægelse. Til sidst ved vi, at vi er i nulstillingspositionen (origo)
-, altså at maskinen er nulstillet. Vi kan herefter begynde at anvende
-maskinen. Det kræver selvfølgelig, at man placerer sensorerne, således
-at mekanikken aldrig når at komme til sine yderpunkter, hvor den ikke
-kan bevæge sig længere.
+maskinens bevægelse. Til sidst ved vi, at vi er i
+nulstillingspositionen (origo) , altså at maskinen er nulstillet. Vi
+kan herefter begynde at anvende maskinen. Det kræver selvfølgelig, at
+man placerer sensorerne, således at mekanikken aldrig når at komme til
+sine yderpunkter, hvor den ikke kan bevæge sig længere.
 
 
 \section{SD-kort adapter}
+<<<<<<< .mine
+\label{sc:sda}
+=======
 
+>>>>>>> .r321
 Vi har i kravspecefikationen bestemt, at vi skal kunne styre maskinen
 vha. data fra et SD-kort. Et SD-kort kan styres på forskellige måder:
 
@@ -97,11 +129,11 @@ problem, da det stadigvæk svarer til et højt signal for MCU'en.
 
 \section{Tegnehoved}
 \label{sc:d-tegnehoved}
-
-Tegnehovedet er vores penholder,som sørger for, at vi kan hæve og sænke
+Tegnehovedet er vores penholder, som sørger for, at vi kan hæve og sænke
 pennen afhængig af, om vi skal tegne eller bare flytte pennen. Den kan
 flyttes i to retninger (ad x- og y-aksen).
 
+<<<<<<< .mine
 
 \section{Valg af mikroprocessor}
 \label{sc:d-mikroprocessor}
@@ -122,7 +154,7 @@ Vi bruger IO-porte til
 \item{LCD-display,}
 \item{statuslamper, knapper og til tegnehovedet,}
 \item{SD-kort adapteren, og}
-\item{ensorerne.}
+\item{sensorerne.}
 \end{enumerate}
 
 %%% Local Variables: 

@@ -33,7 +33,8 @@ FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ./img/l6208n-driver-diagram.svg ./img/Tux-simple.svg			\
 ./img/matematik-skitse.svg ./img/tegnehoved-skitse.svg			\
 ./img/tid-hastighed-forhold-indlagt-forsinkelse.svg			\
-./img/kalibreringsstreg.svg
+./img/kalibreringsstreg.svg ./img/fotogaffel-diagram.svg			\
+./img/tegnehoved-diagram.svg
 
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
