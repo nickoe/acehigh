@@ -1,11 +1,15 @@
 \documentclass[final]{mypaper}
 
-\hypersetup{
-  linkcolor=black,
-  citecolor=black,
-  filecolor=black,
-  urlcolor=black
-}
+\newcommand{\bw}{true}
+
+\ifthenelse{\boolean{\bw}}{
+  \hypersetup{
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black
+  }
+}{}
 
 % Nye komandoer og pakker - kk du kan bare flytte dem ind i ../mypaper
 % hvis du føler for det
