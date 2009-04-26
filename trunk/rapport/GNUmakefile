@@ -12,7 +12,8 @@ TARGET=master.tex
 # Alle DIA-diagrammer
 FIGS_DIA=../brugere/kjaergaard/hpglparser-ins.dia		\
 ../brugere/kjaergaard/hpglparser-param.dia			\
-./img/egentlig-softwimpl-a.dia ./img/egentlig-softwimpl-b.dia
+./img/egentlig-softwimpl-a.dia ./img/egentlig-softwimpl-b.dia	\
+./img/i-motor-design-a.dia ./img/i-motor-design-b.dia
 
 # Alle SVG-filer
 FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
@@ -31,7 +32,6 @@ FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ./img/sd-kort-adapter-diagram.svg ./img/sd-kort-adapter-kobber.svg	\
 ./img/l6208n-driver-diagram.svg ./img/Tux-simple.svg			\
 ./img/matematik-skitse.svg ./img/tegnehoved-skitse.svg			\
-./img/i-motor-design.svg						\
 ./img/tid-hastighed-forhold-indlagt-forsinkelse.svg
 
 
