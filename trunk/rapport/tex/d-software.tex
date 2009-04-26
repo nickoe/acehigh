@@ -84,12 +84,6 @@ figur\vref{fig:motorstyring-afbrudt-afvikling}.
   \label{fig:motorstyring-afbrudt-afvikling}
 \end{figure}
 
-Den algoritme, der beregner næste tidspunkt, motorerne skal flyttes
-på, afvikles hele tiden. Når det er tid til at tjekke, om vi har
-overskredet et tidspunkt, afbrydes afviklingen af tidsberegningen,
-mens motorerne flyttes. Bagefter fortsættes afviklingen af
-tidsberegningen. \fixme{Kjærgaard: Er det ikke det der står ovenover?}
-
 Denne løsning udmærker sig ved at graden af præcis styring af
 hastigheden ikke afhænger af hastigheden selv, så længe afviklingen
 kan foretages inden en \textit{deadline} nåes.
@@ -170,9 +164,8 @@ Alle symboler med indeks $x$ gælder kun for $x$-aksen. Der arbejdes
 med tilsvarende symboler med indeks $y$ for $y$-aksen.
 
 
-\section{HPGL -- Hewlett-Packard Graphics Language}
+\section{Dataformat}
 \label{sec:hpgl}
-\fixme{Kjærgaard: Skal det hedde dataformat i stedet?}
 
 Når man skal vælge, hvilket dataformat man vil bruge, når man laver en
 plotter, så er det vigtigt at se på fordele og ulemper se tabel
@@ -206,20 +199,20 @@ HPGL, som vi benytter os af.
 \end{table}
 \fixme{Fix layout på tabel (punktform?)}
 
-Vi kunne i princippet godt udvikle vores eget
-dataformat, men dette vil både være meget tidskrævende, og
-samtidigt vil det være svært at få implementeret, da vores format ikke
-ville være en standard, og derfor ville der ikke være noget som direkte virkede med
-det. Derimod er HPGL velegnet i vores projekt, da det er mere
-virkelighedsnært at benytte en standard, som allerede er konstrueret
-som et plotterformat, samtidig med at det kan anvendes af forskellige
-applikationer (andre CAD programmer). Der er heller ikke mange ulemper
-tilknyttet til brugen af HPGL som plotterformat. Det vil dog tage lang
-tid at implementere det hele, hvilket vi dog heller ikke gør. Vi
-kommer f.eks. ikke til at benytte os af pin-skrift og en del andre
-ting, men disse problemer er relativt lette at komme udenom. Figur
-\vref{tab:hpgl-fordele-ulemper} viser vores overvejelser om brugen
-af HPGL som dataformat.
+Vi kunne i princippet godt udvikle vores eget dataformat, men dette
+vil både være meget tidskrævende, og samtidigt vil det være svært at
+få implementeret, da vores format ikke ville være en standard, og
+derfor ville der ikke være noget som direkte virkede med det. Derimod
+er HPGL velegnet i vores projekt, da det er mere virkelighedsnært at
+benytte en standard, som allerede er konstrueret som et plotterformat,
+samtidig med at det kan anvendes af forskellige applikationer (andre
+CAD programmer). Der er heller ikke mange ulemper tilknyttet til
+brugen af HPGL som plotterformat. Det vil dog tage lang tid at
+implementere det hele, hvilket vi dog heller ikke gør. Vi kommer
+f.eks. ikke til at benytte os af pin-skrift og en del andre ting, men
+disse problemer er relativt lette at komme udenom. Figur
+\vref{tab:hpgl-fordele-ulemper} viser vores overvejelser om brugen af
+HPGL som dataformat.
 
 %Når man betragter HPGL som et plotterformat, så betyder det, at den
 %indeholder mange forskellige kommandoer med hver deres funktion. Det
@@ -304,8 +297,11 @@ giver større kontrol.
 
 \Cpp\ bruges i moduler, hvor det er fordelagtigt at bruge
 \Cpp-speficikke elementer (f.eks. generisk
-programmering)\fixme{Kristian: forklar}. Moduler, der afhænger af
-moduler skrevet i \Cpp, vil typisk også være skrevet i \Cpp.
+programmering\footnote{Typeuafhængig programmering. Mange steder
+  bruger man samme kodebase til forskellige typer data, og generisk
+  programmering gør det muligt først at angive datatype, når basen
+  bruges.}). Moduler, der afhænger af moduler skrevet i \Cpp, vil
+typisk også være skrevet i \Cpp.
 
 Alle C-moduler er kompatible med \Cpp, og alle \Cpp-moduler er så vidt
 muligt kompatible med C. Uønskede sideeffekter af \Cpp\ forsøges
