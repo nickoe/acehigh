@@ -7,14 +7,18 @@
 
 % Vis billede af tux og logo
 
-\mnote{Kristian Kjærgaard og Nick Østergaard}
+\mnote{Fælles}
 
 \section{Mangler}\fixme{Lav færdig}
 
 Vi nåede ikke at få lavet en kasse til at lukke elektronikken af,
 hvilket dog heller ikke er så vigtigt.
 
-Vi nåede ikke at få kanptrykket til at virke...
+Vi nåede ikke at få knaptrykket til at virke, så vi har ingen nødstop
+eller restart knap. Det betyder også, at plotteren ikke har en
+nulstillingsposition, men at nulstillingspositionen er det sted pennen
+befinder sig, når plotningen påbegyndes.
+
 
 \section{Delvis -- men dækkende -- implementering af HPGL}
 
@@ -31,7 +35,7 @@ dækkende til tegninger genereret af \texttt{pstoedit}.
 
 I figur\vref{fig:plot-tux} ses Tux -- Linux-maskotten -- som
 vektorgrafik og som plot i plotteren. Vektorbilledet er brugt til at
-generere HPGL-billedet brugt til plottet.
+generere HPGL-billedet brugt til plottet. 
 
 
 \begin{figure}[htbp]
@@ -47,6 +51,11 @@ generere HPGL-billedet brugt til plottet.
   \label{fig:plot-tux}
 \end{figure}
 
+Det er selvfølgelig op til hvert enkelt individ at vurdere kvaliteten,
+men vi har lavet den bedømmelse, at resultatet er tilfredsstillende,
+bortset fra enkelte småfejl såsom øjnenes placering og den
+uforklarlige streng imellem kroppen.
+
 \fixme{ALLE! Sørg for at vi har fået angivet skribent(er) ved alle afsnit}
 
 
@@ -54,6 +63,10 @@ generere HPGL-billedet brugt til plottet.
 
 Stepmotoren i $y$-aksen takker tilsyneladende over engang imellem,
 hvilket resulterer i plots som i figur\vref{fig:plot-takker-over}.
+Vi er kommet frem til at dette kan skyldes enten at stepmotoren er
+for svag til at trække aksen stabilt eller at tandremmen er for stram.
+Umiddelbart kan begge problemer løses relativt let ved enten erstating
+af den nuværende stepmotor med en mere kraftig eller ved at løsne tandremmen.
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/takker-over}
