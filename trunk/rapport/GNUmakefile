@@ -34,7 +34,9 @@ FIGS_SVG=../logo/logo.svg ./img/forside.svg				\
 ./img/matematik-skitse.svg ./img/tegnehoved-skitse.svg			\
 ./img/tid-hastighed-forhold-indlagt-forsinkelse.svg			\
 ./img/kalibreringsstreg.svg ./img/fotogaffel-diagram.svg		\
-./img/tegnehoved-diagram.svg ./img/hpgl-syntaks.svg
+./img/tegnehoved-diagram.svg ./img/hpgl-syntaks.svg			\
+./img/plotter-oversigt.svg ./img/l6208n-kobber.svg			\
+./img/hid-samlebraet-kobber.svg ./img/hid-samlebraet.svg
 
 
 # Alle EPS-filer (PS-illustrationer angivet i linien nedenunder)
