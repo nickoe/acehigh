@@ -455,10 +455,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="744"
-     inkscape:window-x="-4"
-     inkscape:window-y="-4"
+     inkscape:window-width="1440"
+     inkscape:window-height="829"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
      showguides="true"
      inkscape:guide-bbox="true" />
   <metadata
@@ -30596,7 +30596,7 @@
        id="image10626"
        height="175.94757"
        width="275.34323"
-       sodipodi:absref="C:\Documents and Settings\Christian\My Documents\Uddannelse\HTX 3. år\El-teknik\Ny mappe\trunk\rapport\img\stepmotordriver.jpg"
+       sodipodi:absref=""
        xlink:href="stepmotordriver.jpg" />
     <image
        y="264.84879"
@@ -30604,7 +30604,7 @@
        id="image10613"
        height="176.32983"
        width="179.2856"
-       sodipodi:absref="C:\Documents and Settings\Christian\My Documents\Uddannelse\HTX 3. år\El-teknik\Ny mappe\trunk\rapport\img\y-motor.jpg"
+       sodipodi:absref=""
        xlink:href="y-motor.jpg" />
     <path
        style="opacity:0.5;fill:#9cc1d1;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1"
@@ -30720,7 +30720,7 @@
        id="image10560"
        height="175.54741"
        width="169.66315"
-       sodipodi:absref="C:\Documents and Settings\Christian\My Documents\Uddannelse\HTX 3. år\El-teknik\Ny mappe\trunk\rapport\img\tegnehoved.jpg"
+       sodipodi:absref=""
        xlink:href="tegnehoved.jpg" />
     <image
        y="463.48691"
@@ -30728,7 +30728,7 @@
        id="image10639"
        height="176.0446"
        width="234.72614"
-       sodipodi:absref="C:\Documents and Settings\Christian\My Documents\Uddannelse\HTX 3. år\El-teknik\Ny mappe\trunk\rapport\img\sd-adapter.jpg"
+       sodipodi:absref=""
        xlink:href="sd-adapter.jpg" />
   </g>
 </svg>
