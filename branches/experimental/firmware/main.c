@@ -11,110 +11,122 @@
 #include <stdlib.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <math.h>
 
 #include "motor.h"
 #include "data.h"
-#include "lcd.h"
+
+/* pladsholdere til hvor vi er */
+uint32_t X, Y;
 
 int main(void)
 {
-  lcd_init(LCD_DISP_ON);
   Data_Init();
   Motor_Init();
+  X = 0;
+  Y = 0;
 
-  DDRE = 0xff;
+  while (!Data_EOS()) {
+    switch (Data_ReadIns()) {
 
-while (!Datafeeder_EOS())
-  {
-    switch(Data_ReadIns())
-    {
-    case HPGL_INS("PU"): /* pen up */
-      MotorCtrl_Lift();
-    break;
-
-
-    case HPGL_INS("PD"): /* pen down */
-      MotorCtrl_Lower();
-    break;
-
-
-    case HPGL_INS("CI"):
-    {
-      /* en cirkel */
-      uint16_t r = (uint16_t)Data_ReadParamF();
-      uint8_t c = 5;
-      /* kordevinkel, indlæses fra datastrømmen hvis den findes */
-      
-      if (Data_ParamExists())
-        c = (uint8_t)Data_ReadParamF();              // Hvis kordevinklen eksisterer, hentes den
-        
-        uint16_t w = c;                        // Vinkelpunkt sættes lig kordevinklen
-      
-        MotorCtrl_Lift();
-        Motor_Move(r, 0, MAXSPEED);            // relativt til startpunkt for cirkel (r,0)
-        MotorCtrl_Lower();
-      
-      while(w <= 360)
+    case HPGL_PU:
       {
-        X = X+r;
-        Y = Y+0;
-        
-        uint16_t x = cos(w)*r;                   // x-koordinatet bestemmes
-        uint16_t y = sin(w)*r;                   // y-koordinatet bestemmes
-        Motor_Move(X+x, Y+y, MAXSPEED);          // x,y-koordinaterne sendes med hastigheden v
-        w += c;                                  // Kordevinklen lægges til vinklen w
+	Motor_Lift();
       }
+      break;
+
+    case HPGL_PD:
+      {
+	Motor_Lower();
+      }
+      break;
+
+    case HPGL_CI:
+      {
+	/* en cirkel */
+	uint16_t r = Data_ReadParamI();
+
+	uint8_t c = 5;
+	/* kordevinkel, indlæses fra datastrømmen hvis den findes */
       
-      /* Hvis vinklen v ikke går op i 360
-	 if(v != 360)
-	 {
-	 w -=c ;
-	 x = cos(w)*r;                                    // x-koordinatet bestemmes
-	 y = sin(w)*r;                                    // y-koordinatet bestemmes
-	 MotorCtrl_GotoXY(X+x+r, Y+y+0, v);
-	 }
-      */
+	if (Data_ParamExists())
+	  c = (uint8_t)Data_ReadParamI();
+        
+	/* Vinkelpunkt sættes lig kordevinklen */
+        uint16_t w = c;                        
       
-      MotorCtrl_Lift();                             // Løfter pennen
-      Motor_Goto(X, Y, MAXSPEED);                   // Tilbage til centrum
-    }
-    break;
-    
-    
-    case HPGL_INS("PA"):
-    {
-      // Plot Absolute
-      // PA [X, Y [,...]] [;]
-     
-      X = (uint16_t)Data_ReadParamF();             // Henter x-koordinat
-      Y = (uint16_t)Data_ReadParamF();             // Henter y-koordinat
-      Motor_MoveTo(X, Y, MAXSPEED);                // Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes
-    }
-    break;
-    
-    case HPGL_INS("PR"):
-    {
-      /* Plot Relative */
-      uint16_t x = (uint16_t)Data_ReadParamF();
-      uint16_t y = (uint16_t)Data_ReadParamF();
+        Motor_Lift();
+	/* relativt til startpunkt for cirkel (r,0) */
+        Motor_Move(r, 0, MAXSPEED);            
+        Motor_Lower();
       
-      Motor_Move(x, y, MAXSPEED);
-      /* Husk at udbygge, så pennen bevæger sig hurtigt, når der ikke tegnes*/
+	while(w <= 360) {
+	  int16_t tmp_x = cos(w*M_PI/180)*r;
+	  int16_t tmp_y = sin(w*M_PI/180)*r;
+
+	  /*
+	    char msg[16];
+	    sprintf(msg, "r=%d", r);
+	    lcd_puts(msg);
+	    cli();
+	    while(1);
+	  */
+
+	  Motor_MoveTo(X+tmp_x, Y+tmp_y, MAXSPEED);
+	  w += c;
+	}
       
-      X += x;
-      Y += y;
-    }
-    break;
-    
+	Motor_Lift();
+	Motor_MoveTo(X, Y, MAXSPEED);
+      }
+      break;
+
+
+    case HPGL_PA:
+      {
+	// Plot Absolute
+	// PA [X, Y [,...]] [;]
+	while (Data_ParamExists()) {
+
+	  X = Data_ReadParamI();
+	  Y = Data_ReadParamI();
+	
+	  /* tjek om der tegnes - bevæg hurtigere når der ikke tegnes */
+	  Motor_MoveTo(X, Y, MAXSPEED);
+	}
+      }
+      break;
+
+
+    case HPGL_PR:
+      {
+	while (Data_ParamExists()) {
+	  /* Plot Relative */
+	  uint16_t x = Data_ReadParamI();
+	  uint16_t y = Data_ReadParamI();
+      
+	  /* Husk at udbygge, så pennen bevæger sig hurtigt, når der
+	     ikke tegnes*/
+	  Motor_Move(x, y, MAXSPEED);
+      
+	  X += x;
+	  Y += y;
+	}
+      }
+      break;
+
     default:
-      /* ukendt/ikke-implementeret instruktion */
+      {
+	/* endnu ikke implementeret eller ukendt */
+      }
       break;
     }
-  }  
+  }
 
-  while (1);
+
+ LOOP:
+  while (1) {
+  }
 
   return 0;
 }
-
-

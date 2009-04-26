@@ -22,11 +22,9 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "lcd.h"
 
-
-#define RES_Y 1.19047619
 #define RES_X 0.297619048
+#define RES_Y 1.19047619
 
 
 #define activate_timer() (TIMSK |= 1<<OCIE0)
