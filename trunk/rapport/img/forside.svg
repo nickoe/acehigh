@@ -51,16 +51,16 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="-17.910758"
-     inkscape:cy="556.57269"
+     inkscape:zoom="0.5653947"
+     inkscape:cx="372.04724"
+     inkscape:cy="526.18109"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="829"
+     inkscape:window-width="1280"
+     inkscape:window-height="778"
      inkscape:window-x="0"
-     inkscape:window-y="25" />
+     inkscape:window-y="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -79,19 +79,19 @@
     <rect
        style="fill:#c9dde6;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3290"
-       width="806.10175"
-       height="428.30469"
-       x="-32.324886"
+       width="743.9776"
+       height="411.13263"
+       x="0.1010621"
        y="641.2301" />
     <rect
        style="fill:#c9dde6;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect3288"
-       width="804.08142"
-       height="280.82242"
-       x="-18.182745"
-       y="-18.399515" />
+       width="744.10382"
+       height="258.59906"
+       x="7.0565375e-07"
+       y="-0.21676946" />
     <g
-       transform="translate(-466.19528,-419.79006)"
+       transform="translate(-466.19528,-453.79006)"
        id="g2501"
        inkscape:label="Layer 1">
       <path
@@ -111,36 +111,40 @@
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Charter;-inkscape-font-specification:Bitstream Charter"
        x="484.87323"
-       y="211.91527"
+       y="177.91527"
        id="text2506"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2508"
          x="484.87323"
-         y="211.91527">- en (<tspan
+         y="177.91527">- en (<tspan
    style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Charter;-inkscape-font-specification:Bitstream Charter"
    id="tspan2510">x</tspan>,<tspan
    style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Charter;-inkscape-font-specification:Bitstream Charter"
    id="tspan2512">y</tspan>)-plotter</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M -12.011867,262.4229 L 765.58567,262.4229"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.89070892;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 0.12704352,260.844 L 744.10242,260.844"
        id="path2514" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M -19.082932,642.24025 L 758.5146,642.24025"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.89898205;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 0.10091921,638.7029 L 744.07675,638.7029"
        id="path3286" />
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
-       x="-143.44168"
-       y="832.14893"
+       x="24.582535"
+       y="823.30554"
        id="text3292"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3294"
-         x="-143.44168"
-         y="832.14893">Formelle krav her: navne, gruppenummer, projektets titel, afleveringsdato m.m.</tspan></text>
+         x="24.582535"
+         y="823.30554">Formelle krav her: navne, gruppenummer,</tspan><tspan
+         sodipodi:role="line"
+         x="24.582535"
+         y="853.30554"
+         id="tspan2398">projektets titel, afleveringsdato m.m.</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"

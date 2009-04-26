@@ -12,7 +12,7 @@ Softwaren er struktureret som vist i
 figur\vref{fig:software-oversigt}. Dataføderen leverer data til den
 del af softwaren, der behandler HPGL. Dataen kommer fra et
 SD-kort. HPGL-behandleren sender instruktioner videre til den del af
-motorkontrollen, der afvikles når der er tid. Denne del sætter
+motorkontrollen, der afvikles, når der er tid. Denne del sætter
 instruktioner i kø til realtidsdelen.
 
 Realtidsdelen af motorkontrollen behandler de instruktioner, den anden
@@ -89,7 +89,7 @@ HPGL er et dataformat, som indeholder adskillige forskellige
 instruktioner med forskellige parametre (se
 afsnit\vref{sc:idn-ins-param}) . Vi benytter os ikke af samtlige
 instruktioner, men blot et lille udvalg med udgangspunkt i vores
-kravspecifikation.  I projektet anvender vi følgende instruktioner:
+kravspecifikation. I projektet anvender vi følgende instruktioner:
 
 \begin{itemize} \firmlist
 \item \texttt{PU} Pen Up - bruges til at hæve
@@ -100,8 +100,8 @@ kravspecifikation.  I projektet anvender vi følgende instruktioner:
 \end{itemize}
 
 HPGL bruger oprindeligt bogstaver, tal og symboler (komma, punktum
-osv.) til at identificere instruktioner, men som det fremgår af næste
-afsnit, så anvender vi kun bogstaver i vores identifikation.
+osv.) til at identificere instruktioner, men som det fremgår af
+afsnit ~\vref{sc:idn-ins-param}, så anvender vi kun bogstaver i vores identifikation.
 
 \subsection{Identifikation af instruktioner og parametre}
 \label{sc:idn-ins-param}
@@ -136,7 +136,7 @@ Hvis byten er et bogstav, peger markøren på første byte i en
 instruktion. Den næste byte indlæses og de to byte sættes sammen til
 en instruktion.
 
-Hvis byten er et tal eller punktum (.), peger markøren på første byte
+Hvis byten er et tal eller symbol (punktum, komma osv.), peger markøren på første byte
 i en talparameter. Der indlæses og gemmes bytes indtil den indlæste
 byte ikke er et tal eller punktum. Når den indlæste byte ikke er et
 tal eller punktum, konverteres de indlæste bytes til et tal.
@@ -167,8 +167,8 @@ Indenfor HPGL bruger man relative og absolutte koordinater. Absolut
 plotning indeholder to parametre, X og Y. X og Y er absolutte værdier,
 altså kan de ikke være negative, som måles enten i en brugerdefineret
 enhed eller grafik enheder (0,025mm). Absolut plot bruges, når man vil
-flytte pennen til en bestemt koordinat set fra origo $(0, 0)$. Ligesom
-med cirklen, så plottes kun en linie, når pennen er nede.
+flytte pennen til en bestemt koordinat set fra origo $(0, 0)$. Der
+plottes kun en linie, når pennen er nede.
 
 \mnote{
   \includegraphics[width=\marginparwidth]{./img/relativ-absolut}
@@ -187,7 +187,7 @@ relative og absolutte linier.
 \subsection{Behandling af cirkel}
 \label{sc:matematik-cirkel}
 
-Vi kender cirklens radius $r$, kordevinklen $c$ samt startkoordinater
+Ud fra parametrene kender vi cirklens radius $r$, kordevinklen $c$ samt startkoordinater
 $(x, y)$. Det første koordinat kan ud fra en hurtig analyse derfor let
 findes:
 \begin{align*}
@@ -231,7 +231,7 @@ P_0(x, y)&=(\cos(0\times 3\degree)\times 5 , \sin(0\times 3\degree)\times 5)=(5,
 Vi ser, at dette passer i overensstemmelse med første
 udsagn. Vha. ovenstående formel kan vi blot lægge en til $n$ hver gang
 funktionen er udført. Dette skal den blive ved med indtil vinkel
-overskrider $360\degree$.
+overskrider $360\degree$. HPGL's standardkordevinkel er $5\degree$.
 
 
 Der opstår dog et problem, hvis vinklen ikke går op i $360\degree$,
@@ -242,6 +242,9 @@ muligheder:
 \item Funktionen afsluttes uden at slutte cirklen
 \item Funktionen ændres, så optegningen fortsætter til udgangspunktet $P_0$
 \end{itemize}
+
+Afviklingsdiagrammet i figur\vref{fig:hpgl-cirkel-afvikling}
+viser plotningsprocessen af en cirkel. Her fremgår det, at
 HPGL tegner uanset om pennen er oppe eller nede, hvilket betyder, at
 vi skal bruge en funktion til at hæve og sænke pennen. HPGL sender
 "PU" (Pen Up), når pennen skal være oppe. Tilsvarende sender den en
@@ -250,9 +253,8 @@ centrum. Vi skal derfor sikre os, at pennen er hævet før den går til
 første punkt $P_0$. Herefter bruger vi den generelle funktion til at
 bestemme $(x, y)$-koordinaterne. Efter hver udført funktion lægges en
 ekstra kordevinkel til vinklen indtil vinklen $w$ er større eller lig
-360 \degree. Herefter hæves pennen og flyttes tilbage til cirklens
-centrum. Afviklingsdiagrammet i figur\vref{fig:hpgl-cirkel-afvikling}
-viser denne proces. \fixme{Klim: Henvis evt tidligere til figur}
+$360\degree$. Herefter hæves pennen og flyttes tilbage til cirklens
+centrum.
 
 \begin{figure}[htbp]
   \centering
@@ -309,7 +311,7 @@ tidspunkt først, derfor er denne funktion kringlet.\fixme{sprødt
 % styrer dem ud?
 
 Stepmotorerne styres med kredsen L6208N, som indeholder en H-bro,
-optokoblere og transistorer og kan holde til 52 volt. Et signal styrer
+optokoblere og transistorer og kan holde til 52V. Et signal styrer
 stepmotorens retning, mens en impuls får L6208N til at flytte motoren
 et step.
 
