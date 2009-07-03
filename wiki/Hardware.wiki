@@ -1,8 +1,0 @@
-#summary Beskriver hardwaren i plotteren
-
-= Elementer =
- * Nulstillingssensorer (to små forskllige print)
- * To forskellige motordrivere
- * Evt. eget MCU print
- * Knapbræt
- * Strømforsyning
