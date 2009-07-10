@@ -191,7 +191,7 @@
 	software timers/counters. Hence, though hardware
 	timers/counters have less CPU usage than software
 	timers/counters, we prefer software timers/counters because it
-	is easier to achieve required frequency.
+	is easier to achieve desired frequency.
       </para>
     </section>
 
@@ -201,7 +201,7 @@
     <title>Runtime ajustments of timers/counters</title>
     <para>
       It is rarely possible to achieve the exact desired frequency -
-      it is often rounded to nearest possible frequency. Depending on
+      it is often rounded to nearest available frequency. Depending on
       the prescaler, this deviance increases with the prescaler. Se
       tables above.
     </para>
@@ -209,7 +209,8 @@
       Many roundings may cause visible faults in the plot. Since Ace
       High does only deal with controlling the position of the cursor
       (and not regulating it), it is prefered to ajust timers/counters
-      while they are running to achieve the exact frequency.
+      while they are running to achieve the exact frequency. See
+      article describing the positioning algorithms.
     </para>
     <para>
       Designing software to ajust hardware timers/counters will
