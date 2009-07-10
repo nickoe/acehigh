@@ -1,10 +1,11 @@
+#
+# $Id$
+#
+
 # Target files
-TARGETS=SelectingAccelerationMethodForImpulseGenerator.xml
+TARGETS=WhyNotUseHardwareTimersCounterForImpulseGeneration.xml
 
 DEFAULT_FORMAT=html
-
-# Output directories
-HTML_OUTPUT=html
 
 # Path to xsltproc
 XSLTPROC=xsltproc
@@ -15,7 +16,7 @@ XSL=acehigh.xsl
 .SUFFIXES: .html .xml
 
 %.html: %.xml
-	@$(XSLTPROC) -o $(HTML_OUTPUT)/$@ $(XSL) $<
+	@$(XSLTPROC) -o $@ $(XSL) $<
 
 base:	$(DEFAULT_FORMAT)
 
