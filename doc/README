@@ -1,0 +1,6 @@
+Here: Information about compiling this documentation
+
+xsltproc and docbook-xsl are needed
+
+this documentation is focused on making html documentation, but other
+formats will eventually come
