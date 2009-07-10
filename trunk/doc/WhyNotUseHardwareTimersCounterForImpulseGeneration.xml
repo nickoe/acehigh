@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1//EN" "http://docbook.org/xml/simple/1.1/sdocbook.dtd">
+<article>
+  <articleinfo>
+    <releaseinfo>$Id$</releaseinfo>
+  </articleinfo>
+  <title>Why not use hardware timers/counter for impulse generation?</title>
+
+  <section>
+    <title>Introduction</title>
+    <para>
+      Our target MCU, the Arduino featuring ATmega328P, provides three
+      hardware timers/counters that can be used for e.g. impulse
+      generation. This article discusses why a software impulse
+      generator is prefered over a hardware impulse generator.
+    </para>
+  </section>
+
+  <section>
+    <title>Differences between hardware and software timers/counters</title>
+    <para>
+      The table below gives a brief overview of the differences
+      between hardware and software timers/counters. Each topic is
+      discussed in detail below.
+    </para>
+    
+    <table>
+      <title>Comparison of hardware and software timers/counters</title>
+      <tgroup cols="3">
+	<thead>
+	  <row>
+	    <entry></entry>
+	    <entry>Hardware</entry>
+	    <entry>Software</entry>
+	  </row>
+	</thead>
+	<tbody>
+	  <row>
+	    <entry>Resolution</entry>
+	    <entry>Fixed (8/16 bits for Arduino)</entry>
+	    <entry>Variable</entry>
+	  </row>
+	  <row>
+	    <entry>Frequency range</entry>
+	    <entry>From very fast to relatively slow</entry>
+	    <entry>From relatively fast to virtually as slow as
+	    desired</entry>
+	  </row>
+	  <row>
+	    <entry>CPU usage</entry>
+	    <entry>None while running, little for setup</entry>
+	    <entry>Little for setup, usage when running is
+	    proportional to frequency</entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+    
+    <section>
+      <title>Resolution, frequency range and frequency deviance</title>
+      <para>
+	Lowest and highest frequencies depends on the system clock
+	frequency, resolution, and <emphasis>prescaler</emphasis>.  As
+	seen in the table below, an 8-bit timer/counter has a highest
+	frequency of 8 MHz and a lowest frequency of 30.5 Hz. A 16-bit
+	timer/counter has a lowest frequency of 0.119 Hz. Frequency
+	deviance is the deviance the desired period may have compared
+	to the available period.
+      </para>
+
+      <table>
+	<title>Frequency range and frequency deviance for 8-bit timer
+	on system running at 16 MHz</title>
+	<tgroup cols="4">
+	  <thead>
+	    <row>
+	      <entry>Prescaler</entry>
+	      <entry>Max freq</entry>
+	      <entry>Min freq</entry>
+	      <entry>Deviance</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>1</entry>
+	      <entry>8.00 MHz</entry>
+	      <entry>31.3 KHz</entry>
+	      <entry>0.125 µs</entry>
+	    </row>
+	    <row>
+	      <entry>8</entry>
+	      <entry>1.00 MHz</entry>
+	      <entry>3.91 KHz</entry>
+	      <entry>1.00 µs</entry>
+	    </row>
+	    <row>
+	      <entry>64</entry>
+	      <entry>125 KHz</entry>
+	      <entry>488 Hz</entry>
+	      <entry>8.00 µs</entry>
+	    </row>
+	    <row>
+	      <entry>256</entry>
+	      <entry>31.3 KHz</entry>
+	      <entry>122 Hz</entry>
+	      <entry>32.0 µs</entry>
+	    </row>
+	    <row>
+	      <entry>1024</entry>
+	      <entry>7.81 KHz</entry>
+	      <entry>30.5 Hz</entry>
+	      <entry>128 µs</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table>
+	<title>Frequency range and frequency deviance for 16-bit timer
+	on system running at 16 MHz</title>
+	<tgroup cols="4">
+	  <thead>
+	    <row>
+	      <entry>Prescaler</entry>
+	      <entry>Max freq</entry>
+	      <entry>Min freq</entry>
+	      <entry>Deviance</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>1</entry>
+	      <entry>8.00 MHz</entry>
+	      <entry>122 Hz</entry>
+	      <entry>0.125 µs</entry>
+	    </row>
+	    <row>
+	      <entry>8</entry>
+	      <entry>1.00 MHz</entry>
+	      <entry>15.3 Hz</entry>
+	      <entry>1.00 µs</entry>
+	    </row>
+	    <row>
+	      <entry>64</entry>
+	      <entry>125 MHz</entry>
+	      <entry>1.91 Hz</entry>
+	      <entry>8.00 µs</entry>
+	    </row>
+	    <row>
+	      <entry>256</entry>
+	      <entry>31.3 KHz</entry>
+	      <entry>0.477 Hz</entry>
+	      <entry>32.0 µs</entry>
+	    </row>
+	    <row>
+	      <entry>1024</entry>
+	      <entry>7.81 KHz</entry>
+	      <entry>0.119 Hz</entry>
+	      <entry>128 µs</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+	According to design specification, we do not need frequencies
+	higher than 5 KHz. We may however need frequencies lower than
+	0.119 Hz. The Arduino has one 16-bit timer, and we definately
+	need frequencies lower than 30.5 Hz, so from this perspective
+	software timers/counters are required.
+      </para>
+      <para>
+	It would be possible to design intelligent software control
+	over hardware timers to achieve desired, low frequencies, but
+	this is probably not worth the effort.
+      </para>
+    </section>
+
+    <section>
+      <title>CPU usage</title>
+      <para>
+	Hardware timers/counters have no CPU usage when running, and
+	starting/stopping only has a little CPU usage. For a software
+	timer/counter, the CPU usage is proportional to the frequency,
+	so from this perspective, hardware timers/counters are
+	prefered.
+      </para>
+      <para>
+	Designing intelligent software control over hardware
+	timers/counters would probably be as CPU consuming as bare
+	software timers/counters. Hence, though hardware
+	timers/counters have less CPU usage than software
+	timers/counters, we prefer software timers/counters because it
+	is easier to achieve required frequency.
+      </para>
+    </section>
+
+  </section>
+
+  <section>
+    <title>Runtime ajustments of timers/counters</title>
+    <para>
+      It is rarely possible to achieve the exact desired frequency -
+      it is often rounded to nearest possible frequency. Depending on
+      the prescaler, this deviance increases with the prescaler. Se
+      tables above.
+    </para>
+    <para>
+      Many roundings may cause visible faults in the plot. Since Ace
+      High does only deal with controlling the position of the cursor
+      (and not regulating it), it is prefered to ajust timers/counters
+      while they are running to achieve the exact frequency.
+    </para>
+    <para>
+      Designing software to ajust hardware timers/counters will
+      probably be as time consuming and CPU consuming as designing a
+      runtime ajusted software timer/counter.
+    </para>
+  </section>
+
+  <section>
+    <title>Possible changes in the future</title>
+    <para>
+      This decision is not likely to change. In the future, Ace High
+      may be using a different MCU, and if the MCU is changed, it will
+      definately be to a more resourceful one. Software
+      timers/counters are more portable, and with a faster CPU, the
+      software timer/counter's CPU usage becomes less significant.
+    </para>
+  </section>
+
+</article>
