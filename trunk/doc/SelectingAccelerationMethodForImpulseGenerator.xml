@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1//EN" "http://docbook.org/xml/simple/1.1/sdocbook.dtd">
+<article>
+  <articleinfo>
+    <releaseinfo>$Id$</releaseinfo>
+  </articleinfo>
+  <title>Selecting acceleration method for impulse generator</title>
+
+  <section>
+    <title>Introduction</title>
+    <para>
+      Introducing text here. Why is this article needed?
+    </para>
+  </section>
+
+  <section>
+    <title>Comparison of hardware and software accelerated impulse
+    generation</title>
+    <para>
+      <!-- use a cross reference to the table -->
+      The table below is showing pros and cons for both hardware
+      acceleration and software acceleration used to generate
+      impulses. Each topic is discussed below.
+    </para>
+    <table>
+      <title>Comparison of hardware and software accelerated impulse
+      generation</title>
+      <tgroup cols="3">
+	<thead>
+	  <row>
+	    <entry></entry>
+	    <entry>Hardware acceleration</entry>
+	    <entry>Software acceleration</entry>
+	  </row>
+	</thead>
+	<tbody>
+	  <row>
+	    <entry>Resolution</entry>
+	    <entry>Fixed, depends on hardware (8/16 bits for Arduino)</entry>
+	    <entry>Variable, depends on software</entry>
+	  </row>
+	  <row>
+	    <entry>Range</entry>
+	    <!-- use real cross reference -->
+	    <entry>Fixed, depends on hardware (see section below)</entry>
+	    <entry>Variable, depends on software</entry>
+	  </row>
+	  <row>
+	    <entry>Available timers</entry>
+	    <entry>Fixed, depends on hardware</entry>
+	    <entry>Variable, depends on software</entry>
+	  </row>
+	  <row>
+	    <entry>Software required</entry>
+	    <entry>Little for starting/stopping timers, none for
+	    running timers</entry>
+	    <entry>Little for starting/stopping timers, little for
+	    running timers</entry>
+	  </row>
+	  <row>
+	    <entry>CPU usage</entry>
+	    <entry>Little when starting/stopping timers, none when
+	    running timers</entry>
+	    <entry>Little when starting/stopping timers, little when
+	    running timers</entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+  </section>
+
+</article>
