@@ -3,7 +3,8 @@
 #
 
 # Target files
-TARGETS=WhyNotUseHardwareTimersCounterForImpulseGeneration.xml
+TARGETS=WhyNotUseHardwareTimersCounterForImpulseGeneration.xml	\
+RuntimeAjustedTimerCounter.xml CommunicationProtocol.xml
 
 DEFAULT_FORMAT=html
 
