@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1//EN" "http://docbook.org/xml/simple/1.1/sdocbook.dtd">
+<article>
+  <articleinfo>
+    <releaseinfo>$Id$</releaseinfo>
+  </articleinfo>
+  <title>Runtime ajusted timer/counter</title>
+
+  <section>
+    <title>Introduction</title>
+    <para>
+      What does this article containt? Why is it needed?
+    </para>
+    <para>
+      It is necessary to ajust the impulse generator at runtime to
+      achieve a more accurate frequency. This article describes how
+      this runtime ajusted timer/counter is implemented.
+    </para>
+  </section>
+
+</article>
