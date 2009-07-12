@@ -96,7 +96,6 @@ void steppers_init()
   OCR0A = 199; /* interrupt med 10 KHz, højeste impulsfrekvens er 5
 		  KHz */
   TCCR0B |= 1<<CS01; /* præskalar på 8 */
-  sei(); /* aktiver interrupts */
 
   /* set up ports */
   DDRD |= 1<<PIN_CLK;
