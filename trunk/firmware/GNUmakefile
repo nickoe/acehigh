@@ -10,7 +10,7 @@ MCU=atmega328p
 
 # Kildekoder, .c for C, .cc, .cpp eller .C for C++, .S (ikke .s) for
 # assambler
-PRJSRC=main.c steppers.c
+PRJSRC=main.c steppers.c serial.c
 
 # Biblioteker
 LIBS=-lm
