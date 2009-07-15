@@ -1,0 +1,14 @@
+$Id$
+
+This directory will contain a cli program for sending data to Ace High
+and performing various queries. This program should not be able to
+handle anything but communication with the Ace High plotter.
+
+Possible languages for cli program: python, c++? Discuss portability,
+project objectives, productivity e.g.
+
+This directory should also contain a gui program capable of viewing,
+rotating, moving and scaling drawings before they are plotted. The
+program should also be able to calibrate the machine.
+
+Possible languages for gui program: python, c++? Use GTK/Qt/WxWidgets?

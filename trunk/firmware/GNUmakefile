@@ -16,7 +16,7 @@ PRJSRC=main.c steppers.c serial.c
 LIBS=-lm
 
 # CPU frequency in hertz
-CPUFREQ=16000000
+CPUFREQ=20000000
 
 # id to use with programmer default: PROGRAMMER_MCU=$(MCU) In case the
 # programer used, e.g avrdude, doesn't accept the same MCU name as
