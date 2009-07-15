@@ -1,0 +1,113 @@
+%
+% $Id$
+%
+
+\documentclass[11pt,a4paper,oneside,article]{memoir}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[adobe-utopia]{mathdesign}
+\usepackage[scaled]{luximono}
+
+\usepackage[colorlinks]{hyperref}
+
+%\chapterstyle{section}
+\setsecnumdepth{chapter}
+
+\title{AceHigh Control Protocol}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents*
+
+\chapter{Introduction}
+
+Why this paper? Why is it necessary? How should it be read?
+
+This paper describes the AceHigh Control Protocol used for controlling
+an AceHigh plotter.
+
+This protocol is influenced by the RepRap Generation 3 Protol (see
+\url{http://docs.google.com/Doc?id=dd5prwmp_14ggw37mfp&hl=en}).
+
+This is a draft and everything in this paper is subject to change.
+
+
+\chapter{Communication model}
+
+This protocol is intended for communication between two nodes: an
+intelligent node instantiating the connection, making various
+decisions based on the device capabilities e.g., and an unintelligent
+node answering requests and notifying the host when certain event
+occur.
+
+Put an illustration of the communication model here!
+
+Each node can have one session open at a time. This means, that both
+nodes can send request and recieve responses, but a node must get the
+response before sending a new request.
+
+
+\chapter{Packet structure}
+
+The packet structure is shown in Figure~\ref{fig:packet-structure}.
+
+\begin{figure}[htbp]
+  \centering
+  \vspace{2cm}
+  \caption{Packet structure}
+  \label{fig:packet-structure}
+\end{figure}
+
+
+\section{Synchronization byte}
+
+Each packet is preceded by a synchronization byte. This byte has the
+value of $\textup{D}5_{16}$ (or $213_{10}$ or $11010101_2$).
+
+
+\section{Header byte}
+
+One byte describing the purpose of the packet. The first byte
+indicated whether the packet is a request (0) or a response (1).
+
+
+\section{Data bytes}
+
+The number of data bytes depends on the header byte. Each header byte
+has a fixed number of data bytes.
+
+
+\section{Checksum}
+
+The checksum is the CRC-8-Dallas/Maxim of the header and data. The
+synchronization bit is not included in the checksum byte.
+
+
+\chapter{Request codes}
+
+This section lists all request codes. All numbers are base 10.
+
+
+\section{0 -- Get firmware version}
+
+This requests the firmware version of the device.
+
+
+\section{127 -- Extended requests}
+
+This request is reserved for future versions of this protocol.
+
+
+\chapter{Response codes}
+
+
+\chapter{Revision history}
+
+This section will be written when the first stable version of this
+protocol is designed.
+
+
+\end{document}
