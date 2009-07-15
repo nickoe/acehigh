@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.1//EN" "http://docbook.org/xml/simple/1.1/sdocbook.dtd">
+<article>
+  <articleinfo>
+    <releaseinfo>$Id$</releaseinfo>
+  </articleinfo>
+  <title>Communication protocol</title>
+
+  <section>
+    <title>Introduction</title>
+    <para>
+      This article describes the communication protocol used to for
+      communications between the host (PC) and the device (MCU).
+    </para>
+  </section>
+
+  <section>
+    <title>Requirements</title>
+    <para>
+      We need to send data to the device. This data will be HPGL or
+      G-code. Besides that, it would be nice to have low level control
+      of the device from the host, so we need to select between two
+      different types of transmitted data.
+    </para>
+    <para>
+      It would be nice to have checksum validation. Only one
+      connection/session is required.
+    </para>
+  </section>
+
+  <section>
+    <title>SNAP (Scalable Node Address Protocol)</title>
+    <para>
+      This protocol may be used. It features error correction with
+      checksum and ACK/NAK signals.
+    </para>
+    <para>
+      We want to be able to send two different kinds of data, but SNAP
+      does not support this. It could be implemented by using one of
+      the 128 available command codes to select stream. Then SNAP
+      becomes a multistream protocol, and we just use two streams.
+    </para>
+  </section>
+
+</article>

@@ -52,8 +52,8 @@ void serial_init()
   UCSR0B = (1<<RXCIE0) | (1<<UDRIE0) | (1<<RXEN0) | (1<<TXEN0);
   /* 8 data bits */
   UCSR0C = (1<<UCSZ01) | (1<<UCSZ00);
-  /* 19200 baud (cpu frequency is 16 MHz */
-  UBRR0L = 51;
+  /* 9600 baud (cpu frequency is 20 MHz */
+  UBRR0L = 129;
 
   rx_head = 0;
   rx_count = 0;
@@ -82,10 +82,12 @@ void serial_write(uint8_t *p, uint8_t len)
 /* interrupt on recieve complete */
 ISR(USART_RX_vect)
 {
+  /*
   uint8_t c = UDR0;
 
   rx_buffer[(tx_head + tx_count) % RX_BUFFER_SIZE] = c;
   rx_count++;
+  */
 
   /* wait to data register is empty */
   //while (!(UCSR0A & (1<<UDRE0)));
@@ -96,12 +98,16 @@ ISR(USART_RX_vect)
 /* interrupt on data register empty */
 ISR(USART_UDRE_vect)
 {
+  /*
   if (tx_count == 0)
     return;
+  */
 
   /* send next char in transmit buffer */
+  /*
   uint8_t c = tx_buffer[tx_head];
   tx_head = (tx_head + 1) % TX_BUFFER_SIZE;
   tx_count--;
   UDR0 = c;
+  */
 }

@@ -1,0 +1,9 @@
+$Id$
+
+Firmware should be setup independent - calibration and direction setup
+information should be saved in eeprom
+
+Use SNAP for communication, use one command byte to select stream and
+then use stream 0 for data, and stream 1 for command queries. Over
+time, all units should communicate via the same bus (not one bus for
+pc-host, and one bus for host-slaves).
