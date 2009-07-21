@@ -28,7 +28,6 @@
 
 \chapterstyle{section}
 \setsecnumdepth{section}
-\maxtocdepth{subsection}
 % TODO: Set up the ToC to list subsections a bit more elegant
 
 \title{AceHigh Control Protocol}
@@ -120,7 +119,9 @@ and the revice respondes with it's own version information.
 
 \begin{table}[htbp]
   \centering
-  \begin{tabular}{ccc}
+  \caption{Parameters and response for CMD0}
+  \label{tab:cmd0}
+  \begin{tabular}{lcc}
     \toprule
     & \textbf{Number of bytes} & \textbf{Interpretation} \\
     \midrule
@@ -128,8 +129,6 @@ and the revice respondes with it's own version information.
     Response & 2 & TBD \\
     \bottomrule
   \end{tabular}
-  \caption{Parameters and response for CMD0}
-  \label{tab:cmd0}
 \end{table}
 
 
