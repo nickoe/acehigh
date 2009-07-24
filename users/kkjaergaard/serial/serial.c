@@ -1,5 +1,5 @@
 /*
- * Problem: This does not work. Try debugging it
+ * Serial communication and command interpretation for AceHigh
  *
  * $Id$
  */
@@ -11,7 +11,7 @@
 
 
 /* io buffers */
-#define RX_BUF_SIZE 10
+#define RX_BUF_SIZE 256
 char volatile rx_buf[RX_BUF_SIZE];
 uint8_t volatile rx_head = 0;
 uint8_t volatile rx_count = 0;
@@ -20,9 +20,6 @@ uint8_t volatile rx_count = 0;
 char volatile tx_buf[TX_BUF_SIZE];
 uint8_t volatile tx_head = 0;
 uint8_t volatile tx_count = 0;
-
-
-#define LED_PIN 5
 
 
 /* initialize */
@@ -35,8 +32,6 @@ int serial_init(void)
   /* 9600 baud (cpu frequency is 20 MHz */
   UBRR0L = 129;
 
-  DDRB |= 1<<LED_PIN;
-
   return 0;
 }
 
@@ -45,7 +40,8 @@ int serial_init(void)
 ISR(USART_RX_vect)
 {
   if (rx_count == RX_BUF_SIZE) {
-    /* reviece buffer is full */
+    /* input buffer is full and we have a very big problem */
+    return;
   }
 
   rx_buf[(rx_head + rx_count) % RX_BUF_SIZE] = UDR0;
@@ -69,6 +65,8 @@ void serial_putc(char c)
   UCSR0B |= 1<<UDRIE0;
 }
 
+
+/* sends data through the usart, returns when data has been buffered */
 void serial_puts(const char *s)
 {
   while (*s)
@@ -78,18 +76,16 @@ void serial_puts(const char *s)
 /* data register i ready to recieve data */
 ISR(USART_UDRE_vect)
 {
-  PORTB ^= 1<<LED_PIN;
-
   /* dequeue transmit buffer*/
   char c = tx_buf[tx_head];
   tx_head = (tx_head + 1) % TX_BUF_SIZE;
   tx_count--;
-
-  UDR0 = c;
 
   /* if we just sent the last byte in the transmit register, we should
      disable this interrupt (because it is used as indicator of
      whether we are currently transmitting data) */
   if (tx_count == 0)
     UCSR0B &= ~(1<<UDRIE0);
+
+  UDR0 = c;
 }
