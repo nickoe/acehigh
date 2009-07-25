@@ -13,7 +13,7 @@ int main(void)
 {
   sei();
   serial_init();
-
+  serial_enable();
 
   while (1) {
     _delay_ms(1000);
