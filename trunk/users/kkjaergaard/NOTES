@@ -1,0 +1,43 @@
+$Id$
+
+Lav mikrokontrolleren sådan, at den kun kan flytte motorerne linieært,
+og at det er hostens opgave at gøre alle formerne lineære.
+
+Hosten kan derpå konvertere alle input-filer til noget
+mikrokontrolleren kan fortså.
+
+Hosten skal tage hensyn til MCU'en teoretiske maksimal-hastighed
+(denne må ikke overskrides).
+
+
+-- Overordnede mål --
+
+Lav pris. MCU'en forbindes til computeren med én seriel forbindelse,
+og realtidsafvikling foregår kun på MCU'en. MCU'en skal kunne lagre
+større mængder data til bevægelserne.
+
+Eksempel: MCU'en forbindes til computeren og kalibreres (retning,
+opløsning, endepunktssensorer m.m.). Data til afvikling overføres til
+MCU'en, og når MCU'ens buffer er fuld, sendes et startsignal fra
+værten til MCU'en.
+
+Værten skal sørge for, at MCU'en ikke løber tør for data.
+
+
+-- Krav til MCU'en --
+
+Den skal gemme instruktioner om næste bevægelse (informationer om hvor
+den skal bevæge sig til og hvornår den skal ankomme). Disse
+informationer beregnes af hosten.
+
+MCU'en skal kommunikere med hosten og udveksle versionsinfo og
+data.
+
+
+-- Krav til kommunikationsprotokol --
+
+Der skal være fejldetektion og -korrektion. Brug 8-bit CRC (argumenter
+for valg af polynomium). MCU'en sender send igen-signal ved CRC-fejl,
+hosten spørger igen ved CRC-fejl. Hvis pakken tabes tredje gang den
+sendes igen, er forbindelsen tabt. Time-out er et sekund (og gælder
+kun mellem dele af pakker - ikke mellem pakker).
