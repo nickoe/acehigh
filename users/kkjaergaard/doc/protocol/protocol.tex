@@ -1,0 +1,173 @@
+%
+% $Id$
+%
+
+\documentclass[11pt,a4paper,oneside]{memoir}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[adobe-utopia]{mathdesign}
+\usepackage[scaled]{luximono}
+
+\usepackage[nofancy]{svninfo}
+%\usepackage{fancyhdr}
+\svnInfo $Id$
+
+\usepackage[draft]{fixme}
+
+
+% memoir kan ikke selv håndtere dette (måske med captionof)
+%\RequirePackage{caption}
+%\captionsetup{font=small,labelfont={bf,sf}}
+
+\captionnamefont{\sffamily \bfseries}
+\captiontitlefont{}
+
+
+\usepackage[colorlinks]{hyperref}
+
+\chapterstyle{section}
+\setsecnumdepth{section}
+% TODO: Set up the ToC to list subsections a bit more elegant
+
+\title{AceHigh Control Protocol}
+\date{Revision \svnInfoRevision}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents*
+
+\chapter{Introduction}
+
+Why this paper? Why is it necessary? How should it be read?
+
+This paper describes the AceHigh Control Protocol used for controlling
+an AceHigh plotter.
+
+This protocol is influenced by the SD protocol and the RepRap
+Generation 3 Protol (see
+\url{http://docs.google.com/Doc?id=dd5prwmp_14ggw37mfp&hl=en}).
+
+This is a draft and everything in this paper is subject to change.
+
+
+\section{Terminology}
+
+The host referes to the PC running the host software, whereas the
+device referes to the microcontroller.
+
+
+\chapter{Protocol description}
+
+
+\section{Communication model}
+
+The communication between the host and the device is a bit SPI
+like. The host sends a request, and the device responds to this
+request.
+
+The host is not allowed to send a request before the response from the
+previous request has been recieved.
+
+
+\section{Packet structure}
+
+As shown in figure~\ref{fig:request-packet}, a request packet consists
+of a synchronization byte, a command byte, parameter bytes, and a CRC
+byte.
+
+\begin{figure}[htbp]
+  \centering
+  % Synchonization byte, command byte, parameters (depends on
+  % command), CRC-8-Dallas/Maxim entire packet excluding CRC byte
+  % itself
+  \vspace{2cm}
+  \caption{Structure of a request packet}
+  \label{fig:request-packet}
+\end{figure}\fixme{make drawing}
+
+The synchronization byte has the value of $\textup{D}5_{16}$ (or
+$213_{10}$ og $11010101_2$). A list of available command bytes can be
+found in section~\ref{sc:commands}. The number of parameter bytes
+depends on the command; some commands has no parameter bytes and the
+byte just after the command byte will be the CRC byte. The CRC byte is
+the CRC-8-Dallas/Maxim of the entire packet (including synchronization
+byte, excluding the CRC byte itself).
+
+
+\begin{figure}[htbp]
+  \centering
+  % Response header, parameters (depends on command),
+  % CRC-8-Dallas/Maxim of header and parameters IF parameters exist
+  \vspace{2cm}
+  \caption{Structure of responce packet}
+  \label{fig:response-packet}
+\end{figure}\fixme{make drawing}
+
+
+\section{Commands}
+\label{sc:commands}
+% here: a list of available commands and their parameters and expected
+% responses
+
+\subsection{CMD0 - Exchange version information}
+
+This commands sends the version information of the host to the device,
+and the revice respondes with it's own version information.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Parameters and response for CMD0}
+  \label{tab:cmd0}
+  \begin{tabular}{lcc}
+    \toprule
+    & \textbf{Number of bytes} & \textbf{Interpretation} \\
+    \midrule
+    Parameters & 2 & TBD \\
+    Response & 2 & TBD \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\section{Error detection and correction}
+
+This protocol relies on CRC matches and time-outs to ensure, that the
+data is recieved unaltered.
+
+
+\subsection{CRC mismatch}
+
+Each request packet and some response packets contains a CRC byte. If
+the command and parameter bytes does not match this CRC, the packet is
+considered corrupted.
+
+Next action depends on which node detects the error:
+\begin{itemize} \firmlist
+\item If \textit{the device detects} an error, it will set the error
+  bit in the response byte.
+\item if \textit{the host detects} an error, it should repeat the
+  request or cause a time-out to reset the connection.
+\end{itemize}
+
+\subsection{Time-out}
+
+If a node does not recieve an expected byte within the allowed time,
+the connection is considered lost and will be reset, and the node
+should clean the packet buffer. The device should still be configured
+for the current plotting session, but the connection is considered
+reset.
+
+\fixme{allowed time to be decided}
+
+
+\chapter{Revision history}
+
+This section will be written when the first stable version of this
+protocol is designed.
+
+
+\end{document}
+
